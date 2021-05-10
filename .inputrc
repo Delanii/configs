@@ -1,0 +1,8 @@
+set editing-mode vi
+set keymap vi
+
+# Toto patří buď do `.bashrc` nebo do `inputrc` (pak to ale ovlivní všechny shells; resp. všechny programy, které používají `readline` pro input.
+# Odkaz: https://unix.stackexchange.com/questions/4870/is-it-possible-to-have-vim-key-bindings-in-terminal
+set show-mode-in-prompt on
+set vi-ins-mode-string "[I]"
+set vi-cmd-mode-string "[N]"

@@ -1,0 +1,28 @@
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[ *λ* ❯❯](bold bright-cyan)"     # The "success_symbol" segment is being set
+error_symbol = "[!! ✗](bold red)"
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+style = "bold yellow"
+format = "[At $path]($style)[$read_only]($read_only_style) "
+
+[git_status]
+conflicted = "!C!: ${count}"
+ahead = "+A+: ${count}"
+diverged = "+A+: ${ahead_count}; -B-: ${behind_count}"
+behind = "-B- ${count}"
+untracked = "?U?: ${count}"
+stashed = "St: ${count}"
+modified = '*M*: ${count}'
+staged = '[<S>: ${count}]'
+renamed = "oRo!: ${count}"
+deleted = "xDx: ${count}"
+style = "bold red"
+
+[cmd_duration]
+disabled = true
+
+[aws]
+disabled = true
