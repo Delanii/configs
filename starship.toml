@@ -9,16 +9,16 @@ style = "bold yellow"
 format = "[At $path]($style)[$read_only]($read_only_style) "
 
 [git_status]
-conflicted = "!C!: ${count}"
-ahead = "+A+: ${count}"
-diverged = "+A+: ${ahead_count}; -B-: ${behind_count}"
-behind = "-B- ${count}"
-untracked = "?U?: ${count}"
-stashed = "St: ${count}"
-modified = '*M*: ${count}'
-staged = '[<S>: ${count}]'
-renamed = "oRo!: ${count}"
-deleted = "xDx: ${count}"
+conflicted = "!C!: ${count} "
+ahead = "+A+: ${count} "
+diverged = "+A+: ${ahead_count}; -B-: ${behind_count} "
+behind = "-B- ${count} "
+untracked = "?U?: ${count} "
+stashed = "St: ${count} "
+modified = '*M*: ${count} '
+staged = '<S>: ${count} '
+renamed = "oRo!: ${count} "
+deleted = "xDx: ${count} "
 style = "bold red"
 
 [cmd_duration]
