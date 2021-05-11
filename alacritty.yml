@@ -889,8 +889,9 @@ cursor:
 
 key_bindings:
     # (Windows, Linux, and BSD only)
-  - { key: V,         mods: Control,                    action: Paste                       }
-  - { key: C,         mods: Control,                    action: Copy                        }
+  - { key: V,         mods: Control,                   action: Paste                       }
+  - { key: C,         mods: Control,                   action: Copy                        }
+  - { key: C,         mods: Control|Shift,             chars: "\x03"                       }
   - { key: Insert,    mods: Shift,                     action: PasteSelection              }
   - { key: Key0,      mods: Control,                   action: ResetFontSize               }
   - { key: Equals,    mods: Control,                   action: IncreaseFontSize            }
