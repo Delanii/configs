@@ -194,6 +194,7 @@
 ;; Settings for org-roam-server package
 ;;
 (use-package org-roam-server
+  :defer t
   :after (org-roam server)
   :config
   (setq org-roam-server-host "127.0.0.1"
