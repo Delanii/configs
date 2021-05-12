@@ -336,12 +336,6 @@
 ;; Nastavení org-babel-clojure-backend pro evaluaci kódu clojure v org
 (setq org-babel-clojure-backend 'cider)
 
-;; Umožnění spouštění Jupyter notebooků přes =ein=
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ein . t)
-   (shell . t)))
-
 ;; Experimental packages
 ;;
 ;; Settings for org-transclusion from https://github.com/tecosaur/emacs-config/blob/master/config.org
