@@ -347,12 +347,14 @@
 ;; Settings for org-transclusion from https://github.com/tecosaur/emacs-config/blob/master/config.org
 (use-package! org-transclusion
   :commands org-transclusion-mode
+  :defer t
   :init
   (map! :after org :map org-mode-map
         "<f12>" #'org-transclusion-mode))
 
 ;; Settings for org-outline-tree ; experimental package
 (use-package! org-ol-tree
+  :defer t
   :commands org-ol-tree)
 (map! :map org-mode-map
       :after org
