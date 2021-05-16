@@ -11,14 +11,26 @@
 ;; - https://townk.github.io/doom-emacs-private/
 ;; - https://gitlab.com/zzamboni/dot-doom
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; User identification
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Tomas Krulis"
       user-mail-address "krulis.tomas.tk@gmail.com")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Additinal documentation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Setting location of emacs source code to access documentation for functions that are written in C:
 ;;
 (setq source-directory (concat (getenv "HOME") "/emacsSource/emacs"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Font Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -32,19 +44,35 @@
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'regular))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Theme Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org Directory Setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/org")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Line Numbers Setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
 (setq-default display-line-numbers-type 'relative) ;; changed from `setq` to `setq-default`. It should be doing the same - setting default line numbering to `relative`.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Display Setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Toto spustí emacs vždy ve word-wrap módu - zalamování řádků na koncích slov (v mezerách)
 (global-visual-line-mode t)
@@ -69,17 +97,6 @@
 
 (setq comp-deferred-compilation t)
 
-;; Nastavení defaultního jazyka na češtinu
-
-(ispell-change-dictionary "czech" t)
-
-;; Nastavení spellchecku pro angličtinu a češtinu současně - funguje ve Spacemacs (`.spacemacs`), ale ne zde
-
-;; (setq ispell-program-name "hunspell")
-;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
-;; (setq ispell-local-dictionary "en_US")
-;; (setq ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US,cs_CZ") nil utf-8)))
-
 ;; Start Emacs always maximized
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -89,8 +106,17 @@
 ;; And it there are any tabs, set their size to 4 spaces
 (setq-default tab-width 4)
 
+;; Sets the ammount of lines showed that are showed when reaching edge of the screen (top or bottom)
+(setq scroll-margin 2)
+
+(global-subword-mode 1)                           ; Iterate through CamelCase words
+
 ;; General settings from tecosaur
 ;; odkaz: https://github.com/tecosaur/emacs-config/blob/master/config.org
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Deletion and undo Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq-default
  delete-by-moving-to-trash t) ; Delete files to trash
@@ -98,19 +124,6 @@
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
       auto-save-default t)                        ; Nobody likes to loose work, I certainly don't
-
-(global-subword-mode 1)                           ; Iterate through CamelCase words
-
-;;
-;; Nastaveí pro balíčky modálních editorů (kromě evil)
-;;
-;; Nastavení balíčku 'boon
-;; (require 'boon-qwertz)
-;; alternativně 'boon-qwerty
-
-;; Nastavení balíčku 'xah-fly-keys
-;; (require 'xah-fly-keys)
-;; (xah-fly-keys-set-layout "qwertz")
 
 ;; Nastavení undo-tree
 ;;
@@ -128,14 +141,35 @@
 (use-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
-;;
-;; Specifická nastavení pro org-mode
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Spellcheck Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ispell-change-dictionary "czech" t)
+
+;; Nastavení spellchecku pro angličtinu a češtinu současně - funguje ve Spacemacs (`.spacemacs`), ale ne zde
+
+;; (setq ispell-program-name "hunspell")
+;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
+;; (setq ispell-local-dictionary "en_US")
+;; (setq ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US,cs_CZ") nil utf-8)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Evil - modal editor settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; except for those specific for org-mode
+
+(setq evil-move-cursor-back nil)        ;; After switch from normal mode to insert mode dont move cursor back on letter but leave it where it was.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org Mode Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Modifying org mode defaults
 ;;
-(setq org-use-property-inheritance t              ; it's convenient to have properties inherited
-      org-list-allow-alphabetical t               ; have a. A. a) A) list bullets
+(setq org-use-property-inheritance t ; it's convenient to have properties inherited
+      org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
       org-export-with-sub-superscripts '{})       ; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
 
 ;; Nastavení věcí, co se spustí s org-mode
