@@ -9,6 +9,10 @@
 (setq user-full-name "Tomas Krulis"
       user-mail-address "krulis.tomas.tk@gmail.com")
 
+;; Setting location of emacs source code to access documentation for functions that are written in C:
+;;
+(setq source-directory (concat (getenv "HOME") "/emacsSource/emacs"))
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
