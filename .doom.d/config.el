@@ -3,6 +3,13 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Config sources:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; - https://tecosaur.github.io/emacs-config/config.html
+;; - https://townk.github.io/doom-emacs-private/
+;; - https://gitlab.com/zzamboni/dot-doom
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -37,7 +44,7 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
-(setq display-line-numbers-type 'relative)
+(setq-default display-line-numbers-type 'relative) ;; changed from `setq` to `setq-default`. It should be doing the same - setting default line numbering to `relative`.
 
 ;; Toto spustí emacs vždy ve word-wrap módu - zalamování řádků na koncích slov (v mezerách)
 (global-visual-line-mode t)
@@ -77,11 +84,10 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Změna fontu - spíš ukázka:
-;; (setq doom-font (font-spec :family "Fira Mono" :size 12))
-
 ;; Vypnutí automatické indentace tabulátory:
 (setq-default indent-tabs-mode nil)
+;; And it there are any tabs, set their size to 4 spaces
+(setq-default tab-width 4)
 
 ;; General settings from tecosaur
 ;; odkaz: https://github.com/tecosaur/emacs-config/blob/master/config.org
