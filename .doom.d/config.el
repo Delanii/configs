@@ -637,8 +637,8 @@ title."
   :after org)
 
 ;; Query language for org -- disabled because of: https://github.com/alphapapa/org-ql/issues/214, fix #216 meantioned in issue des not seem to work
-;; (use-package! org-ql
-;;   :after org)
+(use-package! org-ql
+  :after org)
 
 ;; Automatically tangles org-file. In future might be useful, so it is put here, but disabled now.
 (use-package! org-auto-tangle
@@ -649,19 +649,19 @@ title."
 
 ;; This function returns a list of all the headings in the given file which have the given tags.
 
-;; (defun zz/headings-with-tags (file tags)
-;;   (let ((headings (org-ql-select file
-;;                     `(tags-local ,@tags))))
-;;     (mapconcat
-;;      (lambda (l) (format "- %s" l))
-;;      (mapcar
-;;       (lambda (h)
-;;         (let ((title (car (org-element-property :title h))))
-;;           (org-link-make-string
-;;            (format "file:%s::*%s"
-;;                    file title)
-;;            title)))
-;;       headings) "\n")))
+(defun zz/headings-with-tags (file tags)
+  (let ((headings (org-ql-select file
+                    `(tags-local ,@tags))))
+    (mapconcat
+     (lambda (l) (format "- %s" l))
+     (mapcar
+      (lambda (h)
+        (let ((title (car (org-element-property :title h))))
+          (org-link-make-string
+           (format "file:%s::*%s"
+                   file title)
+           title)))
+      headings) "\n")))
 
 ;; Writeroom settings
 ;;
