@@ -98,8 +98,7 @@
 (package! org-autolist)
 ;; (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
 (package! org-roam-server)
-(package! org-ql
-  :recipe (:host github :repo "cfroehli/org-ql")) ;; temporary measure, has fix for this warning: https://github.com/alphapapa/org-ql/issues/214
+(package! org-ql)
 ;; (package! org-plus-contrib) ;; rozbije export z org-mode do jiných formátů
 (package! org-pdftools)
 (package! navi)
