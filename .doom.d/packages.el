@@ -64,8 +64,6 @@
 (package! god-mode) ;; Již v Doom Emacs - ale při povolení v =init.el= aktivuje god-mode všude, což mě mate ... Možná bych si na to zvykl, testovat. Prozatím zapnuto zde a vypnuto v =init.el=
 (package! ryo-modal)
 (package! modalka)
-;; (package! boon) ;; 03. 02. 2021: Problémy s buildem v native emacs 28, vypnuto
-(package! xah-fly-keys)
 (package! kakoune)
 
 ;; Organizace bufferů
@@ -83,6 +81,9 @@
 (package! pandoc-mode)
 (package! expand-region)
 (package! focus)
+;; Package for import files with pandoc
+(package! org-pandoc-import :recipe
+  (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
 
 ;; Documentation packages
 ;;
@@ -91,6 +92,9 @@
 ;;
 ;; Packages connected specifically to org-mode
 ;;
+(package! org-appear
+  :recipe (:host github
+           :repo "awth13/org-appear"))
 (package! org-autolist)
 ;; (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
 (package! org-roam-server)
@@ -102,13 +106,10 @@
 ;; Package for using =defblock= function and for simultanious export to html, latex or other formats
 (package! org-special-block-extras)
 
+(package! valign)                       ;; nice table alignment
 ;;
 ;; Experimental packages
 ;;
-;; Package for import files with pandoc
-(package! org-pandoc-import :recipe
-  (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
-
 ;; Org-mode text transclusion via reference from a file
 (package! org-transclusion :recipe (:host github :repo "nobiot/org-transclusion"))
 
@@ -116,6 +117,9 @@
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 (package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree"))
 (package! org-sidebar)
+(package! org-ml)
+
+(package! org-auto-tangle)
 
 ;; Souštění kódu v org-mode
 ;; (package! ob-raku) ;; Není na MELPA, ručně jej instalovat nebudu

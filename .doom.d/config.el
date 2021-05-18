@@ -10,6 +10,7 @@
 ;; - https://tecosaur.github.io/emacs-config/config.html
 ;; - https://townk.github.io/doom-emacs-private/
 ;; - https://gitlab.com/zzamboni/dot-doom
+;; - https://pages.sachachua.com/.emacs.d/Sacha.html
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; User identification
@@ -52,6 +53,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
+
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Directory Setting
@@ -109,6 +113,8 @@
 ;; Sets the ammount of lines showed that are showed when reaching edge of the screen (top or bottom)
 (setq scroll-margin 2)
 
+(setq scroll-preserve-screen-position 'always)          ;; always preserves cursor position after scrolling
+
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
 ;; General settings from tecosaur
@@ -161,6 +167,7 @@
 ;; except for those specific for org-mode
 
 (setq evil-move-cursor-back nil)        ;; After switch from normal mode to insert mode dont move cursor back on letter but leave it where it was.
+(setq evil-kill-on-visual-paste nil)    ;; When pasting over selected text delete replace selected text with pasted one
 
 (setq evil-visual-region-expanded t)    ;; emacs "region" and vim "selection" mean the same.
 
@@ -279,7 +286,12 @@
 ;;
 (setq org-use-property-inheritance t ; it's convenient to have properties inherited
       org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
-      org-export-with-sub-superscripts '{})       ; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
+      org-export-with-sub-superscripts '{} ; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
+      org-startup-indented t ; always start org-mode indented according to header levels and such
+      org-adapt-indentation t
+      org-hide-emphasis-markers nil ; dont hide emphasis markers. I want to know what my org mode file contains
+      org-pretty-entities nil)
+                                        ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
 
 ;; Nastavení věcí, co se spustí s org-mode
 ;; tedy org-autolist
@@ -287,6 +299,9 @@
 (add-hook 'org-mode-hook (
                           lambda () (org-autolist-mode))
           )
+
+;; Hook autoload function in `writing.el` to org-mode start
+(add-hook 'org-mode-hook #'my-org-buffer-config-h)
 
 ;; Temporary fix to gj, gk and such shodowed by mostly visual-line-mode
 ;; next lines then allows to use gj, gk, gh, gl as defined in evil-org
@@ -301,7 +316,7 @@
      :states 'motion
      :keymaps 'visual-line-mode
      "gj" nil
-     "gk" nil
+     "gk" nil ;; In the end, `gj` and `gk` can be used to move around the headings, just as should from evil-org
      "gs M-j" #'evil-next-line
      "gs M-k" #'evil-previous-line))
   ;; Move the evil-lion bindings out of the way too.
@@ -310,6 +325,99 @@
    :nv "gL" nil
    :nv "gzl" #'evil-lion-left
    :nv "gzL" #'evil-lion-right))
+
+;; Evil-motion bindings - visual line vs real line
+(map! :after org
+      (:map org-mode-map
+       ;; visual-line movements, meaning movements in visible line - one actual line is text between two `\n`. Actual line may have multiple visual lines, depending on window width.
+       :nvm "j" #'evil-next-visual-line
+       :nvm "k" #'evil-previous-visual-line
+       :nv "0" #'evil-beginning-of-visual-line
+       :nvm "^" #'evil-first-non-blank-of-visual-line
+       :nvm "$" #'evil-end-of-visual-line
+       ;; real-line movements
+       :nvm "J" #'evil-next-line
+       :nvm "K" #'evil-previous-line
+       :nvm "g0" #'evil-beginning-of-line
+       :nvm "g^" #'evil-first-non-blank
+       :nvm "g$" #'evil-end-of-line))
+
+;; Make interactively appear org-entities (links, emphasis markers, etc) in insert mode as they are written in file
+(use-package! org-appear
+  :defer t
+  :init
+  (setq org-appear-autolinks t
+        org-appear-autosubmarkers t
+        org-appear-autoemphasis t
+        org-appear-autoentities t)
+  (add-hook! evil-insert-state-entry (org-appear-mode 1))
+  (add-hook! evil-insert-state-exit (org-appear-mode -1)))
+
+;; (add-hook! org-mode :append #'org-appear-mode) ;; alternative to previous hook
+
+;; Alternative link creating function - `counsel-org-link` - and settings for it
+
+(map! :after counsel :map org-mode-map
+      "C-c l l h" #'counsel-org-link)
+
+(after! counsel
+  (setq counsel-outline-display-style 'title))
+;; link diplays heading title, no full path to title
+
+(after! org-id
+  ;; Do not create ID if a CUSTOM_ID exists
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+;; org-id now uses CUSTOM-ID if it is specified
+
+;; This bunch of code should force creating human-readablE CUSTOM_IDs
+
+(defun zz/make-id-for-title (title)
+  "Return an ID based on TITLE."
+  (let* ((new-id (replace-regexp-in-string "[^[:alnum:]]" "-" (downcase title))))
+    new-id))
+
+(defun zz/org-custom-id-create ()
+  "Create and store CUSTOM_ID for current heading."
+  (let* ((title (or (nth 4 (org-heading-components)) ""))
+         (new-id (zz/make-id-for-title title)))
+    (org-entry-put nil "CUSTOM_ID" new-id)
+    (org-id-add-location new-id (buffer-file-name (buffer-base-buffer)))
+    new-id))
+
+(defun zz/org-custom-id-get-create (&optional where force)
+  "Get or create CUSTOM_ID for heading at WHERE.
+
+If FORCE is t, always recreate the property."
+  (org-with-point-at where
+    (let ((old-id (org-entry-get nil "CUSTOM_ID")))
+      ;; If CUSTOM_ID exists and FORCE is false, return it
+      (if (and (not force) old-id (stringp old-id))
+          old-id
+        ;; otherwise, create it
+        (zz/org-custom-id-create)))))
+
+;; Now override counsel-org-link-action
+(after! counsel
+  (defun counsel-org-link-action (x)
+    "Insert a link to X.
+
+X is expected to be a cons of the form (title . point), as passed
+by `counsel-org-link'.
+
+If X does not have a CUSTOM_ID, create it based on the headline
+title."
+    (let* ((id (zz/org-custom-id-get-create (cdr x))))
+      (org-insert-link nil (concat "#" id) (car x)))))
+
+;; This should "reformat" org-mode buffer. Dont know what is the difference betwenn `org-mode-restart`, but it is supposedly a "gem," so I take it and test it.
+
+(defun zz/org-reformat-buffer ()
+  (interactive)
+  (when (y-or-n-p "Really format current buffer? ")
+    (let ((document (org-element-interpret-data (org-element-parse-buffer))))
+      (erase-buffer)
+      (insert document)
+      (goto-char (point-min)))))
 
 ;; Nastavení org-directory. Org-agenda-files čerpají ze stejného nastavení
 
@@ -345,6 +453,11 @@
 
 (add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
 
+;; org tables nicer alignment
+(use-package! valign
+  :defer t
+  :init (setq valign-fancy-bar t))
+
 ;; Settings for org-roam-server package
 ;;
 (use-package org-roam-server
@@ -364,11 +477,17 @@
     (org-roam-server-mode 1)
     (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
 
-;; Does this have to be here?
+;; Make active org-special blocks
+;;
+(use-package! org-special-block-extras
+  :after org
+  :hook (org-mode . org-special-block-extras-mode))
+
+;; Does this have to be here? Until I learn with publishing and emacs --script, YES
 ;;
 (require 'ox)
-(require 'ox-html)
 (require 'ox-latex)
+(require 'ox-html)
 (require 'ox-odt)
 
 ;; Defining Custom LaTeX documentclass; removing default packages and declaring place to load custom packages
@@ -389,8 +508,7 @@
 
   ;; Removes default "\hypersetup" from LaTeX export template
 
-  (customize-set-value 'org-latex-with-hyperref nil)
-
+(customize-set-value 'org-latex-with-hyperref nil)
 ;; Setting default LaTeX compiler as lualatex
 ;;
 (setq org-latex-compiler "lualatex")
@@ -407,30 +525,30 @@
    ((org-export-derived-backend-p backend 'html)
     (replace-regexp-in-string " \\([zuioaskvZUIOASKV]\\) " " \\1&nbsp" text))))
 
-  (defun my-general-filter-highlightNotes (text backend info)
-    "Highligh custom notes markup. Notes are surounded by \"%%\" or \"!!\" delimiters."
-    (cond
-     ((org-export-derived-backend-p backend 'latex)
-      (setq text
-            (replace-regexp-in-string "!!\\(.*\\)!!" "\\\\highLight[yellow]{\\1}" text))
-      (setq text
-            (replace-regexp-in-string "\\\\%\\\\%\\(.*\\)\\\\%\\\\%" "\\\\highLight[red]{\\1}" text)))
-     ((org-export-derived-backend-p backend 'html)
-      (setq text
-            (replace-regexp-in-string "!!\\(.*\\)!!" "<span style=\"background-color:yellow\">\\1</span>" text))
-      (setq text
-            (replace-regexp-in-string "%%\\(.*\\)%%" "<span style=\"background-color:red\">\\1</span>" text)))
-     ((org-export-derived-backend-p backend 'odt)
-      (setq text
-            (replace-regexp-in-string "!!\\(.*\\)!!" "<text:span text:style-name=\"myHighlightImportant\">\\1</text:span>" text))
-      (setq text
-           (replace-regexp-in-string "%%\\(.*\\)%%" "<text:span text:style-name=\"myHighlightWarning\">\\1</text:span>" text)))))
+ (defun my-general-filter-highlightNotes (text backend info)
+   "Highligh custom notes markup. Notes are surounded by \"%%\" or \"!!\" delimiters."
+   (cond
+    ((org-export-derived-backend-p backend 'latex)
+     (setq text
+           (replace-regexp-in-string "!!\\(.*\\)!!" "\\\\highLight[yellow]{\\1}" text))
+     (setq text
+           (replace-regexp-in-string "\\\\%\\\\%\\(.*\\)\\\\%\\\\%" "\\\\highLight[red]{\\1}" text)))
+    ((org-export-derived-backend-p backend 'html)
+     (setq text
+           (replace-regexp-in-string "!!\\(.*\\)!!" "<span style=\"background-color:yellow\">\\1</span>" text))
+     (setq text
+           (replace-regexp-in-string "%%\\(.*\\)%%" "<span style=\"background-color:red\">\\1</span>" text)))
+    ((org-export-derived-backend-p backend 'odt)
+     (setq text
+           (replace-regexp-in-string "!!\\(.*\\)!!" "<text:span text:style-name=\"myHighlightImportant\">\\1</text:span>" text))
+     (setq text
+          (replace-regexp-in-string "%%\\(.*\\)%%" "<text:span text:style-name=\"myHighlightWarning\">\\1</text:span>" text)))))
 
-  (add-to-list 'org-export-filter-plain-text-functions
-               'my-general-filter-nobreaks)
+ (add-to-list 'org-export-filter-plain-text-functions
+              'my-general-filter-nobreaks)
 
-  (add-to-list 'org-export-filter-plain-text-functions
-               'my-general-filter-highlightNotes)
+ (add-to-list 'org-export-filter-plain-text-functions
+              'my-general-filter-highlightNotes)
 
 ;; LaTeX Fitlers
 
@@ -439,26 +557,26 @@
   (when (org-export-derived-backend-p backend 'latex)
     (format "\\highLight{%s}" text)))
 
-  (defun my-latex-export-src-blocks (text backend info)
-    "Export src blocks as without verbatim env."
-    (when (org-export-derived-backend-p
-           backend
-           'latex)
-      (with-temp-buffer
-        (insert text)
-        ;; remove verbatim environment altogether -- replace it with nothing
-        (goto-char (point-min))
-        (replace-string "\\begin{verbatim}" "")
-        (replace-string "\\end{verbatim}" "")
-        (buffer-substring-no-properties
-         (point-min)
-         (point-max)))))
+ (defun my-latex-export-src-blocks (text backend info)
+   "Export src blocks as without verbatim env."
+   (when (org-export-derived-backend-p
+          backend
+          'latex)
+     (with-temp-buffer
+       (insert text)
+       ;; remove verbatim environment altogether -- replace it with nothing
+       (goto-char (point-min))
+       (replace-string "\\begin{verbatim}" "")
+       (replace-string "\\end{verbatim}" "")
+       (buffer-substring-no-properties
+        (point-min)
+        (point-max)))))
 
-  (add-to-list 'org-export-filter-verbatim-functions
-               'my-latex-filter-inlineCodeHighlight)
+ (add-to-list 'org-export-filter-verbatim-functions
+              'my-latex-filter-inlineCodeHighlight)
 
-  (add-to-list 'org-export-filter-src-block-functions
-               'my-latex-export-src-blocks)
+ (add-to-list 'org-export-filter-src-block-functions
+              'my-latex-export-src-blocks)
 
 ;; Settings for conversion from org-mode to HTML
 
@@ -487,6 +605,11 @@
 (use-package! org-pandoc-import
   :after org)
 
+;; HTML htmlize export settings
+
+(setq org-html-doctype "html5"
+      org-html-html5-fancy t)
+
 ;; Nastavení org-babel-clojure-backend pro evaluaci kódu clojure v org
 (setq org-babel-clojure-backend 'cider)
 
@@ -501,13 +624,44 @@
         "<f12>" #'org-transclusion-mode))
 
 ;; Settings for org-outline-tree ; experimental package
-(use-package! org-ol-tree
+;; (use-package! org-ol-tree
+;;   :defer t
+;;   :commands org-ol-tree)
+;; (map! :map org-mode-map
+;;       :after org
+;;       :localleader
+;;       :desc "Outline" "O" #'org-ol-tree)
+
+;; Another experimental - org-ml: functional parsing of org-mode files
+(use-package! org-ml
+  :after org)
+
+;; Query language for org -- disabled because of: https://github.com/alphapapa/org-ql/issues/214
+;; (use-package! org-ql
+;;   :after org)
+
+;; Automatically tangles org-file. In future might be useful, so it is put here, but disabled now.
+(use-package! org-auto-tangle
   :defer t
-  :commands org-ol-tree)
-(map! :map org-mode-map
-      :after org
-      :localleader
-      :desc "Outline" "O" #'org-ol-tree)
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+
+;; This function returns a list of all the headings in the given file which have the given tags.
+
+;; (defun zz/headings-with-tags (file tags)
+;;   (let ((headings (org-ql-select file
+;;                     `(tags-local ,@tags))))
+;;     (mapconcat
+;;      (lambda (l) (format "- %s" l))
+;;      (mapcar
+;;       (lambda (h)
+;;         (let ((title (car (org-element-property :title h))))
+;;           (org-link-make-string
+;;            (format "file:%s::*%s"
+;;                    file title)
+;;            title)))
+;;       headings) "\n")))
 
 ;; Writeroom settings
 ;;
