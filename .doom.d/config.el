@@ -111,7 +111,8 @@
 (setq-default tab-width 4)
 
 ;; Sets the ammount of lines showed that are showed when reaching edge of the screen (top or bottom)
-(setq scroll-margin 2)
+(setq scroll-margin 2
+      scroll-conservatively 1000)
 
 (setq scroll-preserve-screen-position 'always)          ;; always preserves cursor position after scrolling
 
@@ -512,6 +513,11 @@ title."
 ;; Setting default LaTeX compiler as lualatex
 ;;
 (setq org-latex-compiler "lualatex")
+
+;; HTML export settings
+
+(setq org-html-htmlize-output-type 'css)
+(setq org-src-fontify-natively t)
 
 ;; Definitions of filters for exporting
 ;;
