@@ -578,11 +578,20 @@ title."
         (point-min)
         (point-max)))))
 
+;; For some projects it is better disabled. Works well only if all referenes are for latex defined in latex commands (ref, vref, cref) and not with org-mode syntax ([[]])
+;; (defun my-latex-filter-removeOrgAutoLabels (text backend info)
+;;   "Org-mode automatically generates labels for headings despite explicit use of `#+LABEL`. This filter forcibly removes all automatically generated org-labels in headings."
+;;   (when (org-export-derived-backend-p backend 'latex)
+;;     (replace-regexp-in-string "\\\\label{sec:org[a-f0-9]+}\n" "" text)))
+
  (add-to-list 'org-export-filter-verbatim-functions
               'my-latex-filter-inlineCodeHighlight)
 
  (add-to-list 'org-export-filter-src-block-functions
               'my-latex-export-src-blocks)
+			  
+ ;; (add-to-list 'org-export-filter-headline-functions
+ ;;              'my-latex-filter-removeOrgAutoLabels)
 
 ;; Settings for conversion from org-mode to HTML
 
