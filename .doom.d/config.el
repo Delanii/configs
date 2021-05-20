@@ -54,6 +54,11 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 
+;; Modeline changes
+;;
+(custom-set-faces!
+  '(doom-modeline-buffer-modified :foreground "orange" :weight bold))  ;; sets filename in orange color to get nicer look at modified buffer
+
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
@@ -104,6 +109,21 @@
 ;; Start Emacs always maximized
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Application window settings - emacs top tittle bar has following format: `buffer-name` -symbol- project-name (read by projectile, follows git naming)
+;;
+(setq frame-title-format
+      '(""
+        (:eval
+         (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+             (replace-regexp-in-string
+              ".*/[0-9]*-?" "☰ "
+              (subst-char-in-string ?_ ?  buffer-file-name))
+           "%b"))
+        (:eval
+         (let ((project-name (projectile-project-name)))
+           (unless (string= "-" project-name)
+             (format (if (buffer-modified-p)  "   ᛗ  %s" "   ✪   %s") project-name))))))
 
 ;; Vypnutí automatické indentace tabulátory:
 (setq-default indent-tabs-mode nil)
@@ -380,6 +400,13 @@
   (add-hook! evil-insert-state-entry (org-appear-mode 1))
   (add-hook! evil-insert-state-exit (org-appear-mode -1)))
 
+;; The same for mathematical symbols and formulas
+(use-package! org-fragtog
+  :defer t
+  :init
+  (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
+  (add-hook! evil-insert-state-exit (org-fragtog-mode -1)))
+
 ;; (add-hook! org-mode :append #'org-appear-mode) ;; alternative to previous hook
 
 ;; Alternative link creating function - `counsel-org-link` - and settings for it
@@ -479,11 +506,6 @@ title."
                                                (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t))
 
 (add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
-
-;; org tables nicer alignment
-(use-package! valign
-  :defer t
-  :init (setq valign-fancy-bar t))
 
 ;; Settings for org-roam-server package
 ;;

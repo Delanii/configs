@@ -95,7 +95,10 @@
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
+(package! org-fragtog)
+
 (package! org-autolist)
+
 ;; (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
 (package! org-roam-server)
 (package! org-ql
@@ -107,7 +110,6 @@
 ;; Package for using =defblock= function and for simultanious export to html, latex or other formats
 (package! org-special-block-extras)
 
-(package! valign)                       ;; nice table alignment
 ;;
 ;; Experimental packages
 ;;

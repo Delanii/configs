@@ -1,4 +1,7 @@
 ;;; cli.el -*- lexical-binding: t; -*-
+
+(setq org-confirm-babel-evaluate nil)
+
 (setq org-confirm-babel-evaluate nil)
 
 ;; Má umožnit spouštění kódu v org-mode bez problémů a potvrzování.
