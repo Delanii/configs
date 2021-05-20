@@ -687,13 +687,9 @@ title."
         "<f12>" #'org-transclusion-mode))
 
 ;; Settings for org-outline-tree ; experimental package
-;; (use-package! org-ol-tree
-;;   :defer t
-;;   :commands org-ol-tree)
-;; (map! :map org-mode-map
-;;       :after org
-;;       :localleader
-;;       :desc "Outline" "O" #'org-ol-tree)
+(use-package! org-ol-tree
+  :defer t
+  :commands org-ol-tree)
 
 ;; Another experimental - org-ml: functional parsing of org-mode files
 (use-package! org-ml
@@ -726,12 +722,30 @@ title."
            title)))
       headings) "\n")))
 
+;;
 ;; Writeroom settings
 ;;
 ;; Tweaks doom emacs zooming
 (setq +zen-text-scale 0.9)
 
+;;
+;; Completion Settings
+;;
+
+(after! company
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 3)
+  (setq company-show-numbers t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
+
+;; Increase completion history size
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+
+;;
 ;; Yasnippets settings
+;;
+
 ;; allows for nested snippets
 ;;
 (setq yas-triggers-in-field t)

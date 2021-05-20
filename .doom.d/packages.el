@@ -99,7 +99,7 @@
 
 (package! org-autolist)
 
-;; (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
+(package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
 (package! org-roam-server)
 (package! org-ql
   :recipe (:host github :repo "cfroehli/org-ql"))
@@ -125,6 +125,8 @@
 (package! org-auto-tangle)
 
 ;; Souštění kódu v org-mode
+
+(package! ob-julia :recipe (:host github :repo "nico202/ob-julia" :files ("*.el" "julia")))
 ;; (package! ob-raku) ;; Není na MELPA, ručně jej instalovat nebudu
 
 ;; Spouštění kódu ve Scale
