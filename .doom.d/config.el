@@ -118,6 +118,32 @@
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
+;; This set of functions displays buffer preview when `evil-window-vsplit` or `evil-window-split` is used in splitted window (right or bottom).
+;; First, we’ll enter the new window
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; Then, we’ll pull up ivy
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer))
+
+;; Oh, and previews are nice
+(setq +ivy-buffer-preview t)
+
+;; This add window changing and swapping not only with `hjkl` as in vim directions, but also with arrow keys
+(map! :map evil-window-map
+      ;; Navigation
+      "<left>"     #'evil-window-left
+      "<down>"     #'evil-window-down
+      "<up>"       #'evil-window-up
+      "<right>"    #'evil-window-right
+      ;; Swapping windows
+      "C-<left>"       #'+evil/window-move-left
+      "C-<down>"       #'+evil/window-move-down
+      "C-<up>"         #'+evil/window-move-up
+      "C-<right>"      #'+evil/window-move-right)
+
 ;; General settings from tecosaur
 ;; odkaz: https://github.com/tecosaur/emacs-config/blob/master/config.org
 
