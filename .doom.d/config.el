@@ -336,6 +336,16 @@
 ;; Org Mode Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Nastavení org-directory. Org-agenda-files čerpají ze stejného nastavení
+
+(custom-set-variables
+ '(org-directory "~/Documents/org")
+ '(org-agenda-files (list org-directory)))
+
+  ;; Nastavení defaultního souboru pro capture
+
+  (setq org-default-notes-file (concat org-directory "/notesDefaultFile.org"))
+
 (after! org
 
   ;; Modifying org mode defaults
@@ -492,16 +502,6 @@ title."
         (erase-buffer)
         (insert document)
         (goto-char (point-min)))))
-
-  ;; Nastavení org-directory. Org-agenda-files čerpají ze stejného nastavení
-
-  (custom-set-variables
-   '(org-directory "~/Documents/org")
-   '(org-agenda-files (list org-directory)))
-
-  ;; Nastavení defaultního souboru pro capture
-
-  (setq org-default-notes-file (concat org-directory "/notesDefaultFile.org"))
 
   ;; Nastavení způsobu zvýrazňování vlastní TODO-sekvencí
   ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění
