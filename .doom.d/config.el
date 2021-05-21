@@ -12,6 +12,11 @@
 ;; - https://gitlab.com/zzamboni/dot-doom                -- new functions defined prefixed by `zz`
 ;; - https://pages.sachachua.com/.emacs.d/Sacha.html
 
+;; For package configurations, all package configuration should be wrapped in `(after! package-name)` macro, except for:
+;;
+;; - variables containing any paths or directory names
+;; - variables specifically mentioned in theyre package documentation to be set before loading the package
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; User identification
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -339,7 +344,8 @@
       org-startup-indented t ; always start org-mode indented according to header levels and such
       org-adapt-indentation t
       org-hide-emphasis-markers nil ; dont hide emphasis markers. I want to know what my org mode file contains
-      org-pretty-entities nil)      ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
+      org-pretty-entities nil       ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
+      org-catch-invisible-edits 'smart)
 
 ;; Nastavení věcí, co se spustí s org-mode
 ;; tedy org-autolist
@@ -347,6 +353,9 @@
 (add-hook 'org-mode-hook (
                           lambda () (org-autolist-mode))
           )
+
+;; Have list markers change with depth automatically in sequence - -> + -> * -> -
+(setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "*") ("*" . "-") ("1." . "a.")))
 
 ;; Hook autoload function in `writing.el` to org-mode start
 (add-hook 'org-mode-hook #'thi/org-buffer-config-h)
@@ -373,6 +382,14 @@
    :nv "gL" nil
    :nv "gzl" #'evil-lion-left
    :nv "gzL" #'evil-lion-right))
+
+;; Map those operations also to their arrow-key variants
+(map! :map evil-org-mode-map
+      :after evil-org
+      :n "g <up>" #'org-backward-heading-same-level
+      :n "g <down>" #'org-forward-heading-same-level
+      :n "g <left>" #'org-up-element
+      :n "g <right>" #'org-down-element)
 
 ;; Evil-motion bindings - visual line vs real line
 (map! :after org
@@ -507,6 +524,22 @@ title."
                                                (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t))
 
 (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-fonts)
+
+;; Settings for parenthessis completion -- complete target syntax `<< >>`, and also custom syntax defined above: `%% %%`, `!! !!`
+(sp-local-pair
+ '(org-mode)
+ "<<" ">>"
+ :actions '(insert))
+
+(sp-local-pair
+ '(org-mode)
+ "%%" "%%"
+ :actions '(insert))
+
+(sp-local-pair
+ '(org-mode)
+ "!!" "!!"
+ :actions '(insert))
 
 ;; Settings for org-roam-server package
 ;;
