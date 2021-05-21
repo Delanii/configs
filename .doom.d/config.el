@@ -427,6 +427,9 @@
           org-appear-autosubmarkers t
           org-appear-autoemphasis t
           org-appear-autoentities t)
+    ;; for proper first-time setup, `org-appear--set-elements'
+    ;; needs to be run after other hooks have acted.
+    (run-at-time nil nil #'org-appear--set-elements)
     (add-hook! evil-insert-state-entry (org-appear-mode 1))
     (add-hook! evil-insert-state-exit (org-appear-mode -1)))
 
@@ -513,6 +516,13 @@ title."
   (add-to-list 'org-emphasis-alist
                '("+" (:foreground "red")))
 
+(defun locally-defer-font-lock ()
+  "Set jit-lock defer and stealth, when buffer is over a certain size."
+  (when (> (buffer-size) 50000)
+    (setq-local jit-lock-defer-time 0.05
+                jit-lock-stealth-time 1)))
+
+(add-hook 'org-mode-hook #'locally-defer-font-lock)
 
   ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
   (require 'org-habit nil t)
