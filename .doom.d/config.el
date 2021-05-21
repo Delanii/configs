@@ -417,9 +417,6 @@
           org-appear-autosubmarkers t
           org-appear-autoemphasis t
           org-appear-autoentities t)
-     ;; for proper first-time setup, `org-appear--set-elements'
-    ;; needs to be run after other hooks have acted.
-    (run-at-time nil nil #'org-appear--set-elements)
     (add-hook! evil-insert-state-entry (org-appear-mode 1))
     (add-hook! evil-insert-state-exit (org-appear-mode -1)))
 
@@ -564,24 +561,11 @@ title."
       (org-roam-server-mode 1)
       (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
 
-  ;;
-  ;; Settings for LaTeX in org-mode
-  ;;
-  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-  (defadvice! org-edit-latex-emv-after-insert ()
-    :after #'org-cdlatex-environment-indent
-    (org-edit-latex-environment))
-
   ;; Make active org-special blocks
   ;;
   (use-package! org-special-block-extras
     :after org
     :hook (org-mode . org-special-block-extras-mode))
-
-  ;;
-  ;; Settings for exporting from org-mode to other formats
-  ;;
 
   ;; Does this have to be here? Until I learn with publishing and emacs --script, YES
   ;;
