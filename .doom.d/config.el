@@ -506,6 +506,10 @@ title."
         (insert document)
         (goto-char (point-min)))))
 
+  ;;
+  ;; Úprava vzhledu org-mode
+  ;;
+
   ;; Nastavení způsobu zvýrazňování vlastní TODO-sekvencí
   ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění
   ;; daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
@@ -516,13 +520,15 @@ title."
   (add-to-list 'org-emphasis-alist
                '("+" (:foreground "red")))
 
-(defun locally-defer-font-lock ()
-  "Set jit-lock defer and stealth, when buffer is over a certain size."
-  (when (> (buffer-size) 50000)
-    (setq-local jit-lock-defer-time 0.05
-                jit-lock-stealth-time 1)))
+  ;; defer font-locking when typing to make the experience more responsive
+  (defun locally-defer-font-lock ()
+    "Set jit-lock defer and stealth, when buffer is over a certain size."
+    (when (> (buffer-size) 50000)
+      (setq-local jit-lock-defer-time 0.05
+                  jit-lock-stealth-time 1)))
 
-(add-hook 'org-mode-hook #'locally-defer-font-lock)
+  (add-hook 'org-mode-hook #'locally-defer-font-lock)
+  ;; Apparently this causes issues with some people, but I haven’t noticed anything problematic beyond the expected slight delay in some fontification, so until I do I’ll use the above.
 
   ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
   (require 'org-habit nil t)
@@ -535,6 +541,12 @@ title."
                                                  (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t))
 
   (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-fonts)
+
+  ;; Customize org-mode heading symbols
+  (after! org-superstar
+    (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+          ;; org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+          org-superstar-prettify-item-bullets t ))
 
   ;; Settings for parenthessis completion -- complete target syntax `<< >>`, and also custom syntax defined above: `%% %%`, `!! !!`
   (sp-local-pair
