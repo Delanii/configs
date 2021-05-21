@@ -1,9 +1,8 @@
 ;;;###autoload
-(defun my-org-buffer-config-h ()
+(defun thi/org-buffer-config-h ()
   "Configure all aspects of an Org buffer right before we display it to the user."
   ;; Enable minor modes
   ;; (+zen/toggle)              ;; dont want that
-  (valign-mode 1)
   ;; (variable-pitch-mode 1)    ;; also not using this
   ;; (visual-line-mode 1)       ;; already set up
   ;; Call org configuration functions

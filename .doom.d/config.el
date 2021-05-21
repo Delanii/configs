@@ -7,9 +7,9 @@
 ;; Config sources:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; - https://tecosaur.github.io/emacs-config/config.html
-;; - https://townk.github.io/doom-emacs-private/
-;; - https://gitlab.com/zzamboni/dot-doom
+;; - https://tecosaur.github.io/emacs-config/config.html -- new functions defined prefixed by `tec`
+;; - https://townk.github.io/doom-emacs-private/         -- new functions prefixed by `thi`
+;; - https://gitlab.com/zzamboni/dot-doom                -- new functions defined prefixed by `zz`
 ;; - https://pages.sachachua.com/.emacs.d/Sacha.html
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -144,7 +144,7 @@
       evil-split-window-below t)
 
 ;; Then, we’ll pull up ivy
-(defadvice! prompt-for-buffer (&rest _)
+(defadvice! tec/prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
   (+ivy/switch-buffer))
 
@@ -339,8 +339,7 @@
       org-startup-indented t ; always start org-mode indented according to header levels and such
       org-adapt-indentation t
       org-hide-emphasis-markers nil ; dont hide emphasis markers. I want to know what my org mode file contains
-      org-pretty-entities nil)
-                                        ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
+      org-pretty-entities nil)      ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
 
 ;; Nastavení věcí, co se spustí s org-mode
 ;; tedy org-autolist
@@ -350,7 +349,7 @@
           )
 
 ;; Hook autoload function in `writing.el` to org-mode start
-(add-hook 'org-mode-hook #'my-org-buffer-config-h)
+(add-hook 'org-mode-hook #'thi/org-buffer-config-h)
 
 ;; Temporary fix to gj, gk and such shodowed by mostly visual-line-mode
 ;; next lines then allows to use gj, gk, gh, gl as defined in evil-org
@@ -500,14 +499,14 @@ title."
 ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
 (require 'org-habit nil t)
 
-(defun org-add-my-extra-fonts ()
+(defun my/org-add-my-extra-fonts ()
   "Add alert and overdue fonts. =invisible t= způsobí zmizení delimiteru v zobrazeném textu, =nil= jej ponechá zobrazený. Jake delimitery jsou použity =%%= a =!!=. Řešeno dle: https://emacs.stackexchange.com/questions/35626/how-to-make-my-own-org-mode-text-emphasis-work-again/35632#35632"
   (add-to-list 'org-font-lock-extra-keywords '("\\(!!\\)\\([^\n\r\t]+\\)\\(!!\\)"
                                                (1 '(face org-habit-alert-face invisible nil)) (2 'org-habit-alert-face t) (3 '(face org-habit-alert-face invisible nil))) t)
   (add-to-list 'org-font-lock-extra-keywords '("\\(%%\\)\\([^\n\r\t]+\\)\\(%%\\)"
                                                (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t))
 
-(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
+(add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-fonts)
 
 ;; Settings for org-roam-server package
 ;;
@@ -573,7 +572,7 @@ title."
 ;;
 ;; General Filters
 ;;
-(defun my-general-filter-nobreaks (text backend info)
+(defun my/general-filter-nobreaks (text backend info)
   "Ensure \" \" are properly handled in export."
   (cond
    ((org-export-derived-backend-p backend 'latex)
@@ -581,7 +580,7 @@ title."
    ((org-export-derived-backend-p backend 'html)
     (replace-regexp-in-string " \\([zuioaskvZUIOASKV]\\) " " \\1&nbsp" text))))
 
- (defun my-general-filter-highlightNotes (text backend info)
+ (defun my/general-filter-highlightNotes (text backend info)
    "Highligh custom notes markup. Notes are surounded by \"%%\" or \"!!\" delimiters."
    (cond
     ((org-export-derived-backend-p backend 'latex)
@@ -601,19 +600,19 @@ title."
           (replace-regexp-in-string "%%\\(.*\\)%%" "<text:span text:style-name=\"myHighlightWarning\">\\1</text:span>" text)))))
 
  (add-to-list 'org-export-filter-plain-text-functions
-              'my-general-filter-nobreaks)
+              'my/general-filter-nobreaks)
 
  (add-to-list 'org-export-filter-plain-text-functions
-              'my-general-filter-highlightNotes)
+              'my/general-filter-highlightNotes)
 
 ;; LaTeX Fitlers
 
-(defun my-latex-filter-inlineCodeHighlight (text backend info)
+(defun my/latex-filter-inlineCodeHighlight (text backend info)
   "Grey highlighted inline code"
   (when (org-export-derived-backend-p backend 'latex)
     (format "\\highLight{%s}" text)))
 
- (defun my-latex-export-src-blocks (text backend info)
+ (defun my/latex-export-src-blocks (text backend info)
    "Export src blocks as without verbatim env."
    (when (org-export-derived-backend-p
           backend
@@ -629,42 +628,42 @@ title."
         (point-max)))))
 
 ;; For some projects it is better disabled. Works well only if all referenes are for latex defined in latex commands (ref, vref, cref) and not with org-mode syntax ([[]])
-;; (defun my-latex-filter-removeOrgAutoLabels (text backend info)
+;; (defun my/latex-filter-removeOrgAutoLabels (text backend info)
 ;;   "Org-mode automatically generates labels for headings despite explicit use of `#+LABEL`. This filter forcibly removes all automatically generated org-labels in headings."
 ;;   (when (org-export-derived-backend-p backend 'latex)
 ;;     (replace-regexp-in-string "\\\\label{sec:org[a-f0-9]+}\n" "" text)))
 
  (add-to-list 'org-export-filter-verbatim-functions
-              'my-latex-filter-inlineCodeHighlight)
+              'my/latex-filter-inlineCodeHighlight)
 
  (add-to-list 'org-export-filter-src-block-functions
-              'my-latex-export-src-blocks)
+              'my/latex-export-src-blocks)
 			  
  ;; (add-to-list 'org-export-filter-headline-functions
- ;;              'my-latex-filter-removeOrgAutoLabels)
+ ;;              'my/latex-filter-removeOrgAutoLabels)
 
 ;; Settings for conversion from org-mode to HTML
 
-(defun my-latex-filter-remove-latex (text backend info)
+(defun my/latex-filter-remove-latex (text backend info)
   "Replace \\LaTeX with \"LaTeX\" in HTML output."
   (when (org-export-derived-backend-p backend 'html)
     (replace-regexp-in-string "\\\\LaTeX" "LaTeX" text)))
 
-(defun my-latex-filter-remove-latex-alt (text backend info)
+(defun my/latex-filter-remove-latex-alt (text backend info)
   "Replace \\LaTeX with \"LaTeX\" in HTML output."
   (when (org-export-derived-backend-p backend 'html)
     (replace-regexp-in-string "LaTeX{}" "LaTeX" text)))
 
 (add-to-list 'org-export-filter-latex-fragment-functions
-             'my-latex-filter-remove-latex)
+             'my/latex-filter-remove-latex)
 
 (add-to-list 'org-export-filter-headline-functions
-             'my-latex-filter-remove-latex-alt
-             'my-latex-filter-remove-latex)
+             'my/latex-filter-remove-latex-alt
+             'my/latex-filter-remove-latex)
 
 (add-to-list 'org-export-filter-link-functions
-             'my-latex-filter-remove-latex-alt
-             'my-latex-filter-remove-latex)
+             'my/latex-filter-remove-latex-alt
+             'my/latex-filter-remove-latex)
 
 ;; Settings for org-mode import with pandoc
 (use-package! org-pandoc-import

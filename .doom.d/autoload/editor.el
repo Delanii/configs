@@ -16,7 +16,7 @@
 ;; )
 
 ;;;###autoload
-(defadvice! my-super-backward-delete-a (&rest _)
+(defadvice! thi/super-backward-delete-a (&rest _)
   "Special function to super-delete things.
 
 If the line content before cursor contains only blank characters, this function
