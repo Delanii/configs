@@ -81,19 +81,19 @@
          :nvm "g^" #'evil-first-non-blank
          :nvm "g$" #'evil-end-of-line))
 
-  ;; Make interactively appear org-entities (links, emphasis markers, etc) in insert mode as they are written in file
-  (use-package! org-appear
-    :defer t
-    :init
-    (setq org-appear-autolinks t
-          org-appear-autosubmarkers t
-          org-appear-autoemphasis t
-          org-appear-autoentities t)
-    ;; for proper first-time setup, `org-appear--set-elements'
-    ;; needs to be run after other hooks have acted.
-    (run-at-time nil nil #'org-appear--set-elements)
-    (add-hook! evil-insert-state-entry (org-appear-mode 1))
-    (add-hook! evil-insert-state-exit (org-appear-mode -1)))
+(use-package! org-appear
+  :defer t
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autolinks t
+        org-appear-autosubmarkers t
+        org-appear-autoemphasis t
+        org-appear-autoentities t)
+  ;; for proper first-time setup, `org-appear--set-elements'
+  ;; needs to be run after other hooks have acted.
+  (run-at-time nil nil #'org-appear--set-elements)
+  (add-hook! evil-insert-state-entry (org-appear-mode 1))
+  (add-hook! evil-insert-state-exit (org-appear-mode -1)))
 
   ;; The same for mathematical symbols and formulas
   (use-package! org-fragtog
@@ -291,8 +291,8 @@ title."
 
   (setq org-html-htmlize-output-type 'css)
   (setq org-src-fontify-natively t)
-  (autoload #'highlight-numbers--turn-on "highlight-numbers")           ;;
-  (add-hook 'htmlize-before-hook #'highlight-numbers--turn-on)          ;; highlight numbers with htmlize output
+  (autoload #'highlight-numbers--turn-on "highlight-numbers") ;;
+  (add-hook 'htmlize-before-hook #'highlight-numbers--turn-on) ;; highlight numbers with htmlize output
 
   ;; Definitions of filters for exporting
   ;;
