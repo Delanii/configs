@@ -441,7 +441,7 @@
           org-appear-autoentities t)
     ;; for proper first-time setup, `org-appear--set-elements'
     ;; needs to be run after other hooks have acted.
-    (run-at-time nil nil #'org-appear--set-elements)
+
     (add-hook! evil-insert-state-entry (org-appear-mode 1))
     (add-hook! evil-insert-state-exit (org-appear-mode -1)))
 
