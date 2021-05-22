@@ -128,15 +128,10 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Application window settings - emacs top tittle bar has following format: `buffer-name` -symbol- project-name (read by projectile, follows git naming)
-;;
+;; Version from tecosaur was making a lot of warnings, maybe because of eval from `org-roam`, so I removed it, now it seems working.
+
 (setq frame-title-format
-      '(""
-        (:eval
-         (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-             (replace-regexp-in-string
-              ".*/[0-9]*-?" "☰ "
-              (subst-char-in-string ?_ ?  buffer-file-name))
-           "%b"))
+      '("" "%b"
         (:eval
          (let ((project-name (projectile-project-name)))
            (unless (string= "-" project-name)
@@ -251,8 +246,7 @@
 (after! company
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 3)
-  (setq company-show-numbers t)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
+  (setq company-show-numbers t))
 
 ;; Increase completion history size
 (setq-default history-length 1000)
@@ -278,6 +272,13 @@
 ;; allows for nested snippets
 ;;
 (setq yas-triggers-in-field t)
+
+;; allow yasnippets everywhere
+(yas-global-mode 1)
+
+;; allow sharing some snippets in all modes
+(add-hook 'yas-minor-mode-hook (lambda ()
+                                 (yas-activate-extra-mode 'fundamental-mode)))
 
 ;; Treemacs Project management package settings
 ;;

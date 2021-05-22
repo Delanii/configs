@@ -80,31 +80,34 @@
          :nvm "g0" #'evil-beginning-of-line
          :nvm "g^" #'evil-first-non-blank
          :nvm "g$" #'evil-end-of-line))
+ )
 
-(use-package! org-appear
+ (use-package! org-appear
+   :hook (org-mode . org-appear-mode)
+   :config
+   (setq org-appear-autolinks t
+         org-appear-autosubmarkers t
+         org-appear-autoemphasis t
+         org-appear-autoentities t)
+   (add-hook! 'org-appear-mode-hook
+              ;; for proper first-time setup, `org-appear--set-elements'
+              ;; needs to be run after other hooks have acted.
+              (org-appear--set-elements)
+              (add-hook! evil-insert-state-entry :local (org-appear-mode 1))
+              (add-hook! evil-insert-state-exit :local (org-appear-mode -1)))) ;; These two hooks are still little buggy -- after first loading of the file they are not active, only after first triggering them (when editing org link), after that then they act as they should. Without the additional `:hook` this for some reason "leaks" to latex mode and pollutes it with warnings when changing insert/normal state.
+
+;; (add-hook! org-mode :append #'org-appear-mode) ;; alternative to previous hook
+
+;; The same for mathematical symbols and formulas
+(use-package! org-fragtog
   :defer t
-  :hook (org-mode . org-appear-mode)
-  :config
-  (setq org-appear-autolinks t
-        org-appear-autosubmarkers t
-        org-appear-autoemphasis t
-        org-appear-autoentities t)
-  ;; for proper first-time setup, `org-appear--set-elements'
-  ;; needs to be run after other hooks have acted.
-  (run-at-time nil nil #'org-appear--set-elements)
-  (add-hook! evil-insert-state-entry (org-appear-mode 1))
-  (add-hook! evil-insert-state-exit (org-appear-mode -1)))
+  :init
+  (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
+  (add-hook! evil-insert-state-exit (org-fragtog-mode -1)))
 
-  ;; The same for mathematical symbols and formulas
-  (use-package! org-fragtog
-    :defer t
-    :init
-    (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
-    (add-hook! evil-insert-state-exit (org-fragtog-mode -1)))
+(after! org
 
-  ;; (add-hook! org-mode :append #'org-appear-mode) ;; alternative to previous hook
-
-  ;; Alternative link creating function - `counsel-org-link` - and settings for it
+ ;; Alternative link creating function - `counsel-org-link` - and settings for it
 
   (map! :after counsel :map org-mode-map
         "C-c l l h" #'counsel-org-link)
@@ -225,37 +228,42 @@ title."
    '(org-mode)
    "!!" "!!"
    :actions '(insert))
+  )
 
-  ;; Settings for org-roam-server package
-  ;;
-  (use-package org-roam-server
-    :defer t
-    :after (org-roam server)
-    :config
-    (setq org-roam-server-host "127.0.0.1"
-          org-roam-server-port 8078
-          org-roam-server-export-inline-images t
-          org-roam-server-authenticate nil
-          org-roam-server-network-label-truncate t
-          org-roam-server-network-label-truncate-length 60
-          org-roam-server-network-label-wrap-length 20)
-    (defun org-roam-server-open ()
-      "Ensure the server is active, then open the roam graph."
-      (interactive)
-      (org-roam-server-mode 1)
-      (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
+ ;; Settings for org-roam-server package
+ ;;
+ (use-package org-roam-server
+   :defer t
+   :after (org-roam-server)
+   :config
+   (setq org-roam-server-host "127.0.0.1"
+         org-roam-server-port 8078
+         org-roam-server-export-inline-images t
+         org-roam-server-authenticate nil
+         org-roam-server-network-label-truncate t
+         org-roam-server-network-label-truncate-length 60
+         org-roam-server-network-label-wrap-length 20)
+   (defun org-roam-server-open ()
+     "Ensure the server is active, then open the roam graph."
+     (interactive)
+     (org-roam-server-mode 1)
+     (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
+
+(after! org
 
   ;;
   ;; LaTeX in org-mode appearance settings
   ;;
   (setq org-highlight-latex-and-related '(native script entities)) ;; Introduces native highlighting to LaTeX code block
-  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t))) ;; remove org-block face, which is added by `native` highlighting
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))) ;; remove org-block face, which is added by `native` highlighting
 
-  ;; Make active org-special blocks
-  ;;
-  (use-package! org-special-block-extras
-    :after org
-    :hook (org-mode . org-special-block-extras-mode))
+ ;; Make active org-special blocks
+ ;;
+ (use-package! org-special-block-extras
+   :after org
+   :hook (org-mode . org-special-block-extras-mode))
+
+(after! org
 
   ;; Does this have to be here? Until I learn with publishing and emacs --script, YES
   ;;
@@ -331,7 +339,7 @@ title."
   (add-to-list 'org-export-filter-plain-text-functions
                'my/general-filter-highlightNotes)
 
-  ;; LaTeX Fitlers
+  ;; LaTeX Filters
 
   (defun my/latex-filter-inlineCodeHighlight (text backend info)
     "Grey highlighted inline code"
@@ -448,4 +456,4 @@ title."
                      file title)
              title)))
         headings) "\n")))
-  )         ;; closed `after!` macro from beginning of the org-mode settings
+  ) ;; closed `after!` macro from beginning of the org-mode settings
