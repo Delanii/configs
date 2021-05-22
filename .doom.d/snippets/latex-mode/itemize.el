@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: itemize
-# key: itemize
-# --
-\begin{itemize}
-\item $0
-\end{itemize}

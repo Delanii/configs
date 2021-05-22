@@ -274,7 +274,7 @@
 (setq yas-triggers-in-field t)
 
 ;; allow yasnippets everywhere
-(yas-global-mode 1)
+;; (yas-global-mode 1) ;; Head Honcho said I should not do that ...
 
 ;; allow sharing some snippets in all modes
 (add-hook 'yas-minor-mode-hook (lambda ()
