@@ -59,6 +59,18 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 
+;;
+;; Doom theme customization
+;;
+;; Comment face customization -- I use a lot of comments, so I have to be able to read that
+;; (setq doom-one-brighter-comments t
+;;       doom-one-comment-bg nil) ;; makes the coments in doom theme in brighter colors, but changes theyre background too without nullifying that
+
+;; Purely lightening comment face colors
+(custom-set-faces!
+  `(font-lock-comment-face :foreground "#58A304") ;; just a tad-little-brighter than "green" from official doom one theme
+  `(font-lock-doc-face     :foreground ,(doom-lighten 'teal .05)))
+
 ;; Modeline changes
 ;;
 (custom-set-faces!
@@ -545,7 +557,7 @@ title."
   ;; Customize org-mode heading symbols
   (after! org-superstar
     (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-          ;; org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+          ;; org-superstar-headline-bullets-list '("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
           org-superstar-prettify-item-bullets t ))
 
   ;; Settings for parenthessis completion -- complete target syntax `<< >>`, and also custom syntax defined above: `%% %%`, `!! !!`
@@ -582,6 +594,12 @@ title."
       (interactive)
       (org-roam-server-mode 1)
       (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
+
+  ;;
+  ;; LaTeX in org-mode appearance settings
+  ;;
+  (setq org-highlight-latex-and-related '(native script entities))              ;; Introduces native highlighting to LaTeX code block
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))    ;; remove org-block face, which is added by `native` highlighting
 
   ;; Make active org-special blocks
   ;;
