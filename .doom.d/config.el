@@ -598,8 +598,8 @@ title."
   ;;
   ;; LaTeX in org-mode appearance settings
   ;;
-  (setq org-highlight-latex-and-related '(native script entities))              ;; Introduces native highlighting to LaTeX code block
-  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))    ;; remove org-block face, which is added by `native` highlighting
+  (setq org-highlight-latex-and-related '(native script entities)) ;; Introduces native highlighting to LaTeX code block
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t))) ;; remove org-block face, which is added by `native` highlighting
 
   ;; Make active org-special blocks
   ;;
@@ -641,6 +641,8 @@ title."
 
   (setq org-html-htmlize-output-type 'css)
   (setq org-src-fontify-natively t)
+  (autoload #'highlight-numbers--turn-on "highlight-numbers")           ;;
+  (add-hook 'htmlize-before-hook #'highlight-numbers--turn-on)          ;; highlight numbers with htmlize output
 
   ;; Definitions of filters for exporting
   ;;
