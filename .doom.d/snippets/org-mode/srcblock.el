@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
-# name: srcblock
+# name: org source block
 # key: srcblock
 # --
-#+begin_src ${1:languageName}
-\begin{${2:latexCodeEnvironment}}
-$0
-\end{$2}
+#+latex: \begin{${1:latexcodeenvironment}}
+#+begin_src ${2:languagename}
+${0:`%`}
 #+end_src
+#+latex: \end{$1}
