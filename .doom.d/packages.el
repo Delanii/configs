@@ -121,6 +121,7 @@
 (package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree"))
 (package! org-sidebar)
 (package! org-ml)
+(package! hyperbole)
 
 (package! org-auto-tangle)
 
@@ -140,6 +141,9 @@
 ;; Package for reading =epub= files in emacs
 ;;
 (package! nov)
+
+;; actions + links package
+(package! embark)
 
 ;; Balíčky pro programování a programovací jazyky
 ;;
@@ -162,6 +166,7 @@
 ;;
 (package! ample-regexps)
 ;; a pro lepší funkcionální programování v elisp
+
 (package! dash)
 
 ;; Balček pro rich content v eshell
