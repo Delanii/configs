@@ -280,6 +280,15 @@
 (add-hook 'yas-minor-mode-hook (lambda ()
                                  (yas-activate-extra-mode 'fundamental-mode)))
 
+;; Helper functions used to generate some snippets
+;;
+(defun +yas/tec/org-last-src-lang ()
+  "Return the language of the last src-block, if it exists."
+  (save-excursion
+    (beginning-of-line)
+    (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
+      (org-element-property :language (org-element-context)))))
+
 ;; Treemacs Project management package settings
 ;;
 ;; Sets ignored file extensions
