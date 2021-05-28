@@ -49,6 +49,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'regular))
+;; (setq doom-font (font-spec :family "monospace" :size 14 :weight 'regular)) ;; In case emacs hangs during startup on white screen (usualy while opening big files), but is able to start with `emacs -q` or `emacs -nw`; it can be a font issue. The white-screen hanging can be nullified by pressing C-g while loading or setting different font, like this default `monospace`. Doom emacs defaults to `Symbola` font when it cannot find specified font, so I should have installed that too. On Arch, it is AUR package `ttf-symbola`.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theme Settings
