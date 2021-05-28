@@ -140,7 +140,7 @@
         ;;fsharp            ; ML stands for Microsoft's Language
         ;;fstar             ; (dependent) types and (monadic) effects and Z3
         ;;gdscript          ; the language you waited for
-        (go +lsp)                       ; the hipster dialect
+        ;;(go +lsp)                       ; the hipster dialect
         (haskell
          +dante
          +lsp)                ; a language that's lazier than I am
@@ -192,7 +192,7 @@
         raku                  ; the artist formerly known as perl6
         ;;rest                   ; Emacs as a REST client
         ;; rst                             ; ReST in peace
-        ;; ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
         (rust
          +lsp)
                                         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
