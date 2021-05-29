@@ -76,6 +76,11 @@
   `(font-lock-comment-face :foreground "#58A304") ;; just a tad-little-brighter than "green" from official doom one theme
   `(font-lock-doc-face     :foreground ,(doom-lighten 'teal .05)))
 
+;; Line number highlighting customizaton
+(custom-set-faces!
+  '(line-number :foreground "#BE00ED")
+  '(line-number-current-line :foreground "#bbc2cf"))
+
 ;; Modeline changes
 ;;
 (custom-set-faces!
