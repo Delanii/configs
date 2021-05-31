@@ -1,3 +1,6 @@
+" Has to be set before plugins so nvim-colorizer may work
+set termguicolors                " fg and bg highlighting requires compatible terminal colors
+
 source $HOME/.config/nvim/vim-plug/plugins.vim
 
 call plug#begin(stdpath('data') . '/plugged')
@@ -47,8 +50,14 @@ Plug 'https://github.com/vim-scripts/luarefvim'
 " Matchit - verze pro plugin-managery
 Plug 'https://github.com/adelarsq/vim-matchit'
 
+" Easymotion - jumping around the file with searching, same as doom emacs searching
+Plug 'easymotion/vim-easymotion'
+
 " Surround 
 Plug 'https://github.com/tpope/vim-surround'
+
+" Splitjoin - splits or joins text along delimiters
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 
 " Vkládání code snippets, SnipMate, změnil hlavní repositář
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -64,14 +73,20 @@ Plug 'https://github.com/mbbill/undotree'
 " Více kurzorů najednou, help je pomocí `:help visual-multi`
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+" Magit pro neovim
+Plug 'nvim-lua/plenary.nvim'
+" Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5 ; currently stable is 0.4.4 and I am not building it from source.
+
 " Souštění REPLu přes Screen nebo tmux z textu ve vimu
 Plug 'https://github.com/jpalardy/vim-slime'
+" Obdobný plugin - pro scratchpad, kde může běžet více REPLů
+Plug 'metakirby5/codi.vim'
 
 " Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
 Plug 'vimwiki/vimwiki'
 
 " Zvýrazňovač barev (? v CSS?) - podporuje velké množství syntaxe
-Plug 'https://github.com/ap/vim-css-color'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " File manager ve vimu
 Plug 'vifm/vifm.vim'
@@ -234,10 +249,13 @@ autocmd BufRead,BufNewFile *.tex inoremap ,pre \pageref{}<Left><Left>
 autocmd BufRead,BufNewFile *.tex inoremap ,in \index{!}<Left><Left>
 augroup END
 
-" Theme settings
+" Lua Plugins configuration
+
+lua require('config')
+
+" Theme settings - has to be at the end of config file, dont know why
 colorscheme one                  " use vim-one colorscheme
 set background=dark              " [dark or light]
-set termguicolors                " fg and bg highlighting requires compatible terminal colors
 
 set cursorline
 " Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
@@ -245,12 +263,9 @@ set cursorline
 set wrap
 set linebreak
 
-" Nastavení číslování řádků
-set number
-set relativenumber
-
 " General Settings
 set number                      " set line numbers
+set relativenumber
 set updatetime=100              " set update time for gitgutter update
 set noswapfile                  " no swap
 

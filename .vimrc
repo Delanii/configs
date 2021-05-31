@@ -4,7 +4,7 @@
 colorscheme desert
 " colorscheme nord " aktivuje nord-theme
 
-set guifont=Source\ Code\ Pro\ 11
+set guifont=Fira\ Code\ 11
 
 " Požadavky, aby plugin wimWiki fungoval - `nocompatible` se nastavuje vždy,
 " ostatní kdoví ... Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
@@ -137,8 +137,14 @@ Plug 'https://github.com/vim-scripts/luarefvim'
 " Matchit - verze pro plugin-managery
 Plug 'https://github.com/adelarsq/vim-matchit'
 
+" Easymotion - jumping around the file with searching, same as doom emacs searching
+Plug 'easymotion/vim-easymotion'
+
 " Surround 
 Plug 'https://github.com/tpope/vim-surround'
+
+" Splitjoin - splits or joins text along delimiters
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 
 " Vkládání code snippets, SnipMate, změnil hlavní repositář
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -156,6 +162,8 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Souštění REPLu přes Screen nebo tmux z textu ve vimu
 Plug 'https://github.com/jpalardy/vim-slime'
+" Obdobný plugin - pro scratchpad, kde může běžet více REPLů
+Plug 'metakirby5/codi.vim'
 
 " Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
 Plug 'vimwiki/vimwiki'
