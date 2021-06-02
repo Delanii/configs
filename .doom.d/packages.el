@@ -181,3 +181,6 @@
 ;;
 ;; Haskell
 (package! haskell-emacs)
+
+;; Profiling doom emacs startup
+(package! benchmark-init)
