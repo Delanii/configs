@@ -9,6 +9,10 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Neovim one dark theme, na otestování. Vyžaduje nvim v. 0.5, tedy až tato
+" verze bude stabilní ...
+" Plug 'navarasu/onedark.nvim'
+
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
@@ -274,3 +278,7 @@ set expandtab                   " Use spaces instead of tabs.
 set smarttab                    " Uses shiftwidth and tabstap to insert blanks when <Tab>
 set shiftwidth=2                " One tab == four spaces.
 set tabstop=2                   " One tab == four spaces.<Paste>
+
+" Theme settings -- fungují pro onedark theme with nvim v. 0.5
+" let g:onedark_style = 'warmer'  " We need add the configs before colorscheme line
+" colorscheme onedark
