@@ -96,17 +96,19 @@
               (add-hook! evil-insert-state-entry :local (org-appear-mode 1))
               (add-hook! evil-insert-state-exit :local (org-appear-mode -1)))) ;; These two hooks are still little buggy -- after first loading of the file they are not active, only after first triggering them (when editing org link), after that then they act as they should. Without the additional `:hook` this for some reason "leaks" to latex mode and pollutes it with warnings when changing insert/normal state.
 
-(add-hook! org-mode :append #'org-appear-mode) ;; alternative to previous hook
+;; (add-hook! org-mode :append #'org-appear-mode)
+;; alternative to previous hook
 
 ;; Temporarily disabled, because org-mode seems to be triggering also in makefiles. Sequence `$text$` then triggers `org-mode-latex-preview`, that triggers fragtog
-;; (after! org
 ;;   ;; The same for mathematical symbols and formulas
 
 ;;   (use-package! org-fragtog
 ;;     :defer t
-;;     :init
-;;     (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
-;;     (add-hook! evil-insert-state-exit (org-fragtog-mode -1))))
+;;     :hook (org-mode . org-fragtog-mode)
+;;     :config
+;;     (add-hook! 'org-fragtog-mode-hook
+;;       (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
+;;       (add-hook! evil-insert-state-exit (org-fragtog-mode -1))))
 
 (after! org
 
