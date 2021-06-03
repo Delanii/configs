@@ -1,8 +1,4 @@
-" Osobní nastavení, tohle by mělo být pro 'témata' v gvimu - slate vypadá
-" nejlépe
-
-colorscheme desert
-" colorscheme nord " aktivuje nord-theme
+" Nastavení fontu. Nastavení témat je až na konci souboru, aby téma vim našel.
 
 set guifont=Fira\ Code\ 11
 
@@ -95,6 +91,12 @@ call plug#begin()
 " Airline plugin
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Vim one theme, seems to look better than 'desert' and 'nord' themes
+Plug 'https://github.com/joshdick/onedark.vim'
+
+" Syntax highlighting of all possible languages (almost)
+Plug 'sheerun/vim-polyglot'
 
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
@@ -203,3 +205,17 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
+
+if (has("autocmd"))
+  augroup colorextend
+    autocmd!
+    " Override the `Comment` foreground color in 256-color mode (in terminal)
+    autocmd ColorScheme * call onedark#extend_highlight("Comment", { "fg": { "cterm": 64 } })
+  augroup END
+endif
+
+" colorscheme desert
+" colorscheme nord " aktivuje nord-theme
+colorscheme onedark
+let g:airline_theme='onedark' " onedark theme also for airline
+
