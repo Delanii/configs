@@ -299,6 +299,14 @@
     (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
       (org-element-property :language (org-element-context)))))
 
+;;
+;; File searching settings
+;;
+;; Company settings
+;; View with `Find file` (`SPC .`) also hidden files
+(after! counsel
+  (setq counsel-find-file-ignore-regexp "\\(?:^#\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)"))
+
 ;; Treemacs Project management package settings
 ;;
 ;; Sets ignored file extensions
