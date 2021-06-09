@@ -16,6 +16,10 @@
       "n" #'my-hydra-numbers/body)      ;; List of hydras with they access keys
 
 ;; With `general.el` it would be done like so:
+;; References:
+;;
+;; https://discourse.doomemacs.org/t/how-to-re-bind-keys/56
+;; https://github.com/noctuid/general.el#about
 ;;
 ;; (defconst my-leader "SPC y")
 ;; (general-define-key :prefix my-leader

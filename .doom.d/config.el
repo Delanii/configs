@@ -237,6 +237,11 @@
 
 (load! "config/evilEditingConfig.el")
 
+;; Other writing settings
+
+(use-package! palimpsest-mode
+  :defer t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Own hydras and hercules settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

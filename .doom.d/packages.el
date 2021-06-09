@@ -84,9 +84,19 @@
 (package! pandoc-mode)
 (package! expand-region)
 (package! focus)
+
 ;; Package for import files with pandoc
 (package! org-pandoc-import :recipe
   (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
+
+;; Package to remove text from buffer "Active" area to some out-of-text area
+;; Provides:
+;;
+;; Send selected text to the bottom of the buffer -- C-c C-r: Send selected text to bottom of buffer
+;; Send selected text to the top of the buffer -- C-c C-s: Send selected text to top of buffer
+;; Send selected text to a trash file -- C-c C-q: Send selected text to trash file
+;;
+(package! palimpsest-mode)
 
 ;; Documentation packages
 ;;
