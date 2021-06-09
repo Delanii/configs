@@ -66,6 +66,9 @@
 (package! modalka)
 (package! kakoune)
 
+;; Package for dealing with hydras -- hydra + which-key
+(package! hercules)
+
 ;; Organizace bufferů
 (package! bufler)
 
