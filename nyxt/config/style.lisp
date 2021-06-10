@@ -86,26 +86,26 @@
            %slot-default%
            (cl-css:css
             '(("#controls"
-               :border-top "1px solid white")
+               :border-top "1px solid black")
               ("#url"
                :background-color "#2D343B"
                :color "white"
-               :border-top "1px solid darkgray")
+               :border-top "1px solid black")
               ("#modes"
                :background-color "#2D343B"
-               :border-top "1px solid darkgray")
+               :border-top "1px solid black")
               ("#tabs"
                :background-color "#8C05F0"
                :color "white"
-               :border-top "1px solid white")))))))
+               :border-top "1px solid black")))))))
 
 (define-configuration nyxt/style-mode:dark-mode
   ((style #.(cl-css:css
              '((*
-                :background-color "darkgray !important"
+                :background-color "#2D343B !important"
                 :background-image "none !important"
                 :color "white")
                (a
-                :background-color "darkgray !important"
+                :background-color "#2D343B !important"
                 :background-image "none !important"
                 :color "#34B9E1 !important"))))))
