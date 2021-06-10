@@ -9,9 +9,15 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+"
+" Themes
+"
 " Neovim one dark theme, na otestování. Vyžaduje nvim v. 0.5, tedy až tato
 " verze bude stabilní ...
 " Plug 'navarasu/onedark.nvim'
+
+" Tokyo night theme -- doesnt seem to work with nvim < 0.5
+" Plug 'folke/tokyonight.nvim'
 
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
@@ -125,7 +131,7 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'rakr/vim-one'                  " vim-one color theme
 Plug 'scrooloose/nerdtree'           " side bar file tree
-Plug 'itchyny/lightline.vim'         " minmal status bar
+" Plug 'itchyny/lightline.vim'         " minmal status bar
 Plug 'tpope/vim-fugitive'            " allows git commands in vim session
 Plug 'airblade/vim-gitgutter'        " shows git changes in gutter
 Plug 'easymotion/vim-easymotion'     " go to any word quickly '\\w', '\\e', '\\b'
@@ -201,17 +207,17 @@ let g:ale_echo_msg_format='[%linter%] %s [%severity%]: [%...code...%]'
 let g:ale_linters={'python': ['flake8'], 'r': ['lintr']}
 let g:ale_fixers={'python': ['black']}
 
-" lightline 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
+" lightline  -- I am not using lightine actually, but airline ....
+" let g:lightline = {
+"      \ 'colorscheme': 'wombat',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'FugitiveHead'
+"      \ },
+"      \ }
 
 " ncm2 
 autocmd BufEnter * call ncm2#enable_for_buffer()      " enable ncm2 for all buffers
@@ -258,8 +264,13 @@ augroup END
 lua require('config')
 
 " Theme settings - has to be at the end of config file, dont know why
+"
 colorscheme one                  " use vim-one colorscheme
 set background=dark              " [dark or light]
+
+" Seems like this too requires nvi 0.5
+" let g:tokyonight_style = "night"
+" colorscheme tokyonight
 
 set cursorline
 " Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
