@@ -237,6 +237,22 @@
 
 (load! "config/evilEditingConfig.el")
 
+;; Doesnt work as it should, yet
+;; (defun my/god-mode-cursor-color ()
+;;     "When in god-mode-local change cursor color to grey. Outside of god-mode-local restore original doom one cursor color."
+;;     (progn
+;;       (god-mode-all)
+;;       (setq cursor-color (if (god-local-mode)
+;;                              (custom-set-faces!
+;;                                '(cursor :background "#e5e5e5"))
+;;                            (custom-set-faces!
+;;                              '(cursor :background "#51afef"))))))
+
+;; (use-package! god-mode
+;;   :defer t
+;;   :config
+;;   (add-hook 'post-command-hook #'my/god-mode-cursor-color))
+
 ;; Other writing settings
 
 (use-package! palimpsest-mode
