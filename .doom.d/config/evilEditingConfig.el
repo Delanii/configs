@@ -92,12 +92,6 @@
   :init
   (setq evilmi-quote-chars (string-to-list "'\"/")))
 
-;; Settings for rotate-text: interchange pairs of words
-(after! rotate-text
-  (add-to-list 'rotate-text-words '("yes" "no"))
-  (add-to-list 'rotate-text-words '("true" "false"))
-  (add-to-list 'rotate-text-words '("ano" "ne")))
-
 (map!
  (:prefix "g"
    :n "=" nil

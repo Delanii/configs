@@ -241,8 +241,8 @@
 ;; (defun my/god-mode-cursor-color ()
 ;;     "When in god-mode-local change cursor color to grey. Outside of god-mode-local restore original doom one cursor color."
 ;;     (progn
-;;       (god-mode-all)
-;;       (setq cursor-color (if (god-local-mode)
+;;       (god-local-mode)
+;;       (setq cursor-color (if (bound-and-true-p god-local-mode)
 ;;                              (custom-set-faces!
 ;;                                '(cursor :background "#e5e5e5"))
 ;;                            (custom-set-faces!
@@ -257,6 +257,19 @@
 
 (use-package! palimpsest-mode
   :defer t)
+
+;; Text rotations definitions
+(load! "config/text-rotations.el")
+
+;; Abbrev mode
+ (dolist (hook '(org-mode-hook
+                    TeX-latex-mode-hook
+                    text-mode-hook))
+      (add-hook hook #'abbrev-mode))
+
+;; Definitions for abbrev mode
+ (setq abbrev-file-name             ;; tell emacs where to read abbrev
+        "~/.doom.d/config/abbrev_defs.el")    ;; definitions from...
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Own hydras and hercules settings

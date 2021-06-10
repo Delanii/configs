@@ -17,6 +17,7 @@
          (if (eq major-mode 'org-mode)
              (org-autolist-mode) ;; if in org-mode, toggle org-autolist mode
            (message "Buffer not in org-mode."))) "Org-autolist-mode")
+  ("b" (abbrev-mode) "Abbrev mode")
   ("p" (smartparens-mode) "Smartparens-mode")
   ;; ("g" (god-mode-all) "God mode")
   )
