@@ -19,7 +19,7 @@
            (message "Buffer not in org-mode."))) "Org-autolist-mode")
   ("b" (abbrev-mode) "Abbrev mode")
   ("p" (smartparens-mode) "Smartparens-mode")
-  ;; ("g" (god-mode-all) "God mode")
+  ("g" (god-mode) "God mode")
   )
 
 ;;
