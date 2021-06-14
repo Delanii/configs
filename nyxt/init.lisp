@@ -9,7 +9,7 @@
 
 ;; Always restore previous session
 (define-configuration browser
-  ((session-restore-prompt :always-restore)))
+    ((session-restore-prompt :always-restore)))
 
 ;; Always be in vi-mode
 (define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
