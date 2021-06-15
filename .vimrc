@@ -142,6 +142,12 @@ Plug 'https://github.com/adelarsq/vim-matchit'
 " Easymotion - jumping around the file with searching, same as doom emacs searching
 Plug 'easymotion/vim-easymotion'
 
+" Další motion pluginy
+Plug 'tpope/vim-repeat' " Required by sneak
+Plug 'justinmk/vim-sneak'
+
+Plug 'rhysd/clever-f.vim'
+
 " Surround 
 Plug 'https://github.com/tpope/vim-surround'
 

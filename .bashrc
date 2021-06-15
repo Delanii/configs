@@ -202,3 +202,4 @@ unset __conda_setup
 
 
 source /home/tomaskrulis/.config/broot/launcher/bash/br
+[ -f "/home/tomaskrulis/.ghcup/env" ] && source "/home/tomaskrulis/.ghcup/env" # ghcup-env
