@@ -5,6 +5,6 @@ require 'colorizer'.setup()
 
 -- neogit setup
 
--- local neogit = require('neogit') -- neogit does work only with nvim 0.5, which is not yet stable and I am not building it from source.
+local neogit = require('neogit')
 
--- neogit.setup {}
+neogit.setup {}

@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'navarasu/onedark.nvim'
 
 " Tokyo night theme -- doesnt seem to work with nvim < 0.5
-" Plug 'folke/tokyonight.nvim'
+Plug 'folke/tokyonight.nvim'
 
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
@@ -94,7 +94,12 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Magit pro neovim
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5 ; currently stable is 0.4.4 and I am not building it from source.
+Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5
+
+" Vyhledávací engine
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Souštění REPLu přes Screen nebo tmux z textu ve vimu
 Plug 'https://github.com/jpalardy/vim-slime'
@@ -274,12 +279,12 @@ lua require('config')
 
 " Theme settings - has to be at the end of config file, dont know why
 "
-colorscheme one                  " use vim-one colorscheme
-set background=dark              " [dark or light]
+" colorscheme one                  " use vim-one colorscheme
+" set background=dark              " [dark or light]
 
 " Seems like this too requires nvi 0.5
-" let g:tokyonight_style = "night"
-" colorscheme tokyonight
+let g:tokyonight_style = "night"
+colorscheme tokyonight
 
 set cursorline
 " Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
