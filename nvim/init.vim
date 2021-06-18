@@ -109,7 +109,14 @@ Plug 'metakirby5/codi.vim'
 " Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
 Plug 'vimwiki/vimwiki'
 
-" Zvýrazňovač barev (? v CSS?) - podporuje velké množství syntaxe
+" Z prezentace Damiana Conwaye
+" Plugin pro dragging visual blocků
+Plugin 'mariappan/dragvisuals.vim'
+
+" Plugin pro manipulaci s celými řádky podle označených visual blocků
+Plug 'https://github.com/vim-scripts/vis'
+
+" Zvýrazňovač barev
 Plug 'norcalli/nvim-colorizer.lua'
 
 " File manager ve vimu

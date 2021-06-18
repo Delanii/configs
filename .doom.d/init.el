@@ -178,7 +178,7 @@
        markdown                         ; writing docs for people to ignore
        nim                              ; python + lisp at the speed of c
        nix                              ; I hereby declare "nix geht mehr!"
-       ocaml                            ; an objective camel
+       ;; ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
         +attach                         ; custom attachment system
