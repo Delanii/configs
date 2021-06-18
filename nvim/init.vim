@@ -110,9 +110,6 @@ Plug 'metakirby5/codi.vim'
 Plug 'vimwiki/vimwiki'
 
 " Z prezentace Damiana Conwaye
-" Plugin pro dragging visual blocků
-Plugin 'mariappan/dragvisuals.vim'
-
 " Plugin pro manipulaci s celými řádky podle označených visual blocků
 Plug 'https://github.com/vim-scripts/vis'
 
