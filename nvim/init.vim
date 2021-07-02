@@ -122,6 +122,9 @@ Plug 'vifm/vifm.vim'
 " Vyhledávání souborů pomocí `fzf`
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
+" Tree-sitter pro nvim
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Podpora psaní LaTeXu ve `vim`u
 Plug 'lervag/vimtex'
 
