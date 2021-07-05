@@ -1,13 +1,39 @@
+-- Colors and theming
+--
 -- vim-colorizer setup
 
 -- Attaches to every FileType mode
 require 'colorizer'.setup()
 
--- neogit setup
+--
+-- Git setup
+--
 
-local neogit = require('neogit')
+-- neogit setup -- disabled for now, the classic fugitive seems to be superior
 
-neogit.setup {}
+--local neogit = require('neogit')
+
+--neogit.setup {}
+
+-- which-key setup
+
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section
+  }
+
+-- Completion settings
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+  };
+}
 
 -- tree-sitter setup
 require'nvim-treesitter.configs'.setup {
@@ -18,3 +44,26 @@ require'nvim-treesitter.configs'.setup {
     disable = { },  -- list of language that will be disabled
   },
 }
+
+-- LSP Installer settings
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
+-- comfiguration of comments input
+require('kommentary.config').configure_language("rust", {
+    single_line_comment_string = "//",
+    multi_line_comment_strings = {"/*", "*/"},
+})

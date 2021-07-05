@@ -92,19 +92,51 @@ Plug 'https://github.com/mbbill/undotree'
 " Více kurzorů najednou, help je pomocí `:help visual-multi`
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+"
+" Git integration
+"
+
+" Git integration for neovim -- classic, that is not using lua, seems to be superior, at least for now
+Plug 'https://github.com/tpope/vim-fugitive'
+
 " Magit pro neovim
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5
+
+" Git signs in gutter
 Plug 'nvim-lua/plenary.nvim'
-Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5
+Plug 'lewis6991/gitsigns.nvim'
 
 " Vyhledávací engine
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Tree fileviewer
+Plug 'kyazdani42/nvim-web-devicons'
+" for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
+let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+
+" which-key for neovim
+Plug 'folke/which-key.nvim'
+
+" Completion system
+Plug 'https://github.com/hrsh7th/nvim-compe'
+
 " Souštění REPLu přes Screen nebo tmux z textu ve vimu
 Plug 'https://github.com/jpalardy/vim-slime'
+
+" Spouštění dalších terminálů přímo v neovimu
+Plug 'kassio/neoterm' 
+
 " Obdobný plugin - pro scratchpad, kde může běžet více REPLů
 Plug 'metakirby5/codi.vim'
+
+" Installation of lsp servers
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 
 " Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
 Plug 'vimwiki/vimwiki'
@@ -124,6 +156,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Tree-sitter pro nvim
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Writing comments
+Plug 'b3nj5m1n/kommentary'
+
+" Show indention marks
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Podpora psaní LaTeXu ve `vim`u
 Plug 'lervag/vimtex'

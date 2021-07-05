@@ -41,7 +41,7 @@ augroup __latex__
 au!
 autocmd BufRead,BufNewFile *.tex inoremap ,ch \chapter{}<Left>
 autocmd BufRead,BufNewFile *.tex inoremap ,se \section{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,sb \subsection{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,sb \rubsection{}<Left>
 autocmd BufRead,BufNewFile *.tex inoremap ,sbb \subsubsection{}<Left>
 autocmd BufRead,BufNewFile *.tex inoremap ,em \emph{}<Left>
 autocmd BufRead,BufNewFile *.tex inoremap ,tt \texttt{}<Left>
@@ -110,7 +110,11 @@ let g:rainbow_active = 1
 Plug 'https://github.com/kshenoy/vim-signature'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdcommenter'
+
+" Which-key for vim
+Plug 'liuchengxu/vim-which-key'
 
 " Distraction-free writing ve vimu
 " `:Goyo` zapíná, `:Goyo!` vypíná
@@ -133,9 +137,6 @@ Plug 'junegunn/vim-journal'
 
 " <TAB> completion zápisu vyhledávacích příkazů
 Plug 'https://github.com/vim-scripts/SearchComplete'
-
-" Plugin NERD Commenter
-Plug 'https://github.com/scrooloose/nerdcommenter'
 
 " Indexovaná reference lua přímo ve vimu
 Plug 'https://github.com/vim-scripts/luarefvim'
@@ -168,6 +169,9 @@ let g:snipMate = { 'snippet_version': 1 }
 Plug 'https://github.com/sjl/gundo.vim'
 Plug 'https://github.com/mbbill/undotree'
 
+" Git integration
+Plug 'https://github.com/tpope/vim-fugitive'
+
 " Více kurzorů najednou, help je pomocí `:help visual-multi`
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
@@ -188,6 +192,11 @@ Plug 'https://github.com/vim-scripts/vis'
 
 " File manager ve vimu
 Plug 'vifm/vifm.vim'
+
+" Line indentation highlighting
+Plug 'https://github.com/Yggdroot/indentLine'
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each indent level has it own distinct character
 
 " Vyhledávání souborů pomocí `fzf`
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
