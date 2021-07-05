@@ -1,6 +1,26 @@
 " Has to be set before plugins so nvim-colorizer may work
 set termguicolors                " fg and bg highlighting requires compatible terminal colors
 
+set cursorline
+" Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
+" whitespace
+set wrap
+set linebreak
+
+set smartcase " makes searching with no upper-case letters to ignore case and with upper-case letters makes search case sensitive
+
+" General Settings
+set number                      " set line numbers
+set relativenumber
+set updatetime=100              " set update time for gitgutter update
+set noswapfile                  " no swap
+
+" tabs and spaces
+set expandtab                   " Use spaces instead of tabs.
+set smarttab                    " Uses shiftwidth and tabstap to insert blanks when <Tab>
+set shiftwidth=2                " One tab == four spaces.
+set tabstop=2                   " One tab == four spaces.<Paste>
+
 source $HOME/.config/nvim/vim-plug/plugins.vim
 
 call plug#begin(stdpath('data') . '/plugged')
@@ -327,27 +347,9 @@ lua require('config')
 " colorscheme one                  " use vim-one colorscheme
 " set background=dark              " [dark or light]
 
-" Seems like this too requires nvi 0.5
+" Seems like this too requires nvim 0.5
 let g:tokyonight_style = "night"
 colorscheme tokyonight
-
-set cursorline
-" Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
-" whitespace
-set wrap
-set linebreak
-
-" General Settings
-set number                      " set line numbers
-set relativenumber
-set updatetime=100              " set update time for gitgutter update
-set noswapfile                  " no swap
-
-" tabs and spaces
-set expandtab                   " Use spaces instead of tabs.
-set smarttab                    " Uses shiftwidth and tabstap to insert blanks when <Tab>
-set shiftwidth=2                " One tab == four spaces.
-set tabstop=2                   " One tab == four spaces.<Paste>
 
 " Theme settings -- fungují pro onedark theme with nvim v. 0.5
 " let g:onedark_style = 'warmer'  " We need add the configs before colorscheme line
