@@ -1,6 +1,7 @@
 " Nastavení fontu. Nastavení témat je až na konci souboru, aby téma vim našel.
 
 set guifont=Fira\ Code\ 11
+set background=dark
 
 " Požadavky, aby plugin wimWiki fungoval - `nocompatible` se nastavuje vždy,
 " ostatní kdoví ... Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
@@ -12,11 +13,11 @@ syntax on
 " Nastavení chování kurzoru - platí pouze v `gvim`, ve `vim` v terminálu platí
 " nastavení terminálu
 set guicursor=a:blinkon0 " vypnutí blikání kurzoru, `guifg` nastaví barvu písmen pod kurzorem, `guibg` nastavuje barvu kurzoru
-:highlight Cursor guibg=#1ABC9C guifg=black
+highlight Cursor guibg=#1ABC9C guifg=black
 
 " Zvýraznění řádku s kurzorem
 set cursorline
-:highlight CursorLine guibg=#2c3e50
+highlight CursorLine guibg=#2c3e50
 
 " Zvýraznění sloupce s kurzorem
 " :set cursorcolumn
@@ -319,3 +320,6 @@ endif
 colorscheme onedark
 let g:airline_theme='onedark' " onedark theme also for airline
 
+" Has to be set at the end of file, colorscheme seems to be interfering with
+" it
+highlight LineNr ctermfg=99
