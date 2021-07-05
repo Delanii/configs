@@ -13,20 +13,27 @@ vim.g.tokyonight_colors = { comment = "#00af5f"}
 --
 ---------------------------------------------------
 
+-- tree-sitter setup
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+  },
+}
+
 -- vim-colorizer setup
 
 -- Attaches to every FileType mode
 require 'colorizer'.setup()
 
+---------------------------------------------------------
 --
--- Git setup
+-- Keybindings
 --
-
--- neogit setup -- disabled for now, the classic fugitive seems to be superior
-
---local neogit = require('neogit')
-
---neogit.setup {}
+--------------------------------------------------------
 
 -- which-key setup
 
@@ -35,6 +42,12 @@ require 'colorizer'.setup()
     -- or leave it empty to use the default settings
     -- refer to the configuration section
   }
+
+--------------------------------------------------------
+--
+-- Completion
+--
+--------------------------------------------------------
 
 -- Completion settings
 require'compe'.setup {
@@ -48,15 +61,25 @@ require'compe'.setup {
   };
 }
 
--- tree-sitter setup
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
-  },
-}
+--------------------------------------------------------
+--
+-- Code writing
+--
+--------------------------------------------------------
+
+--
+-- Git setup
+--
+
+-- neogit setup -- disabled for now, the classic fugitive seems to be superior
+
+--local neogit = require('neogit')
+
+--neogit.setup {}
+
+--
+-- LSP settings
+--
 
 -- LSP Installer settings
 local function setup_servers()
@@ -75,7 +98,8 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
--- comfiguration of comments input
+-- configuration of comments input
+
 require('kommentary.config').configure_language("rust", {
     single_line_comment_string = "//",
     multi_line_comment_strings = {"/*", "*/"},
