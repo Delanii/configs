@@ -20,8 +20,8 @@ set cursorline
 highlight CursorLine guibg=#2c3e50
 
 " Zvýraznění sloupce s kurzorem
-" :set cursorcolumn
-" :highlight CursorColumn guibg=#250162
+" set cursorcolumn
+" highlight CursorColumn guibg=#250162
 
 " Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
 " whitespace
@@ -320,6 +320,6 @@ endif
 colorscheme onedark
 let g:airline_theme='onedark' " onedark theme also for airline
 
-" Has to be set at the end of file, colorscheme seems to be interfering with
-" it
+" Colorscheme overrides
+"
 highlight LineNr ctermfg=99

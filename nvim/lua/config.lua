@@ -1,5 +1,18 @@
--- Colors and theming
+--------------------------------------------------
 --
+-- Theming
+--
+------------------------------------------------
+
+-- tokyonight theme settings
+vim.g.tokyonight_colors = { comment = "#00af5f"}
+
+---------------------------------------------------
+--
+-- General highlighting
+--
+---------------------------------------------------
+
 -- vim-colorizer setup
 
 -- Attaches to every FileType mode

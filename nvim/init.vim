@@ -1,5 +1,6 @@
 " Has to be set before plugins so nvim-colorizer may work
 set termguicolors                " fg and bg highlighting requires compatible terminal colors
+syntax on
 
 set cursorline
 " Nastavení pro automatické vizuální zalomování textu + zalamování pouze na
@@ -25,19 +26,24 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 
 call plug#begin(stdpath('data') . '/plugged')
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Theming
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Airline plugin
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"
-" Themes
-"
-" Neovim one dark theme, na otestování. Vyžaduje nvim v. 0.5, tedy až tato
-" verze bude stabilní ...
-" Plug 'navarasu/onedark.nvim'
-
 " Tokyo night theme -- doesnt seem to work with nvim < 0.5
 Plug 'folke/tokyonight.nvim'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" General highlighting
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
@@ -46,20 +52,52 @@ let g:rainbow_active = 1
 " vim-signature plugin : Použití vlastních záložek
 Plug 'https://github.com/kshenoy/vim-signature'
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" File management
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Distraction-free writing ve vimu
-" `:Goyo` zapíná, `:Goyo!` vypíná
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+" On-demand loading
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Text navigation
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Zvýražnování textu pomocí změny jasu fontu; pro některá nastavení může být nutná ruční úprava, návod na GitHubu
 " `:Limelight` zapne limelight, volitelně lze připsat číslo [0.0 - 1.0]; `:Limelight!` vypne limelight
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Code writing
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " Cílení na text za objektem - vyžaduje úpravu nastavení pro definování objektů
 Plug 'junegunn/vim-after-object'
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ') " za těmito objekty bude vybírat text
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" General writing
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Distraction-free writing ve vimu
+" `:Goyo` zapíná, `:Goyo!` vypíná
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Window management
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Dim inactive windows, `:DimInactiveWindowOff` vypne funkci pro dané okno, `:DimInactiveWindowOn` funkci zapne. Více příkazů je na stránce projektu
 Plug 'https://github.com/blueyed/vim-diminactive', { 'on': 'DimInactiveWindowOn' }
@@ -342,15 +380,20 @@ augroup END
 
 lua require('config')
 
-" Theme settings - has to be at the end of config file, dont know why
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" colorscheme one                  " use vim-one colorscheme
-" set background=dark              " [dark or light]
+" Final theme settings - has to be at the end of config file, dont know why
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Seems like this too requires nvim 0.5
+" colorscheme one                  " use vim-one colorscheme
+set background=dark              " [dark or light]
+
+" Tokyonight theme
 let g:tokyonight_style = "night"
+
 colorscheme tokyonight
 
-" Theme settings -- fungují pro onedark theme with nvim v. 0.5
-" let g:onedark_style = 'warmer'  " We need add the configs before colorscheme line
-" colorscheme onedark
+" Colorscheme overrides
+"
+highlight LineNr ctermfg=99 guifg=#875fff
