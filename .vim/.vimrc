@@ -35,33 +35,6 @@ set relativenumber
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
-" Pomocné příkazy a přenastavení kláves pro LaTeX:
-" ! Fungují v insert-módu
-augroup __latex__
-au!
-autocmd BufRead,BufNewFile *.tex inoremap ,ch \chapter{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,se \section{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,sb \rubsection{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,sbb \subsubsection{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,em \emph{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,tt \texttt{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,bf \textbf{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,uv \enquote{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,tab \begin{tabular}{}<CR><CR>\end{tabular}<Up>
-autocmd BufRead,BufNewFile *.tex inoremap ,tbl \begin{table}[htb]<CR><CR>\caption{}<CR>\label{}<CR>\end{table}<C-O>3k
-autocmd BufRead,BufNewFile *.tex inoremap ,fig \begin{figure}[htb]<CR><CR>\caption{}<CR>\label{}<CR>\end{figure}<C-O>3k
-autocmd BufRead,BufNewFile *.tex inoremap ,itz \begin{itemize}<CR>\item <CR>\end{itemize}<CR><Up><Up>
-autocmd BufRead,BufNewFile *.tex inoremap ,enu \begin{enumerate}<CR>\item <CR>\end{enumerate}<CR><Up><Up>
-autocmd BufRead,BufNewFile *.tex inoremap ,it \item<Space>
-autocmd BufRead,BufNewFile *.tex inoremap ,in \index{!}<Left><Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,gl \gls{!}<Left><Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,re \ref{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,cre \cref{}<Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,vre \vref{}<Left><Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,pre \pageref{}<Left><Left>
-autocmd BufRead,BufNewFile *.tex inoremap ,in \index{!}<Left><Left>
-augroup END
-
 " Settings for `git vimdiff` highlighting
 " odkaz: https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
 "
@@ -92,6 +65,12 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Re
 
 call plug#begin()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Theming
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""ů
+
 " Airline plugin
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -99,64 +78,59 @@ Plug 'vim-airline/vim-airline-themes'
 " Vim one theme, seems to look better than 'desert' and 'nord' themes
 Plug 'https://github.com/joshdick/onedark.vim'
 
+" Plugin pro Nord theme
+Plug 'arcticicestudio/nord-vim'
+
+" Plugin pro fancy ikony
+Plug 'ryanoasis/vim-devicons'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Syntax highlighting
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Syntax highlighting of all possible languages (almost)
 Plug 'sheerun/vim-polyglot'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" General highlighting
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
+" Line indentation highlighting
+Plug 'https://github.com/Yggdroot/indentLine'
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each indent level has it own distinct character
+
 " vim-signature plugin : Použití vlastních záložek
 Plug 'https://github.com/kshenoy/vim-signature'
 
-" On-demand loading
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'preservim/nerdcommenter'
+" Zvýrazňovač barev (? v CSS?) - podporuje velké množství syntaxe
+Plug 'https://github.com/ap/vim-css-color'
+
+"""""""""""""""""""""""""""""""""""""""""""""
+"
+" Keybindings
+"
+""""""""""""""""""""""""""""""""""""""""""""
 
 " Which-key for vim
 Plug 'liuchengxu/vim-which-key'
 
-" Distraction-free writing ve vimu
-" `:Goyo` zapíná, `:Goyo!` vypíná
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+"""""""""""""""""""""""""""""""""""""""""""
+"
+" Writing code
+"
+"""""""""""""""""""""""""""""""""""""""""""
 
-" Zvýražnování textu pomocí změny jasu fontu; pro některá nastavení může být nutná ruční úprava, návod na GitHubu
-" `:Limelight` zapne limelight, volitelně lze připsat číslo [0.0 - 1.0]; `:Limelight!` vypne limelight
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
-
-" Cílení na text za objektem - vyžaduje úpravu nastavení pro definování objektů
-Plug 'junegunn/vim-after-object'
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ') " za těmito objekty bude vybírat text
-
-" Dim inactive windows, `:DimInactiveWindowOff` vypne funkci pro dané okno, `:DimInactiveWindowOn` funkci zapne. Více příkazů je na stránce projektu
-Plug 'https://github.com/blueyed/vim-diminactive', { 'on': 'DimInactiveWindowOn' }
-" Když chci plugin používat, stačí použít jeho hlavní funkci na nějaké okno - v tu chvíli se načte
-
-" Zvýrazňování syntaxe markdownu a textu odrážek, je nutné `: set filetype=journal:`
-Plug 'junegunn/vim-journal'
-
-" <TAB> completion zápisu vyhledávacích příkazů
-Plug 'https://github.com/vim-scripts/SearchComplete'
-
-" Indexovaná reference lua přímo ve vimu
-Plug 'https://github.com/vim-scripts/luarefvim'
-
-" Matchit - verze pro plugin-managery
-Plug 'https://github.com/adelarsq/vim-matchit'
-
-" Easymotion - jumping around the file with searching, same as doom emacs searching
-Plug 'easymotion/vim-easymotion'
-
-" Další motion pluginy
-Plug 'tpope/vim-repeat' " Required by sneak
-Plug 'justinmk/vim-sneak'
-Plug 'rhysd/clever-f.vim'
-
-" Surround 
-Plug 'https://github.com/tpope/vim-surround'
-
-" Splitjoin - splits or joins text along delimiters
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'
+" Více kurzorů najednou, help je pomocí `:help visual-multi`
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Vkládání code snippets, SnipMate, změnil hlavní repositář
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -165,63 +139,158 @@ Plug 'https://github.com/garbas/vim-snipmate'
 
 let g:snipMate = { 'snippet_version': 1 }
 
-" Undo historie
-Plug 'https://github.com/sjl/gundo.vim'
-Plug 'https://github.com/mbbill/undotree'
-
 " Git integration
 Plug 'https://github.com/tpope/vim-fugitive'
 
-" Více kurzorů najednou, help je pomocí `:help visual-multi`
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Adding comments the classic way
+Plug 'preservim/nerdcommenter'
 
 " Souštění REPLu přes Screen nebo tmux z textu ve vimu
 Plug 'https://github.com/jpalardy/vim-slime'
 " Obdobný plugin - pro scratchpad, kde může běžet více REPLů
 Plug 'metakirby5/codi.vim'
 
-" Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
-Plug 'vimwiki/vimwiki'
+" Indexovaná reference lua přímo ve vimu
+Plug 'https://github.com/vim-scripts/luarefvim'
 
-" Zvýrazňovač barev (? v CSS?) - podporuje velké množství syntaxe
-Plug 'https://github.com/ap/vim-css-color'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" General writing
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Z prezentace Damiana Conwaye
-" Plugin pro manipulaci s celými řádky podle označených visual blocků
-Plug 'https://github.com/vim-scripts/vis'
+" Surround 
+Plug 'https://github.com/tpope/vim-surround'
 
-" File manager ve vimu
-Plug 'vifm/vifm.vim'
+" Matchit - verze pro plugin-managery
+Plug 'https://github.com/adelarsq/vim-matchit'
 
-" Line indentation highlighting
-Plug 'https://github.com/Yggdroot/indentLine'
+" Cílení na text za objektem - vyžaduje úpravu nastavení pro definování objektů
+Plug 'junegunn/vim-after-object'
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ') " za těmito objekty bude vybírat text
 
-let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each indent level has it own distinct character
+" Undo historie
+Plug 'https://github.com/sjl/gundo.vim'
+Plug 'https://github.com/mbbill/undotree'
 
-" Vyhledávání souborů pomocí `fzf`
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" <TAB> completion zápisu vyhledávacích příkazů
+Plug 'https://github.com/vim-scripts/SearchComplete'
+
+"
+" LaTeX
+"
+
+" Pomocné příkazy a přenastavení kláves pro LaTeX:
+" ! Fungují v insert-módu
+augroup __latex__
+au!
+autocmd BufRead,BufNewFile *.tex inoremap ,ch \chapter{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,se \section{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,sb \rubsection{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,sbb \subsubsection{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,em \emph{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,tt \texttt{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,bf \textbf{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,uv \enquote{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,tab \begin{tabular}{}<CR><CR>\end{tabular}<Up>
+autocmd BufRead,BufNewFile *.tex inoremap ,tbl \begin{table}[htb]<CR><CR>\caption{}<CR>\label{}<CR>\end{table}<C-O>3k
+autocmd BufRead,BufNewFile *.tex inoremap ,fig \begin{figure}[htb]<CR><CR>\caption{}<CR>\label{}<CR>\end{figure}<C-O>3k
+autocmd BufRead,BufNewFile *.tex inoremap ,itz \begin{itemize}<CR>\item <CR>\end{itemize}<CR><Up><Up>
+autocmd BufRead,BufNewFile *.tex inoremap ,enu \begin{enumerate}<CR>\item <CR>\end{enumerate}<CR><Up><Up>
+autocmd BufRead,BufNewFile *.tex inoremap ,it \item<Space>
+autocmd BufRead,BufNewFile *.tex inoremap ,in \index{!}<Left><Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,gl \gls{!}<Left><Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,re \ref{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,cre \cref{}<Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,vre \vref{}<Left><Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,pre \pageref{}<Left><Left>
+autocmd BufRead,BufNewFile *.tex inoremap ,in \index{!}<Left><Left>
+augroup END
 
 " Podpora psaní LaTeXu ve `vim`u
 Plug 'lervag/vimtex'
 
 let g:tex_flavor = 'latex'
 
+"
+" Pandoc
+"
+
 " Podpora pro psaní v `pandoc`u a jeho syntaxe
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
+"
+" More general editing plugins
+"
+
 " Práce s a automatické formátování textových tabulek
 Plug 'dhruvasagar/vim-table-mode'
+
+" Z prezentace Damiana Conwaye
+" Plugin pro manipulaci s celými řádky podle označených visual blocků
+Plug 'https://github.com/vim-scripts/vis'
+
+" Splitjoin - splits or joins text along delimiters
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 
 " Plugin pro seřazování řádků jiným než číselným způsobem; lze také řadit
 " podle jiného než prvního řádku
 Plug 'https://github.com/vim-scripts/vis'
 
-" Plugin pro Nord theme
-Plug 'arcticicestudio/nord-vim'
+" Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
+Plug 'vimwiki/vimwiki'
 
-" Plugin pro fancy ikony
-Plug 'ryanoasis/vim-devicons'
+" Zvýrazňování syntaxe markdownu a textu odrážek, je nutné `: set filetype=journal:`
+" Plug 'junegunn/vim-journal'
+
+" Distraction-free writing ve vimu
+" `:Goyo` zapíná, `:Goyo!` vypíná
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Text navigation
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Easymotion - jumping around the file with searching, same as doom emacs searching
+Plug 'easymotion/vim-easymotion'
+
+" Další motion pluginy
+Plug 'tpope/vim-repeat' 
+" Required by sneak
+Plug 'justinmk/vim-sneak'
+Plug 'rhysd/clever-f.vim'
+
+" Zvýražnování textu pomocí změny jasu fontu; pro některá nastavení může být nutná ruční úprava, návod na GitHubu
+" `:Limelight` zapne limelight, volitelně lze připsat číslo [0.0 - 1.0]; `:Limelight!` vypne limelight
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" File management and file searching
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" File manager ve vimu
+Plug 'vifm/vifm.vim'
+
+" Vyhledávání souborů pomocí `fzf`
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" On-demand loading
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Vim windows management
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Dim inactive windows, `:DimInactiveWindowOff` vypne funkci pro dané okno, `:DimInactiveWindowOn` funkci zapne. Více příkazů je na stránce projektu
+Plug 'https://github.com/blueyed/vim-diminactive', { 'on': 'DimInactiveWindowOn' }
+" Když chci plugin používat, stačí použít jeho hlavní funkci na nějaké okno - v tu chvíli se načte
 
 call plug#end()
 
