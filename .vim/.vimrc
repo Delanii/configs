@@ -35,6 +35,8 @@ set relativenumber
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
+set smartcase " sets text searching to work like so: without upper case letters searches case-insensitive, with upper-case letters searches case-sensitive. For information use `:help smartcase`
+
 " Settings for `git vimdiff` highlighting
 " odkaz: https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
 "
