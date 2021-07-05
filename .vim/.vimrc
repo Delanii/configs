@@ -241,6 +241,8 @@ Plug 'https://github.com/vim-scripts/vis'
 " Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
 Plug 'vimwiki/vimwiki'
 
+"!! spellchecking -- check `:help mkspell`!!
+
 " Zvýrazňování syntaxe markdownu a textu odrážek, je nutné `: set filetype=journal:`
 " Plug 'junegunn/vim-journal'
 
@@ -294,6 +296,14 @@ Plug 'https://github.com/blueyed/vim-diminactive', { 'on': 'DimInactiveWindowOn'
 
 call plug#end()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" More theme settings
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" For some reason, this has to be after `call plug#end()`; find out why ... !
+
 if (has("autocmd"))
   augroup colorextend
     autocmd!
@@ -307,5 +317,3 @@ endif
 colorscheme onedark
 let g:airline_theme='onedark' " onedark theme also for airline
 
-
-"!! spellchecking -- check `:help mkspell`!!
