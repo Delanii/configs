@@ -37,10 +37,19 @@ This file is using a lot =noweb= references, assembling each file from a lot of 
       gc-cons-percentage 0.6)
 #+END_SRC
 
-Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage collection in startup. Function =gc-cons-percentage= should work together with =gc-cons-threshold= to initialize garbage collection.
+Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage collection in startup. Function =gc-cons-percentage= should work together with =gc-cons-threshold= to initialize garbage collection. %%Poznámka -- zeptat se v Doom Emacs, zda má gc-cons-percentage nějaký praktický přínos.%%
 
-%%Záložka -- zetat se v Doom Emacs, zda má gc-cons-percentage nějaký praktický přínos.%%
+#+NAME: no-stale-bytecode
+#+BEGIN_SRC emacs-lisp
+;; In noninteractive sessions, prioritize non-byte-compiled source files to
+;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
+;; to skip the mtime checks on every *.elc file.
+(setq load-prefer-newer noninteractive)
+#+END_SRC
 
+Commentary is courtesy of great Mr. Henrik Lissner from Doom Emacs. In this config, there will be a lot of stolen stuff from Doom Emacs and other users.
+
+#+NAME disable-package.el
 #+BEGIN_SRC emacs-lisp
 ;; In Emacs 27+, package initialization occurs before `user-init-file' is
 ;; loaded, but after `early-init-file'. Doom handles package initialization, so
@@ -48,7 +57,11 @@ Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage
 (setq package-enable-at-startup nil)
 ;; Do not allow loading from the package cache (same reason).
 (setq package-quickstart nil)
+#+END_SRC
 
+Previous code block and commentary is again mostly Doom Emacs and other peoples doing. This codeblock disables =package.el= running and working, since in this config I will use =straight.el= to install packages and =use-package.el= manage them. %%Poznámka: A znovu, Doom Emacs z nějakého důvodu nepoužívá package-quickstart, možná ji po vypnutí package není třeba eliminovat ...%%
+
+#+BEGIN_SRC emacs-lisp
 ;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
@@ -79,4 +92,8 @@ Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage
 ;; NOTE: early-init.el is now generated from config.org.  Please edit that file instead
 
 <<gc-settings>>
+
+<<no-stale-bytecode>>
+
+<<disable-package.el>>
 #+END_SRC
