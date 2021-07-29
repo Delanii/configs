@@ -134,7 +134,7 @@
 (package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree"))
 (package! org-sidebar)
 (package! org-ml)
-(package! hyperbole)
+;; (package! hyperbole) ;; Not using it at the moment
 
 (package! org-auto-tangle)
 
