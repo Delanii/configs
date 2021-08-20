@@ -264,9 +264,19 @@
                     text-mode-hook))
       (add-hook hook #'abbrev-mode))
 
+;; This function should prevent inserting space after expanded abbrev
+(defun xah-abbrev-h-f ()
+  "Abbrev hook function, used for `define-abbrev'.
+ Our use is to prevent inserting the char that triggered expansion. Experimental.
+ the “ahf” stand for abbrev hook function.
+Version 2016-10-24"
+  t)
+
+(put 'xah-abbrev-h-f 'no-self-insert t)
+
 ;; Definitions for abbrev mode
- (setq abbrev-file-name             ;; tell emacs where to read abbrev
-        "~/.doom.d/config/abbrev_defs.el")    ;; definitions from...
+(setq abbrev-file-name                   ;; tell emacs where to read abbrev
+      "~/.doom.d/config/abbrev_defs.el")    ;; definitions from...
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Own hydras and hercules settings
