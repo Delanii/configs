@@ -236,3 +236,7 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+;; Make evil-mode respect visual-lines instead of logical lines for =jk= movement
+
+(setq evil-respect-visual-line-mode t)
