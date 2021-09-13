@@ -7,8 +7,8 @@
 ;;;
 ;;; `keymap-scheme' hosts several schemes inside a has-table, thus the
 ;;; `gethash' business
-;; (define-configuration nyxt/web-mode:web-mode
-;;   ((keymap-scheme (let ((scheme %slot-default%))
-;;                     (keymap:define-key (gethash scheme:vi scheme)
-;;                      "M-:" 'eval-expression)
-;;                     scheme))))
+(define-configuration nyxt/web-mode:web-mode
+  ((keymap-scheme (let ((scheme %slot-default%))
+                    (keymap:define-key (gethash scheme:vi-normal scheme)
+                     "M-:" 'eval-expression)
+                    scheme))))

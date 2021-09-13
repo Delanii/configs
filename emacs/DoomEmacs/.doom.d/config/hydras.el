@@ -35,6 +35,13 @@
   ("l" avy-goto-line "Go 2 line" :column "Lines")
   ("q" nil "quit" :column "Aux"))
 
+;; Hydra for un/commenting regions of code:
+(defhydra my/hydra-comments ()
+  "Commenting and uncommenting regions of highlighted text."
+  ("c" comment-region "Comment highlighted region" :column "Comments")
+  ("u" uncomment-region "Uncomment highlighted region" :column "Comments")
+  ("q" nil "quit" :column "Aux"))
+
 ;;
 ;; Setup global entry keybinding for my hydras
 
@@ -42,7 +49,8 @@
       :prefix ("y" . "hydras") ;; Access hydras with <y> key after <leader>, label it in `which-key` minibuffer as `hydras`
       "n" #'my/hydra-numbers/body
       "m" #'my/hydra-toggle-modes/body
-      "a" #'my/hydra-avy/body)      ;; List of hydras with theyre access keys
+      "a" #'my/hydra-avy/body
+      "c" #'my/hydra-comments/body)      ;; List of hydras with theyre access keys
 
 ;; With `general.el` it would be done like so:
 ;; References:
