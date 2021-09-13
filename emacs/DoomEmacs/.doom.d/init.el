@@ -192,7 +192,7 @@
         +pandoc
         +pomodoro
         +pretty
-        +roam
+        +roam2
         +noter)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

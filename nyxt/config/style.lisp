@@ -23,7 +23,8 @@
                  :background-color "#2D343B")
                 ;; The area you input text in.
                 ("#input"
-                 :background-color "#2D343B")
+                 :background-color "#2D343B"
+                 :color "white")
                 (".source-name"
                  :color "black"
                  :background-color "#34B9E1")

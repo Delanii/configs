@@ -251,24 +251,22 @@ title."
    :actions '(insert))
   )
 
- ;; Settings for org-roam-server package
- ;;
- (use-package org-roam-server
-   :defer t
-   :after (org-roam-server)
-   :config
-   (setq org-roam-server-host "127.0.0.1"
-         org-roam-server-port 8078
-         org-roam-server-export-inline-images t
-         org-roam-server-authenticate nil
-         org-roam-server-network-label-truncate t
-         org-roam-server-network-label-truncate-length 60
-         org-roam-server-network-label-wrap-length 20)
-   (defun org-roam-server-open ()
-     "Ensure the server is active, then open the roam graph."
-     (interactive)
-     (org-roam-server-mode 1)
-     (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
+(use-package! websocket
+    :after org-roam)
+
+;; Settings for org-roam-ui package -- org-roam should not start always. If it does, this will impact start-up time significantly. So if it increases, disable this.
+;;
+(use-package! org-roam-ui
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 (after! org
 

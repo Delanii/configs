@@ -113,7 +113,12 @@
 (package! org-autolist)
 
 (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
-(package! org-roam-server)
+
+;; Settings for org-roam-v2 per =https://github.com/org-roam/org-roam-ui/=
+(unpin! org-roam)
+(package! websocket)
+(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
+
 (package! org-ql
   :recipe (:host github :repo "cfroehli/org-ql"))
 ;; (package! org-plus-contrib) ;; rozbije export z org-mode do jiných formátů
