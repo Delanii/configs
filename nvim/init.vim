@@ -304,6 +304,12 @@ Plug 'vimwiki/vimwiki'
 " `:Goyo` zapíná, `:Goyo!` vypíná
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
+"
+" Neorg
+"
+
+Plug 'nvim-neorg/neorg' | Plug 'nvim-lua/plenary.nvim'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " File management
