@@ -170,7 +170,8 @@
        (latex
         +latexmk
         +pdf-tools
-        +fold)               ; writing papers in Emacs has never been so fun
+        ;; +fold        ; +fold is hiding (folding) some commands, for example =\item= is folded to =*=. I dont want to hide stuff from me, so it is disabled
+        )               ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
