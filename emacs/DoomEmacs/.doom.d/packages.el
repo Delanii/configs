@@ -70,7 +70,7 @@
 (package! hercules)
 
 ;; Organizace bufferů
-(package! bufler)
+;; (package! bufler) ;; temporarily disabled because of error -- recursive require for feature bufler-workspace-tabs
 
 ;; Package for dealing with very big files
 ;;
