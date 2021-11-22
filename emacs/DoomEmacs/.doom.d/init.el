@@ -86,7 +86,7 @@
         +icons)                         ; making dired pretty [functional]
        electric                         ; smarter, keyword-based electric-indent
        (ibuffer                         ; interactive buffer management
-        +icons)         
+        +icons)
        (undo
         + tree)          ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
@@ -171,14 +171,14 @@
         +latexmk
         +pdf-tools
         ;; +fold        ; +fold is hiding (folding) some commands, for example =\item= is folded to =*=. I dont want to hide stuff from me, so it is disabled
-        )               ; writing papers in Emacs has never been so fun
+        )                    ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        lua                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
-       nix                               ; I hereby declare "nix geht mehr!"
+       nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
