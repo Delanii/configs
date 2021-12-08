@@ -2,6 +2,18 @@
 # ~/.bashrc
 #
 
+############################################
+# General bash settings
+###########################################
+
+# History
+
+export HISTCONTROL=ignoreboth:erasedups
+
+############################################
+# Original contents of .bashrc
+###########################################
+
 [[ $- != *i* ]] && return
 
 colors() {
@@ -149,7 +161,7 @@ alias l='ls -CF'
 export PATH="$HOME/.local/bin:$PATH"
 
 ############################################
-# Nastavení aliasů
+# Alias Settings
 ###########################################
 
 # Nastavení aliasu `config` pro zálohování konfiguračních souborů do dotfiles; resp. dotfiles repo; viz. tutorial od DT
@@ -199,7 +211,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
 
 source /home/tomaskrulis/.config/broot/launcher/bash/br
 [ -f "/home/tomaskrulis/.ghcup/env" ] && source "/home/tomaskrulis/.ghcup/env" # ghcup-env
