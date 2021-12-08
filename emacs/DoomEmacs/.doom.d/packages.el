@@ -105,6 +105,10 @@
 ;;
 ;; Packages connected specifically to org-mode
 ;;
+
+;; Unpin org-mode -- bugs might happen
+(unpin! org-mode)
+
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
