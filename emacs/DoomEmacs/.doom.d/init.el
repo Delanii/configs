@@ -86,7 +86,7 @@
         +icons)                         ; making dired pretty [functional]
        electric                         ; smarter, keyword-based electric-indent
        (ibuffer                         ; interactive buffer management
-        +icons)
+        +icons)         
        (undo
         + tree)          ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
@@ -108,7 +108,7 @@
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
-       docker
+       ;; docker
        editorconfig                ; let someone else argue about tabs vs spaces
        ein                         ; tame Jupyter notebooks with emacs
        (eval +overlay)             ; run code, run (also, repls)
@@ -160,25 +160,25 @@
        hy                     ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        json                             ; At least it ain't XML
-       (java
-        +meghanada
-        +lsp)     ; the poster child for carpal tunnel syndrome
+       ;; (java
+       ;;  +meghanada
+       ;;  +lsp)           ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        julia                            ; a better, faster MATLAB
-       (kotlin
-        + lsp)                          ; a better, slicker Java(Script)
+       ;; (kotlin
+       ;;  + lsp)         ; a better, slicker Java(Script)
        (latex
         +latexmk
         +pdf-tools
         ;; +fold        ; +fold is hiding (folding) some commands, for example =\item= is folded to =*=. I dont want to hide stuff from me, so it is disabled
-        )                    ; writing papers in Emacs has never been so fun
+        )               ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        lua                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
+       nix                               ; I hereby declare "nix geht mehr!"
        ;;ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
@@ -203,15 +203,14 @@
         +lsp)              ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        racket                 ; a DSL for DSLs
-       raku                   ; the artist formerly known as perl6
-       ;;rest                   ; Emacs as a REST client
-       ;; rst                             ; ReST in peace
-       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;; raku                   ; the artist formerly known as perl6
+       ;; ;;rest                   ; Emacs as a REST client
+       ;; ;; rst                             ; ReST in peace
+       ;; ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp)
-                                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       (scala
-        +lsp)
+        +lsp)               ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;; (scala
+       ;;  +lsp)
        scheme                           ; a fully conniving family of lisps
        (sh
         +fish
