@@ -29,10 +29,26 @@ parser_configs.norg = {
     },
 }
 
+parser_configs.norg_meta = {
+    install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+        files = { "src/parser.c" },
+        branch = "main"
+    },
+}
+
+parser_configs.norg_table = {
+    install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+        files = { "src/parser.c" },
+        branch = "main"
+    },
+}
+
 -- install tree-sitter parsers, "maintained" + norg specifically
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "fish", "haskell", "html", "java", "json", "julia", "kotlin", "latex", "lua", "nix", "python", "r", "regex", "rust", "scala", "toml", "yaml", "norg", },  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "fish", "haskell", "html", "java", "json", "julia", "kotlin", "latex", "lua", "nix", "python", "r", "regex", "rust", "scala", "toml", "yaml", "norg", "norg_meta", "norg_table" },  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   -- "norg" is not among "maintained" languages, so list of languages is needed
   ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
   highlight = {
