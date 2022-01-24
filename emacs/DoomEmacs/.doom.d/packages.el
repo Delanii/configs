@@ -112,6 +112,10 @@
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
+
+(package! org-fancy-priorities
+  :disable t)
+
 (package! org-fragtog)
 
 (package! org-autolist)
