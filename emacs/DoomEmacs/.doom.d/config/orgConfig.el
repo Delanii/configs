@@ -190,21 +190,21 @@ title."
   (add-to-list 'org-emphasis-alist
                '("+" (:foreground "red")))
                
-;; Set the look of pririties cookies
+  ;; Set the look of pririties cookies
 
-(setq org-priority-faces '((?A . (:foreground "red" :weight bold))
-                           (?B . (:foreground "orange"))
-                           (?C . (:foreground "yellow"))
-                           (?D . (:foreground "green"))
-                           (?1 . (:foreground "magenta" :weight bold))
-                           (?2 . (:foreground "red" :weight bold))
-                           (?3 . (:foreground "orange red"))
-                           (?4 . (:foreground "dark orange"))
-                           (?5 . (:foreground "yellow"))
-                           (?6 . (:foreground "lime green"))
-                           (?7 . (:foreground "dark green"))
-                           (?8 . (:foreground "dodger blue"))
-                           (?9 . (:foreground "dark slate blue"))))
+  (setq org-priority-faces '((?A . (:foreground "red" :weight bold))
+                             (?B . (:foreground "orange"))
+                             (?C . (:foreground "yellow"))
+                             (?D . (:foreground "green"))
+                             (?1 . (:foreground "magenta" :weight bold))
+                             (?2 . (:foreground "red" :weight bold))
+                             (?3 . (:foreground "orange red"))
+                             (?4 . (:foreground "dark orange"))
+                             (?5 . (:foreground "yellow"))
+                             (?6 . (:foreground "lime green"))
+                             (?7 . (:foreground "dark green"))
+                             (?8 . (:foreground "dodger blue"))
+                             (?9 . (:foreground "dark slate blue"))))
 
   ;; defer font-locking when typing to make the experience more responsive
   (defun locally-defer-font-lock ()
@@ -224,9 +224,18 @@ title."
     (add-to-list 'org-font-lock-extra-keywords '("\\(!!\\)\\([^\n\r\t]+\\)\\(!!\\)"
                                                  (1 '(face org-habit-alert-face invisible nil)) (2 'org-habit-alert-face t) (3 '(face org-habit-alert-face invisible nil))) t)
     (add-to-list 'org-font-lock-extra-keywords '("\\(%%\\)\\([^\n\r\t]+\\)\\(%%\\)"
-                                                 (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t))
+                                                 (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t)
+    )
 
+  ;; Function to add my custom keywords to org-mode.
+  ;; Only this approach works
+  (defun my/org-add-my-extra-keywords ()
+    (push '("MAKE" (0 'my/make-face t)) org-font-lock-extra-keywords)
+    (push '("FIXME" (0 'my/fixme-face t) ) org-font-lock-extra-keywords))
+
+  ;; This actually adds the functions to be executed as hooks
   (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-fonts)
+  (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-keywords)
 
   ;; Customize org-mode heading symbols
   (after! org-superstar

@@ -76,6 +76,29 @@
   `(font-lock-comment-face :foreground "#58A304") ;; just a tad-little-brighter than "green" from official doom one theme
   `(font-lock-doc-face     :foreground ,(doom-lighten 'teal .05)))
 
+;; Customize hl-todo mode to run also in org-mode and to have more keywords
+;; hl-todo mode doesn't work in org-mode -- org mode is excluded form it's processing
+(global-hl-todo-mode)
+
+;; Define my custom faces for MAKE and FIXME words
+(defface my/make-face
+  '((t :foreground "#EF25F1"
+       :weight bold))
+  nil)
+
+(defface my/fixme-face
+  '((t :foreground "#E5D822"
+       :weight bold))
+  nil)
+
+;; Add custom faces to hl-todo package.
+;; Works everywhere except org-mode
+(after! hl-todo
+  (setq hl-todo-keyword-faces
+        `(
+          ("MAKE" . my/make-face)
+          ("FIXME". my/fixme-face))))
+
 ;; Line number highlighting customizaton
 (custom-set-faces!
   '(line-number :foreground "#BE00ED")
