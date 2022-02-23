@@ -80,7 +80,7 @@
 ;; hl-todo mode doesn't work in org-mode -- org mode is excluded form it's processing
 (global-hl-todo-mode)
 
-;; Define my custom faces for MAKE and FIXME words
+;; Define my custom faces for specific words
 (defface my/make-face
   '((t :foreground "#EF25F1"
        :weight bold))
@@ -91,13 +91,19 @@
        :weight bold))
   nil)
 
+(defface my/important-face
+  '((t :foreground "#C70039"
+       :weight bold))
+  nil)
+
 ;; Add custom faces to hl-todo package.
 ;; Works everywhere except org-mode
 (after! hl-todo
   (setq hl-todo-keyword-faces
         `(
           ("MAKE" . my/make-face)
-          ("FIXME". my/fixme-face))))
+          ("FIXME". my/fixme-face)
+          ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton
 (custom-set-faces!
