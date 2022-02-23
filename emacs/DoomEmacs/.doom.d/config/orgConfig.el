@@ -19,7 +19,8 @@
         org-adapt-indentation t
         org-hide-emphasis-markers nil ; dont hide emphasis markers. I want to know what my org mode file contains
         org-pretty-entities nil ; that applies also for UTF8 specail characters. Eventhough this could be considered to make `t`
-        org-catch-invisible-edits 'smart)
+        org-catch-invisible-edits 'smart
+        org-element-use-cache t)
 
   ;; Nastavení věcí, co se spustí s org-mode
   ;; tedy org-autolist
