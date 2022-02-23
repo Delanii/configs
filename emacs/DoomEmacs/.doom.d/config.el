@@ -332,7 +332,8 @@ Version 2016-10-24"
 (after! company
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 3)
-  (setq company-show-numbers t))
+  (setq company-show-numbers t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 ;; Increase completion history size
 (setq-default history-length 1000)
