@@ -1,6 +1,5 @@
 (setq evil-move-cursor-back nil)        ;; After switch from normal mode to insert mode dont move cursor back on letter but leave it where it was.
 (setq evil-kill-on-visual-paste nil)    ;; When pasting over selected text delete replace selected text with pasted one
-(after! evil-escape (evil-escape-mode -1)) ;; Disables evil-escape function, that allows to go to emacs mode after pressing jk
 (after! evil (setq evil-ex-substitute-global t)) ;; Evil substitution with `:s/.../...`  are always global, opposed to need to write `:%s/.../...`
 
 (setq evil-visual-region-expanded t)    ;; emacs "region" and vim "selection" mean the same.
