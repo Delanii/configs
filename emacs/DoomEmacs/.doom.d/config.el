@@ -319,6 +319,18 @@ Version 2016-10-24"
 
 (load! "config/orgConfig.el")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LaTeX Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq TeX-save-query nil
+      TeX-show-compilation t
+      TeX-command-extra-options "-shell-escape")
+(after! latex
+  (add-to-list 'TeX-command-list '("LuaLaTeX" "%`lualatex%(mode)%' %t" TeX-run-TeX nil t)))
+
+(setq +latex-viewers '(pdf-tools okular evince))
+
 ;;
 ;; Writeroom settings
 ;;

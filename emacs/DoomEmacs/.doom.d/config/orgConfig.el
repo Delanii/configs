@@ -293,6 +293,10 @@ title."
    :after org
    :hook (org-mode . org-special-block-extras-mode))
 
+;; Sets ob-http package to make HTTP requests from org-mode
+(use-package! ob-http
+  :commands org-babel-execute:http)
+
 (after! org
 
   ;; Does this have to be here? Until I learn with publishing and emacs --script, YES
@@ -456,6 +460,11 @@ title."
     :defer t
     :commands org-ol-tree)
 
+  (map! :map org-mode-map
+        :after org
+        :localleader
+        :desc "Outline" "O" #'org-ol-tree)
+
   ;; Another experimental - org-ml: functional parsing of org-mode files
   (use-package! org-ml
     :after org)
@@ -487,3 +496,166 @@ title."
              title)))
         headings) "\n")))
   ) ;; closed `after!` macro from beginning of the org-mode settings
+
+;; Citations in org-mode with org-cite
+;;
+
+(use-package! citar
+  :when (featurep! :completion vertico))
+
+(use-package! citeproc
+  :defer t)
+
+;;; Org-Cite configuration
+
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :desc "Insert citation" "@" #'org-cite-insert)
+
+(use-package! oc
+  :after org citar
+  :config
+  (require 'ox)
+  (setq org-cite-global-bibliography
+        (let ((paths (or citar-bibliography
+                         (bound-and-true-p bibtex-completion-bibliography))))
+          ;; Always return bibliography paths as list for org-cite.
+          (if (stringp paths) (list paths) paths)))
+  ;; setup export processor; default csl/citeproc-el, with biblatex for latex
+  (setq org-cite-export-processors
+        '((t csl))))
+
+  ;;; Org-cite processors
+(use-package! oc-biblatex
+  :after oc)
+
+;; (use-package! oc-csl
+;;   :after oc
+;;   :config
+;;   (setq org-cite-csl-styles-dir "~/Zotero/styles")) ;; I dont have Zotero, but that is how I could set CSL style file
+
+;;;; Third-party
+
+(use-package! citar-org
+  :no-require
+  :custom
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (org-support-shift-select t)
+  (when (featurep! :lang org +roam2)
+    ;; Include property drawer metadata for 'org-roam' v2.
+    (citar-org-note-include '(org-id org-roam-ref)))
+  ;; Personal extras
+  (setq citar-symbols
+        `((file ,(all-the-icons-faicon "file-o" :v-adjust -0.1) . " ")
+          (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
+          (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
+
+(use-package! oc-csl-activate
+  :after oc
+  :config
+  (setq org-cite-csl-activate-use-document-style t)
+  (defun +org-cite-csl-activate/enable ()
+    (interactive)
+    (setq org-cite-activate-processor 'csl-activate)
+    (add-hook! 'org-mode-hook '((lambda () (cursor-sensor-mode 1)) org-cite-csl-activate-render-all))
+    (defadvice! +org-cite-csl-activate-render-all-silent (orig-fn)
+      :around #'org-cite-csl-activate-render-all
+      (with-silent-modifications (funcall orig-fn)))
+    (when (eq major-mode 'org-mode)
+      (with-silent-modifications
+        (save-excursion
+          (goto-char (point-min))
+          (org-cite-activate (point-max)))
+        (org-cite-csl-activate-render-all)))
+    (fmakunbound #'+org-cite-csl-activate/enable)))
+
+;; Settings for org super agenda -- stolen from TEC
+;;
+(use-package! org-super-agenda
+  :commands org-super-agenda-mode)
+
+(after! org-agenda
+  (org-super-agenda-mode))
+
+(setq org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-include-deadlines t
+      org-agenda-block-separator nil
+      org-agenda-tags-column 100 ;; from testing this seems to be a good value
+      org-agenda-compact-blocks t)
+
+(setq org-agenda-custom-commands
+      '(("o" "Overview"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next to do"
+                           :todo "NEXT"
+                           :order 1)
+                          (:name "Important"
+                           :tag "Important"
+                           :priority "A"
+                           :order 6)
+                          (:name "Due Today"
+                           :deadline today
+                           :order 2)
+                          (:name "Due Soon"
+                           :deadline future
+                           :order 8)
+                          (:name "Overdue"
+                           :deadline past
+                           :face error
+                           :order 7)
+                          (:name "Assignments"
+                           :tag "Assignment"
+                           :order 10)
+                          (:name "Issues"
+                           :tag "Issue"
+                           :order 12)
+                          (:name "Emacs"
+                           :tag "Emacs"
+                           :order 13)
+                          (:name "Projects"
+                           :tag "Project"
+                           :order 14)
+                          (:name "Research"
+                           :tag "Research"
+                           :order 15)
+                          (:name "To read"
+                           :tag "Read"
+                           :order 30)
+                          (:name "Waiting"
+                           :todo "WAITING"
+                           :order 20)
+                          (:name "University"
+                           :tag "uni"
+                           :order 32)
+                          (:name "Trivial"
+                           :priority<= "E"
+                           :tag ("Trivial" "Unimportant")
+                           :todo ("SOMEDAY" )
+                           :order 90)
+                          (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
+
+;; Org declarative capture templates settings
+;;
+
+(use-package! doct
+  :commands doct)
+
+;; Some hooks are notoriously prblematic.
+;; Let's ignore them when they are misbehaving
+(defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
+  :around #'org-fancy-priorities-mode
+  :around #'org-superstar-mode
+  (ignore-errors (apply orig-fn args)))
