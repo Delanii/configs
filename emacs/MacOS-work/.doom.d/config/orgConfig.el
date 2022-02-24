@@ -294,8 +294,8 @@ title."
    :hook (org-mode . org-special-block-extras-mode)
 
    ;; Sets ob-http package to make HTTP requests from org-mode
-   (use-package! ob-http
-     :commands org-babel-execute:http)
+;   (use-package! ob-http
+;     :commands org-babel-execute:http)
 
    )
 
@@ -458,9 +458,9 @@ title."
           "<f12>" #'org-transclusion-mode))
 
   ;; Settings for org-outline-tree ; experimental package
-  (use-package! org-ol-tree
-    :defer t
-    :commands org-ol-tree)
+;  (use-package! org-ol-tree
+;   :defer t
+;    :commands org-ol-tree)
 
   (map! :map org-mode-map
         :after org
@@ -575,8 +575,8 @@ title."
 
 ;; Settings for org super agenda -- stolen from TEC
 ;;
-(use-package! org-super-agenda
-  :commands org-super-agenda-mode)
+;(use-package! org-super-agenda
+;  :commands org-super-agenda-mode)
 
 (after! org-agenda
   (org-super-agenda-mode))
@@ -651,8 +651,8 @@ title."
 ;; Org declarative capture templates settings
 ;;
 
-(use-package! doct
-  :commands doct)
+;(use-package! doct
+; :commands doct)
 
 ;; Some hooks are notoriously prblematic.
 ;; Let's ignore them when they are misbehaving
