@@ -331,6 +331,15 @@ Version 2016-10-24"
 
 (setq +latex-viewers '(pdf-tools okular evince))
 
+;; SyncTeX ? From TEC
+(after! tex
+  (add-to-list 'TeX-view-program-list '("Okular" "okular %o"))
+  (add-to-list 'TeX-view-program-selection '(output-pdf "Okular")))
+
+;; Fix for emacs 28
+(when EMACS28+
+  (add-hook 'latex-mode-hook #'TeX-latex-mode))
+
 ;;
 ;; Writeroom settings
 ;;
