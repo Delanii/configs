@@ -193,13 +193,10 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; Then, we’ll pull up ivy
+;; Then, we’ll pull up a buffer prompt
 (defadvice! tec/prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
-;; Oh, and previews are nice
-(setq +ivy-buffer-preview t)
+  (consult-buffer))
 
 ;; This add window changing and swapping not only with `hjkl` as in vim directions, but also with arrow keys
 (map! :map evil-window-map

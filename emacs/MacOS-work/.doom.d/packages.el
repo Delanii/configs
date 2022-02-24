@@ -126,7 +126,6 @@
 ;; Org citations
 
 (package! org-ref)
-(package! citar :pin "a6926650114a8091f98bff8c7fd00add82043190")
 (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
 (package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "8f49ccbd337edda01e52da0c75f6a76e2cc976f7")
 (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"

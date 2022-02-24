@@ -501,9 +501,6 @@ title."
   ;; Citations in org-mode with org-cite
 ;;
 
-(use-package! citar
-  :when (featurep! :completion vertico))
-
 (use-package! citeproc
   :defer t)
 

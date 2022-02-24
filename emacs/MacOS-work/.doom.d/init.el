@@ -38,9 +38,11 @@
         +childframe)                    ; nicer UI
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +fuzzy
-            +icons
-            +prescient)                 ; a search engine for love and life
+       ;; (ivy +fuzzy
+       ;;      +icons
+       ;;      +prescient)   ; a search engine for love and life
+       (vertico
+        +icons)                         ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -108,6 +110,7 @@
 
        :tools
        ;;ansible
+       biblio
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;; docker
