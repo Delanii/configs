@@ -1,6 +1,5 @@
 (setq evil-move-cursor-back nil)        ;; After switch from normal mode to insert mode dont move cursor back on letter but leave it where it was.
 (setq evil-kill-on-visual-paste nil)    ;; When pasting over selected text delete replace selected text with pasted one
-(after! evil-escape (evil-escape-mode -1)) ;; Disables evil-escape function, that allows to go to emacs mode after pressing jk
 (after! evil (setq evil-ex-substitute-global t)) ;; Evil substitution with `:s/.../...`  are always global, opposed to need to write `:%s/.../...`
 
 (setq evil-visual-region-expanded t)    ;; emacs "region" and vim "selection" mean the same.
@@ -99,9 +98,31 @@
    :nv "+" #'evil-numbers/inc-at-pt
    :nv "-" #'evil-numbers/dec-at-pt))
 
-;; evil-inflection settings
-(use-package! evil-string-inflection
-  :commands (evil-operator-string-inflection)
+;; String inflection cycling -- more reliable than evil-string-inflection version
+(use-package! string-inflection
+  :commands (string-inflection-all-cycle
+             string-inflection-toggle
+             string-inflection-camelcase
+             string-inflection-lower-camelcase
+             string-inflection-kebab-case
+             string-inflection-underscore
+             string-inflection-capital-underscore
+             string-inflection-upcase)
   :init
-  (map! :prefix "g"
-        :desc "String inflection" :o "~" #'evil-operator-string-inflection))
+  (map! :leader :prefix ("c~" . "naming convention")
+        :desc "cycle" "~" #'string-inflection-all-cycle
+        :desc "toggle" "t" #'string-inflection-toggle
+        :desc "CamelCase" "c" #'string-inflection-camelcase
+        :desc "downCase" "d" #'string-inflection-lower-camelcase
+        :desc "kebab-case" "k" #'string-inflection-kebab-case
+        :desc "under_score" "_" #'string-inflection-underscore
+        :desc "Upper_Score" "u" #'string-inflection-capital-underscore
+        :desc "UP_CASE" "U" #'string-inflection-upcase)
+  (after! evil
+    (evil-define-operator evil-operator-string-inflection (beg end _type)
+      "Define a new evil operator that cycles symbol casing."
+      :move-point nil
+      (interactive "<R>")
+      (string-inflection-all-cycle)
+      (setq evil-repeat-info '([?g ?~])))
+    (define-key evil-normal-state-map (kbd "g~") 'evil-operator-string-inflection)))

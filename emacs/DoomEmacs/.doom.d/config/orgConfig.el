@@ -291,11 +291,13 @@ title."
  ;;
  (use-package! org-special-block-extras
    :after org
-   :hook (org-mode . org-special-block-extras-mode))
+   :hook (org-mode . org-special-block-extras-mode)
 
-;; Sets ob-http package to make HTTP requests from org-mode
-(use-package! ob-http
-  :commands org-babel-execute:http)
+   ;; Sets ob-http package to make HTTP requests from org-mode
+   (use-package! ob-http
+     :commands org-babel-execute:http)
+
+   )
 
 (after! org
 
@@ -495,7 +497,6 @@ title."
                      file title)
              title)))
         headings) "\n")))
-  ) ;; closed `after!` macro from beginning of the org-mode settings
 
 ;; Citations in org-mode with org-cite
 ;;
@@ -659,3 +660,5 @@ title."
   :around #'org-fancy-priorities-mode
   :around #'org-superstar-mode
   (ignore-errors (apply orig-fn args)))
+
+  ) ;; closed `after!` macro from beginning of the org-mode settings

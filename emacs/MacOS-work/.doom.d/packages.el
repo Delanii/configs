@@ -57,7 +57,7 @@
 (package! evil-tutor)
 (package! evil-nerd-commenter)
 (package! evil-cleverparens)
-(package! evil-string-inflection)
+(package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
 (package! evil-escape :disable t)
 
 ;; Packages connected to other modal editing
@@ -109,6 +109,9 @@
 ;; Unpin org-mode -- bugs might happen
 ;; (unpin! org-mode)
 
+;; Make agenda super
+(package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
+
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
@@ -120,6 +123,12 @@
 
 (package! org-autolist)
 
+;; Org citations
+
+(package! org-ref)
+(package! citar :pin "a6926650114a8091f98bff8c7fd00add82043190")
+(package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
+(package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "8f49ccbd337edda01e52da0c75f6a76e2cc976f7")
 (package! org-ref) ;; nevyužívám jej a zbytečně instaluje "helm"
 
 ;; Settings for org-roam-v2 per =https://github.com/org-roam/org-roam-ui/=
@@ -135,6 +144,11 @@
 
 ;; Package for using =defblock= function and for simultanious export to html, latex or other formats
 (package! org-special-block-extras)
+
+;; Declarative org capture tempates
+(package! doct
+  :recipe (:host github :repo "progfolio/doct")
+  :pin "67fc46c8a68989b932bce879fbaa62c6a2456a1f")
 
 ;;
 ;; Experimental packages
@@ -155,6 +169,9 @@
 
 (package! ob-julia :recipe (:host github :repo "nico202/ob-julia" :files ("*.el" "julia")))
 ;; (package! ob-raku) ;; Není na MELPA, ručně jej instalovat nebudu
+
+;; Make HTTP requests from org-mode
+(package! ob-http :pin "b1428ea2a63bcb510e7382a1bf5fe82b19c104a7")
 
 ;; Spouštění kódu ve Scale
 ;; (package! ob-scala) ;; Opět není v MELPA

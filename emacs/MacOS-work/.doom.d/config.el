@@ -317,6 +317,27 @@ Version 2016-10-24"
 
 (load! "config/orgConfig.el")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LaTeX Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq TeX-save-query nil
+      TeX-show-compilation t
+      TeX-command-extra-options "-shell-escape")
+(after! latex
+  (add-to-list 'TeX-command-list '("LuaLaTeX" "%`lualatex%(mode)%' %t" TeX-run-TeX nil t)))
+
+(setq +latex-viewers '(pdf-tools okular evince))
+
+;; SyncTeX ? From TEC
+(after! tex
+  (add-to-list 'TeX-view-program-list '("Okular" "okular %o"))
+  (add-to-list 'TeX-view-program-selection '(output-pdf "Okular")))
+
+;; Fix for emacs 28
+(when EMACS28+
+  (add-hook 'latex-mode-hook #'TeX-latex-mode))
+
 ;;
 ;; Writeroom settings
 ;;
@@ -330,7 +351,8 @@ Version 2016-10-24"
 (after! company
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 3)
-  (setq company-show-numbers t))
+  (setq company-show-numbers t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 ;; Increase completion history size
 (setq-default history-length 1000)
