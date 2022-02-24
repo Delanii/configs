@@ -181,13 +181,44 @@ title."
   ;; Úprava vzhledu org-mode
   ;;
 
-  ;; Nastavení způsobu zvýrazňování vlastní TODO-sekvencí
-  ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění
-  ;; daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
 
-  (setq org-todo-keyword-faces
-        '(("IMPORTANT" . (:foreground "red" :weight bold))
-          ))
+
+  ;; Nastavení způsobu zvýrazňování vlastních TODO-sekvencí
+  (setq org-todo-keywords '((sequence
+                             "TODO(t)"  ; This task needs to be done.
+
+                             "NEXT(n)" ; I committed to work on this task next. This can be used to
+                                        ; plan my next day, or to indicate in a project the next
+                                        ; logical step.
+
+                             "STRT(s)" ; This task is actively in progress. Ideally you only have
+                                        ; one task marked as started, but in some cases you can
+                                        ; start a task, and while you wait for something to
+                                        ; complete, you can start another task.
+
+                             "WAIT(w)" ; This task is waiting some external condition to happen,
+                                        ; like waiting for an authorization, waiting for account to
+                                        ; be created, etc.
+
+                             "HOLD(h)" ; This task is paused. This state can mean many different
+                                        ; things. A task can be paused because I simply don't want
+                                        ; to continue doing it, or it is paused because I want to
+                                        ; make sure I understand I shouldn't be work on this task.
+                            "|"
+                             "DONE(d)"  ; Task successfully completed
+
+                             "KILL(k)" ; Task was cancelled, aborted or is no longer applicable,
+                                        ; but I want to keep it as a record instead of simply
+                                        ; remove it from the file.
+                             ))
+
+        org-todo-keyword-faces '(("IMPORTANT" . (:foreground "red" :weight bold))
+                                 ("STRT" . +org-todo-active)
+                                 ("WAIT" . +org-todo-onhold)
+                                 ("HOLD" . +org-todo-onhold))
+        )
+
+  ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
   (add-to-list 'org-emphasis-alist
                '("+" (:foreground "red")))
                

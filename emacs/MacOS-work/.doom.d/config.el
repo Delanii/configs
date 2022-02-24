@@ -34,6 +34,25 @@
 (setenv "DICTIONARY" "en_US")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Key mapping changes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Declaration of key modifiers to Mac keys
+(setq mac-command-modifier 'super
+      mac-control-modifier 'control
+      mac-option-modifier  'meta)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Allow all commands
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq disabled-command-function nil)
+
+;; On Emacs, you can set variables when open files, we call those File Variables. There are occasions I want to execute some arbitrary code when I open a file. To do that, I would add a file variable called eval, and pass my arbitrary code to it. As you can imagine, this is a dangerous feature
+;; Allow commands on opening a file
+;; (setq enable-local-eval t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -133,6 +152,8 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
 (setq-default display-line-numbers-type 'relative) ;; changed from `setq` to `setq-default`. It should be doing the same - setting default line numbering to `relative`.
+;; This should increase speed of line numbers -- emacs line number gutter size only grows, never shrinks:
+(setq-default display-line-numbers-grow-only t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Display Setting

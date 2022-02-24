@@ -1,6 +1,7 @@
 (setq evil-move-cursor-back nil)        ;; After switch from normal mode to insert mode dont move cursor back on letter but leave it where it was.
 (setq evil-kill-on-visual-paste nil)    ;; When pasting over selected text delete replace selected text with pasted one
-(after! evil (setq evil-ex-substitute-global t)) ;; Evil substitution with `:s/.../...`  are always global, opposed to need to write `:%s/.../...`
+(after! evil
+  (setq evil-ex-substitute-global t)) ;; Evil substitution with `:s/.../...`  are always global, opposed to need to write `:%s/.../...`
 
 (setq evil-visual-region-expanded t)    ;; emacs "region" and vim "selection" mean the same.
 
@@ -126,3 +127,21 @@
       (string-inflection-all-cycle)
       (setq evil-repeat-info '([?g ?~])))
     (define-key evil-normal-state-map (kbd "g~") 'evil-operator-string-inflection)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Keybindings changes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; One binding I feel is missing on Doom, is the ability to evaluate any sexp on any mode, like a global eval-last-sexp. Gladly, it's easy enough to create my own:
+(map! :prefix "g"
+      :desc "Eval last sexp" :n ")" #'eval-last-sexp)
+
+;; o avoid this issue, I will define a repeatable map for resizing, and because this is a separate map from the normal window map, I can add couple extra keys there to make the operation even smoother, for instance, we can increase the window height with + or with the = key
+(my-repeat-map! my-window-resize-repeat-map
+                '((evil-window-increase-height . "+")
+                  (evil-window-increase-height . "=")
+                  (evil-window-decrease-height . "-")
+                  (evil-window-decrease-height . "_")
+                  (evil-window-increase-width . ">")
+                  (evil-window-decrease-width . "<"))
+                "Repeatable map for window resizing")
