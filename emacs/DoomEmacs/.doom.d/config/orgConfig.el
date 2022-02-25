@@ -206,7 +206,7 @@ title."
                                         ; things. A task can be paused because I simply don't want
                                         ; to continue doing it, or it is paused because I want to
                                         ; make sure I understand I shouldn't be work on this task.
-                            "|"
+                             "|"
                              "DONE(d)"  ; Task successfully completed
 
                              "KILL(k)" ; Task was cancelled, aborted or is no longer applicable,
@@ -241,14 +241,16 @@ title."
                              (?9 . (:foreground "dark slate blue"))))
 
   ;; defer font-locking when typing to make the experience more responsive
-  (defun locally-defer-font-lock ()
-    "Set jit-lock defer and stealth, when buffer is over a certain size."
-    (when (> (buffer-size) 50000)
-      (setq-local jit-lock-defer-time 0.05
-                  jit-lock-stealth-time 1)))
+  ;; (defun locally-defer-font-lock ()
+  ;;   "Set jit-lock defer and stealth, when buffer is over a certain size."
+  ;;   (when (> (buffer-size) 50000)
+  ;;     (setq-local jit-lock-defer-time 0.05
+  ;;                 jit-lock-stealth-time 1)))
 
-  (add-hook 'org-mode-hook #'locally-defer-font-lock)
+  ;; (add-hook 'org-mode-hook #'locally-defer-font-lock)
   ;; Apparently this causes issues with some people, but I haven’t noticed anything problematic beyond the expected slight delay in some fontification, so until I do I’ll use the above.
+  ;; The source of these issues are most probably org-fancying packages, like org-superstar or org-fancy-priorities, which rely on finished font-lock process.
+  ;; Disabling this for now (and maybe forever).
 
   ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
   (require 'org-habit nil t)

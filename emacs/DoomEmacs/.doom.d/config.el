@@ -255,7 +255,7 @@
   (setq ad-return-value (concat ad-return-value ".xz")))
 
 ;; Settings for package for dealing with very large files (vlf package)
-(use-package! vlf-setup
+(us-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
