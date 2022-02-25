@@ -98,7 +98,7 @@
 ;; hl-todo mode doesn't work in org-mode -- org mode is excluded form it's processing
 (global-hl-todo-mode)
 
-;; Define my custom faces specific words
+;; Define my custom faces for specific words
 (defface my/make-face
   '((t :foreground "#EF25F1"
        :weight bold))

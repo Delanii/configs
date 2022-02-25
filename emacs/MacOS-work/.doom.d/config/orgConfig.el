@@ -181,8 +181,6 @@ title."
   ;; Úprava vzhledu org-mode
   ;;
 
-
-
   ;; Nastavení způsobu zvýrazňování vlastních TODO-sekvencí
   (setq org-todo-keywords '((sequence
                              "TODO(t)"  ; This task needs to be done.
