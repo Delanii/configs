@@ -1,8 +1,8 @@
 ;; Nastavení org-directory. Org-agenda-files čerpají ze stejného nastavení
 
-(custom-set-variables
- '(org-directory "~/Documents/org")
- '(org-agenda-files (list org-directory)))
+(setq org-directory "~/Documents/org"
+ org-agenda-files ;; list org-directory
+                    (directory-files-recursively "~/Documents/Job-all/TODOs/" "\\.org$"))
 
   ;; Nastavení defaultního souboru pro capture
 
