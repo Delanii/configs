@@ -1,16 +1,14 @@
 ;; Nastavení org-directory. Org-agenda-files čerpají ze stejného nastavení
 
 (setq org-directory "~/Documents/org"
-      org-agenda-files (list org-directory
-                             "~/Documents/Job-all/TODOs/")
-                       ;; (cons org-directory
-                       ;;       (directory-files-recursively "~/Documents/Job-all/TODOs/" "\\.org\\'"))
-                       )
+      org-agenda-files ;; list org-directory
+                       (cons org-directory
+                             (directory-files-recursively "~/Documents/Job-all/TODOs/" "\\.org\\'"))
+      )
 ;; Function =org-agenda-files= expects a list of file names.
 ;; Since function =directory-files-recursively= already returns a list of file names, the =org-directory= variable has to be just added to the list generated from =directory-files-recursively=.
 ;; The =cons= function add elements to an alradzy existing list.
 ;; =list= function just constructs lists from idividual elements
-;; All of the commented code is unneccessary, because =org-agenda-files= function already searches recursively all folder paths that are provided to it.
 
 ;; Nastavení defaultního souboru pro capture
 
