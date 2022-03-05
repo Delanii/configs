@@ -179,6 +179,10 @@
 ;; Mimojiné umožňuje folding jako v org-mode
 (package! latex-extra)
 
+;; Auto activating snippets
+(package! aas :recipe (:host github :repo "ymarco/auto-activating-snippets")
+  :pin "b1a436922ba06ab9e1a5cc222f1a4f25a7697231")
+
 ;; Package for reading =epub= files in emacs
 ;;
 (package! nov)

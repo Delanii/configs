@@ -79,7 +79,7 @@ alternative_order text/plain text/enriched text/html # Don't know what this does
 # set up the sidebar
 set sidebar_width=24
 set sidebar_visible=yes
-set sidebar_delim_chars='.' # delimiters between folder names
+set sidebar_delim_chars='/' # delimiters between folder names; delimiter '.' makes the sidebar addresses non-abbreviated, which makes them unrecognizable
 set sidebar_sort_method=unsorted # don't sort sidebar entries
 
 # Compose mail view settings -------------------------------
@@ -183,14 +183,14 @@ macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuc
 #make mutt colorful!
 color attachment magenta default
 color error brightred default
-color hdrdefault red default
-color indicator red default
-color markers cyan default
-color message cyan default
+color hdrdefault brightcyan default
+color indicator brightcyan default
+color markers blue default
+color message blue default
 color normal default default
 color quoted brightblue default
 color search default green
-color signature red default
+color signature yellow default
 color status brightwhite default
 color tilde magenta default
 color tree magenta default
