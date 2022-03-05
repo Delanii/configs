@@ -181,16 +181,49 @@ title."
   ;; Úprava vzhledu org-mode
   ;;
 
-  ;; Nastavení způsobu zvýrazňování vlastní TODO-sekvencí
-  ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění
-  ;; daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
+  ;;
+  ;; Úprava vzhledu org-mode
+  ;;
 
-  (setq org-todo-keyword-faces
-        '(("IMPORTANT" . (:foreground "red" :weight bold))
-          ))
+  ;; Nastavení způsobu zvýrazňování vlastních TODO-sekvencí
+  (setq org-todo-keywords '((sequence
+                             "TODO(t)"  ; This task needs to be done.
+
+                             "NEXT(n)" ; I committed to work on this task next. This can be used to
+                                        ; plan my next day, or to indicate in a project the next
+                                        ; logical step.
+
+                             "STRT(s)" ; This task is actively in progress. Ideally you only have
+                                        ; one task marked as started, but in some cases you can
+                                        ; start a task, and while you wait for something to
+                                        ; complete, you can start another task.
+
+                             "WAIT(w)" ; This task is waiting some external condition to happen,
+                                        ; like waiting for an authorization, waiting for account to
+                                        ; be created, etc.
+
+                             "HOLD(h)" ; This task is paused. This state can mean many different
+                                        ; things. A task can be paused because I simply don't want
+                                        ; to continue doing it, or it is paused because I want to
+                                        ; make sure I understand I shouldn't be work on this task.
+                             "|"
+                             "DONE(d)"  ; Task successfully completed
+
+                             "KILL(k)" ; Task was cancelled, aborted or is no longer applicable,
+                                        ; but I want to keep it as a record instead of simply
+                                        ; remove it from the file.
+                             ))
+
+        org-todo-keyword-faces '(("IMPORTANT" . (:foreground "red" :weight bold))
+                                 ("STRT" . +org-todo-active)
+                                 ("WAIT" . +org-todo-onhold)
+                                 ("HOLD" . +org-todo-onhold))
+        )
+
+  ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
   (add-to-list 'org-emphasis-alist
                '("+" (:foreground "red")))
-               
+
   ;; Set the look of pririties cookies
 
   (setq org-priority-faces '((?A . (:foreground "red" :weight bold))
@@ -208,14 +241,16 @@ title."
                              (?9 . (:foreground "dark slate blue"))))
 
   ;; defer font-locking when typing to make the experience more responsive
-  (defun locally-defer-font-lock ()
-    "Set jit-lock defer and stealth, when buffer is over a certain size."
-    (when (> (buffer-size) 50000)
-      (setq-local jit-lock-defer-time 0.05
-                  jit-lock-stealth-time 1)))
+  ;; (defun locally-defer-font-lock ()
+  ;;   "Set jit-lock defer and stealth, when buffer is over a certain size."
+  ;;   (when (> (buffer-size) 50000)
+  ;;     (setq-local jit-lock-defer-time 0.05
+  ;;                 jit-lock-stealth-time 1)))
 
-  (add-hook 'org-mode-hook #'locally-defer-font-lock)
+  ;; (add-hook 'org-mode-hook #'locally-defer-font-lock)
   ;; Apparently this causes issues with some people, but I haven’t noticed anything problematic beyond the expected slight delay in some fontification, so until I do I’ll use the above.
+  ;; The source of these issues are most probably org-fancying packages, like org-superstar or org-fancy-priorities, which rely on finished font-lock process.
+  ;; Disabling this for now (and maybe forever).
 
   ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
   (require 'org-habit nil t)
@@ -232,7 +267,7 @@ title."
   ;; Only this approach works
   (defun my/org-add-my-extra-keywords ()
     (push '("MAKE" (0 'my/make-face t)) org-font-lock-extra-keywords)
-    (push '("FIXME" (0 'my/fixme-face t) ) org-font-lock-extra-keywords)
+    (push '("FIXME" (0 'my/fixme-face t)) org-font-lock-extra-keywords)
     (push '("IMPORTANT" (0 'my/important-face t)) org-font-lock-extra-keywords))
 
   ;; This actually adds the functions to be executed as hooks
@@ -294,8 +329,9 @@ title."
    :hook (org-mode . org-special-block-extras-mode)
 
    ;; Sets ob-http package to make HTTP requests from org-mode
-   (use-package! ob-http
-     :commands org-babel-execute:http)
+   ;; For some reason this doesn't seem to work with vertico module from Doom emacs. Turning off this one ...
+   ;; (use-package! ob-http
+   ;;  :commands org-babel-execute:http)
 
    )
 
@@ -500,9 +536,6 @@ title."
 
 ;; Citations in org-mode with org-cite
 ;;
-
-(use-package! citar
-  :when (featurep! :completion vertico))
 
 (use-package! citeproc
   :defer t)

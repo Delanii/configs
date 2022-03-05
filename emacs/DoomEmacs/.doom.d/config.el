@@ -35,6 +35,16 @@
 (setq source-directory (concat (getenv "HOME") "/emacsSource/emacs"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Allow all commands
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq disabled-command-function nil)
+
+;; On Emacs, you can set variables when open files, we call those File Variables. There are occasions I want to execute some arbitrary code when I open a file. To do that, I would add a file variable called eval, and pass my arbitrary code to it. As you can imagine, this is a dangerous feature
+;; Allow commands on opening a file
+;; (setq enable-local-eval t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -134,6 +144,8 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
 (setq-default display-line-numbers-type 'relative) ;; changed from `setq` to `setq-default`. It should be doing the same - setting default line numbering to `relative`.
+;; This should increase speed of line numbers -- emacs line number gutter size only grows, never shrinks:
+(setq-default display-line-numbers-grow-only t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Display Setting
@@ -194,13 +206,15 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; Then, we’ll pull up ivy
+;; This set of functions displays buffer preview when `evil-window-vsplit` or `evil-window-split` is used in splitted window (right or bottom).
+;; First, we’ll enter the new window
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; Then, we’ll pull up a buffer prompt
 (defadvice! tec/prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
-;; Oh, and previews are nice
-(setq +ivy-buffer-preview t)
+  (consult-buffer))
 
 ;; This add window changing and swapping not only with `hjkl` as in vim directions, but also with arrow keys
 (map! :map evil-window-map
@@ -241,7 +255,6 @@
   (setq ad-return-value (concat ad-return-value ".xz")))
 
 ;; Settings for package for dealing with very large files (vlf package)
-;;
 (use-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 

@@ -38,9 +38,11 @@
         +childframe)                    ; nicer UI
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +fuzzy
-            +icons
-            +prescient)                 ; a search engine for love and life
+       ;; (ivy +fuzzy
+       ;;      +icons
+       ;;      +prescient)    ; a search engine for love and life
+       (vertico
+        +icons)                         ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -109,6 +111,7 @@
        :tools
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
+       biblio
        ;;direnv
        ;; docker
        editorconfig                ; let someone else argue about tabs vs spaces
@@ -240,7 +243,9 @@
 
        :config
        ;;literate
-       (default +bindings +smartparens))
+       (default
+         +bindings
+         +smartparens))
 
 ;; Make evil-mode respect visual-lines instead of logical lines for =jk= movement
 
