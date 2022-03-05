@@ -1,2 +1,2 @@
 REGEXP (((http|https|ftp|gopher)|mailto)[.:][^ >"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>">\):]
-COMMAND chromium %s
+COMMAND lynx --accept-all-cookies --display-charset=utf-8 %s

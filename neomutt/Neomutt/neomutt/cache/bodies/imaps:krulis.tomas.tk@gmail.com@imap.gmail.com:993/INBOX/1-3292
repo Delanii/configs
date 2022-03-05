@@ -1,0 +1,2260 @@
+Delivered-To: krulis.tomas.tk@gmail.com
+Received: by 2002:ab3:74ca:0:0:0:0:0 with SMTP id l10csp810671lti;
+        Thu, 3 Mar 2022 09:39:20 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwxS5Y7NyV/fff2se4uKqjyb9C2mXCMkD57CTgXHHrWnDy32uC+RDoHGJEcnhg0ic0RvG05
+X-Received: by 2002:a81:47d4:0:b0:2d0:c9ae:f8b8 with SMTP id u203-20020a8147d4000000b002d0c9aef8b8mr36850261ywa.194.1646329160254;
+        Thu, 03 Mar 2022 09:39:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1646329160; cv=none;
+        d=google.com; s=arc-20160816;
+        b=u+QLJxWId1uyx/mG5iyy5fbWXpTQFN7p5prAwQ9rE4nnUiJRaw1sXNSSDJxDQY5ksp
+         a5X9YoUGzV0/M688YcVMzkyBUI0pbpkYqaly54893R/jGSHdN0AKrwe00rwg9YLZ2Qtl
+         eIf/ISgZ2AVnyhczRH7lkQVMyGXfzZuKjsaViU60BJDekZZFdvGvNH3RtwnWd4wQuyYk
+         aJXO8wPIcu2utiEL5bP9cBaFq2aRmHmbnHMajBdoW5j3yVUwbboKsNQFrrVnwJ1yRqxa
+         C/4Axj8jTzL3SuhN2JcjEZVQTBxlNiUPYwUz0c0a5ondOMzswcxCzPoYgaXpPRT4hpdF
+         whRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:to:reply-to:message-id:subject:mime-version:from
+         :date:dkim-signature:dkim-signature;
+        bh=2FXPYjMsgaWfEhTlV2e4o2b4fUH5PhqsS+Kq53Tzg/w=;
+        b=NAr8TWuzkWp932zEdt9swaTtoxV3b1J8ku17dHiuSbrGgYDyyUE+BC2hBOFQHNfy+b
+         Zvkbu/hJqaeggEX8l6V0ZE0Ud4YmbtxZW8QhzH5IZ7p+l9l6ZdrSvXiIfozgZ/VQAx2B
+         3U67tfZDia52EVkyp7iYMD0LjZK1OlOa83T1AF//5AqDwRJhJ8Z6wjybljDGh64QELeP
+         Ux78zQaj8ZbwRqMd8AnhAHhTrE8aI8jS8KiF7bsyJyKMBgYhWpCE1ZB4dF9Ki6pug6EF
+         lzq5ta63wFAUExJvQ5tVZLyhAp9Qe2QwG0/lWsxW8ZiCdjcEl+XPTgJprw9bL5cokr/e
+         UT7A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@stackshare.io header.s=s1 header.b=XciWWlRq;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=OCSbqkKa;
+       spf=pass (google.com: domain of bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io designates 168.245.96.169 as permitted sender) smtp.mailfrom="bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io"
+Return-Path: <bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io>
+Received: from xvfrshxw.outbound-mail.sendgrid.net (xvfrshxw.outbound-mail.sendgrid.net. [168.245.96.169])
+        by mx.google.com with ESMTPS id z81-20020a256554000000b006241475bd93si2246700ybb.601.2022.03.03.09.39.19
+        for <krulis.tomas.tk@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 09:39:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io designates 168.245.96.169 as permitted sender) client-ip=168.245.96.169;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@stackshare.io header.s=s1 header.b=XciWWlRq;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=OCSbqkKa;
+       spf=pass (google.com: domain of bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io designates 168.245.96.169 as permitted sender) smtp.mailfrom="bounces+1375320-ef21-krulis.tomas.tk=gmail.com@email.stackshare.io"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stackshare.io;
+	h=content-type:from:mime-version:subject:reply-to:x-feedback-id:to:
+	list-unsubscribe;
+	s=s1; bh=2FXPYjMsgaWfEhTlV2e4o2b4fUH5PhqsS+Kq53Tzg/w=;
+	b=XciWWlRqiwJxAX4LLLYm92IcgU8BMP8NjS6br2BrIf/K4N4rn+nbOqxodzQniWVDcW4k
+	OfllbYb9fXC72zgsrAKoPygl+vhetXJnMWgKLro02xmaDPxBDajjeQG2eMPSRZs+GaJ9B0
+	2TT8/ql2Lg7aFTW1edCbFtbMPoDfe+JhokE3Z27wU4/+WA1fIR+3meBOtRJjGMsXwvSH7w
+	c9QjiCATYoZbjFOBbUER3clYmJk6hRtKlcEqlpOolCmkGftE0jO2z6kVOB+Y4jSA9PA7Os
+	ZXuRoVu0cfQSBlRbsT66hki8+jQv1vZkfZYEJEB3bbJ692gFapN6MWmOpHquWYTA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:reply-to:x-feedback-id:to:
+	list-unsubscribe;
+	s=smtpapi; bh=2FXPYjMsgaWfEhTlV2e4o2b4fUH5PhqsS+Kq53Tzg/w=;
+	b=OCSbqkKa1z4DimQ3DtM7oXB6pnwykZUTUnrtEPUwe9RTvkYStB2kk/tfAqUMTg8g/14d
+	Ccs3ySVmvbOxil2wL1swJQc7MliWWeAUL3N90jSBlntiU6DQ99rdij5sPxnvFXnmX2tvA3
+	yfg4hH7khjDUJbxIjHVuFtRd3BBcCdl4Y=
+Content-Type: multipart/alternative; boundary=edff6675f748386a823b7993d27c837d66e42c249a6fde9cb300c91d72d4
+Date: Thu, 03 Mar 2022 17:39:18 +0000 (UTC)
+From: StackShare Weekly <hello@stackshare.io>
+Mime-Version: 1.0
+Subject: Hydra, Deepfence, Halfmoon, Convoy, Turborepo, and more
+Message-ID: <wPTJZplcQWO7kgKFU4uTDw@ismtpd0179p1mdw1.sendgrid.net>
+Reply-To: hello@stackshare.io
+X-Feedback-ID: 1375320:SG
+X-SG-EID: 
+ =?us-ascii?Q?dS5vRUIVQDy3PcFfIFS4qS6pqoVIfj4W0zAFxNRnOGDG00adq7uDyTXMOJ7lZB?=
+ =?us-ascii?Q?BYB+hrNqkbaZlCQKp3kP9TG65UaWpJX=2FNAP7swW?=
+ =?us-ascii?Q?J=2FRkuW8xqOl5peMy=2FpzH8gPWlDxLCZx=2Fy5dItPX?=
+ =?us-ascii?Q?FA1BLhNsreCclYedMeHWsWKBEPPocSjkhddDiVL?=
+ =?us-ascii?Q?=2F3gOey4siDQqsUqGQAvEZVR1Kis6spBRukDZ+AR?=
+ =?us-ascii?Q?MU3FJx9KlmvCZBzgzzWNuzSa5a9U1+SNLqX7S0A?=
+ =?us-ascii?Q?ZVxe1uHbUMPo0BRfPqtaw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?3Pj6BAFONQhe5xn5MQIS2A+i7snYjEyY7JEK6a5vO1U9M6m23B6FxqsoPLYdQk?=
+ =?us-ascii?Q?mQNvmZzeId2ac7XvwjdLqfXlglHpqvuRNCCerI=2F?=
+ =?us-ascii?Q?asoW434Kf8iD3sWGFZJ1nsSCnaflOOFe2dMTnud?=
+ =?us-ascii?Q?nepctt5nVv8PKm3EwPsw6cZ4At=2FlCY4BBGp9thL?=
+ =?us-ascii?Q?YVXSMhYdl40qcAHHXNF7h=2F=2FUD9T9+0XCHYQ=3D=3D?=
+To: krulis.tomas.tk@gmail.com
+X-Entity-ID: NaDVeI5Ce2vyDHv73aczpg==
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Cmailto=3Aunsubscribe=40email=2Estackshare=2Eio=3Fsubject=3D1375320=2E-S3OFc?=
+ =?us-ascii?Q?3EFkQ2jqUCA-osyNF62GVNx3u5xMAnwcWh6ThZe?=
+ =?us-ascii?Q?Rkf7pg78WLRr6do4IBD5X-7KiiZ7wfuA=5FseMPDc?=
+ =?us-ascii?Q?yQAXbLxG3jgkOyXRVMEQVDSLtnqTZ6x7iMTjUty?=
+ =?us-ascii?Q?UV=5FZJTLHdW9xCykfYQMfaiG2hn-xpaEhM-CccSh?=
+ =?us-ascii?Q?baQbnMgwY=3D=2EiLyMT-wa2yqE6zzlz9-EALqES3Ac?=
+ =?us-ascii?Q?cFAgKCKqhhAiEGLag=5Fd0UEnmMgQNk6bWgk5nYFS?=
+ =?us-ascii?Q?0brovDsrthew7xa-ktsniSS2ZrYYrQk=5Fr15-Ln-?=
+ =?us-ascii?Q?zKwEKphXXLRZNqjBGTf36fGbUprUgfkUtJrzMW2?=
+ =?us-ascii?Q?GExQHqG5PTCJkUbD28JkU-SFVNefg-RlDXBZqJ6?=
+ =?us-ascii?Q?oGCz5GVvyF5kOJjBZP7ZYq=5Flaszwft50CEJMw3n?=
+ =?us-ascii?Q?GZvQn1PYFG-=5FgMzQtmDnA5Pe5Wwa952w6RBvQOp?=
+ =?us-ascii?Q?95dwDTsziEieUHQnLsRLm16Y4An15ULGkb6WFG-?=
+ =?us-ascii?Q?k--7N=5FuS=5FgDMzXJ=5FcsTFbox2AeXdRKYh5fwe8YC?=
+ =?us-ascii?Q?OjG6i-=5FlJrDCFXvDw7LrLlfOMPyQJsBqBmRhqq9?=
+ =?us-ascii?Q?xLMhfQQaKGleu78meCX7fMmUV5g=3D=3D=3E?=
+
+--edff6675f748386a823b7993d27c837d66e42c249a6fde9cb300c91d72d4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+StackShare Weekly
+
+Email not displaying correctly? View it https://sg-mktg.com/MTY0NjMyOTE1NXx=
+VS0x3U2pDTndoQXVtZ3hPbUlKellhc1lHc1c3WE5KdGYxTmt3V2lyazR1UTcxNkFUM2NCRXhCWn=
+N2cml5TXRtTlNLWjI4ekRxdktLTkltQ1lwOG9zNzUzNDF0S285UGxzVElSbWlISmRsVlNWYUlyR=
+klfblVaYUExdE9XSk1tRklsYS01R05kT1d2Y0xjVDd5djZ0V0JWRWtsOHBUQTQxSFVRQUxzekVp=
+VkV6X0JTZU1OQmNkVmRqb0NfX3AxQkFmcXdhNGtVWF8weWp0ZVRidmJnMkhjbjJNQTlLcTBsbjl=
+iZ09rNVhXSHB0Z2JUMTRGQnhGUUNRN1BtY3dlTzFkLURWTjF5UzRhNVA2fDDG-vZbOMgB9_lnRF=
+7YEbFjXFjrEFB8nfVi1twITexD in your browser.
+
+https://stackshare.io
+
+Weekly Digest
+
+March 3rd,=C2=A02022
+
+https://bit.ly/3n4gvux
+
+Sponsored by CircleCI. Let CircleCI focus on CI/CD, so you can build the ne=
+xt big thing. CircleCI offers support for Linux, macOS, Docker, and Windows=
+, in the cloud or behind your firewall. Learn more at https://circleci.com =
+https://bit.ly/3n4gvux.
+
+ICYMI
+
+https://stackshare.io/posts/top-developer-tools-2021
+
+New Tools
+
+https://stackshare.io/hydra?utm_source=3Dweekly_digest&utm_medium=3Demail&u=
+tm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Hydra https://stackshare.io/hydra?utm_source=3Dweekly_digest&utm_medium=3De=
+mail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Database Tools
+ Query any database via Postgres
+
+https://stackshare.io/deepfence-threatmapper?utm_source=3Dweekly_digest&utm=
+_medium=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Deepfence ThreatMapper https://stackshare.io/deepfence-threatmapper?utm_sou=
+rce=3Dweekly_digest&utm_medium=3Demail&utm_campaign=3D03022022&utm_content=
+=3Dnew_tool
+ Security
+ Open source cloud native security observability platform
+
+https://stackshare.io/getconvoy?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Convoy https://stackshare.io/getconvoy?utm_source=3Dweekly_digest&utm_mediu=
+m=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Webhooks as a Service
+ Open-source cloud-native webhooks service
+
+https://stackshare.io/halfmoon?utm_source=3Dweekly_digest&utm_medium=3Demai=
+l&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Halfmoon https://stackshare.io/halfmoon?utm_source=3Dweekly_digest&utm_medi=
+um=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Front-End Frameworks
+ Front-end framework with a built-in dark mode, great for building dashboar=
+ds and tools
+
+https://stackshare.io/coqui-tts?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Coqui TTS https://stackshare.io/coqui-tts?utm_source=3Dweekly_digest&utm_me=
+dium=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Text-To-Speech as a Service
+ A deep learning toolkit for Text-to-Speech, battle-tested in research and =
+production
+
+https://stackshare.io/turborepo?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Turborepo https://stackshare.io/turborepo?utm_source=3Dweekly_digest&utm_me=
+dium=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ JS Build Tools / JS Task Runners
+ High-performance build system for JavaScript & TypeScript codebases
+
+https://stackshare.io/unocss?utm_source=3Dweekly_digest&utm_medium=3Demail&=
+utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+UnoCSS https://stackshare.io/unocss?utm_source=3Dweekly_digest&utm_medium=
+=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ CSS Pre-processors / Extensions
+ The instant on-demand atomic CSS engine
+
+https://bit.ly/3vCitsT
+
+World-class organizations like Square, Atlassian, HashiCorp, CircleCI, and =
+NBC rely on LaunchDarkly to deliver and control their software.=C2=A0With=
+=C2=A020T+ feature flags served to users daily, LaunchDarkly is the #1 feat=
+ure management platform. Learn more here https://bit.ly/3vCitsT.
+
+Trending Tools
+
+https://stackshare.io/ddosify?utm_source=3Dweekly_digest&utm_medium=3Demail=
+&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+
+Ddosify https://stackshare.io/ddosify?utm_source=3Dweekly_digest&utm_medium=
+=3Demail&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+ Load and Performance Testing
+ High-performance load testing tool
+
+https://stackshare.io/svix?utm_source=3Dweekly_digest&utm_medium=3Demail&ut=
+m_campaign=3D03022022&utm_content=3Dpopular_tool
+
+Svix https://stackshare.io/svix?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+ Webhooks as a Service
+ Open-source webhooks service written in Rust
+
+https://stackshare.io/fogbender?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+
+Fogbender https://stackshare.io/fogbender?utm_source=3Dweekly_digest&utm_me=
+dium=3Demail&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+ Help Desk
+ B2B support software designed for customer teams
+
+https://stackshare.io/urql?utm_source=3Dweekly_digest&utm_medium=3Demail&ut=
+m_campaign=3D03022022&utm_content=3Dpopular_tool
+
+URQL https://stackshare.io/urql?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+ GraphQL Tools
+ A highly customisable and versatile GraphQL client
+
+https://stackshare.io/reaviz?utm_source=3Dweekly_digest&utm_medium=3Demail&=
+utm_campaign=3D03022022&utm_content=3Dpopular_tool
+
+Reaviz https://stackshare.io/reaviz?utm_source=3Dweekly_digest&utm_medium=
+=3Demail&utm_campaign=3D03022022&utm_content=3Dpopular_tool
+ Charting Libraries
+ Data visualization library for React
+
+=F0=9F=92=A1 Automatically map out your internal tech stacks (via Git integ=
+ration), get insights about tools/versions/vulnerabilities, and keep everyo=
+ne up to date about real-time tech stack changes occurring across your comp=
+any with our=C2=A0new private offering:=C2=A0stackshare.io/private https://=
+stackshare.io/private=C2=A0=F0=9F=94=90
+
+Just Added Tools
+
+https://stackshare.io/atlan?utm_source=3Dweekly_digest&utm_medium=3Demail&u=
+tm_campaign=3D03022022&utm_content=3Dnew_tool
+
+Atlan https://stackshare.io/atlan?utm_source=3Dweekly_digest&utm_medium=3De=
+mail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Business Intelligence
+ A modern data workspace that helps data teams collaborate and democratize =
+their enterprise data
+
+https://stackshare.io/neuvector?utm_source=3Dweekly_digest&utm_medium=3Dema=
+il&utm_campaign=3D03022022&utm_content=3Dnew_tool
+
+NeuVector https://stackshare.io/neuvector?utm_source=3Dweekly_digest&utm_me=
+dium=3Demail&utm_campaign=3D03022022&utm_content=3Dnew_tool
+ Security
+ Kubernetes-native container security platform
+
+Now Hiring!=C2=A0
+
+https://bit.ly/3DHh9pz
+
+Machine Learning Engineer, Ads Intelligence https://bit.ly/3DHh9pz
+ Pinterest
+ Optimizing Ad Campaigns =C2=B7 Product Integration =C2=B7 Backend Services=
+ =C2=B7 MS / Ph.D =C2=B7 US
+
+=F0=9F=91=89 See more jobs https://stackshare.io/jobs
+
+More Posts
+
+Cost Reduction in Goku https://bit.ly/3G5hyCK
+
+Using Private StackShare To Detect & Mitigate Log4Shell https://stackshare.=
+io/posts/using-private-stackshare-to-detect-and-mitigate-log4shell
+
+Pinterest Druid Holiday Load Testing https://bit.ly/33Ethuz
+
+MemQ: An Efficient, Scalable Cloud Native PubSub System https://bit.ly/3FLe=
+o7u
+
+Efficient Resource Management at Pinterest=E2=80=99s Batch Processing Platf=
+orm https://bit.ly/3GqSHLg
+
+https://twitter.com/stackshareio
+
+https://www.linkedin.com/company/stackshare
+
+Unsubscribe https://u1375320.ct.sendgrid.net/asm/unsubscribe/?user_id=3D137=
+5320&data=3DIFV41KNk7hkjZarhjC9gd_xz0WGh6t1L4As1GlOo9pAxn6yvod1Abqu4mB-39T5=
+9KDmDbvaPrJ_Cxvnb6LCQokkgTqdPMwQLTRqyopzLcS-oHpPIPSQa1uZQmsx-HWWgzK8XkfP0uv=
+JRHW35BJN9UoEoH463QZX9-TQKJJ-Dx4FubAAHW124anpBEZM0CDpiRO74u92c_NIAzVfYt1qAj=
+fXe5aFThqv6Y0wQ30JF79GxsKOHUW30klN4w8qvTHbB87kFD1n9uenMJD7EFrhvonhlZwFNCLDh=
+jfC72P62Ne8i12TiZSvXZPtSy8kCc5vgtAmlmACNbDDbimlY6P4oq2-tTGjqoy6hNJJiiqaGSxd=
+IlkcADQoDEAc4Q5rqow_5zKBzhqxJPi-qJuokhe8HGLQiDqh6GdXuRKb6-eacY5hglgab7yKMFe=
+iHkGUT9JmGF-jeQc6JJ_eOtLPsMtbmmfsqGHi-ZLA5mZAnT1XvJsOJQ1l70fSzcYS51LUv8tEFY=
+qyboGUaYKjqzDQGSevawlp7gTtLvlYM1eARpp9XCz0cmjGVmsN4ullSO8UcPA_i | Update Pr=
+eferences https://stackshare.io/settings/email
+
+StackShare Weekly
+ 51 Federal St, Suite 402
+ San Francisco, CA 94107
+--edff6675f748386a823b7993d27c837d66e42c249a6fde9cb300c91d72d4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+" />
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1, minimum-scale=3D1, maximum-scale=3D1" /><!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge" /><!--<![end=
+if]-->
+    <!--[if (gte mso 9)|(IE)]>
+    <xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+    <style type=3D"text/css">
+      body {width: 600px;margin: 0 auto;}
+      table {border-collapse: collapse;}
+      table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+      img {-ms-interpolation-mode: bicubic;}
+    </style>
+    <![endif]-->
+
+    <style type=3D"text/css">
+      body, p, div {
+        font-family: arial,helvetica,sans-serif;
+        font-size: 16px;
+      }
+      body {
+        color: #333333;
+      }
+      body a {
+        color: #0690FA;
+        text-decoration: none;
+      }
+      p { margin: 0; padding: 0; }
+      table.wrapper {
+        width:100% !important;
+        table-layout: fixed;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      img.max-width {
+        max-width: 100% !important;
+      }
+      .column.of-2 {
+        width: 50%;
+      }
+      .column.of-3 {
+        width: 33.333%;
+      }
+      .column.of-4 {
+        width: 25%;
+      }
+      @media screen and (max-width:480px) {
+        .preheader .rightColumnContent,
+        .footer .rightColumnContent {
+            text-align: left !important;
+        }
+        .preheader .rightColumnContent div,
+        .preheader .rightColumnContent span,
+        .footer .rightColumnContent div,
+        .footer .rightColumnContent span {
+          text-align: left !important;
+        }
+        .preheader .rightColumnContent,
+        .preheader .leftColumnContent {
+          font-size: 80% !important;
+          padding: 5px 0;
+        }
+        table.wrapper-mobile {
+          width: 100% !important;
+          table-layout: fixed;
+        }
+        img.max-width {
+          height: auto !important;
+          max-width: 480px !important;
+        }
+        a.bulletproof-button {
+          display: block !important;
+          width: auto !important;
+          font-size: 80%;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .columns {
+          width: 100% !important;
+        }
+        .column {
+          display: block !important;
+          width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+    </style>
+    <!--user entered Head Start-->
+   =20
+     <!--End Head user entered-->
+  </head>
+  <body>
+    <center class=3D"wrapper" data-link-color=3D"#0690FA" data-body-style=
+=3D"font-size: 16px; font-family: arial,helvetica,sans-serif; color: #33333=
+3; background-color: #f5f8fa;">
+      <div class=3D"webkit">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"10=
+0%" class=3D"wrapper" bgcolor=3D"#f5f8fa">
+          <tr>
+            <td valign=3D"top" bgcolor=3D"#f5f8fa" width=3D"100%">
+              <table width=3D"100%" role=3D"content-container" class=3D"out=
+er" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                <tr>
+                  <td width=3D"100%">
+                    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0">
+                      <tr>
+                        <td>
+                          <!--[if mso]>
+                          <center>
+                          <table><tr><td width=3D"600">
+                          <![endif]-->
+                          <table width=3D"100%" cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" style=3D"width: 100%; max-width:600px;" align=3D"cent=
+er">
+                            <tr>
+                              <td role=3D"modules-container" style=3D"paddi=
+ng: 0px 0px 0px 0px; color: #333333; text-align: left;" bgcolor=3D"#f5f8fa"=
+ width=3D"100%" align=3D"left">
+                               =20
+    <table class=3D"module preheader preheader-hide" role=3D"module" data-t=
+ype=3D"preheader" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%"
+           style=3D"display: none !important; mso-hide: all; visibility: hi=
+dden; opacity: 0; color: transparent; height: 0; width: 0;">
+      <tr>
+        <td role=3D"module-content">
+          <p>StackShare Weekly</p>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"padding:0px 018px 0px 0px;background-color:#fff;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#fff">
+            <div style=3D"text-align: right;"><span style=3D"font-family:ve=
+rdana,geneva,sans-serif;"><span style=3D"font-size:10px;">Email not display=
+ing correctly? <a clicktracking=3Doff href=3D"https://sg-mktg.com/MTY0NjMyO=
+TE1NXxVS0x3U2pDTndoQXVtZ3hPbUlKellhc1lHc1c3WE5KdGYxTmt3V2lyazR1UTcxNkFUM2NC=
+RXhCWnN2cml5TXRtTlNLWjI4ekRxdktLTkltQ1lwOG9zNzUzNDF0S285UGxzVElSbWlISmRsVlN=
+WYUlyRklfblVaYUExdE9XSk1tRklsYS01R05kT1d2Y0xjVDd5djZ0V0JWRWtsOHBUQTQxSFVRQU=
+xzekVpVkV6X0JTZU1OQmNkVmRqb0NfX3AxQkFmcXdhNGtVWF8weWp0ZVRidmJnMkhjbjJNQTlLc=
+TBsbjliZ09rNVhXSHB0Z2JUMTRGQnhGUUNRN1BtY3dlTzFkLURWTjF5UzRhNVA2fDDG-vZbOMgB=
+9_lnRF7YEbFjXFjrEFB8nfVi1twITexD">View it</a> in your browser.</span></span=
+></div>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout=
+: fixed;">
+      <tr>
+        <td style=3D"font-size:6px;line-height:10px;background-color:#fff;p=
+adding:20px 0px 20px 0px;" valign=3D"top" align=3D"center">
+          <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7EC=
+oGoP0ELKQgqTTETsazh4l6MjOeGmVEyRUj1wU-3DVdS6_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvm=
+josiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFc=
+hay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLao=
+Oj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2=
+BCONq6mRy-2FfMfBD03TyoR2iUgyRIcHJQMqRcev2EXYXd4DF3vR4NhR5tu1hea3Id3j-2BBXPK=
+RGeMu4jQrSuAaG7PIz0cVMRLyek7D4wZJVQQw7g-2BKg-2Bp-2BcIJ-2BRpZpk7igVQqzy0AJ3L=
+pCUe3YJZe2LHqO-2FJN3c7CQ0Qk0ylomZIwPdcJcZJhg-3D"><img width=3D"300" class=
+=3D"max-width" style=3D"display:block;color:#000;text-decoration:none;font-=
+family:Helvetica, arial, sans-serif;font-size:16px;max-width:50% !important=
+;width:50%;height:auto !important;" alt=3D"StackShare" src=3D"https://marke=
+ting-image-production.s3.amazonaws.com/uploads/b33fb84e84073daf02a990264550=
+d9493ca1af49e81f3f445bc76fb0bf3d9c948414352c8a099affd3017b53553746594942706=
+16f908629e68bb50581c10b15.jpg" border=3D"0"></a>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#FFF;padding:17px 0px 12px 0px;line-h=
+eight:24px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#FFF">
+            <div style=3D"text-align: center;"><span style=3D"font-size:20p=
+x;"><strong>Weekly Digest</strong></span></div>
+
+<div style=3D"text-align: center;"><span style=3D"color: rgb(51, 51, 51); f=
+ont-family: arial, helvetica, sans-serif; font-size: 14px; font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ 400; text-align: center;">March 3rd,</span><span style=3D"font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ 400; font-family: arial, helvetica, sans-serif; font-size: 14px; color: rg=
+b(51, 51, 51); text-align: center;">&nbsp;2022</span></div>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table  border=3D"0"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"center"
+            width=3D"100%"
+            role=3D"module"
+            data-type=3D"columns"
+            data-version=3D"2"
+            style=3D"padding:18px 0px 4px 0px;box-sizing:border-box;"
+            bgcolor=3D"">
+      <tr role=3D'module-content'>
+        <td height=3D"100%" valign=3D"top">
+            <!--[if (gte mso 9)|(IE)]>
+              <center>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" style=3D"border-spacing:0;border-collapse:collapse;table-layout=
+: fixed;" >
+                  <tr>
+            <![endif]-->
+         =20
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"300.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"300.000"
+            style=3D"width:300.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D""
+            class=3D"column column-0 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout=
+: fixed;">
+      <tr>
+        <td style=3D"font-size:6px;line-height:10px;padding:26px 6px 12px 0=
+6px;" valign=3D"top" align=3D"center">
+          <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7EC=
+oGoP0ELKQgqTTETurE-2BeB-2BkmNA8RnfcmoHcQ8-3DZpL1_VNiSeygBQFDhqF5BkwAmKKoj9Z=
+IEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3=
+aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvh=
+eLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5=
+J7-2BCONq6mRyXdWG5S1mLqfRylbCrev7D5U1Wr1IPYOqoU4nHzhySne04qho1Rmvj7Jqre6QW1=
+DOnLRdtalpwjpH4t-2BE7e-2BCZ6YrrpDabBq9-2Fjkkvw1P8cN8hQBU-2BjtrJR3SDgplYbqcs=
+ndYVfwMa-2BL79G06qz97AYTshXifx4L-2BJbKS6qDpKeY-3D"><img width=3D"285" class=
+=3D"max-width" style=3D"display:block;color:#000000;text-decoration:none;fo=
+nt-family:Helvetica, arial, sans-serif;font-size:16px;max-width:95% !import=
+ant;width:95%;height:auto !important;" alt=3D"" src=3D"https://marketing-im=
+age-production.s3.amazonaws.com/uploads/4f33304ae686c0f39c57bb44bc5e703b547=
+16b31ca34920e66ce4f36ba8893d30055eab1c1783361507b7cf178726e4cf1bb602e91a7d4=
+e099c9741c9ee25813.png" border=3D"0"></a>
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"300.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"300.000"
+            style=3D"width:300.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D""
+            class=3D"column column-1 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"padding:21px 18px 17px 7px;line-height:21px;text-align=
+:justify;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"">
+            <div style=3D"font-size: 16px;">
+<div style=3D"font-family: arial, helvetica, sans-serif; font-size: 16px; c=
+olor: rgb(51, 51, 51); font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; background-color: rgb(245, 248, 250);"><strong>S=
+ponsored by CircleCI</strong>. Let CircleCI focus on CI/CD, so you can buil=
+d the next big thing. CircleCI offers support for Linux, macOS, Docker, and=
+ Windows, in the cloud or behind your firewall. Learn more at <a href=3D"ht=
+tps://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETurE-2BeB=
+-2BkmNA8RnfcmoHcQ8-3DFR-G_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-=
+2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gD=
+r9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3Y=
+iPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRymF2zAAsqar=
+7s-2B5tQSTtgn7ufBledNqalbwEKzI1pXY2Jgc-2BpPfCWMVYWREhmZ2YMdPyrMiP008eyzdbBu=
+Om1E1yiWJp8jK-2Bt46o51LI2EuFL0y7jGUNASEulZfjKFX43yLrymTeh-2B32oj9GV4BILQWCr=
+WFDixRsOpe8xDwt-2Bn7s-3D">https://circleci.com</a>.</div>
+</div>
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+            <!--[if (gte mso 9)|(IE)]>
+                  <tr>
+                </table>
+              </center>
+            <![endif]-->
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 18px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);">ICYMI</h1>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout=
+: fixed;">
+      <tr>
+        <td style=3D"font-size:6px;line-height:10px;padding:0px 0px 40px 0p=
+x;background-color:#fff;" valign=3D"top" align=3D"center">
+          <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7EC=
+oGoP0ELKQgqTTETq3u0OUVdo-2B42ZkKypCxWxEDTaxqQuk3HhjxoY99bnz3WXs9xqxqwkpKCGd=
+xku5bXw-3D-3Doqvo_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QS=
+MjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr9QQWmnx=
+Dq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauA=
+fdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRytmXZ8p312kXJjLwbyV=
+niL3a0zxE-2FcmlFdJqpQVqAORkFNZKmMVu1VIC5IKqJPwqLu4ZI1JG5fXURLn6pNjOgB7uNdyE=
+432bkzzvmMIbyug0hvyRTAuy0SnsGzODwgSKZCHYCRzDzEECPWlN-2FxrgkMvKVrob8tLvRiJKm=
+SGJfzqk-3D"><img class=3D"max-width" border=3D"0" style=3D"display:block;co=
+lor:#000000;text-decoration:none;font-family:Helvetica, arial, sans-serif;f=
+ont-size:16px;max-width:90% !important;width:90%;height:auto !important;" s=
+rc=3D"https://legacy-image-prod.s3.amazonaws.com/uploads/6ec9277e9cf54ca7ca=
+43bb459240af55e5cec4c886b9dc60fd9b4854f2e705dbbd593cdff963adc2e61a1d91ceeab=
+83ed7e251514b7d69910274611750fd4d8b.png" alt=3D"" width=3D"540"></a>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 18px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);"><span style=3D"font-size=
+:28px;"><span data-end-index=3D"35269" data-start-index=3D"35239">New Tools=
+</span></span></h1>
+        </td>
+      </tr>
+    </table>
+  <table class=3D"module" role=3D"module" data-type=3D"code" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fi=
+xed;">
+      <tr>
+        <td height=3D"100%" valign=3D"top">
+          <div style=3D"background-color: white;">
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnButto=
+nBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETp-2BysSEnx1H2Ak63VgSQc-2Fx7h0OqdwbQZ9P1nSFCIc16waandMZb6=
+JwD-2B9byzW4Y50wxroXhnbmCDrUg79KWqM1OVDZiimtxeu-2FJu8uTosRbOwl5t2erydXtIXpa=
+3OxzppbemANS9ApcufiZO-2FIL-2BxY-3Dw6o4_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWt=
+BVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141=
+wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1=
+roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6=
+mRyGVJjnpra84ph5cau8qcTs6cK7EAcTRMmQcVl8O7FETPxuAjozWobaYulH4sD9iPs9sDJQF-2=
+FAERkY8z0i9Wvd-2Fqq-2BRTxQLv29V4ema4kjY2njNXlhjbK64TSafNWTMJH519KBHdbR0vmTq=
+WxL5KBYFwxBQiz-2BtKQB2qoepXaksr8-3D"><img class=3D"service-logo" style=3D"w=
+idth: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;bac=
+kground-color: #fff;" src=3D"https://img.stackshare.io/service/40535/defaul=
+t_2bffd3c3020dd53c166eed1e7b660afc4329fbd3.jpg"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETp-2BysSEnx1H2Ak63VgSQc-2Fx7h0OqdwbQZ9P1nSFCIc16waandMZb6JwD-2B9b=
+yzW4Y50wxroXhnbmCDrUg79KWqM1OVDZiimtxeu-2FJu8uTosRbOwl5t2erydXtIXpa3Oxzppbe=
+mANS9ApcufiZO-2FIL-2BxY-3DUNa3_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5=
+kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D=
+2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk=
+01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRy1eaXZ=
+ZhkPTlCmaA5f4nIP7s3vjdj-2FHYdCqhDxDNlq4QPpIzWZyp-2FTiAQfPDwkf-2F9WNXnv3puy4=
+tieOSkZftsBeWaQTP1nN0kZKnRrM1jsZHh-2Bn8Grl8bYPqxguYH-2BcKoN-2Fb-2FBY9be-2Bv=
+x3jTmRAHnuDJF2ti0lxtbTkhMMp14u5Y-3D">Hydra</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Database Tools</div>
+              Query any database via Postgres
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETmCzmMF7MlJiPOMOatpnypr0ocvl4S4j1sFersRQ2zH6G-2FcN9pPxlsF=
+cmBHpt6vuFQVBaMrltuCg2Ryk3Pyhf2q5BipweU0ATSU4YuO04-2Bva7xPmO6wW6iVV5565zDat=
+dGjaI-2FPnRcFu2RNBySdxF0BdMSeUzj-2BL-2FdD4eYZAnZorug3__VNiSeygBQFDhqF5BkwAm=
+KKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYo=
+Nascp3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1=
+ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57=
+CnU9h5J7-2BCONq6mRyMa7WiR8jpNbNrah2u22RYS-2FJQ18AeispPYrdzMGoZXSYp4-2FVaSQm=
+WwwOTqPuy-2FsIYi-2B-2FDQHwkR80Mx43hEHvH5WNcJEnEoOG1L0Srf2wyOrkEYnKz27rISPZd=
+QeYFYxPkDm0bPf7izf5ElapUQKcoNYnmhjppS3VjVLbb-2FqSkoc-3D"><img class=3D"serv=
+ice-logo" style=3D"width: 60px; border-radius: 3px; border: 1px solid #ebeb=
+eb; height: 60px;background-color: #fff;" src=3D"https://img.stackshare.io/=
+service/40536/default_e25f453d3e4c85d51b4d4405103e0ee83a2c967e.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETmCzmMF7MlJiPOMOatpnypr0ocvl4S4j1sFersRQ2zH6G-2FcN9pPxlsFcmBHpt6v=
+uFQVBaMrltuCg2Ryk3Pyhf2q5BipweU0ATSU4YuO04-2Bva7xPmO6wW6iVV5565zDatdGjaI-2F=
+PnRcFu2RNBySdxF0BdMSeUzj-2BL-2FdD4eYZAnZorGvGm_VNiSeygBQFDhqF5BkwAmKKoj9ZIE=
+vmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aa=
+Fchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheL=
+aoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7=
+-2BCONq6mRy6uFib7b-2BNWpBFGdH9yTSi5e-2FE7y5j0NDcAIOZ0Ud1A-2FPfilziSQDyc2wQW=
+IOPFqEv70mLd0arf8Z6Eh5DNyyXX4rSk4-2BEhMMDGie1CaAt6n9OHM1c07NQUpT6R06Jivn0-2=
+FC1P-2B-2F2URJjKPy8aFG1H4akZUDIOapIKWO7FKQMtOc-3D">Deepfence ThreatMapper</=
+a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Security</div>
+              Open source cloud native security observability platform
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETjAjf468aofqbjaLFCu9qdJn755EEkTNsEh7chmkwEO-2FsBk0d1IfrKZ=
+3U5-2B1t4ZK8g2YQEaHyz2QqzpkjYQeQkgjGkt3HArMGOEr3lqEybMNX-2FwRVPWpfZAnbDTfuG=
+FPtI93BoDS2e1rsBtfY1-2F-2BNYY-3DdSJ0_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBV=
+rMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB=
+6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1ro=
+AlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mR=
+yqBaL2qWp5ES6JukxLVRbllb2snTb62RAdZV-2BTZU1Ge3djGNRQPUoKyL9BM-2BROref8R46QQ=
+LaC4moVf3LpmhuV9Kd4HkHuFyvfFACG6D5mScR4ZiloOiYRt2R6CjdMe9zBajRbVA-2BxgQMs7t=
+1bDJUDkU9zSX7noxwaE-2FfL8LjVLs-3D"><img class=3D"service-logo" style=3D"wid=
+th: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;backg=
+round-color: #fff;" src=3D"https://img.stackshare.io/service/40537/default_=
+8d9d737b3701d7edf1c1ed46d0356b288c26c330.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETjAjf468aofqbjaLFCu9qdJn755EEkTNsEh7chmkwEO-2FsBk0d1IfrKZ3U5-2B1t=
+4ZK8g2YQEaHyz2QqzpkjYQeQkgjGkt3HArMGOEr3lqEybMNX-2FwRVPWpfZAnbDTfuGFPtI93Bo=
+DS2e1rsBtfY1-2F-2BNYY-3DgY9W_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kv=
+qG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w=
+1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01=
+E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyi-2FQc3=
+An7PtOHm2W3P3NlpkwPhZT4wLyyDm91UP1rhTouGvAfzZbmRvGOX-2B-2B7s5MW0745gQCsm-2B=
+s6hhgyaOGH92YpX4Inr68zHwN-2FsjRMuOlkNfQrnrA980zAjEaQUk4jxaN5M334Ro7Ctgi7QPD=
+L0Ym6eNFimHVIyVWA9LgsS-2F8-3D">Convoy</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Webhooks as a Service</div>
+              Open-source cloud-native webhooks service
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTEToicEOtjtQHfDPdGXpMLbuqJkBwrKVGVWeTvGQFQMoCSqxG6WeRfjslx2=
+4OlIaXS-2FlyhDt9YsYGiafuFPJ8g-2BWrkAP-2B52N3MHf4YZtgYfYqfWW6BhIL0PIexbpoiIK=
+AHjDYk3ZzZxshjYjifnzWNC58-3DOvJl_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUM=
+O5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO=
+0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNP=
+dk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRy-2B=
+P0mAKY-2FGl2JppVSycNZ17X9i6nftgGWioc6-2Buib-2FfPHz-2FiBW4oXrIjTsJNN9CA4Tftl=
+lMuDGA5Q-2BcECaFL7Rn0eoN3ITeE1oIY3Cd3FzCxtp0WYfjDHvopDNAcaAq8-2FymfGb-2FRch=
+KtOyrNgi69uOlEamGGEiTp8lGo6waU0duM-3D"><img class=3D"service-logo" style=3D=
+"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;b=
+ackground-color: #fff;" src=3D"https://img.stackshare.io/service/40538/defa=
+ult_4167e8be980815ccaf5dfb1afee2ef3d82687bc6.jpg"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTEToicEOtjtQHfDPdGXpMLbuqJkBwrKVGVWeTvGQFQMoCSqxG6WeRfjslx24OlIaXS-=
+2FlyhDt9YsYGiafuFPJ8g-2BWrkAP-2B52N3MHf4YZtgYfYqfWW6BhIL0PIexbpoiIKAHjDYk3Z=
+zZxshjYjifnzWNC58-3DHEJG_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2=
+F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr=
+9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3Yi=
+PjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRy0wZgkF2qJOO=
+S7GCzPqK0BCc-2FwKAFkrq2kFuAANCV2PRaCFO9vFFR6gnAD6iBacMJSS2iC2NOoz9EgqYiZ2VS=
+YnjJm8CwEDIV8jrvesmqiycJqu3Xx4ohcYcyO2-2FG4kZ0y3KlJJpq7Wk-2Fjf7g4NtUugXS-2F=
+S32jkHUnmJuZNYg7w4-3D">Halfmoon</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Front-End Frameworks</div>
+              Front-end framework with a built-in dark mode, great for buil=
+ding dashboards and tools
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETr2ls8-2FtQ3GKS2hDe8saIbs-2F-2BEE24eCA6cofD8WNTt1ZlgxDPmx=
+NWIEPT-2B1d1WjIJFDK7xZev8anxRSfwn0I0GacVL43iXUQ66D7N7djBUYVwDXjPbYcp7ePe06Q=
+3NEVBLVTPTi1gfB4WWsWFQ7hNE0-3DUc0l_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrM=
+UMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6e=
+NO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAl=
+NPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyU=
+Y4AB9Fp4jVMt4mWnBv-2BcHwU3QtA6uIDhWVWn1BjBbg2VVzCbAHkd2hp2gP-2BqMocCDDuoWtN=
+2QIKjGosh-2BR-2ByZ2kGE5-2BMXfB1UXPBheJxyZOLVwB2aoyb-2BAGA9mionnAhmjuMhsumTL=
+qXJNuM061RHJ7PMmHlmu4DLzkEA6h9-2Bw-3D"><img class=3D"service-logo" style=3D=
+"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;b=
+ackground-color: #fff;" src=3D"https://img.stackshare.io/service/40539/defa=
+ult_e0f7f0769ee5df6777c5968d969c58a40dc57f62.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETr2ls8-2FtQ3GKS2hDe8saIbs-2F-2BEE24eCA6cofD8WNTt1ZlgxDPmxNWIEPT-2=
+B1d1WjIJFDK7xZev8anxRSfwn0I0GacVL43iXUQ66D7N7djBUYVwDXjPbYcp7ePe06Q3NEVBLVT=
+PTi1gfB4WWsWFQ7hNE0-3DkiEN_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG=
+-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1g=
+Dr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3=
+YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyMLh6vksyL=
+MrxcZxXmR2Hy9zgrbGF6atxsjl5QTBC0hNK7mWtn6U1mskgAu9j7wi2871sKwyKeJhGYGRSOEHy=
+marBb38QPiD1FOYQtYCwfzYD9s2Xo9dw4arxXqUUhwVt5hFHQ6NnXMirRGxmmTX-2Bc5ny3FR5T=
+R2cdR6MR4p2x58-3D">Coqui TTS</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Text-To-Speech as a Service</div>
+              A deep learning toolkit for Text-to-Speech, battle-tested in =
+research and production
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETrGWgJ7c5CILnXZV67Y7vN3YD-2Ffhowt-2FjEouhUosNw5P-2BHVbFNI=
+8-2FtRX-2B-2BZXOjAxX3itYZbG0KW9-2FMP7vgZVNNyW-2B39uOZHNGIZBavifWxmp-2BRh-2F=
+WZxGm9OLuTA-2FuKPFTgPdkSbEY5EaaQnwZSTWAwk-3DONdm_VNiSeygBQFDhqF5BkwAmKKoj9Z=
+IEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3=
+aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvh=
+eLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5=
+J7-2BCONq6mRy9a65EnKAhPXYDtOcQueokrzMAybv1bzzdZxvIUaw6rosxh9FsERMjOr9tW3grz=
+u27bjVbLOFABiwKNa-2FOENNFjDYLYh0hMKsskKiQAdttKIpfxrbzZAQw2XUn0EjAqrdvhaWeT8=
+eugHYv-2B1O0CcLFebsTPYW8ztCAdmQEUJhigY-3D"><img class=3D"service-logo" styl=
+e=3D"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60=
+px;background-color: #fff;" src=3D"https://img.stackshare.io/service/40540/=
+default_f68367194c14cd16efcab749c0bea4014fa6d1a1.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETrGWgJ7c5CILnXZV67Y7vN3YD-2Ffhowt-2FjEouhUosNw5P-2BHVbFNI8-2FtRX-=
+2B-2BZXOjAxX3itYZbG0KW9-2FMP7vgZVNNyW-2B39uOZHNGIZBavifWxmp-2BRh-2FWZxGm9OL=
+uTA-2FuKPFTgPdkSbEY5EaaQnwZSTWAwk-3DQYZ6_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosi=
+WtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay1=
+41wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03=
+X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCON=
+q6mRyg-2BYReUr4Jq9dtczQuXiqTdFhftMoS8i6KuHE7-2Bm7aA2PPijUmZbpj7qYnmdKIEkrh3=
+Fq6pkvb7GArS0TDFX7SQE1XGWgC3CZh1RXZTZ7GAl-2FOWjq7kNo1wqLU1QDTLoVLl8gzdRC7OO=
+OAGBcX3G7gjgtUpSHvAgoDldTp6TTDoc-3D">Turborepo</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>JS Build Tools / JS Task Runners</div>
+              High-performance build system for JavaScript &amp; TypeScript=
+ codebases
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETvxOqeIe9zsbT9gUDQKe9b7g2-2Bs3Nti9iNbt8jChZbxzXzUIHEcm34x=
+9Ujn6HFD5rMqoCVfF7nJjE3Azlu0-2BgHP8XYDe50zO5wCfaW-2BDj0-2BiqS5-2BqmIAyrETiV=
+NbBSPD-2Bwmz4RQDTmBmyqK-2Fki73eOc-3Du9zj_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosi=
+WtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay1=
+41wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03=
+X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCON=
+q6mRy-2Bi9VUPdQ-2FULbFjQ-2B2ZqZxXn6seZhlC-2Bmw-2FsnoUyYLzMH3G4PzDHaXp4Cb70a=
+kaUJ6XUotVOxZEJPc7X09h5E3b2bJ4pD3EnPbdcyaJXY6GfWBAwlJ-2F184t1xS5KA8UeYSyHOd=
+UUVzaYdLZXjJ8kkOaqXd7TYOGGBKNGay9VaFe0-3D"><img class=3D"service-logo" styl=
+e=3D"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60=
+px;background-color: #fff;" src=3D"https://img.stackshare.io/service/40541/=
+default_fd719130393f9bf33b80e3c18c0989cd493b8ee8.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETvxOqeIe9zsbT9gUDQKe9b7g2-2Bs3Nti9iNbt8jChZbxzXzUIHEcm34x9Ujn6HFD=
+5rMqoCVfF7nJjE3Azlu0-2BgHP8XYDe50zO5wCfaW-2BDj0-2BiqS5-2BqmIAyrETiVNbBSPD-2=
+Bwmz4RQDTmBmyqK-2Fki73eOc-3DSPCb_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUM=
+O5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO=
+0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNP=
+dk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRy-2F=
+8TzkNHWP9L0WCf1xVHzv74m9e3L4y-2FP9AMdsz4hn7Y-2F2gOvu-2FnouPHbzQVotGTQQMoqTz=
+mgmJpgaAwjPXASefpag-2FWwak9wbmSpwTfP2-2BGQdXNDx34KM-2BRHzpsyPwz-2FW1iMfCfL-=
+2FxnvBI2T8CUju1eQMj8EE83H7yJe35yIyOg-3D">UnoCSS</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>CSS Pre-processors / Extensions</div>
+              The instant on-demand atomic CSS engine
+              </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+        </td>
+      </tr>
+    </table>
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table  border=3D"0"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"center"
+            width=3D"100%"
+            role=3D"module"
+            data-type=3D"columns"
+            data-version=3D"2"
+            style=3D"padding:2px 0px 15px 0px;box-sizing:border-box;"
+            bgcolor=3D"">
+      <tr role=3D'module-content'>
+        <td height=3D"100%" valign=3D"top">
+            <!--[if (gte mso 9)|(IE)]>
+              <center>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" style=3D"border-spacing:0;border-collapse:collapse;table-layout=
+: fixed;" >
+                  <tr>
+            <![endif]-->
+         =20
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"300.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"300.000"
+            style=3D"width:300.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D""
+            class=3D"column column-0 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout=
+: fixed;">
+      <tr>
+        <td style=3D"font-size:6px;line-height:10px;padding:55px 9px 6px 3p=
+x;" valign=3D"top" align=3D"center">
+          <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7EC=
+oGoP0ELKQgqTTETp6RE-2BmGNE54X0XMKsex8jU-3D-InJ_VNiSeygBQFDhqF5BkwAmKKoj9ZIE=
+vmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aa=
+Fchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheL=
+aoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7=
+-2BCONq6mRymadhWXG45TbMKkKE8up8wXx1Vy-2FcDEIBF2GWE5dcXC6MRZxn7SCHQaBWSOlaqs=
+F081-2FeOtr7kI0Em4LbjVIGllvyyRREzDf27V2BOk-2Bcw3IAM96NBv4HAJP-2BfVYVFu2-2BZ=
+A9ETIcOSYDZljLmBO3hY5Y5BCnkjL6YT4iFw3RFpII-3D"><img width=3D"300" class=3D"=
+max-width" style=3D"display:block;color:#000000;text-decoration:none;font-f=
+amily:Helvetica, arial, sans-serif;font-size:16px;max-width:100% !important=
+;width:100%;height:auto !important;" alt=3D"" src=3D"https://legacy-image-p=
+rod.s3.amazonaws.com/uploads/23c527319b0443b3243d18c13223e5738700cd89bcbd4b=
+3994f323ec8ee6db5c1c765872b1f7e29e4d7b703dd5f043361c801422d71d404cffb117533=
+3101f43.jpg" border=3D"0"></a>
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"300.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"300.000"
+            style=3D"width:300.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D""
+            class=3D"column column-1 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"padding:50px 18px 17px 7px;line-height:21px;text-align=
+:justify;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"">
+            <div style=3D"font-size: 16px;">
+<div style=3D"font-family: arial, helvetica, sans-serif; font-size: 16px; c=
+olor: rgb(51, 51, 51); font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; background-color: rgb(245, 248, 250);">World-cla=
+ss organizations like Square, Atlassian, HashiCorp, CircleCI, and NBC rely =
+on <strong>LaunchDarkly</strong> to deliver and control their software.&nbs=
+p;With&nbsp;20T+ feature flags served to users daily, LaunchDarkly is the #=
+1 feature management platform. <a href=3D"https://u1375320.ct.sendgrid.net/=
+ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETp6RE-2BmGNE54X0XMKsex8jU-3DcX6N_VNiSeyg=
+BQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYE=
+XILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0g=
+ppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZ=
+yRp6OkQgHmT57CnU9h5J7-2BCONq6mRy-2FrFWIhB1WszzZzIpuK1nLui-2BUxHNdtyvc9KznaP=
+L3-2FSE361lNcUZe15uDr3lHnvdcC98qdCgrc2zApb9TQTfPcBl98Oqa1epiEIbDyWjwBBXIR0A=
+rsbfd6jflHsEUXgsFeBiBiSHbmQ-2BFrf5ZJovDgGZbJ5-2FqN8eaz1GRFA3GRM-3D">Learn m=
+ore here</a>.</div>
+</div>
+
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+            <!--[if (gte mso 9)|(IE)]>
+                  <tr>
+                </table>
+              </center>
+            <![endif]-->
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 18px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);"><span style=3D"font-size=
+:28px;">Trending Tools</span></h1>
+        </td>
+      </tr>
+    </table>
+  <table class=3D"module" role=3D"module" data-type=3D"code" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fi=
+xed;">
+      <tr>
+        <td height=3D"100%" valign=3D"top">
+          <div style=3D"background-color: white;">
+
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnBut=
+tonBlock" width=3D"100%">
+    <tbody class=3D"mcnButtonBlockOuter">
+        <tr>
+          <td style=3D"width: 60px; padding-top:15px;padding-right:0px;padd=
+ing-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;fo=
+nt-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border-=
+bottom: 1px solid #EAEAEA" valign=3D"top">
+            <span class=3D"sg-image" data-imagelibrary=3D"%7B%22width%22%3A=
+60%2C%22height%22%3A60%2C%22alignment%22%3A%22%22%2C%22border%22%3A1%2C%22s=
+rc%22%3A%22http%3A//img.stackshare.io/service/3365/BsVkD22w.png%22%2C%22lin=
+k%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETvn9Zn-2BwfuX6xeKPJQOGWnJUKotSeBAz-2FaMXa-2FzJB5-2FvhC23j=
+DObj4Jxw5QSB9J-2BJMhuq31fVLiLERxaDVIooUy2CAp0zehl923XakWDdQEkjhlPl2UrBJPivm=
+fMzo2ieUxtkODxbwn2kHz3LvzuEVw-3D4nu__VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBV=
+rMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB=
+6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1ro=
+AlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mR=
+y2zxV56Kt6kDkiQutGcKXWIiDigIuY2qL4pRWaz7xwORkSGWngPThUxq10kW6tqU0ZIwSYHpt-2=
+FpWfvRfy0EyBbv1WaGDDAmo0-2F5Z-2FJk5RaoDbR-2BKFo5IMiKGO-2FxVpxyMlR2lJQfdHCvF=
+7n-2Fzkfo8MmJs7yP2agzsxH0l4j3r2ojI-3D"><img class=3D"service-logo" style=3D=
+"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;"=
+ src=3D"https://img.stackshare.io/service/40520/default_276a90bc3faaacc2686=
+dc07fdee2e3ddf6e76dc1.png"></a>
+            </span>
+          </td>
+          <td style=3D"padding-top:14px;padding-right:18px;padding-bottom:1=
+4px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:He=
+lvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1px =
+solid #EAEAEA" valign=3D"top">
+            <a style=3D"color: #0688FA; font-weight: bold; text-decoration:=
+none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0E=
+LKQgqTTETvn9Zn-2BwfuX6xeKPJQOGWnJUKotSeBAz-2FaMXa-2FzJB5-2FvhC23jDObj4Jxw5Q=
+SB9J-2BJMhuq31fVLiLERxaDVIooUy2CAp0zehl923XakWDdQEkjhlPl2UrBJPivmfMzo2ieUxt=
+kODxbwn2kHz3LvzuEVw-3DmlmX_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG=
+-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1g=
+Dr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3=
+YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyR0CSPk8VL=
+ZtjnwuOlZDdJhXniryInGDQ761n72gN1Xszs6xNxHRM-2FCA0UMiQHzZpLyBvPl5eC-2BnbV69o=
+ycdOCSW1isYN-2FOQQKoDwscSvzRcpwD6sP01cyMY8UTAvoAeni-2FCf6r-2BGZHewrhbIU7hoB=
+4e0X3wiV89R0M9bpcwGqzo-3D">Ddosify</a>
+            <div style=3D"font-size: 11px;line-height: 15px;color: grey;">L=
+oad and Performance Testing</div>
+            High-performance load testing tool
+          </td>
+        </tr>
+    </tbody>
+  </table>
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnButto=
+nBlock" width=3D"100%">
+    <tbody class=3D"mcnButtonBlockOuter">
+        <tr>
+          <td style=3D"width: 60px; padding-top:15px;padding-right:0px;padd=
+ing-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;fo=
+nt-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border-=
+bottom: 1px solid #EAEAEA" valign=3D"top">
+            <span class=3D"sg-image" data-imagelibrary=3D"%7B%22width%22%3A=
+60%2C%22height%22%3A60%2C%22alignment%22%3A%22%22%2C%22border%22%3A1%2C%22s=
+rc%22%3A%22http%3A//img.stackshare.io/service/3365/BsVkD22w.png%22%2C%22lin=
+k%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETkLoIgXkkorpmvR0B35dncTOGafKt-2FEDSsT101p0zOF9Cd8kzB3-2Bb=
+6-2FgaMA25xdAQF-2BVyGs0JnS7Q-2BJgTTxOH2cikqHg-2Fs34AMMo1oZCEEE4X5CK9Ow84pJ-=
+2FEXPyfEJeqyxtmw2vGa1VU8qVBRae4DA-3D7YHT_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosi=
+WtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay1=
+41wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03=
+X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCON=
+q6mRyUsqYqTY9aKBCe9dApnyQIzp1zKJ8JuB8fHqfuULsN9Q10CqJDZsZX7cIjo8PWBBknW9GKp=
+5EE9K7f34vkYhB5OQxJ04gUJ2PqV-2FK4qzDofErgZjMJc-2B-2FZz-2FD4Rm-2Fei-2BgJRjDX=
+-2FD1YLo06W02BHLl7eT2fGOmw86gR7XTZVKGBgE-3D"><img class=3D"service-logo" st=
+yle=3D"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: =
+60px;" src=3D"https://img.stackshare.io/service/40515/default_495f3fe98b7a0=
+39c5335b50bf379d1c5e9cbd3ef.jpg"></a>
+            </span>
+          </td>
+          <td style=3D"padding-top:14px;padding-right:18px;padding-bottom:1=
+4px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:He=
+lvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1px =
+solid #EAEAEA" valign=3D"top">
+            <a style=3D"color: #0688FA; font-weight: bold; text-decoration:=
+none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0E=
+LKQgqTTETkLoIgXkkorpmvR0B35dncTOGafKt-2FEDSsT101p0zOF9Cd8kzB3-2Bb6-2FgaMA25=
+xdAQF-2BVyGs0JnS7Q-2BJgTTxOH2cikqHg-2Fs34AMMo1oZCEEE4X5CK9Ow84pJ-2FEXPyfEJe=
+qyxtmw2vGa1VU8qVBRae4DA-3DbQaV_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5=
+kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D=
+2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk=
+01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyFg-2B=
+w7WwT0iTvYeQzsUmSEBW466e5O4-2BgpjDL1-2BAies2sYgCaUamSFFFS-2Butva6yp-2BlrFA9=
+CcWglSE1ulxeO1qoiMpCNR-2ForoxCL4vGIJEjBKjk3pEFttHObP5lRiw8vRtRcmPR18Qv47gqC=
+i1L7rnVIkYB-2FYkf2r8J56TEEuCGY-3D">Svix</a>
+            <div style=3D"font-size: 11px;line-height: 15px;color: grey;">W=
+ebhooks as a Service</div>
+            Open-source webhooks service written in Rust
+          </td>
+        </tr>
+    </tbody>
+  </table>
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnButto=
+nBlock" width=3D"100%">
+    <tbody class=3D"mcnButtonBlockOuter">
+        <tr>
+          <td style=3D"width: 60px; padding-top:15px;padding-right:0px;padd=
+ing-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;fo=
+nt-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border-=
+bottom: 1px solid #EAEAEA" valign=3D"top">
+            <span class=3D"sg-image" data-imagelibrary=3D"%7B%22width%22%3A=
+60%2C%22height%22%3A60%2C%22alignment%22%3A%22%22%2C%22border%22%3A1%2C%22s=
+rc%22%3A%22http%3A//img.stackshare.io/service/3365/BsVkD22w.png%22%2C%22lin=
+k%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTEToEvb4yXuX5P-2Fpi33T1Uymw1J6ybSI-2B0TkfX9H3FfWiHyreUogVR3=
+ezhyHnnqCUyLnCEBOLzaEJbbAkkwDRjvHzOv-2F4J-2FD-2BhRAUO2gohi7-2BQdUPUi-2BLx8z=
+1wrKozrTadZm4A0B9iQkZjXC6e99dPfzgnEL35fEBnOKl6Ra7BB9-2FaPtF8_VNiSeygBQFDhqF=
+5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehD=
+ZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0g=
+QlmeN1ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQ=
+gHmT57CnU9h5J7-2BCONq6mRyIZR6W-2FSu4YUyX82rHNu4i8aV-2Bk07FaLFpRFM8skw4eYqve=
+Xp8XfAKmFr9qd3bemir-2FK2LkPi1Styh-2BeAgFEtAjY3hDykvRT0jeA3uDZu66FMrlblaFzYI=
+u1x-2Bx3Ik7dCRmf8Vstbb-2Ft2BLjzlMdAJ8M-2B5H9-2BIWgb1audXlsdkFY-3D"><img cla=
+ss=3D"service-logo" style=3D"width: 60px; border-radius: 3px; border: 1px s=
+olid #ebebeb; height: 60px;" src=3D"https://img.stackshare.io/service/40516=
+/default_e86832cb3fe296d0055130c8f8b59a01f7931164.png"></a>
+            </span>
+          </td>
+          <td style=3D"padding-top:14px;padding-right:18px;padding-bottom:1=
+4px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:He=
+lvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1px =
+solid #EAEAEA" valign=3D"top">
+            <a style=3D"color: #0688FA; font-weight: bold; text-decoration:=
+none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0E=
+LKQgqTTEToEvb4yXuX5P-2Fpi33T1Uymw1J6ybSI-2B0TkfX9H3FfWiHyreUogVR3ezhyHnnqCU=
+yLnCEBOLzaEJbbAkkwDRjvHzOv-2F4J-2FD-2BhRAUO2gohi7-2BQdUPUi-2BLx8z1wrKozrTad=
+Zm4A0B9iQkZjXC6e99dPfzgnEL35fEBnOKl6Ra7BB9-2FaHH8M_VNiSeygBQFDhqF5BkwAmKKoj=
+9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNasc=
+p3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYh=
+vheLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9=
+h5J7-2BCONq6mRypXSKJMIFp-2FyucJzJTMIlOs8ADlgxJsqc7OKbOWzR3RukKxk-2BFykSSa6j=
+SxPqMMs4RJdTA-2BXwt1cdY46j0obtUHBWfurUetca-2BMhxEJvdQabI0pGlJogfn60xBROCgAa=
+NmDN-2F3SDIZ2G8aj3ys7oEYfsEpFWTZRipd83PAq4-2F1tY-3D">Fogbender</a>
+            <div style=3D"font-size: 11px;line-height: 15px;color: grey;">H=
+elp Desk</div>
+            B2B support software designed for customer teams
+          </td>
+        </tr>
+    </tbody>
+  </table>
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnButto=
+nBlock" width=3D"100%">
+    <tbody class=3D"mcnButtonBlockOuter">
+        <tr>
+          <td style=3D"width: 60px; padding-top:15px;padding-right:0px;padd=
+ing-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;fo=
+nt-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border-=
+bottom: 1px solid #EAEAEA" valign=3D"top">
+            <span class=3D"sg-image" data-imagelibrary=3D"%7B%22width%22%3A=
+60%2C%22height%22%3A60%2C%22alignment%22%3A%22%22%2C%22border%22%3A1%2C%22s=
+rc%22%3A%22http%3A//img.stackshare.io/service/3365/BsVkD22w.png%22%2C%22lin=
+k%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETuE1SpAwCZhpVH-2BrmYXlgk-2B9qdh4GqDDAMBG5zSt-2BdoPC8z14mc=
+xX03eMhc6UJYs-2FZ9F4OnfN8R-2BIg0lZ5lS-2FFgkCc24meX6dg5QQ69vY1nWqJSOlkkDez-2=
+FtxPwfuOy6ktwFNuy208nFu3L6M1gT-2Bg4-3DBA74_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjo=
+siWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFcha=
+y141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj=
+03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BC=
+ONq6mRyDC6JssriTjbtXN-2B47DjI2BFJTdD2FPEeLlakROx9nuAgXHpff3zSxm3BYXIq7okQPQ=
+mayTDKQnnRTNTxxFHRecalT8EvWD8gdnpuK0pLa87L4JU0slLkCqsmY6gCMeiXZmCUBF9DR62TH=
+r49s27FtF-2F5p8hJc-2Foes8l6iixjOmU-3D"><img class=3D"service-logo" style=3D=
+"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;"=
+ src=3D"https://img.stackshare.io/service/40517/default_ee8beb191324ba2ea9a=
+34b8f902efaa09c02af9b.png"></a>
+            </span>
+          </td>
+          <td style=3D"padding-top:14px;padding-right:18px;padding-bottom:1=
+4px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:He=
+lvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1px =
+solid #EAEAEA" valign=3D"top">
+            <a style=3D"color: #0688FA; font-weight: bold; text-decoration:=
+none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0E=
+LKQgqTTETuE1SpAwCZhpVH-2BrmYXlgk-2B9qdh4GqDDAMBG5zSt-2BdoPC8z14mcxX03eMhc6U=
+JYs-2FZ9F4OnfN8R-2BIg0lZ5lS-2FFgkCc24meX6dg5QQ69vY1nWqJSOlkkDez-2FtxPwfuOy6=
+ktwFNuy208nFu3L6M1gT-2Bg4-3DDvSF_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUM=
+O5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO=
+0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNP=
+dk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyxOe=
+B3EvteHM6C6omRCRw1zltY7EjwaZX-2BgBkXSr-2FMuGFegZYPvpNBMvKYfWYG9BBGXPaF8ydd-=
+2B1gWfzbjZd71tyRP1EOX8GpluLOuD6Giu8waI6itPHxyRmD2-2BNUkZaNqutXB6CQ32OlXmuME=
+JOmJZY6acAY5oxLqj9tY4C39K4-3D">URQL</a>
+            <div style=3D"font-size: 11px;line-height: 15px;color: grey;">G=
+raphQL Tools</div>
+            A highly customisable and versatile GraphQL client
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnButto=
+nBlock" width=3D"100%">
+    <tbody class=3D"mcnButtonBlockOuter">
+        <tr>
+          <td style=3D"width: 60px; padding-top:15px;padding-right:0px;padd=
+ing-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;fo=
+nt-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border-=
+bottom: 1px solid #EAEAEA" valign=3D"top">
+            <span class=3D"sg-image" data-imagelibrary=3D"%7B%22width%22%3A=
+60%2C%22height%22%3A60%2C%22alignment%22%3A%22%22%2C%22border%22%3A1%2C%22s=
+rc%22%3A%22http%3A//img.stackshare.io/service/3365/BsVkD22w.png%22%2C%22lin=
+k%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETm5tA4A6DJJPzNaiyTEF7unutOFzz-2B1WhCKgthcyZbMo5Q-2FPcRswJ=
+LI9S97ynK3mSU-2BtYqnsxYk7szH-2FyyYn5f6meHEAg0gmypiZ2-2BlYZADfhSSs4g55tbpxZM=
+8zkgtkPgOlvTBiH1EJDCPr3hR8lBU-3DcmMX_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBV=
+rMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB=
+6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1ro=
+AlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mR=
+yt7-2FiYsGTtiOrMGktH1-2BCcg22xsS1ObW6N-2FfRexnXyD2BD8WyxVjz6o6Vq5dtS7G2-2Fd=
+Bx3Lk5NUWl8c8ooGNTJl26P1pB-2BHtocnUto1mRfS-2BPdczGQ1dPekoUCn7QQrhSQQ1tMUBtB=
+59tqQbc4isPR-2BQoXyoam6DmqlswwKJOMDk-3D"><img class=3D"service-logo" style=
+=3D"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60p=
+x;" src=3D"https://img.stackshare.io/service/40518/default_59c1cbfb3d504b0d=
+c59f2d9ee8601ea36a58eed4.png"></a>
+            </span>
+          </td>
+          <td style=3D"padding-top:14px;padding-right:18px;padding-bottom:1=
+4px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:He=
+lvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1px =
+solid #EAEAEA" valign=3D"top">
+            <a style=3D"color: #0688FA; font-weight: bold; text-decoration:=
+none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0E=
+LKQgqTTETm5tA4A6DJJPzNaiyTEF7unutOFzz-2B1WhCKgthcyZbMo5Q-2FPcRswJLI9S97ynK3=
+mSU-2BtYqnsxYk7szH-2FyyYn5f6meHEAg0gmypiZ2-2BlYZADfhSSs4g55tbpxZM8zkgtkPgOl=
+vTBiH1EJDCPr3hR8lBU-3DxWR3_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG=
+-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1g=
+Dr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3=
+YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyYg401tzla=
+3QbMMKQ2clyI6B27yf1BOpexq-2BjVuZlf-2F-2FyoWvkPrsYb0bN2-2FmOE5HsAiyNR2nIXYkA=
+MK6wmrgTsgfLYoFb61xNxCNF3NH3Nxntp-2FTJF95mhnqbir5V5A-2BDZOy5jnbjT2pK6-2FoEE=
+ukSHt-2Bu9WWKCwoGJdEKw9YoA98-3D">Reaviz</a>
+            <div style=3D"font-size: 11px;line-height: 15px;color: grey;">C=
+harting Libraries</div>
+            Data visualization library for React
+          </td>
+        </tr>
+    </tbody>
+  </table>
+ =20
+</div>
+        </td>
+      </tr>
+    </table>
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 40px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+  <table class=3D"module" role=3D"module" data-type=3D"code" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fi=
+xed;">
+      <tr>
+        <td height=3D"100%" valign=3D"top">
+          <div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnShareBl=
+ock" data-end-index=3D"2104" data-start-index=3D"1940" style=3D"background-=
+color: rgb(245, 248, 250); font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: 400; font-family: OpenSans; fon=
+t-size: 16px; color: rgb(51, 51, 51); letter-spacing: 0.2px;" width=3D"100%=
+">
+	<tbody class=3D"mcnShareBlockOuter" data-end-index=3D"2141" data-start-ind=
+ex=3D"2107" style=3D"font-size: 16px;">
+		<tr data-end-index=3D"2149" data-start-index=3D"2145" style=3D"font-size:=
+ 16px;">
+			<td class=3D"mcnShareBlockInner" data-end-index=3D"2329" data-start-inde=
+x=3D"2155" style=3D"padding: 19px; font-size: 16px; border-collapse: collap=
+se; background-color: rgb(220, 241, 255);" valign=3D"top">
+			<div data-end-index=3D"2342" data-start-index=3D"2337" style=3D"font-siz=
+e: 16px;"><span data-end-index=3D"2510" data-start-index=3D"2342" style=3D"=
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: 400; font-family: arial; font-size: 14px; color: rgb(0, 0,=
+ 0);">=F0=9F=92=A1 </span><span data-end-index=3D"2764" data-start-index=3D=
+"2543" style=3D"font-style: normal; font-variant-ligatures: normal; font-va=
+riant-caps: normal; font-weight: 400; font-family: arial; font-size: 14px; =
+color: rgb(0, 0, 0); text-align: inherit; background-color: transparent;"><=
+span data-end-index=3D"2838" data-start-index=3D"2764" style=3D"font-family=
+: arial, helvetica, sans-serif; font-size: 14px;">Automatically map out you=
+r internal tech stacks (via Git integration), get insights about tools/vers=
+ions/vulnerabilities, and keep everyone up to date about real-time tech sta=
+ck changes occurring across your company with our&nbsp;<span data-end-index=
+=3D"3279" data-start-index=3D"3186" style=3D"font-weight: 600; font-size: i=
+nherit; background: transparent; color: inherit;">new private offering:</sp=
+an>&nbsp;<u data-end-index=3D"3323" data-start-index=3D"3320"><span data-en=
+d-index=3D"3416" data-start-index=3D"3323" style=3D"font-weight: 600; font-=
+size: inherit; background: transparent; color: inherit;"><a data-end-index=
+=3D"3481" data-start-index=3D"3416" href=3D"https://u1375320.ct.sendgrid.ne=
+t/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETrSrFpoDPm-2BOZJeY7rNZOkrPXdtoJK5RERfv=
+cy1ib6CWp6RS_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuy=
+Z87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fo=
+vMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauAfdAct=
+O0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyumBgE-2FShgj17JpEcxAMVc=
+iIHofU0FnmbXLviqo89BckDY0lV1DIJA7QXwhKr7TQzlLUCiV1TzlmW0CqnYNE0kNL-2BdTvlSo=
+7O2jf6CPzBawmLYIGx0s2eUjOcGpTGjIQvt3MzEbEZGspQQiG283PtTtBU5bWYAki0EThnCHacC=
+9M-3D" style=3D"font-size: 14px;">stackshare.io/private</a></span></u>&nbsp=
+;</span></span><span data-end-index=3D"3758" data-start-index=3D"3537" styl=
+e=3D"font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
+ normal; font-weight: 400; font-family: arial; font-size: 14px; color: rgb(=
+0, 0, 0); text-align: inherit; background-color: transparent;">=F0=9F=94=90=
+</span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+        </td>
+      </tr>
+    </table>
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 18px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);"><span style=3D"font-size=
+:28px;">Just Added Tools</span></h1>
+        </td>
+      </tr>
+    </table>
+  <table class=3D"module" role=3D"module" data-type=3D"code" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fi=
+xed;">
+      <tr>
+        <td height=3D"100%" valign=3D"top">
+          <div style=3D"background-color: white;">
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETsE-2FG-2FjDzkrHy3LMul4Jc82QFHcQWqolzPavc25oQmB-2BfErsN3Y=
+ih56WVWrJw51wq2FQUlLM0W-2BPcVlNpuN5OrD7Yfrkx-2F9A6SU-2FHgfIpz9AULU-2F8VGcoY=
+AbiEK0iUm6jMRRyvUCHyKawBq-2BMHOveBQ-3D-u6R_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjo=
+siWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFcha=
+y141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj=
+03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BC=
+ONq6mRydWnx7WPqlz7cbrltJqxkiCfwehsJdqI-2FKR-2BP1PV0at3fQV7Ls6GJmq8MDs9UOr89=
+UpXKjWXKRCi3DXazIGMEKpRaAZcaaUbqv0e1-2Fj8GsocA9XN3ux1flMQtt1SS1Zkd87NGTZfH5=
+8y19rY2zXQ9C4pJQOXVhSnLbf6VX2tLruA-3D"><img class=3D"service-logo" style=3D=
+"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;b=
+ackground-color: #fff;" src=3D"https://img.stackshare.io/service/40523/defa=
+ult_3d4834ae63a90304526566ada3107ba6adbfb6fb.png"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETsE-2FG-2FjDzkrHy3LMul4Jc82QFHcQWqolzPavc25oQmB-2BfErsN3Yih56WVWr=
+Jw51wq2FQUlLM0W-2BPcVlNpuN5OrD7Yfrkx-2F9A6SU-2FHgfIpz9AULU-2F8VGcoYAbiEK0iU=
+m6jMRRyvUCHyKawBq-2BMHOveBQ-3DgFXt_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrM=
+UMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6e=
+NO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAl=
+NPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyv=
+5fv3J30NdkASRk748KF72ARQTNFqFMptU1wdUl3Ruay1Gpi18VkPDmUsQZRVmZVttLBmlcLP-2B=
+8nYe6UlNa4SwgsJm4N3JuDcHEzQRbDGxvc2pXps-2Bu5yS2jO-2Buk2fSgFKAZyZlAGpLgBkDY3=
+Ypyu966h2LLoqNEcFTVPY-2Fzy4M-3D">Atlan</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Business Intelligence</div>
+              A modern data workspace that helps data teams collaborate and=
+ democratize their enterprise data
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnB=
+uttonBlock" width=3D"100%">
+        <tbody class=3D"mcnButtonBlockOuter">
+          <tr>
+            <td style=3D"width: 60px; padding-top:15px;padding-right:0px;pa=
+dding-bottom:15px;padding-left:15px;border-collapse:collapse;color:#606060;=
+font-family:Helvetica;font-size:15px;line-height:150%;text-align:left;borde=
+r-bottom: 1px solid #EAEAEA" valign=3D"top"><span class=3D"sg-image" data-i=
+magelibrary=3D"%7B%22width%22%3A60%2C%22height%22%3A60%2C%22alignment%22%3A=
+%22%22%2C%22border%22%3A1%2C%22src%22%3A%22http%3A//img.stackshare.io/servi=
+ce/3365/BsVkD22w.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg=
+-image%22%3A1%7D%7D">
+              <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0B=
+S7ECoGoP0ELKQgqTTETiVcqiCwGmy55DS8OkcWY0ekJbWE-2FbAujE8otaIpDOtUgWL7cYAAlgV=
+bAH7X6nclu2bopLcmNcjZAn9Rbh-2F1kKZPGE8acCPWw010HKKBcXX4mY8BNu-2BI-2Bc80B83s=
+iU4ifi2KwQ5rtGmS671M5CU5cRg-3DR1Oj_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrM=
+UMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6e=
+NO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAl=
+NPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRy6=
+NHppBncxHnJQqoDnATz2ymhQtc0pLvTFbm86TC7jnxHmB7CSj2SbZ78hZOo93LGK5TrYrh8sAKa=
+hu4FriLjIiN15FKu9NFrbgRjkg6VdLUZyAVSFx-2FbK1O4kX9gbkxeKADXY6XyG0fgU3T-2F-2F=
+7P9t0UUsgT4hR-2Fgg1VjO1ZV-2Bl4-3D"><img class=3D"service-logo" style=3D"wid=
+th: 60px; border-radius: 3px; border: 1px solid #ebebeb; height: 60px;backg=
+round-color: #fff;" src=3D"https://img.stackshare.io/service/21652/default_=
+ae538e88fc6c630499303ac2dc95ac936dc6454e.jpg"></a>
+            </span></td>
+            <td style=3D"padding-top:14px;padding-right:18px;padding-bottom=
+:14px;padding-left:18px;border-collapse:collapse;color:#606060;font-family:=
+Helvetica;font-size:15px;line-height:150%;text-align:left;border-bottom: 1p=
+x solid #EAEAEA" valign=3D"top">
+              <a style=3D"color: #0690FA; font-weight: bold; text-decoratio=
+n:none;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP=
+0ELKQgqTTETiVcqiCwGmy55DS8OkcWY0ekJbWE-2FbAujE8otaIpDOtUgWL7cYAAlgVbAH7X6nc=
+lu2bopLcmNcjZAn9Rbh-2F1kKZPGE8acCPWw010HKKBcXX4mY8BNu-2BI-2Bc80B83siU4ifi2K=
+wQ5rtGmS671M5CU5cRg-3DFn5K_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG=
+-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1g=
+Dr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3=
+YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyTjjO-2F6A=
+R5F-2Fpkbt1S-2BkcfU4dBgNZaFrzOj-2FFRRSgOe5y60pAEEDH7e-2BMjzeyWdzX0DhtqUUve-=
+2Fu9G-2BqGTf8pTw6j4wOf7mn-2Fz68IArzBVsjvnLAgyR4LJrT9SBpi-2B7wM5VgW7hQBcOeXb=
+YTTmqgeDVTuy4-2Bmtc2V3uHqILjbcU8-3D">NeuVector</a>
+              <div style=3D"font-size: 11px;line-height: 15px;color: grey;"=
+>Security</div>
+              Kubernetes-native container security platform
+              </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+        </td>
+      </tr>
+    </table>
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 0px 18px;li=
+ne-height:32px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);"><span style=3D"font-size=
+:28px;">Now Hiring!&nbsp;</span></h1>
+        </td>
+      </tr>
+    </table>
+  <table class=3D"module" role=3D"module" data-type=3D"code" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fi=
+xed;">
+      <tr>
+        <td height=3D"100%" valign=3D"top">
+          <div style=3D"background-color: white;">
+  <table width=3D"100%" class=3D"mcnButtonBlock" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+    <tbody class=3D"mcnButtonBlockOuter">
+      <tr>
+        <td valign=3D"top" style=3D"width: 60px; padding-top:15px;padding-r=
+ight:0px;padding-bottom:15px;padding-left:15px;border-collapse:collapse;col=
+or:#606060;font-family:Helvetica;font-size:15px;line-height:150%;text-align=
+:left;border-bottom: 1px solid #EAEAEA"><span class=3D"sg-image">
+          <a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7EC=
+oGoP0ELKQgqTTETioN0jcp86e7M9IhViltvfI-3D3g-K_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvm=
+josiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFc=
+hay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLao=
+Oj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2=
+BCONq6mRyhtetjo-2BrOG7T3fbt76-2FU1rILQhdWJAYGsoL1EoX7iouSclxMo8iQyjVkS-2F8u=
+iI1uBz34vlg-2FPwP325zmPACq8Q3jxCoQtK-2BdkfWF2EgLiJO-2BXT7FYmcBkppge0vGbpjDz=
+SWtQkRqRrdrEOufqi-2FVE04qUPqrA58hmOE1ICw9wM0-3D"><img class=3D"service-logo=
+" style=3D"width: 60px; border-radius: 3px; border: 1px solid #ebebeb; heig=
+ht: 60px;background-color: #fff;" src=3D"https://img.stackshare.io/company/=
+260/default_c077fc04bb219001b7a1ab10f90ebcdb00c143a9.png"></a>
+        </span></td>
+        <td valign=3D"top" style=3D"padding-top:14px;padding-right:18px;pad=
+ding-bottom:14px;padding-left:18px;border-collapse:collapse;color:#606060;f=
+ont-family:Helvetica;font-size:15px;line-height:150%;text-align:left;border=
+-bottom: 1px solid #EAEAEA">
+          <a style=3D"color: #0690FA; font-weight: bold; text-decoration:no=
+ne;" href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0ELK=
+QgqTTETioN0jcp86e7M9IhViltvfI-3Dawin_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBV=
+rMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB=
+6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1ro=
+AlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mR=
+yc74dVNzCnFkKMnbVB1iF03Dy-2BNNvde6zNCHjFEwJ2b8oWAKGHkzn-2Bsplol6oN0U6fejvWV=
+xIy1u7vS-2FyJhaBfCYDwruSAfFvcdmp52MDm0-2BtO5jmwtOy21Y7WL8sOOjzrXxaFAUQbnRV5=
+w4dj4FC7lgtsiKFBup69nNf7Q95jqE-3D">Machine Learning Engineer, Ads Intellige=
+nce</a>
+          <div style=3D"font-size: 11px;line-height: 15px;color: black;font=
+-weight:bold">Pinterest</div>
+          <small>Optimizing Ad Campaigns =C2=B7 Product Integration =C2=B7 =
+Backend Services =C2=B7 MS / Ph.D =C2=B7 US</small>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+ =20
+ =20
+ =20
+</div>
+        </td>
+      </tr>
+    </table>
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 18px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <p data-end-index=3D"25038" data-start-index=3D"24739" style=3D=
+"font-family: arial, helvetica, sans-serif; font-size: 16px; margin-top: 13=
+px; margin-bottom: 13px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; text-align: center;"><strong><u>&nbsp;<a href=
+=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETnp=
+FxM-2Fcp3RJmmKaXoHY4mROdxBnrKAUlSJPgp7LV7Fi0h2L_VNiSeygBQFDhqF5BkwAmKKoj9ZI=
+EvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3a=
+aFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvhe=
+LaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J=
+7-2BCONq6mRy83Vg-2Byuc4lgG0OpB5sBHlJHbK2acWljYf7E5I2k4boToPbAreqAv59YNwpsNm=
+AXxK-2BMOxT7Oxyy-2B7YQd7KlATrhlpdrQEMlDUzJlT2fpvt4sRxdb5K9Z-2BI8587bUtCP4zP=
+4JKxzQVhC9-2FLlXRBrBx7ytGamo7rropx8hzDuOtyQ-3D">=F0=9F=91=89 See more jobs<=
+/a></u></strong></p>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:18px 18px 0px 18px;li=
+ne-height:32px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <h1 style=3D"color: rgb(6, 144, 250);"><span style=3D"font-size=
+:28px;">More Posts</span></h1>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"background-color:#ffffff;padding:28px 18px 28px 18px;l=
+ine-height:22px;text-align:inherit;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#ffffff">
+            <div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;"><span style=3D"font-size:24px;"><strong>=
+<u><a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0EL=
+KQgqTTETrVjy2xyL2cgCLufBc2oGDA-3DBvuv_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtB=
+VrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141w=
+B6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1r=
+oAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6m=
+Ry2YgW-2FDequ4QiVeeAEOn9QCCpDQGTdGUSYZlK0fxwokvdi0FCe5hK7JDu5FFuCrbFNZux5rI=
+Al2ZMe8yJaxxn5KskzF5t7kDzRTq7rmFmVrtRPeyeBuhQfJW1sSREKotLBcBgrRkDjM2NS-2Fqf=
+HQqv8a12pGI50LpchRcq0dd7nKs-3D"><span style=3D"color:#000000;">Cost Reducti=
+on in Goku</span></a></u></strong></span></div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;"><strong><span style=3D"font-size:24px;">=
+<u><a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0EL=
+KQgqTTETq3u0OUVdo-2B42ZkKypCxWxHwcXh6sAv9cn48SMjpBeZW3nhBEzsU0vFXiMXzl-2FTp=
+gLdn91OJOkxaQl6F8kdRpoZxHXHIjVGLZLVl4Qjstu-2BZ2rnB_VNiSeygBQFDhqF5BkwAmKKoj=
+9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNasc=
+p3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYh=
+vheLaoOj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9=
+h5J7-2BCONq6mRyjhV3e27kqL4sxbhq-2FASnIxXc2bQFpKvkjj5IVW-2FyfO5bB8SHofW6f5SU=
+hxFPb2BWXOp-2F4qkPqXplWj-2FbNcRsriQj9611FkcFlDFEAvULzbu8ZoBW9-2B4Mz2o9CYrv6=
+xPwRN-2Bk2ZCkNlm-2F-2Bp2h-2FgfYMmRuwaZAAQsC1tzYIE6LjNM-3D"><span style=3D"c=
+olor:#000000;">Using Private StackShare To Detect &amp; Mitigate Log4Shell<=
+/span></a></u></span></strong></div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;"><span style=3D"font-size:24px;"><u><a hr=
+ef=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTET=
+u0wKUHKaVEl-2BakqFVmnsGM-3DYu14_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO=
+5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0=
+D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPd=
+k01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyU0um=
+e38kV0A9cPfKbTwB6rAVSSc2IussPCb3FzIeF8vPchwKi5GChNhAr8i1MbSe568empJBD7Z2B5k=
+2vheQJxsCuSjJse77JqfsFOcx1jKYNRqGf3V9ZCh0DoCZBoTsnBRiXiuNnmsLaDoTZujRZTH2RR=
+DaLKt0Xiz50y6ZmHQ-3D"><span style=3D"color:#000000;"><strong>Pinterest Drui=
+d Holiday Load Testing</strong></span></a></u></span></div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;"><span style=3D"font-size:24px;"><u><stro=
+ng><a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0EL=
+KQgqTTETiwxkDHeyteipDlWj4is8Nw-3DftCI_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtB=
+VrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141w=
+B6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1r=
+oAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6m=
+RyfVq5XR6tVnAsVt6Wz0ngZoGLlP3004rLX0S43fTO0epH-2BMrV0ndYbpc5LCgnH5treswzWDF=
+Xu9dRuoJGxU-2B-2BNpomQwOFGWKY97KbLcOXzyERsJCGQeBpGIuZvBLhq7TtktCrU9WnDip2Sq=
+2ku0lTCdh7dXBST7-2BxEAaiz3jT8vs-3D"><span style=3D"color:#000000;">MemQ: An=
+ Efficient, Scalable Cloud Native PubSub System</span></a></strong></u></sp=
+an></div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+
+<div style=3D"text-align: center;"><strong><span style=3D"font-size:24px;">=
+<u><a href=3D"https://u1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0EL=
+KQgqTTEToh69RkwLK56ThT7bbmfyPA-3DWr1r_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtB=
+VrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141w=
+B6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1r=
+oAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6m=
+Ry6-2BJ2VwtWdxN3X-2FC9NqlI5q1-2BvbVNGKkHZWnZdS52JKCMRqRwwycGXYtjFLPF93M-2F-=
+2BLdonlH2OZCvhYkvuhiz01zv8CAXnxFaTr6H-2FbztZbvtu-2BBFGOvp6Xo0OQOKqResGHg3ZB=
+wRhuD9KaMcQRNjpthPAcDV1W5zjDrhSuZE0cM-3D"><span style=3D"color:#000000;">Ef=
+ficient Resource Management at Pinterest=E2=80=99s Batch Processing Platfor=
+m</span></a></u></span></strong></div>
+
+<div style=3D"text-align: center;">&nbsp;</div>
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table class=3D"module" role=3D"module" data-type=3D"social" align=3D"c=
+enter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"table-layout: fixed;">
+      <tbody>
+        <tr>
+          <td valign=3D"top" style=3D"padding:0px 0px 0px 0px;font-size:6px=
+;line-height:10px;">
+            <table align=3D"center">
+              <tbody>
+                <tr>
+                 =20
+                  <td style=3D"padding: 0px 5px;">
+        <a role=3D"social-icon-link"  href=3D"https://u1375320.ct.sendgrid.=
+net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETrnpzCdGhQ4GLPRmSnTsIT6yEYN4YUe7GKr9=
+8FI8JZ7zoU2X_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUMO5kvqG-2F1e64QSMjGuy=
+Z87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO0D2w1gDr9QQWmnxDq3fo=
+vMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNPdk01E3YiPjgVauAfdAct=
+O0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRygM5yHwOQerUdWEDTErrQNNg=
+vppr8Erp-2BcUN1QYgVgJ6-2FhudoRLSCnfv-2BLzND0iYcIcGWaIFi64TlOPJvKoW-2FwwdOSH=
+FW-2BG2ULRfkEeZ2VMNOybXkPnqmENfuXE7-2BoDSs3Bn1RQ6z6cDzw5E8ms05BbdjGHbqAxZvr=
+9c2Y5a38ps-3D" target=3D"_blank" alt=3D"Twitter"
+          data-nolink=3D"false"
+          title=3D"Twitter "
+          style=3D"-webkit-border-radius:2px;-moz-border-radius:2px;border-=
+radius:2px;display:inline-block;background-color:#7AC4F7;">
+          <img role=3D"social-icon" alt=3D"Twitter" title=3D"Twitter "
+            height=3D"30"
+            width=3D"30"
+            style=3D"height: 30px, width: 30px"
+            src=3D"https://marketing-image-production.s3.amazonaws.com/soci=
+al/white/twitter.png" />
+        </a>
+      </td>
+                 =20
+                 =20
+                 =20
+                  <td style=3D"padding: 0px 5px;">
+        <a role=3D"social-icon-link"  href=3D"https://u1375320.ct.sendgrid.=
+net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETl-2BI8KvKJyRIVhkHsh9aG1qxAnCK4kmf7v=
+rwID5ZHaXrdUKsuD4OYysqYrSq-2BxsWCQ-3D-3DHxmv_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvm=
+josiWtBVrMUMO5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFc=
+hay141wB6eNO0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLao=
+Oj03X1roAlNPdk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2=
+BCONq6mRy35-2BSbyNLQO4glzUGyQAheo-2BZPp8KTvaZfVKN-2BGHcFRxe1Uac1Drw-2BnEeph=
+qR7q-2FTVJHeJk2Mkvzi3KpN4zRuu6k31uUSSNAo-2FsxrBG34fuFHY6Z9a0Trndxtii8upYTJs=
+H8tV33HeNL-2BiupCeDCb520Hv8cQesYT8WEiaBJRL1w-3D" target=3D"_blank" alt=3D"L=
+inkedIn"
+          data-nolink=3D"false"
+          title=3D"LinkedIn "
+          style=3D"-webkit-border-radius:2px;-moz-border-radius:2px;border-=
+radius:2px;display:inline-block;background-color:#0077B5;">
+          <img role=3D"social-icon" alt=3D"LinkedIn" title=3D"LinkedIn "
+            height=3D"30"
+            width=3D"30"
+            style=3D"height: 30px, width: 30px"
+            src=3D"https://marketing-image-production.s3.amazonaws.com/soci=
+al/white/linkedin.png" />
+        </a>
+      </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+ =20
+    <table class=3D"module"
+           role=3D"module"
+           data-type=3D"spacer"
+           border=3D"0"
+           cellpadding=3D"0"
+           cellspacing=3D"0"
+           width=3D"100%"
+           style=3D"table-layout: fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 24px 0px;"
+            role=3D"module-content"
+            bgcolor=3D"">
+        </td>
+      </tr>
+    </table>
+ =20
+    <table  border=3D"0"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"center"
+            width=3D"100%"
+            role=3D"module"
+            data-type=3D"columns"
+            data-version=3D"2"
+            style=3D"padding:48px 34px 17px 34px;background-color:#0690FA;b=
+ox-sizing:border-box;"
+            bgcolor=3D"#0690FA">
+      <tr role=3D'module-content'>
+        <td height=3D"100%" valign=3D"top">
+            <!--[if (gte mso 9)|(IE)]>
+              <center>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" style=3D"border-spacing:0;border-collapse:collapse;table-layout=
+: fixed;" >
+                  <tr>
+            <![endif]-->
+         =20
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"266.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"266.000"
+            style=3D"width:266.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D"#0690FA"
+            class=3D"column column-0 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px;background-color:#0690fa;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#0690fa">
+            <div style=3D"font-size: 10px; line-height: 150%; margin: 0px;"=
+>&nbsp;</div>
+                                                      <div style=3D"font-si=
+ze: 10px; line-height: 150%; margin: 0px;">&nbsp;</div>
+                                                      <div style=3D"font-si=
+ze: 10px; line-height: 150%; margin: 0px;"><a href=3D"https://u1375320.ct.s=
+endgrid.net/asm/unsubscribe/?user_id=3D1375320&amp;data=3DIFV41KNk7hkjZarhj=
+C9gd_xz0WGh6t1L4As1GlOo9pAxn6yvod1Abqu4mB-39T59KDmDbvaPrJ_Cxvnb6LCQokkgTqdP=
+MwQLTRqyopzLcS-oHpPIPSQa1uZQmsx-HWWgzK8XkfP0uvJRHW35BJN9UoEoH463QZX9-TQKJJ-=
+Dx4FubAAHW124anpBEZM0CDpiRO74u92c_NIAzVfYt1qAjfXe5aFThqv6Y0wQ30JF79GxsKOHUW=
+30klN4w8qvTHbB87kFD1n9uenMJD7EFrhvonhlZwFNCLDhjfC72P62Ne8i12TiZSvXZPtSy8kCc=
+5vgtAmlmACNbDDbimlY6P4oq2-tTGjqoy6hNJJiiqaGSxdIlkcADQoDEAc4Q5rqow_5zKBzhqxJ=
+Pi-qJuokhe8HGLQiDqh6GdXuRKb6-eacY5hglgab7yKMFeiHkGUT9JmGF-jeQc6JJ_eOtLPsMtb=
+mmfsqGHi-ZLA5mZAnT1XvJsOJQ1l70fSzcYS51LUv8tEFYqyboGUaYKjqzDQGSevawlp7gTtLvl=
+YM1eARpp9XCz0cmjGVmsN4ullSO8UcPA_i"><span style=3D"color:#FFFFFF;">Unsubscr=
+ibe</span></a><span style=3D"color:#FFFFFF;"> | </span><a href=3D"https://u=
+1375320.ct.sendgrid.net/ls/click?upn=3D0BS7ECoGoP0ELKQgqTTETn469A90yHbwHj6Z=
+W2M6VhBMobDOLuqyCZKEuieT0Zhyg5qX_VNiSeygBQFDhqF5BkwAmKKoj9ZIEvmjosiWtBVrMUM=
+O5kvqG-2F1e64QSMjGuyZ87DN4tbklSXM6GJmdYEXILFehDZqTrYoNascp3aaFchay141wB6eNO=
+0D2w1gDr9QQWmnxDq3fovMtGo-2FroxNqIb0zH0gppWoq0gQlmeN1ToYhvheLaoOj03X1roAlNP=
+dk01E3YiPjgVauAfdActO0NePigmtYoYbqaT-2FZyRp6OkQgHmT57CnU9h5J7-2BCONq6mRyLof=
+C51XA2RNfMQsxKzxv4Z6bAw8aW0oUcbU2xDUDrk0yLX0Iq-2Bawn21eUJtF74ALVsF1SlH1eJbn=
+XehWtOkEaEuniPSJoP8FIwgfCcSk8Mfxnufdx0XBCFtZOtLxjjh0ef-2FYEa-2BhmOAfQ1d-2FT=
+qwZSjvsMxZnfZZsVOBHDpibE30-3D"><span style=3D"color:#FFFFFF;">Update Prefer=
+ences</span></a></div>
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"266.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+
+    <table  width=3D"266.000"
+            style=3D"width:266.000px;border-spacing:0;border-collapse:colla=
+pse;margin:0px 0px 0px 0px;"
+            cellpadding=3D"0"
+            cellspacing=3D"0"
+            align=3D"left"
+            border=3D"0"
+            bgcolor=3D"#0690FA"
+            class=3D"column column-1 of-2
+                  empty"
+      >
+      <tr>
+        <td style=3D"padding:0px;margin:0px;border-spacing:0;">
+           =20
+    <table class=3D"module" role=3D"module" data-type=3D"text" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: =
+fixed;">
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px;background-color:#0690fa;"
+            height=3D"100%"
+            valign=3D"top"
+            bgcolor=3D"#0690fa">
+            <div style=3D"font-size: 10px; line-height: 150%; margin: 0px; =
+text-align: right;"><span style=3D"color:#ffffff;">StackShare Weekly</span>=
+</div>
+                                                      <div style=3D"font-si=
+ze: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style=
+=3D"color:#ffffff;">51 Federal St, Suite 402</span></div>
+                                                      <div style=3D"font-si=
+ze: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style=
+=3D"color:#ffffff;">San Francisco, CA 94107</span></div>
+        </td>
+      </tr>
+    </table>
+ =20
+        </td>
+      </tr>
+    </table>
+
+    <!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]-->
+            <!--[if (gte mso 9)|(IE)]>
+                  <tr>
+                </table>
+              </center>
+            <![endif]-->
+        </td>
+      </tr>
+    </table>
+ =20
+                              </td>
+                            </tr>
+                          </table>
+                          <!--[if mso]>
+                          </td></tr></table>
+                          </center>
+                          <![endif]-->
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </center>
+  <img src=3D"https://u1375320.ct.sendgrid.net/wf/open?upn=3DcEy36srV7-2BTj=
+jowL3icCp6YCTya8ssvpt6S0Wm0kzcXp3KdTIPyKji5zDr8SVxLnqF7zCjTIsqJll4PuEMW82mF=
+WLHtqtmS-2BlTjySMGH31u6Hr-2FfXx5quYjj0hW2QtDSV2wx1d0lfxgjddP0NsD7IA6hkwA2nY=
+zblDNBl3lTXxHt2AY1AMMg-2Bv6hFkV8VTSQ51NeLRz4jLGfjM9r0B7YMNbDlEVsJ0CFIKTkqOj=
+BnHbIRXkJQX-2FsuivyoG0ja9hdq-2B7dMauRbFAVPfAgbBRKVLsSoSq9sqosQziYgY80D8R9gF=
+l-2Fi8XsOUdIFNZsYEqTGvdu-2FEM5Vy2Q5Q-2FAelQBnPAP6PCgwhU4l571dXtouoPSwuFSahq=
+zueN6KRmqiXaBqPy692oqNaVyl-2F9OD11RGMKKmurUHkTfH2cd5nblyaU-3D" alt=3D"" wid=
+th=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;width:1px=
+ !important;border-width:0 !important;margin-top:0 !important;margin-bottom=
+:0 !important;margin-right:0 !important;margin-left:0 !important;padding-to=
+p:0 !important;padding-bottom:0 !important;padding-right:0 !important;paddi=
+ng-left:0 !important;"/></body>
+</html>
+--edff6675f748386a823b7993d27c837d66e42c249a6fde9cb300c91d72d4--
