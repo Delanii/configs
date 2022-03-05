@@ -1,0 +1,28 @@
+" my own color scheme for vifm
+
+" Reset all styles first
+highlight clear
+
+highlight Border	cterm=none	ctermfg=235	ctermbg=235
+
+highlight TopLine	cterm=none	ctermfg=27	ctermbg=235
+highlight TopLineSel	cterm=bold	ctermfg=69	ctermbg=235
+
+highlight Win		cterm=none	ctermfg=188	ctermbg=235
+highlight Directory	cterm=none	ctermfg=129	ctermbg=235
+highlight CurrLine	cterm=none	ctermfg=135	ctermbg=238
+highlight OtherLine	cterm=none	ctermfg=247	ctermbg=235
+highlight Selected	cterm=none	ctermfg=91	ctermbg=235
+
+highlight JobLine	cterm=bold	ctermfg=116	ctermbg=235
+highlight StatusLine	cterm=bold	ctermfg=39	ctermbg=232
+highlight ErrorMsg	cterm=bold	ctermfg=124	ctermbg=235
+highlight WildMenu	cterm=bold	ctermfg=235	ctermbg=144
+highlight CmdLine	cterm=none	ctermfg=188	ctermbg=235
+
+highlight Executable	cterm=none	ctermfg=172	ctermbg=235
+highlight Link		cterm=none	ctermfg=142	ctermbg=235
+highlight BrokenLink	cterm=none	ctermfg=174	ctermbg=235
+highlight Device	cterm=none	ctermfg=228	ctermbg=235
+highlight Fifo		cterm=none	ctermfg=109	ctermbg=235
+highlight Socket	cterm=none	ctermfg=110	ctermbg=235

@@ -1,0 +1,54 @@
+# mailcap file for mutt
+# Author: Eric Scheibler
+#
+# copy into ~/.mutt/
+# then add the following lines to ~/.mutt/muttrc
+#   ```
+#   set mailcap_path="~/.mutt/mailcap"
+#   bind attach <return>    view-mailcap
+#   ```
+#
+# general hint
+# find out unknown file extension mime type:
+# in the mutt index view, go to the mail and press "|"
+# then enter the command: grep Content-Type
+
+# .txt
+text/plain;                 cat %s; copiousoutput
+
+# .rtf
+# sudo aptitude install unrtf
+application/rtf;            unrtf --text %s; copiousoutput
+text/rtf;                   unrtf --text %s; copiousoutput
+
+# .pdf
+# sudo aptitude install poppler-utils
+application/pdf;            pdftotext -q -raw %s -; copiousoutput
+application/vnd.fdf;        pdftotext -q -raw %s -; copiousoutput
+
+# .html
+# sudo aptitude install w3m
+# interactive: open in w3m from attachments menu to click links in emails
+# text/html;                  w3m -I %{charset} -T text/html; copiousoutput;
+text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -collapse_br_tags -dump %s; nametemplate=%s.html; copiousoutput
+# non-interactive: used in auto-view and reply
+text/html;                  w3m -dump -T text/html -I %{charset} -O utf-8 %s; copiousoutput;
+
+# # open office
+# .odt
+# sudo aptitude install odt2txt
+application/vnd.oasis.opendocument.text;                                    odt2txt %s; copiousoutput
+
+# microsoft office
+# .docx (since Office 2010)
+# https://github.com/rainey/antiword-xp-rb
+application/vnd.ms-word.document.12;                                        cat %s | antiwordxp; copiousoutput
+application/vnd.openxmlformats-officedocument.wordprocessingml.document;    cat %s | antiwordxp; copiousoutput
+
+# .doc
+# sudo aptitude install antiword
+application/msword;         antiword %s; copiousoutput
+
+# .xls
+# sudo aptitude install catdoc
+application/vnd.ms-excel;   xls2csv -x %s -s cp1252 -d utf-8; copiousoutput

@@ -329,10 +329,9 @@ title."
    :hook (org-mode . org-special-block-extras-mode)
 
    ;; Sets ob-http package to make HTTP requests from org-mode -- seems like it doesnt work on Mac
-;   (use-package! ob-http
-;     :commands org-babel-execute:http)
+   (use-package! ob-http)
 
-   )
+ )
 
 (after! org
 
