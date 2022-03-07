@@ -1,0 +1,9 @@
+[user]
+	name = Tomas Krulis
+	email = krulis.tomas.tk@gmail.com
+[core]
+	editor = emacs
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
