@@ -1,9 +1,23 @@
 [user]
 	name = Tomas Krulis
 	email = krulis.tomas.tk@gmail.com
+
 [core]
 	editor = emacs
+	pager=delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+
 [diff]
 	tool = vimdiff
+	colorMoved = default
+
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3

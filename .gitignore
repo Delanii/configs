@@ -1,2 +1,5 @@
 # Ignore vim setup from Damina Conway until I decide which of it I want
 *.zip
+
+# Ignore cache folders from mutt and neomutt
+*.hcache
