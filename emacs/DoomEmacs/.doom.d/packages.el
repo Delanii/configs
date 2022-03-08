@@ -74,8 +74,7 @@
 
 ;; Package for dealing with very big files
 ;;
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
-  :disable t)
+(package! vlf)
 
 ;;
 ;; Packages connected to writing and `pandoc`

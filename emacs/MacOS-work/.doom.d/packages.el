@@ -72,10 +72,9 @@
 ;; Organizace bufferů
 (package! bufler) ;; temporarily disabled because of error -- recursive require for feature bufler-workspace-tabs
 
-;; Settings for package for dealing with very large files (vlf package, vlfi on github is itůs development version)
+;; Settings for package for dealing with very large files (vlf package, vlfi on github is it's development version)
 ;;
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
-  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
+(package! vlf)
 
 ;;
 ;; Packages connected to writing and `pandoc`

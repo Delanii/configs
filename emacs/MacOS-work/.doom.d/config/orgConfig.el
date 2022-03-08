@@ -211,7 +211,7 @@ title."
                             "|"
                              "DONE(d)"  ; Task successfully completed
 
-                             "KILL(k)" ; Task was cancelled, aborted or is no longer applicable,
+                             "CANCELLED(c)" ; Task was cancelled, aborted or is no longer applicable,
                                         ; but I want to keep it as a record instead of simply
                                         ; remove it from the file.
                              ))
