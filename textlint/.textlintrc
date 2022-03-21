@@ -1,0 +1,35 @@
+{
+  "filters": {
+    "comments": true,
+    "node-types": {
+            "nodeTypes": ["BlockQuote"]
+        }
+  },
+  "rules": {
+    "alex": true,
+    "apostrophe": true,
+    "common-misspellings": {
+    // Misspellings to be ignored (case-insensitive)
+            "ignore": []
+},
+    "diacritics": true, //{
+      // List of additional words
+      //"words": [
+      //  "tůst",
+      //],
+      // OR load words from a file
+      //"words": "~/words.json"
+//},
+    "doubled-spaces": true,
+    "en-max-word-count": true,
+    "max-comma": true,
+    "no-dead-link": true,
+    "no-start-duplicated-conjunction": true,
+    "no-todo": true,
+    "period-in-list-item": true,
+    "rousseau": true,
+    "spelling": true,
+    "stop-words": true,
+    "write-good": true
+    }
+}
