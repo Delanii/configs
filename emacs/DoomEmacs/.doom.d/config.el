@@ -264,7 +264,7 @@
 
 ;; For czech language
 ;; (ispell-change-dictionary "czech" t)
-(ispell-change-dictionary "en_US" t)
+(ispell-change-dictionary "american" t)
 
 ;; Nastavení spellchecku pro angličtinu a češtinu současně - funguje ve Spacemacs (`.spacemacs`), ale ne zde
 
