@@ -262,7 +262,9 @@
 ;; Spellcheck Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(ispell-change-dictionary "czech" t)
+;; For czech language
+;; (ispell-change-dictionary "czech" t)
+(ispell-change-dictionary "en_US" t)
 
 ;; Nastavení spellchecku pro angličtinu a češtinu současně - funguje ve Spacemacs (`.spacemacs`), ale ne zde
 
