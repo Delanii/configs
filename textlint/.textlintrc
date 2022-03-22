@@ -1,4 +1,9 @@
 {
+"plugins": [
+        "html",
+        "rst",
+        "org"
+    ],
   "filters": {
     "comments": true,
     "node-types": {
@@ -21,15 +26,52 @@
       //"words": "~/words.json"
 //},
     "doubled-spaces": true,
-    "en-max-word-count": true,
-    "max-comma": true,
-    "no-dead-link": true,
-    "no-start-duplicated-conjunction": true,
+    "en-max-word-count": false,
+    "max-comma": {
+        "max" : 3
+    },
+    "no-dead-link": {
+      "checkRelative": true,
+      "baseURI": null,
+      "ignore": [],
+      "preferGET": [],
+      "ignoreRedirects": false,
+      "retry": 3,
+      "userAgent": "textlint-rule-no-dead-link/1.0",
+      "maxRetryTime": 10
+    },
+    "no-start-duplicated-conjunction": false,
     "no-todo": true,
-    "period-in-list-item": true,
-    "rousseau": true,
-    "spelling": true,
-    "stop-words": true,
+    "period-in-list-item": false,
+    "rousseau": false,
+    "spelling": {
+            "language": "en",
+            "skipPatterns": ["JavaScript"],
+            "wordDefinitionRegexp": "/[\\w']+/g",
+            "suggestCorrections": true,
+        },
+    "stop-words": {
+      // Load default dictionary (see dict.txt in the repository)
+      "defaultWords": true,
+      // Syntax elements to skip. Overrides the default
+      "skip": ["Blockquote"],
+      // Extra words
+      "words": [
+        ["etc."],
+        ["you can"],
+        // With a replacement
+        ["blacklist", "denylist"],
+        // Ensure correct capitalization
+        ["asciidoc", "AsciiDoc"]
+      ],
+      // Excluded words
+      "exclude": [
+        //"utilize",
+        "period of time"
+      ]
+      // OR load terms from a file
+      //"words": "~/stop-words.txt"
+    },
     "write-good": true
     }
 }
