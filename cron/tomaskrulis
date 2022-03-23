@@ -1,0 +1,6 @@
+# User-level crontabs are located in Linux at PATH `/var/spool/cron`, named by current user name
+# always set preffered editor to edit crontab with `export EDITOR=vim`
+# always for editing crontab use command `crontab -e`, which after closing and saving edited crontab file does sanity checks for errors in the file
+
+# First testing simple job
+@monthly ~/cronJobs/helloCron.sh
