@@ -310,7 +310,7 @@ colors:
     blue:    '0x51afef'
     magenta: '0xc678dd'
     cyan:    '0x5699af'
-    white:   '0x202328'
+    white:   '#c5c8c6' # DTs default: '0x202328'
 
   # Bright colors
   bright:

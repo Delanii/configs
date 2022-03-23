@@ -30,8 +30,8 @@ let-env PROMPT_COMMAND = { starship prompt --cmd-duration $env.CMD_DURATION_MS -
 # the state of the prompt
 #
 # let-env PROMPT_INDICATOR = "〉" # default setting, changing it above in Starship prompt setting
-let-env PROMPT_INDICATOR_VI_INSERT = "[I] " # default: ": "
-let-env PROMPT_INDICATOR_VI_NORMAL = "[N] " # default: "〉"
+let-env PROMPT_INDICATOR_VI_INSERT = " [I] " # default: ": "
+let-env PROMPT_INDICATOR_VI_NORMAL = " [N] " # default: "〉"
 let-env PROMPT_MULTILINE_INDICATOR = "::: "
 
 # Specifies how environment variables are:
@@ -156,7 +156,7 @@ let default_theme = {
     binary: white
     cellpath: white
     row_index: green_bold
-    record: white
+    record: "#FFFFFF"
     list: white
     block: white
     hints: dark_gray
@@ -193,7 +193,7 @@ let default_theme = {
 let $config = {
   filesize_metric: false
   table_mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-  use_ls_colors: true
+  use_ls_colors: false # default: true
   rm_always_trash: false
   color_config: $default_theme
   use_grid_icons: true
@@ -204,7 +204,7 @@ let $config = {
   float_precision: 2
   use_ansi_coloring: true
   filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
-  edit_mode: emacs # emacs, vi
+  edit_mode: vi # emacs, vi
   max_history_size: 10000
   menu_config: {
     columns: 4
@@ -226,7 +226,7 @@ let $config = {
       name: completion_menu
       modifier: none
       keycode: tab
-      mode: emacs # Options: emacs vi_normal vi_insert
+      mode: vi_insert # Options: emacs vi_normal vi_insert
       event: {
         until: [
           { send: menu name: completion_menu }
