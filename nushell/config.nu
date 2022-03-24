@@ -1,5 +1,9 @@
 # Nushell Config File
 
+################################
+# Prompt definition
+################################
+
 # Default prompt definition:
 #
 # def create_left_prompt [] {
@@ -33,6 +37,13 @@ let-env PROMPT_COMMAND = { starship prompt --cmd-duration $env.CMD_DURATION_MS -
 let-env PROMPT_INDICATOR_VI_INSERT = " [I] " # default: ": "
 let-env PROMPT_INDICATOR_VI_NORMAL = " [N] " # default: "〉"
 let-env PROMPT_MULTILINE_INDICATOR = "::: "
+
+################################
+# Set environment variables
+################################
+
+let-env VISUAL = "vim"
+let-env EDITOR = $env.VISUAL
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)

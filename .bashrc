@@ -10,6 +10,14 @@
 
 export HISTCONTROL=ignoreboth:erasedups
 
+
+############################################
+# Default editor called from bash
+###########################################
+
+export VISUAL=vim
+export EDITOR=$VISUAL
+
 ############################################
 # Original contents of .bashrc
 ###########################################
