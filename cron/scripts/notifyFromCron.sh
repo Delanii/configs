@@ -8,11 +8,12 @@ CRON_JOB_NAME='NotifyCron'
 CURRENT_MONTH=$(date '+%b')
 
 # Send notification to desktop
+sleep 120
 notify-send 'You can automate and schedule anything with cron today!'
 
 # Write down in the log
-CURRENT_DATE=$(date '+%Y-%m-%d')
-LOG_RECORD="${CURRENT_DATE} Cron notification job executed."
+CURRENT_TIME=$(date '+%Y-%m-%d-%H:%M')
+LOG_RECORD="${CURRENT_TIME} Cron notification job executed."
 
 # Create directory for cron jobs logging, if it doesn't already exist. And don't error if it does exist
 mkdir -p ~/$CRON_LOG_DIR/$CRON_JOB_NAME
