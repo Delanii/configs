@@ -32,7 +32,7 @@
 
 ;; Setting location of emacs source code to access documentation for functions that are written in C:
 ;;
-(setq source-directory (concat (getenv "HOME") "/emacsSource/emacs"))
+(setq source-directory (concat (getenv "HOME") "/emacs-projects/emacsSource/emacs"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Allow all commands
