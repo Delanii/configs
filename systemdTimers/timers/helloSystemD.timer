@@ -1,0 +1,14 @@
+[Unit]
+Description=Schedule a log every month
+RefuseManualStart=no # Allow manual starts
+RefuseManualStop=no # Allow manual stops
+
+[Timer]
+#Execute job if it missed a run due to machine being off
+Persistent=true
+OnCalendar=monthly
+#File describing job to execute
+Unit=helloSystemd.service
+
+[Install]
+WantedBy=timers.target

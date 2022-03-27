@@ -1,0 +1,11 @@
+[Unit]
+Description=A basic service to test the systemd scheduler
+Wants=helloSystemd.timer
+
+[Service]
+WorkingDirectory=/home/tomaskrulis/
+Type=oneshot
+ExecStart=/home/tomaskrulis/systemDJobs/helloSystemD.sh
+
+[Install]
+WantedBy=timers.target
