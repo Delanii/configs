@@ -1,6 +1,6 @@
 [Unit]
 Description=A basic service to test the systemd scheduler
-Wants=helloSystemd.timer
+Wants=helloSystemD.timer
 
 [Service]
 WorkingDirectory=/home/tomaskrulis/
