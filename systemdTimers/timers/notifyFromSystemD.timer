@@ -1,0 +1,14 @@
+[Unit]
+Description=Send a notification three minutes after PC start
+RefuseManualStart=false # Allow manual starts
+RefuseManualStop=false # Allow manual stops
+
+[Timer]
+#Execute job if it missed a run due to machine being off
+Persistent=true
+OnBootSec=180
+#File describing job to execute
+Unit=notifyFromSystemD.service
+
+[Install]
+WantedBy=timers.target
