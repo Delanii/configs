@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# For some reason this is still not sending the notification to desktop.
+
 # Variable to hold path to systemd job logs
 SYSTEMD_LOG_DIR='/home/tomaskrulis/scheduledJobLogs/systemDJobLogs'
 SYSTEMD_JOB_NAME='NotifySystemD'
