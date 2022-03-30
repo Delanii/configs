@@ -1,0 +1,11 @@
+[Unit]
+Description=A basic service to send a desktop notification using the systemd scheduler
+Wants=notifyFromSystemD.timer
+
+[Service]
+Type=forking
+ExecStart=/home/tomaskrulis/systemDJobs/notifyFromSystemD.sh
+Environment="DISPLAY=:0" "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus"
+
+[Install]
+WantedBy=default.target
