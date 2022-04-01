@@ -1,0 +1,14 @@
+[Unit]
+Description=Schedule maintenance of all git repositories in my home folder
+RefuseManualStart=false # Allow manual starts
+RefuseManualStop=false # Allow manual stops
+
+[Timer]
+#Execute job if it missed a run due to machine being off
+Persistent=true
+OnCalendar=monthly
+#File describing job to execute
+Unit=allReposMaintenance.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run all git maintenance tasks over all repositories in my home folder
+Wants=allReposMaintenance.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/tomaskrulis/systemDJobs/allReposMaintenance.sh
+
+[Install]
+WantedBy=default.target
