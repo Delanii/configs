@@ -96,7 +96,7 @@
        :weight bold))
   nil)
 
-(defface my/fixme-face
+(defface my/warning-face
   '((t :foreground "#E5D822"
        :weight bold))
   nil)
@@ -112,7 +112,8 @@
   (setq hl-todo-keyword-faces
         `(
           ("MAKE" . my/make-face)
-          ("FIXME". my/fixme-face)
+          ("FIXME". my/warning-face)
+          ("CANCELED" . my/warning-face)
           ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton
