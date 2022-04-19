@@ -1,4 +1,9 @@
-;; Empty yet, test a smple hydra for `g +`, `g -` and such ...
+;; Helper functions
+
+(defun my/org-timestamp-today-date()
+  "Insert today date as a active org timestamp."
+  (interactive)
+  (org-insert-time-stamp (current-time)))
 
 ;; Define my hydras!!
 
@@ -8,6 +13,15 @@
   ("+" evil-numbers/inc-at-pt "Increment" :column "Add")
   ("-" evil-numbers/dec-at-pt "Decrement" :column "Decrease")
   ("q" nil "quit" :column "Aux"))
+
+;; Hydra for putting and incrementing org timestamps
+(defhydra my/hydra-org-timestamp ()
+  "Place a org timestamp at point. Increment or decrement the timestamp at point."
+  ("." org-time-stamp "Insert timestamp" :column "Insert")
+  ("t" my/org-timestamp-today-date "Insert today timestamp" :column "Insert")
+  ("+" org-timestamp-up "Increase timestamp value at point" :column "Move")
+  ("-" org-timestamp-down "Decrease tiestamp value at pont" :column "Move")
+  ("q" nil "Quit" :column "Aux"))
 
 ;; Hydra for grouping and conviniently toggling modes that are sometimes nagging me
 (defhydra my/hydra-toggle-modes ()
@@ -50,7 +64,8 @@
       "n" #'my/hydra-numbers/body
       "m" #'my/hydra-toggle-modes/body
       "a" #'my/hydra-avy/body
-      "c" #'my/hydra-comments/body)      ;; List of hydras with theyre access keys
+      "c" #'my/hydra-comments/body
+      "t" #'my/hydra-org-timestamp/body)      ;; List of hydras with theyre access keys
 
 ;; With `general.el` it would be done like so:
 ;; References:
