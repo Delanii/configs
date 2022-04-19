@@ -114,6 +114,7 @@
           ("MAKE" . my/make-face)
           ("FIXME". my/warning-face)
           ("CANCELED" . my/warning-face)
+          ("BOOKMARK" . my/warning-face)
           ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton
