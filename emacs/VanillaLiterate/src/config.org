@@ -1,24 +1,31 @@
 #+TITLE: My Vanilla Emacs Literate Configuration
 #+AUTHOR: Tomas Krulis
 
-#+STARTUP: content
+#+STARTUP: overview
 
 #+TODO: IMPORTANT(i) |
 #+TODO: TODO(t) ONGOING(o) | DONE(d)
 #+TODO: | CANCELED(c)
 
-* Introoduction
+* Introduction
 :PROPERTIES:
 :CUSTOM_ID: sec:introduction
 :END:
 
-This file is an ongoing project to create my own configuration from scratch, to learn more about =emacs= and to be able to fully use it in my work, where I have no access to Doom Emacs goodness.
+This file is an ongoing project to create my own configuration from scratch to learn more about =emacs=. Working on this project should push me to better configure basic =emacs= functions, rather than test more and more =emacs= packages.
 
-Also, working on this project should push me to better configure basic =emacs= functions, rather than test more and more =emacs= packages.
+The main inspiration for this project is youtube video series of System Crafters, link: https://www.youtube.com/c/SystemCrafters/videos
 
-Having literate configuration has its own perks. With literate configuration you can write mostly text, with thrown-in code blocks, after which you actually don't need comments anymore. On the other hand, if there is an mistake in configuration and it gets tangled to =emacs= configuration files, to fix it you have to open the fie with =emacs= without any configuration: =emacs -q= and tangle it again.
+This file is using a lot of =noweb= references, assembling each file from a small code blocks, written separately and commented in literate configuration text.
 
-This file is using a lot =noweb= references, assembling each file from a lot of smaller code blocks, written separately and commented in literate configuration text.
+Having literate configuration has its own perks. With literate configuration you can write mostly text with embedded code blocks. Now you don't need comments anymore. On the other hand, if there is a mistake in configuration and it gets tangled to Emacs configuration files, your Emacs will not run correctly. To fix it you will have to open the file with working Emacs and tangle it again.
+
+To do that, you have two options:
+
+- start Emacs without any configuration loaded with =emacs -q=
+- use chemacs2 and start Emacs with a working configuration (chemacs2 profile)
+
+BOOKMARK: Emacs from Scratch, chemacs video, 3:20
 
 ** ONGOING Structure of this configuration
 
@@ -87,7 +94,7 @@ Previous code block and commentary is again mostly Doom Emacs and other peoples 
 ;;; early-init.el ends here
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp :noweb yes :tangle ../custom-emacs-config/early-init.el
+#+BEGIN_SRC emacs-lisp :noweb yes :tangle ../custom-emacs/early-init.el
 ;;; early-init.el --- Early Init File -*- lexical-binding: t; no-byte-compile: t -*-
 ;; NOTE: early-init.el is now generated from config.org.  Please edit that file instead
 
@@ -97,3 +104,9 @@ Previous code block and commentary is again mostly Doom Emacs and other peoples 
 
 <<disable-package.el>>
 #+END_SRC
+
+* Resources
+
+- System Crafters youtube channel: https://www.youtube.com/c/SystemCrafters/videos
+
+#  LocalWords:  youtube Crafters LocalWords chemacs
