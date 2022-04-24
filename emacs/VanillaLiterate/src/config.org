@@ -25,7 +25,7 @@ To do that, you have two options:
 - start Emacs without any configuration loaded with =emacs -q=
 - use chemacs2 and start Emacs with a working configuration (chemacs2 profile)
 
-BOOKMARK: Emacs from Scratch, chemacs video, 3:20
+BOOKMARK: Emacs from Scratch video #1
 
 ** ONGOING Structure of this configuration
 
