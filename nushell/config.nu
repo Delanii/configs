@@ -60,6 +60,25 @@ let-env ENV_CONVERSIONS = {
   }
 }
 
+################################
+# Use allow using zoxide (command z) instead of cd to change directories
+################################
+
+# Add this to your env file (find it by running $nu.env-path in Nushell):
+# ```
+# zoxide init nushell --hook prompt | save ~/.zoxide.nu
+# ```
+
+# source ~/.zoxide.nu
+
+################################
+# Aliases
+################################
+
+# alias cd = z # zoxide integration often gets broken by nu updates
+# alias ls = lsd # sometimes I like the "tabulay" nushell default output of ls
+alias diff = delta
+
 # Directories to search for scripts when calling source or use
 #
 # By default, <nushell-config-dir>/scripts is added
