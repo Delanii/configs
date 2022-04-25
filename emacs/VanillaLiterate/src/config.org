@@ -37,14 +37,16 @@ BOOKMARK: Emacs from Scratch video #1
 :CUSTOM_ID: sec:early-init
 :END:
 
+Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage collection especially in startup, but also during =emacs= operation.
+
+The function =gc-cons-threshold= controls when happens the =emacs= garbage collection. The =most-positive-fixnum= value is the biggest integer, that is represented efficiently. This is probably tied to your OS and architecture. With this setting, =emacs= garbage collection is executed with the lowest frequency possible on your system.
+
 #+NAME: gc-settings
 #+BEGIN_SRC emacs-lisp
-;; Defer garbage collection further back in the startup process
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum)
 #+END_SRC
 
-Code block =gc-settings= introduces optimization tweaks to delay =emacs= garbage collection in startup. Function =gc-cons-percentage= should work together with =gc-cons-threshold= to initialize garbage collection. %%Poznámka -- zeptat se v Doom Emacs, zda má gc-cons-percentage nějaký praktický přínos.%%
+BOOKMARK -- continue rewrite.
 
 #+NAME: no-stale-bytecode
 #+BEGIN_SRC emacs-lisp
