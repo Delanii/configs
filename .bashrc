@@ -10,13 +10,88 @@
 
 export HISTCONTROL=ignoreboth:erasedups
 
-
 ############################################
 # Default editor called from bash
 ###########################################
 
 export VISUAL=vim
 export EDITOR=$VISUAL
+
+############################################
+# PATH setting
+###########################################
+
+export PATH="$HOME/.local/bin:$HOME/.roswell/bin:$HOME/GraalVM/graalvm-ce-java17-22.0.0.2/bin:/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
+
+############################################
+# Alias Settings
+###########################################
+
+# Nastavení aliasu `config` pro zálohování konfiguračních souborů do dotfiles; resp. dotfiles repo; viz. tutorial od DT
+
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# Alias pro odhlášení se pomocí terminálu
+
+alias logout='sudo pkill -u tomaskrulis'
+
+# Nastavení pro `fzf`
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Umožnění `broot`
+source /home/tomaskrulis/.config/broot/launcher/bash/br
+
+# Spouštění `Starship` promptu
+eval "$(starship init bash)"
+
+# Umožnění `zoxide` - better `ls`
+eval "$(zoxide init bash)"
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+############################################
+# Nastavení Vi Editace
+###########################################
+
+set editing-mode vi
+set keymap vi
+
+# Toto patří buď do `.bashrc` nebo do `inputrc` (pak to ale ovlivní všechny shells; resp. všechny programy, které používají `readline` pro input.
+# Odkaz: https://unix.stackexchange.com/questions/4870/is-it-possible-to-have-vim-key-bindings-in-terminal
+set show-mode-in-prompt on
+set vi-ins-mode-string "[I]"
+set vi-cmd-mode-string "[N]"
+
+############################################
+# Package management systems settings 
+###########################################
+
+# Cargo settings
+source "$HOME/.cargo/env"
+
+# broot settings
+source /home/tomaskrulis/.config/broot/launcher/bash/br
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/tomaskrulis/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/tomaskrulis/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tomaskrulis/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/tomaskrulis/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Ghcup settings
+[ -f "/home/tomaskrulis/.ghcup/env" ] && source "/home/tomaskrulis/.ghcup/env" # ghcup-env
 
 ############################################
 # Original contents of .bashrc
@@ -157,68 +232,4 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-source "$HOME/.cargo/env"
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Toto radši zatím nebudu mazat
-
-export PATH="$HOME/.local/bin:$PATH"
-
-############################################
-# Alias Settings
-###########################################
-
-# Nastavení aliasu `config` pro zálohování konfiguračních souborů do dotfiles; resp. dotfiles repo; viz. tutorial od DT
-
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-
-# Alias pro odhlášení se pomocí terminálu
-
-alias logout='sudo pkill -u tomaskrulis'
-
-# Nastavení pro `fzf`
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Umožnění `broot`
-source /home/tomaskrulis/.config/broot/launcher/bash/br
-
-# Spouštění `Starship` promptu
-eval "$(starship init bash)"
-
-# Umožnění `zoxide` - better `ls`
-eval "$(zoxide init bash)"
-
-############################################
-# Nastavení Vi Editace
-###########################################
-
-set editing-mode vi
-set keymap vi
-
-# Toto patří buď do `.bashrc` nebo do `inputrc` (pak to ale ovlivní všechny shells; resp. všechny programy, které používají `readline` pro input.
-# Odkaz: https://unix.stackexchange.com/questions/4870/is-it-possible-to-have-vim-key-bindings-in-terminal
-set show-mode-in-prompt on
-set vi-ins-mode-string "[I]"
-set vi-cmd-mode-string "[N]"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/tomaskrulis/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/tomaskrulis/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/tomaskrulis/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/tomaskrulis/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-source /home/tomaskrulis/.config/broot/launcher/bash/br
-[ -f "/home/tomaskrulis/.ghcup/env" ] && source "/home/tomaskrulis/.ghcup/env" # ghcup-env
