@@ -2,8 +2,8 @@
 
 (setq org-directory "~/Documents/org"
       org-agenda-files ;; list org-directory
-                       (cons org-directory
-                             (directory-files-recursively "~/Documents/Job-all/TODOs/" "\\.org\\'"))
+                       (cons "~/Documents/Job-all/TODOs/todos-current.org"
+                             (directory-files-recursively "~/Documents/Job-all/PAuto-team/SprintNotes/" "\\.org\\'"))
       )
 ;; Function =org-agenda-files= expects a list of file names.
 ;; Since function =directory-files-recursively= already returns a list of file names, the =org-directory= variable has to be just added to the list generated from =directory-files-recursively=.
