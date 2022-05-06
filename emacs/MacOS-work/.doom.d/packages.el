@@ -66,6 +66,9 @@
 (package! modalka)
 (package! kakoune)
 
+;; Alternative completion framework powered by ML -- TabNine: https://www.tabnine.com/
+(package! company-tabnine)
+
 ;; Package for dealing with hydras -- hydra + which-key
 (package! hercules)
 
