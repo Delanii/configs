@@ -358,12 +358,6 @@ Version 2016-10-24"
   (add-hook 'latex-mode-hook #'TeX-latex-mode))
 
 ;;
-;; Writeroom settings
-;;
-;; Tweaks doom emacs zooming
-(setq +zen-text-scale 0.9)
-
-;;
 ;; Completion Settings
 ;;
 

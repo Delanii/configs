@@ -104,6 +104,11 @@
        :weight bold))
   nil)
 
+(defface my/no-worries-face
+  '((t :foreground "#49E2EC"
+       :weight bold))
+  nil)
+
 (defface my/warning-face
   '((t :foreground "#E5D822"
        :weight bold))
@@ -123,6 +128,7 @@
           ("FIXME". my/warning-face)
           ("CANCELED" . my/warning-face)
           ("BOOKMARK" . my/warning-face)
+          ("DELEGATED" . my/no-worries-face)
           ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton
@@ -359,19 +365,13 @@ Version 2016-10-24"
   (add-hook 'latex-mode-hook #'TeX-latex-mode))
 
 ;;
-;; Writeroom settings
-;;
-;; Tweaks doom emacs zooming
-(setq +zen-text-scale 0.9)
-
-;;
 ;; Completion Settings
 ;;
 
 (after! company
   (setq company-idle-delay 0.5
-        company-minimum-prefix-length 3)
-  (setq company-show-numbers t)
+        company-minimum-prefix-length 3
+        company-show-quick-access t)
   (add-to-list 'company-backends #'company-tabnine)
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 

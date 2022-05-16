@@ -208,10 +208,15 @@ title."
                                         ; things. A task can be paused because I simply don't want
                                         ; to continue doing it, or it is paused because I want to
                                         ; make sure I understand I shouldn't be work on this task.
-                            "|"
+                             "DLGT(g)" ; This task is "delegated" -- handled mostly by someone else,
+                                        ; I am merely a watcher, or I have a minor participation in
+                                        ; the task. In most cases, my participation is in terms of
+                                        ; informing an interested party when the task is completed
+                                        ; by someone else.
+                             "|"
                              "DONE(d)"  ; Task successfully completed
 
-                             "CANCELLED(c)" ; Task was cancelled, aborted or is no longer applicable,
+                             "CANCEL(c)" ; Task was cancelled, aborted or is no longer applicable,
                                         ; but I want to keep it as a record instead of simply
                                         ; remove it from the file.
                              ))
@@ -219,7 +224,8 @@ title."
         org-todo-keyword-faces '(("IMPORTANT" . (:foreground "red" :weight bold))
                                  ("STRT" . +org-todo-active)
                                  ("WAIT" . +org-todo-onhold)
-                                 ("HOLD" . +org-todo-onhold))
+                                 ("HOLD" . +org-todo-onhold)
+                                 ("DLGT" . +org-todo-onhold))
         )
 
   ;; =org-emphasis-alist= je proměnná obsahující delimitery pro markup. Seznam delimiterů je bohužel hardcoded; nelze přidat další, ale lze redefinovat způsob zvýraznění daných delimiterů. Níže je redefinice =+=; dalo by se redefinovat i =~=; kromě =:foreground= má zabarvení i parametr =:background=
@@ -270,6 +276,7 @@ title."
     (push '("FIXME" (0 'my/warning-face t)) org-font-lock-extra-keywords)
     (push '("CANCELED" (0 'my/warning-face t)) org-font-lock-extra-keywords)
     (push '("BOOKMARK" (0 'my/warning-face t )) org-font-lock-extra-keywords)
+    (push '("DELEGATED" (0 'my/no-worries-face t)) org-font-lock-extra-keywords)
     (push '("IMPORTANT" (0 'my/important-face t)) org-font-lock-extra-keywords))
 
   ;; This actually adds the functions to be executed as hooks
