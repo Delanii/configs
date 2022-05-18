@@ -362,7 +362,7 @@ Version 2016-10-24"
 ;;
 
 (after! company
-  (setq company-idle-delay 0.5
+  (setq company-idle-delay 0.1
         company-minimum-prefix-length 3
         company-show-numbers t))
 
