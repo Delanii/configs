@@ -311,11 +311,15 @@
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
 
+;;
+;; Built-in text expanders
+;;
+
 ;; Abbrev mode
- (dolist (hook '(org-mode-hook
-                    TeX-latex-mode-hook
-                    text-mode-hook))
-      (add-hook hook #'abbrev-mode))
+(dolist (hook '(org-mode-hook
+                TeX-latex-mode-hook
+                text-mode-hook))
+  (add-hook hook #'abbrev-mode))
 
 ;; This function should prevent inserting space after expanded abbrev
 (defun xah-abbrev-h-f ()
@@ -330,6 +334,20 @@ Version 2016-10-24"
 ;; Definitions for abbrev mode
 (setq abbrev-file-name                   ;; tell emacs where to read abbrev
       "~/.doom.d/config/abbrev_defs.el")    ;; definitions from...
+
+;; Hippie-expand settings
+;;
+(global-set-key (kbd "M-/") #'hippie-expand)
+
+;; Skeleton mode
+;;
+(load! "config/skeletons.el")
+
+;; Tempo mode
+;;
+(require 'tempo)
+(setq tempo-interactive t)
+(load! "config/tempos.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Own hydras and hercules settings
