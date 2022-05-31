@@ -114,6 +114,8 @@
 ;; Make agenda super
 (package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
 
+;; Make sure to see buffer (source) contents, not rendered special symbols
+
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
@@ -121,7 +123,16 @@
 (package! org-fancy-priorities
   :disable t)
 
-(package! org-fragtog)
+;; (package! org-fragtog) ;; If I won't be using LaTeX previews, I also won't need this, I guess ...
+
+;; Interactive text highlighting in org-mode
+
+(package! org-remark
+  :recipe (:host github
+           :repo "nobiot/org-remark")
+ )
+
+;; Automatically create lists
 
 (package! org-autolist)
 

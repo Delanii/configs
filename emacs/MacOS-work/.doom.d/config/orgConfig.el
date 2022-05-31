@@ -269,6 +269,23 @@ title."
                                                  (1 '(face org-habit-overdue-face invisible nil)) (2 'org-habit-overdue-face t) (3 '(face org-habit-overdue-face invisible nil))) t)
     )
 
+  ;; Setup the interactive highlighting with the org-remark package
+  ;;
+  (require 'org-remark-global-tracking)
+  (org-remark-global-tracking-mode +1)
+
+  ;; Key-bind `org-remark-mark' to global-map so that you can call it
+  ;; globally before the library is loaded.
+
+  (define-key global-map (kbd "C-c n m") #'org-remark-mark)
+
+  ;; The rest of keybidings are done only on loading `org-remark'
+  (with-eval-after-load 'org-remark
+    (define-key org-remark-mode-map (kbd "C-c n o") #'org-remark-open)
+    (define-key org-remark-mode-map (kbd "C-c n ]") #'org-remark-view-next)
+    (define-key org-remark-mode-map (kbd "C-c n [") #'org-remark-view-prev)
+    (define-key org-remark-mode-map (kbd "C-c n r") #'org-remark-remove))
+
   ;; Function to add my custom keywords to org-mode.
   ;; Only this approach works
   (defun my/org-add-my-extra-keywords ()
