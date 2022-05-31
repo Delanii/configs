@@ -169,8 +169,12 @@
 
 ;; Outline packages - experimental
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+
+;; Sidebars for org mode
+
 (package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree"))
 (package! org-sidebar)
+
 (package! org-ml)
 ;; (package! hyperbole) ;; Not using it at the moment
 

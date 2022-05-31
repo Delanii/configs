@@ -117,6 +117,17 @@
 ;;       (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
 ;;       (add-hook! evil-insert-state-exit (org-fragtog-mode -1))))
 
+;;
+;; Setup sidebars in org mode
+;;
+
+;; from elken
+(use-package! org-ol-tree
+  :after org
+  :commands org-ol-tree
+  :config
+  (setq org-ol-tree-ui-window-position 'left)) ;; or 'right , because this collides with treemacs
+
 (after! org
 
   ;; Alternative link creating function - `counsel-org-link` - and settings for it
