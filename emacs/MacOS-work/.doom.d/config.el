@@ -361,9 +361,6 @@ Version 2016-10-24"
 
 (load! "config/orgConfig.el")
 
-;; Define custom highlighting pens
-(load! "config/custom-pens.el")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

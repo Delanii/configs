@@ -295,7 +295,11 @@ title."
     (define-key org-remark-mode-map (kbd "C-c n o") #'org-remark-open)
     (define-key org-remark-mode-map (kbd "C-c n ]") #'org-remark-view-next)
     (define-key org-remark-mode-map (kbd "C-c n [") #'org-remark-view-prev)
-    (define-key org-remark-mode-map (kbd "C-c n r") #'org-remark-remove))
+    (define-key org-remark-mode-map (kbd "C-c n r") #'org-remark-remove)
+
+    ;; Define custom pens -- also probably has to be loaded after the org-remark package is loaded:
+    (load! "custom-pens.el")
+    )
 
   ;; Function to add my custom keywords to org-mode.
   ;; Only this approach works
