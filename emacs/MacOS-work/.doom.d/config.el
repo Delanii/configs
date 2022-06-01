@@ -129,6 +129,7 @@
           ("CANCELED" . my/warning-face)
           ("BOOKMARK" . my/warning-face)
           ("DELEGATED" . my/no-worries-face)
+          ("WAIT" . my/no-worries-face)
           ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton

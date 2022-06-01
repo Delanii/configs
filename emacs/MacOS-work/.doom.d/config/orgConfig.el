@@ -309,6 +309,7 @@ title."
     (push '("CANCELED" (0 'my/warning-face t)) org-font-lock-extra-keywords)
     (push '("BOOKMARK" (0 'my/warning-face t )) org-font-lock-extra-keywords)
     (push '("DELEGATED" (0 'my/no-worries-face t)) org-font-lock-extra-keywords)
+    (push '("WAIT" (0 'my/no-worries-face t)) org-font-lock-extra-keywords)
     (push '("IMPORTANT" (0 'my/important-face t)) org-font-lock-extra-keywords))
 
   ;; This actually adds the functions to be executed as hooks
