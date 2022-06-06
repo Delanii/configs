@@ -50,7 +50,8 @@
 
 ;; On Emacs, you can set variables when open files, we call those File Variables. There are occasions I want to execute some arbitrary code when I open a file. To do that, I would add a file variable called eval, and pass my arbitrary code to it. As you can imagine, this is a dangerous feature
 ;; Allow commands on opening a file
-;; (setq enable-local-eval t)
+(setq enable-local-eval t
+      enable-local-variables t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font Settings
