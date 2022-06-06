@@ -317,10 +317,10 @@ title."
   (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-keywords)
 
   ;; Customize org-mode heading symbols
-  (after! org-superstar
-    (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-          ;; org-superstar-headline-bullets-list '("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
-          org-superstar-prettify-item-bullets t ))
+  ;; (after! org-superstar
+  ;;   (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+  ;;         ;; org-superstar-headline-bullets-list '("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
+  ;;         org-superstar-prettify-item-bullets t ))
 
   ;; Settings for parenthessis completion -- complete target syntax `<< >>`, and also custom syntax defined above: `%% %%`, `!! !!`
   (sp-local-pair
@@ -729,9 +729,10 @@ title."
 
 ;; Some hooks are notoriously prblematic.
 ;; Let's ignore them when they are misbehaving
-(defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
-  :around #'org-fancy-priorities-mode
-  :around #'org-superstar-mode
-  (ignore-errors (apply orig-fn args)))
+;; -- not neccesary after removing this packages
+;; (defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
+;;   :around #'org-fancy-priorities-mode
+;;   :around #'org-superstar-mode
+;;   (ignore-errors (apply orig-fn args)))
 
   ) ;; closed `after!` macro from beginning of the org-mode settings

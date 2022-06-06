@@ -159,7 +159,8 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       ;;(go +lsp)                       ; the hipster dialect
+       (go
+        +lsp)                       ; the hipster dialect
        (haskell
         +dante
         +lsp)  ; a language that's lazier than I am
@@ -195,12 +196,12 @@
         +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
+        +hugo
         +jupyter
         +journal
         +gnuplot
         +pandoc
         +pomodoro
-        +pretty
         +roam2
         +noter)
        ;;php               ; perl's insecure younger brother

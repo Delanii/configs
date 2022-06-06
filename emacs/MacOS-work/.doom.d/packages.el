@@ -120,8 +120,9 @@
   :recipe (:host github
            :repo "awth13/org-appear"))
 
-(package! org-fancy-priorities
-  :disable t)
+;; Removed the package with disabling the (org +pretty module)
+;; (package! org-fancy-priorities
+;;   :disable t)
 
 ;; (package! org-fragtog) ;; If I won't be using LaTeX previews, I also won't need this, I guess ...
 
