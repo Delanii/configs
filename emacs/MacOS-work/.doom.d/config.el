@@ -206,11 +206,6 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  "   ᛗ  %s" "   ✪   %s") project-name))))))
 
-;; Vypnutí automatické indentace tabulátory:
-(setq-default indent-tabs-mode nil)
-;; And it there are any tabs, set their size to 4 spaces
-(setq-default tab-width 4)
-
 ;; Sets the ammount of lines showed that are showed when reaching edge of the screen (top or bottom)
 (setq scroll-margin 2
       scroll-conservatively 1000)
@@ -435,6 +430,29 @@ Version 2016-10-24"
     (beginning-of-line)
     (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
       (org-element-property :language (org-element-context)))))
+
+;;
+;; Remove tabs from my life
+;; (except for Makefiles)
+;;
+
+;; Vypnutí automatické indentace tabulátory:
+(setq-default indent-tabs-mode nil)
+;; And it there are any tabs, set their size to 4 spaces
+(setq-default tab-width 4)
+
+;; Remove tabs from a buffer interactively
+(defun untabify-buffer ()
+  "Untabify current buffer"
+  (interactive)
+  (message "Hook is running.") ;; Debug
+  (untabify (point-min) (point-max)))
+
+(defun my/clean-up-buffer-on-save ()
+    (add-hook 'before-save-hook 'untabify-buffer))
+
+;; Add hooks to programming modes to remove any left-out tabs
+(add-hook 'yaml-mode-hook #'my/clean-up-buffer-on-save)
 
 ;;
 ;; File searching settings
