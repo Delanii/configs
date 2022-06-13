@@ -38,8 +38,8 @@
 ;; Hydra for more convenient avy invokation
 (defhydra my/hydra-avy ()
   "Improve access to Avy functions in Doom Emacs with my custom hydras, to not intrude into Doom Emacs settings."
-  ("1" avy-goto-char "Go 2 char" :column "Chars")
-  ("2" avy-goto-char-2 "Go 2 2 chars" :column "Chars")
+  ("c" avy-goto-char "Go 2 char" :column "Chars")
+  ("t" avy-goto-char-2 "Go 2 2 chars" :column "Chars")
   ("w" avy-goto-word-1 "Go 2 word starting with 2 chars" :column "Words")
   ("l" avy-goto-line "Go 2 line" :column "Lines")
   ("q" nil "quit" :column "Aux"))
