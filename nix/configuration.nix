@@ -105,10 +105,12 @@
     kate
 
     # Basic tools
+	coreutils-full
     wget
     git
 
     # File managers
+	(pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {})
     krusader
     vifm-full
 
