@@ -39,7 +39,8 @@
 (defhydra my/hydra-avy ()
   "Improve access to Avy functions in Doom Emacs with my custom hydras, to not intrude into Doom Emacs settings."
   ("c" avy-goto-char "Go 2 char" :column "Chars")
-  ("t" avy-goto-char-2 "Go 2 2 chars" :column "Chars")
+  ("C" avy-goto-char-2 "Go 2 2 chars" :column "Chars")
+  ("t" avy-goto-char-timer "Go to char sequence" :column "Chars")
   ("w" avy-goto-word-1 "Go 2 word starting with 2 chars" :column "Words")
   ("l" avy-goto-line "Go 2 line" :column "Lines")
   ("q" nil "quit" :column "Aux"))
