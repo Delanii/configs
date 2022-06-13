@@ -445,7 +445,6 @@ Version 2016-10-24"
 (defun untabify-buffer ()
   "Untabify current buffer"
   (interactive)
-  (message "Hook is running.") ;; Debug
   (untabify (point-min) (point-max)))
 
 (defun my/clean-up-buffer-on-save ()

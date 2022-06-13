@@ -142,6 +142,10 @@
 (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
 (package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "8f49ccbd337edda01e52da0c75f6a76e2cc976f7")
 
+;; Org glossaries
+(package! org-glossary
+  :recipe (:host github :repo "tecosaur/org-glossary"))
+
 ;; Settings for org-roam-v2 per =https://github.com/org-roam/org-roam-ui/=
 (unpin! org-roam)
 (package! websocket)

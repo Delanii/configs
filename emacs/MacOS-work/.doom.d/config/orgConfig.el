@@ -604,11 +604,6 @@ title."
 (use-package! oc-biblatex
   :after oc)
 
-;; (use-package! oc-csl
-;;   :after oc
-;;   :config
-;;   (setq org-cite-csl-styles-dir "~/Zotero/styles")) ;; I dont have Zotero, but that is how I could set CSL style file
-
 ;;;; Third-party
 
 (use-package! citar-org
@@ -645,6 +640,9 @@ title."
           (org-cite-activate (point-max)))
         (org-cite-csl-activate-render-all)))
     (fmakunbound #'+org-cite-csl-activate/enable)))
+
+;; Glossaries in org mode
+(use-package! org-glossary :after org)
 
 ;; Settings for org super agenda -- stolen from TEC
 ;;
