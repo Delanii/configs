@@ -115,7 +115,27 @@
     vifm-full
 
     # Web browsers
-    firefox
+    chromium
+	firefox
+	opera
+	tor-browser-bundle-bin
+	nyxt
+	
+	# Media players
+	vlc
+	mpv
+	mplayer
+	
+	# Gaming
+	steam
+	steam-run
+	# steam-runtime -- seems to be unavailable. Test further if it will become required for whatever reason.
+	wine-staging
+	mono
+	
+	# Document readers
+	libsForQt5.okular
+	calibre
 
     # Data synchronization
     megasync
@@ -128,6 +148,9 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  
+  # Add steam
+  programs.steam.enable = true;
 
   # List services that you want to enable:
 
