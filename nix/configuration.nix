@@ -101,7 +101,7 @@
   environment.systemPackages = with pkgs; [
 
     # Text editors
-    (emacs.override {nativeComp = true; withPgtk = true})
+    (emacs.override {nativeComp = true; withPgtk = true;})
     vim
     neovim
     vscode
@@ -151,10 +151,16 @@
     # Development tools
     python310 # current version in 14. 06. 2022 is 3.10.5
     conda
-    rstudio
-    julia
 
-    haskellPackages.ghcup
+    R
+    # rstudio # 14. 06. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
+
+    julia-bin
+
+    # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like none is interested to make ghcup run on nixos
+    ghc
+    cabal-install
+
     rustup
 
     clojure
