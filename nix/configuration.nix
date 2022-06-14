@@ -101,44 +101,89 @@
   environment.systemPackages = with pkgs; [
 
     # Text editors
+    (emacs.override {nativeComp = true; withPgtk = true})
     vim
+    neovim
+    vscode
     kate
 
     # Basic tools
-	coreutils-full
+    coreutils-full
     wget
+    gawk
     git
 
     # File managers
-	(pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {})
+    (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {})
     krusader
     vifm-full
 
     # Web browsers
     chromium
-	firefox
-	opera
-	tor-browser-bundle-bin
-	nyxt
-	
-	# Media players
-	vlc
-	mpv
-	mplayer
-	
-	# Gaming
-	steam
-	steam-run
-	# steam-runtime -- seems to be unavailable. Test further if it will become required for whatever reason.
-	wine-staging
-	mono
-	
-	# Document readers
-	libsForQt5.okular
-	calibre
+    firefox
+    opera
+    tor-browser-bundle-bin
+    nyxt
+
+    # Media players
+    vlc
+    mpv
+    mplayer
+
+    # Gaming
+    steam
+    steam-run
+    # steam-runtime -- seems to be unavailable. Test further if it becomes required for whatever reason.
+    wine-staging
+    mono
+
+    # Document readers
+    libsForQt5.okular
+    calibre
 
     # Data synchronization
     megasync
+
+    # Advanced utilities
+    tmux
+    wezterm
+
+    # Development tools
+    python310 # current version in 14. 06. 2022 is 3.10.5
+    conda
+    rstudio
+    julia
+
+    haskellPackages.ghcup
+    rustup
+
+    clojure
+    leiningen
+
+    sbcl
+    roswell
+
+    go
+
+    lua5_4
+    luajit
+
+    racket
+    guile_3_0 # the current version in 14. 06. 2022
+
+    gnumake
+    cmake
+    gcc
+    clang
+    llvm
+
+    graalvm17-ce
+
+    postman
+    newman
+
+    docker
+    qemu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
