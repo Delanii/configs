@@ -102,6 +102,8 @@
 
     # Text editors
     (emacs.override {nativeComp = true; withPgtk = true;})
+    # Test: override also emacs version (git commit):
+    # (emacs.override {nativeComp = true; withPgtk = true; version = "787c4ad8b0776280305a220d6669c956d9ed8a5d"; sha256 = "on-the-second-try"})
     vim
     neovim
     vscode
@@ -202,6 +204,24 @@
   
   # Add steam
   programs.steam.enable = true;
+
+  # Test of a custom emacs overlay
+
+#  nixpkgs.overlays = [
+#  (self: super:
+#  {
+#  emacs = super.emacs.overrideAttrs (old: {
+#    src = super.fetchFromSavannah {
+#      repo = "emacs";
+#      rev = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
+#      sha256 = "0000000000000000000000000000000000000000000000000000";
+#    };
+#    configureFlags = [super.configureFlags ++ (nativeComp = true;
+#    withPgtk = true;)];
+#  });}
+#  )
+#
+#  ]
 
   # List services that you want to enable:
 
