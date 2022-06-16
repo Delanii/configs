@@ -103,7 +103,17 @@
     # Text editors
     (emacs.override {nativeComp = true; withPgtk = true;})
     # Test: override also emacs version (git commit):
-    # (emacs.override {nativeComp = true; withPgtk = true; version = "787c4ad8b0776280305a220d6669c956d9ed8a5d"; sha256 = "on-the-second-try"})
+    # (emacs.override {nativeComp = true; withPgtk = true; version = "787c4ad8b0776280305a220d6669c956d9ed8a5d"; sha256 = "on-the-second-try";}) # most probably won't work per section 7.1.1 NixOs manual
+    #
+    # This could work:
+    # (emacs.overrideAttrs (old: {
+    #   nativeComp = true;
+    #   withPgtk = true;
+    #   # src = path/to/emacs/src; # even this should work!
+    #   version = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
+    #   sha256 = "on-the-second-try";
+    # }))
+    #
     vim
     neovim
     vscode
