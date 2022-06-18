@@ -98,7 +98,16 @@
 
   # Setup graphics drivers
   # hardware.nvidia.modesetting.enable = true; # in case of issues, see wiki here: https://nixos.wiki/wiki/Nvidia ; follow the page to get full Prime offload setup
-  services.xserver.videoDrivers = [ "nvidia" ]; # this was tested on a VM, so better not play with this on VM
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  # Touchpad settings
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.tapping = true;
+  services.xserver.libinput.touchpad.accelSpeed = "0.5";
+  services.xserver.libinput.touchpad.clickMethod = "clickfinger"; # default is `null`, hopefully this should allow clicking by tapping on the touchpad
+  services.xserver.libinput.touchpad.disableWhileTyping = false; # `false` is the default value but it might be interesting to try out the behavior of setting it to `true`
+  services.xserver.libinput.touchpad.scrollMethod = "edge"; # default is `twofinger
+  services.xserver.libinput.touchpad.tappingDragLock = true; # `true` is the default, but I might want to set this to false. defined here: https://github.com/NixOS/nixpkgs/blob/release-22.05/nixos/modules/services/x11/hardware/libinput.nix
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -221,7 +230,9 @@
   # Add steam
   programs.steam.enable = true;
   hardware.opengl.enable = true; # for vulan drivers setup
+  hardware.opengl.driSupport = true; # and mesa drivers
   hardware.opengl.driSupport32Bit = true; # to allow running wine with 32-bit games
+  hardware.pulseaudio.support32Bit = true; # and sound too
 
   # Test of a custom emacs overlay
 
