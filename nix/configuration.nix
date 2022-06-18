@@ -96,6 +96,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Setup graphics drivers
+  # hardware.nvidia.modesetting.enable = true; # in case of issues, see wiki here: https://nixos.wiki/wiki/Nvidia ; follow the page to get full Prime offload setup
+  services.xserver.videoDrivers = [ "nvidia" ]; # this was tested on a VM, so better not play with this on VM
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -145,9 +149,11 @@
     # Gaming
     steam
     steam-run
+    lutris
     # steam-runtime -- seems to be unavailable. Test further if it becomes required for whatever reason.
     wine-staging
     mono
+    vulkan-tools
 
     # Document readers
     libsForQt5.okular
@@ -214,6 +220,8 @@
   
   # Add steam
   programs.steam.enable = true;
+  hardware.opengl.enable = true; # for vulan drivers setup
+  hardware.opengl.driSupport32Bit = true; # to allow running wine with 32-bit games
 
   # Test of a custom emacs overlay
 
