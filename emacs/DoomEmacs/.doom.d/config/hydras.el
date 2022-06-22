@@ -57,6 +57,18 @@
   ("u" uncomment-region "Uncomment highlighted region" :column "Comments")
   ("q" nil "quit" :column "Aux"))
 
+;; Hydra for Skeleton mode text expander
+(defhydra my/hydra-skeletons ()
+  "Invoke skeleton insertion at point."
+  ("t" my/skeleton/todo-heading "Insert TODO-heading" :column "Org")
+  ("q" nil "quit" :column "Aux"))
+
+;; Hydra for Tempo mode text expander
+(defhydra my/hydra-tempos ()
+  "Invoke tempo template insertion at point."
+  ("t" tempo-template-my/tempo/todo-heading "Insert TODO-heading" :column "Org")
+  ("q" nil "quit" :column "Aux"))
+
 ;;
 ;; Setup global entry keybinding for my hydras
 
@@ -66,7 +78,9 @@
       "m" #'my/hydra-toggle-modes/body
       "a" #'my/hydra-avy/body
       "c" #'my/hydra-comments/body
-      "t" #'my/hydra-org-timestamp/body)      ;; List of hydras with theyre access keys
+      "t" #'my/hydra-org-timestamp/body
+      "s" #'my/hydra-skeletons/body
+      "o" #'my/hydra-tempos/body)      ;; List of hydras with theyre access keys
 
 ;; With `general.el` it would be done like so:
 ;; References:

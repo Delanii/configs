@@ -114,14 +114,22 @@
 ;; Make agenda super
 (package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
 
+;; Make sure to see buffer (source) contents, not rendered special symbols
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
 
-(package! org-fancy-priorities
-  :disable t)
+;; Make org a prettier, without losing the performance
+(package! org-modern)
 
-(package! org-fragtog)
+;; (package! org-fragtog) ;; If I won't be using LaTeX previews, I also won't need this, I guess ...
+
+;; Interactive text highlighting in org-mode
+
+(package! org-remark
+  :recipe (:host github
+           :repo "nobiot/org-remark")
+ )
 
 (package! org-autolist)
 
@@ -129,7 +137,10 @@
 
 (package! org-ref)
 (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
-(package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "8f49ccbd337edda01e52da0c75f6a76e2cc976f7")
+
+;; Org glossaries
+(package! org-glossary
+  :recipe (:host github :repo "tecosaur/org-glossary"))
 
 ;; Settings for org-roam-v2 per =https://github.com/org-roam/org-roam-ui/=
 (unpin! org-roam)
@@ -158,10 +169,12 @@
 
 ;; Outline packages - experimental
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+
+;; Sidebars for org mode
+
 (package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree"))
 (package! org-sidebar)
 (package! org-ml)
-;; (package! hyperbole) ;; Not using it at the moment
 
 (package! org-auto-tangle)
 
@@ -189,6 +202,9 @@
 ;;
 (package! nov)
 
+;; Buttons everywhere
+(package! hyperbole)
+
 ;; Balíčky pro programování a programovací jazyky
 ;;
 ;; Všeobecná úprava programovacích rozhraní
@@ -209,9 +225,13 @@
 ;; Balíček pro vytváření dalších expanzí a regexů; myslím
 ;;
 (package! ample-regexps)
-;; a pro lepší funkcionální programování v elisp
 
+;; a pro lepší funkcionální programování v elisp
 (package! dash)
+
+;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
+
+(package! rec-mode)
 
 ;; Balček pro rich content v eshell
 (package! shx)

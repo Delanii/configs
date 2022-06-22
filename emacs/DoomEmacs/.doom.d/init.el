@@ -112,9 +112,9 @@
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        biblio
-       ;;direnv
-       ;; docker
-       editorconfig                ; let someone else argue about tabs vs spaces
+       ;; direnv
+       docker
+       ;; editorconfig                ; let someone else argue about tabs vs spaces
        ein                         ; tame Jupyter notebooks with emacs
        (eval +overlay)             ; run code, run (also, repls)
        gist                        ; interacting with github gists
@@ -142,7 +142,7 @@
         +lsp)                           ; C/C++/Obj-C madness
        (clojure
         +lsp) ; java with a lisp
-       ;;common-lisp      ; if you've seen one lisp, you've seen them all
+       common-lisp      ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -158,7 +158,8 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       ;;(go +lsp)                       ; the hipster dialect
+       (go
+        +lsp)                       ; the hipster dialect
        (haskell
         +dante
         +lsp)  ; a language that's lazier than I am
@@ -199,7 +200,6 @@
         +gnuplot
         +pandoc
         +pomodoro
-        +pretty
         +roam2
         +noter)
        ;;php               ; perl's insecure younger brother
