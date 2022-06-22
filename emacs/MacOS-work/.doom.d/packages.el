@@ -180,7 +180,6 @@
 (package! org-sidebar)
 
 (package! org-ml)
-;; (package! hyperbole) ;; Not using it at the moment
 
 (package! org-auto-tangle)
 
@@ -209,6 +208,7 @@
 
 ;; actions + links package
 (package! embark)
+(package! hyperbole)
 
 ;; Balíčky pro programování a programovací jazyky
 ;;
@@ -230,9 +230,12 @@
 ;; Balíček pro vytváření dalších expanzí a regexů; myslím
 ;;
 (package! ample-regexps)
-;; a pro lepší funkcionální programování v elisp
 
+;; a pro lepší funkcionální programování v elisp
 (package! dash)
+
+;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
+(package! rec-mode)
 
 ;; Balček pro rich content v eshell
 (package! shx)
