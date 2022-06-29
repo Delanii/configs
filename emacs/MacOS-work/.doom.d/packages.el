@@ -114,6 +114,9 @@
 ;; Make agenda super
 (package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
 
+;; Allow trigger events on TODO states
+(package! org-edna)
+
 ;; Make sure to see buffer (source) contents, not rendered special symbols
 
 (package! org-appear
@@ -140,7 +143,6 @@
 
 (package! org-ref)
 (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
-(package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "8f49ccbd337edda01e52da0c75f6a76e2cc976f7")
 
 ;; Org glossaries
 (package! org-glossary
@@ -180,7 +182,6 @@
 (package! org-sidebar)
 
 (package! org-ml)
-;; (package! hyperbole) ;; Not using it at the moment
 
 (package! org-auto-tangle)
 
@@ -207,8 +208,8 @@
 ;;
 (package! nov)
 
-;; actions + links package
-(package! embark)
+;; Buttons everywhere
+(package! hyperbole)
 
 ;; Balíčky pro programování a programovací jazyky
 ;;
@@ -230,9 +231,12 @@
 ;; Balíček pro vytváření dalších expanzí a regexů; myslím
 ;;
 (package! ample-regexps)
-;; a pro lepší funkcionální programování v elisp
 
+;; a pro lepší funkcionální programování v elisp
 (package! dash)
+
+;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
+(package! rec-mode)
 
 ;; Balček pro rich content v eshell
 (package! shx)

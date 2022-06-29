@@ -27,7 +27,7 @@
       user-mail-address "krulis.tomas.tk@gmail.com")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Additinal documentation
+;; Setting environment variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Setting location of emacs source code to access documentation for functions that are written in C:
@@ -42,7 +42,8 @@
 
 ;; On Emacs, you can set variables when open files, we call those File Variables. There are occasions I want to execute some arbitrary code when I open a file. To do that, I would add a file variable called eval, and pass my arbitrary code to it. As you can imagine, this is a dangerous feature
 ;; Allow commands on opening a file
-;; (setq enable-local-eval t)
+(setq enable-local-eval t
+      enable-local-variables t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font Settings
@@ -190,11 +191,6 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  "   ᛗ  %s" "   ✪   %s") project-name))))))
 
-;; Vypnutí automatické indentace tabulátory:
-(setq-default indent-tabs-mode nil)
-;; And it there are any tabs, set their size to 4 spaces
-(setq-default tab-width 4)
-
 ;; Sets the ammount of lines showed that are showed when reaching edge of the screen (top or bottom)
 (setq scroll-margin 2
       scroll-conservatively 1000)
@@ -304,6 +300,10 @@
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
 
+;;
+;; Built-in text expanders
+;;
+
 ;; Abbrev mode
  (dolist (hook '(org-mode-hook
                     TeX-latex-mode-hook
@@ -323,6 +323,20 @@ Version 2016-10-24"
 ;; Definitions for abbrev mode
 (setq abbrev-file-name                   ;; tell emacs where to read abbrev
       "~/.doom.d/config/abbrev_defs.el")    ;; definitions from...
+
+;; Hippie-expand settings
+;;
+(global-set-key (kbd "M-/") #'hippie-expand)
+
+;; Skeleton mode
+;;
+(load! "config/skeletons.el")
+
+;; Tempo mode
+;;
+(require 'tempo)
+(setq tempo-interactive t)
+(load! "config/tempos.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Own hydras and hercules settings
@@ -364,7 +378,10 @@ Version 2016-10-24"
 (after! company
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 3
-        company-show-numbers t))
+        company-show-quick-access t)
+  (add-to-list 'company-backends #'company-tabnine)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+
 
 ;; Increase completion history size
 (setq-default history-length 1000)
@@ -382,41 +399,6 @@ Version 2016-10-24"
 
 ;; company-dabbrev-mode in R-coding
 (set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
-
-;; More colorfull marginalia settings from TEC
-(after! marginalia
-  (setq marginalia-censor-variables nil)
-
-  (defadvice! +marginalia--anotate-local-file-colorful (cand)
-    "Just a more colourful version of `marginalia--anotate-local-file'."
-    :override #'marginalia--annotate-local-file
-    (when-let (attrs (file-attributes (substitute-in-file-name
-                                       (marginalia--full-candidate cand))
-                                      'integer))
-      (marginalia--fields
-       ((marginalia--file-owner attrs)
-        :width 12 :face 'marginalia-file-owner)
-       ((marginalia--file-modes attrs))
-       ((+marginalia-file-size-colorful (file-attribute-size attrs))
-        :width 7)
-       ((+marginalia--time-colorful (file-attribute-modification-time attrs))
-        :width 12))))
-
-  (defun +marginalia--time-colorful (time)
-    (let* ((seconds (float-time (time-subtract (current-time) time)))
-           (color (doom-blend
-                   (face-attribute 'marginalia-date :foreground nil t)
-                   (face-attribute 'marginalia-documentation :foreground nil t)
-                   (/ 1.0 (log (+ 3 (/ (+ 1 seconds) 345600.0)))))))
-      ;; 1 - log(3 + 1/(days + 1)) % grey
-      (propertize (marginalia--time time) 'face (list :foreground color))))
-
-  (defun +marginalia-file-size-colorful (size)
-    (let* ((size-index (/ (log10 (+ 1 size)) 7.0))
-           (color (if (< size-index 10000000) ; 10m
-                      (doom-blend 'orange 'green size-index)
-                    (doom-blend 'red 'orange (- size-index 1)))))
-      (propertize (file-size-human-readable size) 'face (list :foreground color)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets
@@ -451,6 +433,28 @@ Version 2016-10-24"
     (beginning-of-line)
     (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
       (org-element-property :language (org-element-context)))))
+
+;;
+;; Remove tabs from my life
+;; (except for Makefiles)
+;;
+
+;; Vypnutí automatické indentace tabulátory:
+(setq-default indent-tabs-mode nil)
+;; And it there are any tabs, set their size to 4 spaces
+(setq-default tab-width 4)
+
+;; Remove tabs from a buffer interactively
+(defun untabify-buffer ()
+  "Untabify current buffer"
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun my/clean-up-buffer-on-save ()
+    (add-hook 'before-save-hook 'untabify-buffer))
+
+;; Add hooks to programming modes to remove any left-out tabs
+(add-hook 'yaml-mode-hook #'my/clean-up-buffer-on-save)
 
 ;;
 ;; File searching settings

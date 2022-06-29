@@ -111,6 +111,17 @@
 ;;       (add-hook! evil-insert-state-entry (org-fragtog-mode 1))
 ;;       (add-hook! evil-insert-state-exit (org-fragtog-mode -1))))
 
+;;
+;; Setup sidebars in org mode
+;;
+
+;; from elken
+(use-package! org-ol-tree
+  :after org
+  :commands org-ol-tree
+  :config
+  (setq org-ol-tree-ui-window-position 'left)) ;; or 'right , because this collides with treemacs
+
 (after! org
 
   ;; Alternative link creating function - `counsel-org-link` - and settings for it
@@ -181,10 +192,6 @@ title."
   ;; Úprava vzhledu org-mode
   ;;
 
-  ;;
-  ;; Úprava vzhledu org-mode
-  ;;
-
   ;; Nastavení způsobu zvýrazňování vlastních TODO-sekvencí
   (setq org-todo-keywords '((sequence
                              "TODO(t)"  ; This task needs to be done.
@@ -241,16 +248,15 @@ title."
                              (?9 . (:foreground "dark slate blue"))))
 
   ;; defer font-locking when typing to make the experience more responsive
-  ;; (defun locally-defer-font-lock ()
-  ;;   "Set jit-lock defer and stealth, when buffer is over a certain size."
-  ;;   (when (> (buffer-size) 50000)
-  ;;     (setq-local jit-lock-defer-time 0.05
-  ;;                 jit-lock-stealth-time 1)))
+  ;; Disable this in case of issues with displaying fontification or overlays in org-mode. The source of these issues are most probably org-fancying packages, like org-superstar or org-fancy-priorities, which rely on finished font-lock process.
 
-  ;; (add-hook 'org-mode-hook #'locally-defer-font-lock)
-  ;; Apparently this causes issues with some people, but I haven’t noticed anything problematic beyond the expected slight delay in some fontification, so until I do I’ll use the above.
-  ;; The source of these issues are most probably org-fancying packages, like org-superstar or org-fancy-priorities, which rely on finished font-lock process.
-  ;; Disabling this for now (and maybe forever).
+  (defun locally-defer-font-lock ()
+    "Set jit-lock defer and stealth, when buffer is over a certain size."
+    (when (> (buffer-size) 50000)
+      (setq-local jit-lock-defer-time 0.05
+                  jit-lock-stealth-time 1)))
+
+  (add-hook 'org-mode-hook #'locally-defer-font-lock)
 
   ;; Nastavení vlastních delimiterů pro zvýrazňování textu; text mezi =%= a =!= je zvýrazněn.
   (require 'org-habit nil t)
@@ -276,11 +282,32 @@ title."
   (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-fonts)
   (add-hook 'org-font-lock-set-keywords-hook #'my/org-add-my-extra-keywords)
 
+  ;; Setup the interactive highlighting with the org-remark package
+  ;;
+  (require 'org-remark-global-tracking)
+  (org-remark-global-tracking-mode +1)
+
+  ;; Key-bind `org-remark-mark' to global-map so that you can call it
+  ;; globally before the library is loaded.
+
+  (define-key global-map (kbd "C-c n m") #'org-remark-mark)
+
+  ;; The rest of keybidings are done only on loading `org-remark'
+  (with-eval-after-load 'org-remark
+    (define-key org-remark-mode-map (kbd "C-c n o") #'org-remark-open)
+    (define-key org-remark-mode-map (kbd "C-c n ]") #'org-remark-view-next)
+    (define-key org-remark-mode-map (kbd "C-c n [") #'org-remark-view-prev)
+    (define-key org-remark-mode-map (kbd "C-c n r") #'org-remark-remove)
+
+    ;; Define custom pens -- also probably has to be loaded after the org-remark package is loaded:
+    (load! "custom-pens.el")
+    )
+
   ;; Customize org-mode heading symbols
-  (after! org-superstar
-    (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-          ;; org-superstar-headline-bullets-list '("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
-          org-superstar-prettify-item-bullets t ))
+  ;; (after! org-superstar
+  ;;   (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+  ;;         ;; org-superstar-headline-bullets-list '("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
+  ;;         org-superstar-prettify-item-bullets t ))
 
   ;; Settings for parenthessis completion -- complete target syntax `<< >>`, and also custom syntax defined above: `%% %%`, `!! !!`
   (sp-local-pair
@@ -331,9 +358,7 @@ title."
    :hook (org-mode . org-special-block-extras-mode)
 
    ;; Sets ob-http package to make HTTP requests from org-mode
-   ;; For some reason this doesn't seem to work with vertico module from Doom emacs. Turning off this one ...
-   ;; (use-package! ob-http
-   ;;  :commands org-babel-execute:http)
+   (use-package! ob-http)
 
    )
 
@@ -566,11 +591,6 @@ title."
 (use-package! oc-biblatex
   :after oc)
 
-;; (use-package! oc-csl
-;;   :after oc
-;;   :config
-;;   (setq org-cite-csl-styles-dir "~/Zotero/styles")) ;; I dont have Zotero, but that is how I could set CSL style file
-
 ;;;; Third-party
 
 (use-package! citar-org
@@ -589,24 +609,8 @@ title."
           (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
           (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
 
-(use-package! oc-csl-activate
-  :after oc
-  :config
-  (setq org-cite-csl-activate-use-document-style t)
-  (defun +org-cite-csl-activate/enable ()
-    (interactive)
-    (setq org-cite-activate-processor 'csl-activate)
-    (add-hook! 'org-mode-hook '((lambda () (cursor-sensor-mode 1)) org-cite-csl-activate-render-all))
-    (defadvice! +org-cite-csl-activate-render-all-silent (orig-fn)
-      :around #'org-cite-csl-activate-render-all
-      (with-silent-modifications (funcall orig-fn)))
-    (when (eq major-mode 'org-mode)
-      (with-silent-modifications
-        (save-excursion
-          (goto-char (point-min))
-          (org-cite-activate (point-max)))
-        (org-cite-csl-activate-render-all)))
-    (fmakunbound #'+org-cite-csl-activate/enable)))
+;; Glossaries in org mode
+(use-package! org-glossary :after org)
 
 ;; Settings for org super agenda -- stolen from TEC
 ;;
@@ -691,9 +695,9 @@ title."
 
 ;; Some hooks are notoriously prblematic.
 ;; Let's ignore them when they are misbehaving
-(defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
-  :around #'org-fancy-priorities-mode
-  :around #'org-superstar-mode
-  (ignore-errors (apply orig-fn args)))
+;; (defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
+;;   :around #'org-fancy-priorities-mode
+;;   :around #'org-superstar-mode
+;;   (ignore-errors (apply orig-fn args)))
 
   ) ;; closed `after!` macro from beginning of the org-mode settings

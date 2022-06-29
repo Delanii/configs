@@ -128,6 +128,11 @@
   :config
   (setq org-ol-tree-ui-window-position 'left)) ;; or 'right , because this collides with treemacs
 
+;; Org-mode triggers for TODO-items
+(use-package! org-edna
+  :after org
+  :hook (org-mode . org-edna-mode))
+
 (after! org
 
   ;; Alternative link creating function - `counsel-org-link` - and settings for it
@@ -621,25 +626,6 @@ title."
         `((file ,(all-the-icons-faicon "file-o" :v-adjust -0.1) . " ")
           (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
           (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
-
-(use-package! oc-csl-activate
-  :after oc
-  :config
-  (setq org-cite-csl-activate-use-document-style t)
-  (defun +org-cite-csl-activate/enable ()
-    (interactive)
-    (setq org-cite-activate-processor 'csl-activate)
-    (add-hook! 'org-mode-hook '((lambda () (cursor-sensor-mode 1)) org-cite-csl-activate-render-all))
-    (defadvice! +org-cite-csl-activate-render-all-silent (orig-fn)
-      :around #'org-cite-csl-activate-render-all
-      (with-silent-modifications (funcall orig-fn)))
-    (when (eq major-mode 'org-mode)
-      (with-silent-modifications
-        (save-excursion
-          (goto-char (point-min))
-          (org-cite-activate (point-max)))
-        (org-cite-csl-activate-render-all)))
-    (fmakunbound #'+org-cite-csl-activate/enable)))
 
 ;; Glossaries in org mode
 (use-package! org-glossary :after org)

@@ -1,4 +1,9 @@
-;; Empty yet, test a smple hydra for `g +`, `g -` and such ...
+;; Helper functions
+
+(defun my/org-timestamp-today-date()
+  "Insert today date as a active org timestamp."
+  (interactive)
+  (org-insert-time-stamp (current-time)))
 
 ;; Define my hydras!!
 

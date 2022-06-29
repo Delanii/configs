@@ -303,7 +303,8 @@
 ;; Other writing settings
 
 (use-package! palimpsest-mode
-  :defer t)
+  :after org
+  :hook (org-mode . palimpsest-mode))
 
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
