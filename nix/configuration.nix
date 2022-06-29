@@ -161,6 +161,8 @@
 
     # Data synchronization
     megasync
+    syncthing
+    croc
 
     # Advanced utilities
     tmux
