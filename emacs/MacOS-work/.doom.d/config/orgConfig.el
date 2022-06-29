@@ -128,6 +128,11 @@
   :config
   (setq org-ol-tree-ui-window-position 'left)) ;; or 'right , because this collides with treemacs
 
+;; Org-mode triggers for TODO-items
+(use-package! org-edna
+  :after org
+  :hook (org-mode . org-edna-mode))
+
 (after! org
 
   ;; Alternative link creating function - `counsel-org-link` - and settings for it
