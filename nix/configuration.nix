@@ -148,7 +148,7 @@
 
     # Gaming
     steam
-    # steam-run # steam-run is already part of steam
+    # steam-run
     lutris
     # steam-runtime -- seems to be unavailable. Test further if it becomes required for whatever reason.
     wine-staging
@@ -201,7 +201,7 @@
     cmake
     gcc
     clang
-    llvm
+    # llvm # Reportedly, `llvm` is part of `clang` already
 
     graalvm17-ce
 
