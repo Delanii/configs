@@ -148,7 +148,7 @@
 
     # Gaming
     steam
-    steam-run
+    # steam-run # steam-run is already part of steam
     lutris
     # steam-runtime -- seems to be unavailable. Test further if it becomes required for whatever reason.
     wine-staging
