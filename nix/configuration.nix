@@ -105,19 +105,15 @@
   environment.systemPackages = with pkgs; [
 
     # Text editors
-    (emacs.override {nativeComp = true; withPgtk = true;})
-    # Test: override also emacs version (git commit):
-    # (emacs.override {nativeComp = true; withPgtk = true; version = "787c4ad8b0776280305a220d6669c956d9ed8a5d"; sha256 = "on-the-second-try";}) # most probably won't work per section 7.1.1 NixOs manual
-    #
-    # This could work:
-    # (emacs.overrideAttrs (old: {
-    #   nativeComp = true;
-    #   withPgtk = true;
-    #   # src = path/to/emacs/src; # even this should work!
-    #   version = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
-    #   sha256 = "on-the-second-try";
-    # }))
-    #
+    emacs
+    (emacs.override {
+      nativeComp = true;
+      withPgtk = true;
+      withSQLite3 = true;
+      withCsrc = true;
+      withXinput2 = true;
+      withImageMagick = true;
+    })
     vim
     neovim
     vscode
@@ -154,6 +150,9 @@
     wine-staging
     mono
     vulkan-tools
+
+    # Communication
+    discord
 
     # Document readers
     libsForQt5.okular
@@ -227,21 +226,31 @@
 
   # Test of a custom emacs overlay
 
-#  nixpkgs.overlays = [
-#  (self: super:
-#  {
-#  emacs = super.emacs.overrideAttrs (old: {
-#    src = super.fetchFromSavannah {
-#      repo = "emacs";
-#      rev = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
-#      sha256 = "0000000000000000000000000000000000000000000000000000";
-#    };
-#    configureFlags = [super.configureFlags ++ (nativeComp = true;
-#    withPgtk = true;)];
-#  });}
-#  )
-#
-#  ]
+  nixpkgs.overlays = [
+   (self: super:{
+     emacs = super.emacs.overrideAttrs (old: {
+       src = super.fetchFromSavannah {
+         repo = "emacs";
+         rev = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
+         sha256 = "FIefdqudf4Yp5QqchEZWDjGdjEbtSkd2Kp/O0LRFvAY=";
+       };
+       configureFlags = (old.configureFlags or []) ++ [
+         "--with-modules"
+       ];
+     });
+   })
+
+  (self: super: {
+    discord = super.discord.overrideAttrs (
+      _: { src = builtins.fetchTarball {
+        url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+        sha256 = "1bhjalv1c0yxqdra4gr22r31wirykhng0zglaasrxc41n0sjwx0m";
+        };
+      }
+    );
+  })
+
+  ];
 
   # List services that you want to enable:
 
