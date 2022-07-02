@@ -105,7 +105,6 @@
   environment.systemPackages = with pkgs; [
 
     # Text editors
-    emacs
     (emacs.override {
       nativeComp = true;
       withPgtk = true;
