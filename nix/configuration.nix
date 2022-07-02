@@ -226,10 +226,21 @@
   # Test of a custom emacs overlay
 
   nixpkgs.overlays = [
+
+  # Crazy, recompile everything, Gentoo-style:
+
+   # (final: prev: {
+   #    stdenv = prev.stdenvAdapters.addAttrsToDerivation {
+   #      NIX_CFLAGS_COMPILE = "-pipe -march=native -O3 -ffloat-store -fexcess-precision=style -ffast-math -fno-rounding-math -fno-signaling-nans -fcx-limited-range -fno-math-errno -funsafe-math-optimizations -fassociative-math -freciprocal-math -ffinite-math-only -fno-signed-zeros -fno-trapping-math -frounding-math -fsingle-precision-constant -fcx-fortran-rules";
+   #    } prev.stdenv;
+   # })
+
    (self: super:{
      emacs = super.emacs.overrideAttrs (old: {
+       NIX_CFLAGS_COMPILE = "-O3 -mtune=native -march=native -fomit-frame-pointer";
        src = super.fetchFromSavannah {
          repo = "emacs";
+  #      version = "29.0.50"; # Not accepted in the overlay, but the revision repository commit is actually for emacs master with version 29.0.50
          rev = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
          sha256 = "FIefdqudf4Yp5QqchEZWDjGdjEbtSkd2Kp/O0LRFvAY=";
        };
