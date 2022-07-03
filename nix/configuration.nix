@@ -104,7 +104,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
+    #
     # Text editors
+    #
     (emacs.override {
       nativeComp = true;
       withPgtk = true;
@@ -118,30 +120,41 @@
     vscode
     kate
 
+    #
     # Basic tools
+    #
     coreutils-full
     wget
     gawk
     git
 
+    #
     # File managers
+    #
     (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {})
     krusader
     vifm-full
+    ranger
 
+    #
     # Web browsers
+    #
     chromium
     firefox
     opera
     tor-browser-bundle-bin
     nyxt
 
+    #
     # Media players
+    #
     vlc
     mpv
     mplayer
 
+    #
     # Gaming
+    #
     steam
     # steam-run
     lutris
@@ -150,62 +163,89 @@
     mono
     vulkan-tools
 
+    #
     # Communication
+    #
     discord
 
+    #
     # Document readers
+    #
     libsForQt5.okular
     calibre
 
+    #
     # Data synchronization
+    #
     megasync
     syncthing
     croc
 
+    #
     # Advanced utilities
+    #
     tmux
     wezterm
 
+    #
     # Development tools
+    #
+    # Python
     python310 # current version in 14. 06. 2022 is 3.10.5
     conda
 
+    # R
     R
     # rstudio # 14. 06. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
 
+    # Julia
     julia-bin
 
+    # Haskell
     # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like none is interested to make ghcup run on nixos
     ghc
     cabal-install
 
+    # Rust
     rustup
 
+    # Clojure
     clojure
     leiningen
 
+    # Common lisp
     sbcl
     roswell
 
+    # Go
     go
 
+    # Lua
     lua5_4
     luajit
 
+    # Scheme
     racket
     guile_3_0 # the current version in 14. 06. 2022
 
+    # C programming and tools
     gnumake
     cmake
     gcc
     clang
     # llvm # Reportedly, `llvm` is part of `clang` already
 
+    # Polyglot programming
     graalvm17-ce
 
+    # TeXlive
+    texlive.combined.scheme-full
+
+    # Make HTTP requests easy
     postman
     newman
 
+    # Containers and emulation
     docker
     qemu
   ];
