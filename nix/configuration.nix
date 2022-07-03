@@ -239,7 +239,14 @@
     graalvm17-ce
 
     # TeXlive
-    texlive.combined.scheme-full
+    texlive.combined.scheme-full # I couldnt make work the manual TeXlive installation
+    texworks
+
+    #
+    # More tools
+    #
+    # Preprocessors
+    gpp
 
     # Make HTTP requests easy
     postman
