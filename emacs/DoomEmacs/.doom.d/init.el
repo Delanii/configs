@@ -195,6 +195,7 @@
         +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
+        +hugo
         +jupyter
         +journal
         +gnuplot
