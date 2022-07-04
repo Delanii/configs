@@ -1,18 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; Profiling doom emacs startup
-;; (when doom-debug-p
-;;   (require 'benchmark-init)
-;;     (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
-
-;; Temporary workaround -- until changes around define-obsalete-variable-alias get merged into package; if this code would be used from original repo and without merged PR to fix this (the PR is from 06. 01. 2021, writing this in 02. 06. 2021, so ...)
-(when doom-debug-p
-  (cl-letf (((symbol-function 'define-obsolete-function-alias) #'defalias))
-    (use-package benchmark-init
-      :config
-      (require 'benchmark-init-modes)   ; explicitly required
-      (add-hook 'after-init-hook #'benchmark-init/deactivate))))
-
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
