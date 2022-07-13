@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./unstable.nix
     ];
 
   # Bootloader.
@@ -102,8 +103,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
 
+  environment.systemPackages = with pkgs; [
     #
     # Text editors
     #
@@ -219,11 +220,15 @@
     hunspellDicts.en_US-large
     # grammarly # 13. 07. 2022 not packaged for nixos
     proselint
-    vale
+    # vale # set to retrieve from unstable -- I want v. 2.20.0 for org-mode support
     tabnine
 
     # Preprocessors
     gpp
+
+    # Parser generators
+    tree-sitter
+    antlr
 
     # Make HTTP requests easy
     postman
