@@ -127,6 +127,7 @@
     wget
     gawk
     git
+    (ripgrep.override {withPCRE2 = true;})
 
     #
     # File managers
