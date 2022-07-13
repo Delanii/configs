@@ -120,6 +120,10 @@
     vscode
     kate
 
+    # Fonts
+    fira-code
+    fira-code-symbols
+
     #
     # Basic tools
     #
@@ -185,8 +189,39 @@
     #
     # Advanced utilities
     #
+    # Terminals and terminal multiplexers
     tmux
     wezterm
+
+    # Document generation and conversion
+    pandoc
+    # pandoc-crossref # as of 13. 07. 2022 is not in nixpkgs stable repo
+
+    # Search everywhere
+    ripgrep-all
+
+    # Working with video
+    ffmpeg
+
+    # PDF tools
+    poppler
+
+    # OCR -- optical content recognition
+    tesseract5
+
+    # Working with pictures
+    imagemagick
+
+    # Preprocessors
+    gpp
+
+    # Make HTTP requests easy
+    postman
+    newman
+
+    # Containers and emulation
+    docker
+    qemu
 
     #
     # Development tools
@@ -197,7 +232,7 @@
 
     # R
     R
-    # rstudio # 14. 06. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
+    # rstudio # 13. 07. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
 
     # Julia
     julia-bin
@@ -236,26 +271,23 @@
     clang
     # llvm # Reportedly, `llvm` is part of `clang` already
 
+    # Smalltalk -- Pharo
+    pharo
+
+    # Forth
+    gforth
+    pforth
+
+    # Standard ML
+    mlton
+    mlkit
+
     # Polyglot programming
     graalvm17-ce
 
     # TeXlive
     texlive.combined.scheme-full # I couldnt make work the manual TeXlive installation
     texworks
-
-    #
-    # More tools
-    #
-    # Preprocessors
-    gpp
-
-    # Make HTTP requests easy
-    postman
-    newman
-
-    # Containers and emulation
-    docker
-    qemu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
