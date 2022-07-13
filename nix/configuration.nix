@@ -212,6 +212,16 @@
     # Working with pictures
     imagemagick
 
+    # Spellcheck, prose linting
+    aspell
+    hunspell
+    hunspellDicts.cs_CZ
+    hunspellDicts.en_US-large
+    # grammarly # 13. 07. 2022 not packaged for nixos
+    proselint
+    vale
+    tabnine
+
     # Preprocessors
     gpp
 
