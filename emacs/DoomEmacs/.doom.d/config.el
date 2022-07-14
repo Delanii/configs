@@ -297,6 +297,14 @@
 (use-package! palimpsest-mode
   :defer t)
 
+;; Set-up prose linting with vale
+(use-package! flymake-vale
+  :defer t
+  :hook ((text-mode . flymake-vale-load)
+         (latex-mode . flymake-vale-load)
+         (org-mode . flymake-vale-load)
+         (markdown-mode . flymake-vale-load)))
+
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
 
