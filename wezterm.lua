@@ -1,5 +1,13 @@
 local wezterm = require 'wezterm';
 
+local mux = wezterm.mux
+
+-- Start terminal window maximized, should be working as of 09. 07. 2022
+wezterm.on("gui-startup", function()
+  local tab, pane, window = mux.spawn_window{}
+  window:gui_window():maximize()
+end)
+
 return {
   -- Font customization
   font = wezterm.font("Fira Code"),
@@ -11,7 +19,8 @@ return {
 --  color_scheme = "DotGov",
   color_scheme = "Duotone Dark",
 
-  -- Windo settings
+  -- Window settings
+  --
   -- window padding: not have letters all over
   window_padding = {
     left = 8,
@@ -22,7 +31,7 @@ return {
     bottom = 8,
   },
 
-  -- Canvas settings: window, backgound picture
+  -- Canvas settings: window backgound picture
   window_background_image = "./AdeptusMechanicus.jpg",
 
   window_background_image_hsb = {
