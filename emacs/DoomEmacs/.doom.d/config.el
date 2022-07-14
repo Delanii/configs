@@ -295,7 +295,8 @@
 ;; Other writing settings
 
 (use-package! palimpsest-mode
-  :defer t)
+  :after org
+  :hook (org-mode . palimpsest-mode))
 
 ;; Set-up prose linting with vale
 (use-package! flymake-vale

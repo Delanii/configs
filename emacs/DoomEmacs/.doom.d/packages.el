@@ -118,6 +118,9 @@
 ;; Make agenda super
 (package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
 
+;; Allow trigger events on TODO states
+(package! org-edna)
+
 ;; Make sure to see buffer (source) contents, not rendered special symbols
 (package! org-appear
   :recipe (:host github
