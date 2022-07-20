@@ -91,6 +91,10 @@
 (package! org-pandoc-import :recipe
   (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
 
+;; Text linting with vale -- vale has support for org-mode files since v. 2.20
+(package! flymake-vale :recipe
+  (:host github :repo "tpeacock19/flymake-vale"))
+
 ;; Package to remove text from buffer "Active" area to some out-of-text area
 ;; Provides:
 ;;
