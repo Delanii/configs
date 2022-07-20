@@ -188,6 +188,13 @@
     croc
 
     #
+    # Downloaders
+    #
+    obs-studio # screen-recording
+    # jdownloader # not in nixpkgs repo
+    qbittorrent
+
+    #
     # Advanced utilities
     #
     # Terminals and terminal multiplexers
