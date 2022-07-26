@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./unstable.nix
+      <home-manager/nixos> # add the homemanager channel to the nixos configuration
     ];
 
   # Bootloader.
@@ -363,6 +364,14 @@
   })
 
   ];
+
+  # Home-manager settings
+  #
+  home-manager.users.tomaskrulis = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      alacritty
+    ];
+  };
 
   # List services that you want to enable:
 
