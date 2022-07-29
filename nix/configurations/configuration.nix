@@ -140,7 +140,7 @@
     # File managers
     #
     # (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {}) # non-flake config
-    (pkgs.callPackage ./custom-derivations/doublecmd/default.nix {})
+    (pkgs.callPackage ../custom-derivations/doublecmd/default.nix {})
     krusader
     vifm-full
     ranger
