@@ -24,8 +24,6 @@
           inherit system;
           modules = [
             ./configurations/configuration.nix
-
-            home-manager.nixosModules.
           ];
         };
       };
