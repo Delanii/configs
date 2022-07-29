@@ -1,0 +1,19 @@
+* Updating system
+
+** Update configuration file
+
+** Commands to run
+
+- if you want to just update the system, run
+
+  #+begin_src shell
+  sudo nixos-rebuild switch --flake .#username --print-build-logs
+  #+end_src
+
+  This rebuilds the system for user =username= and also prints build information in the terminal. Everythink is printed on one line if the switch =--print-build-logs= is not used.
+
+- if you want to also update the flake inputs, run
+
+  #+begin_src shell
+  nix flake update
+  #+end_src

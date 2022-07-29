@@ -328,7 +328,7 @@
   hardware.opengl.enable = true; # for vulan drivers setup
   hardware.opengl.driSupport32Bit = true; # to allow running wine with 32-bit games
 
-  # Test of a custom emacs overlay
+  # Package overlays declaration
 
   nixpkgs.overlays = [
 
@@ -346,8 +346,8 @@
        src = super.fetchFromSavannah {
          repo = "emacs";
   #      version = "29.0.50"; # Not accepted in the overlay, but the revision repository commit is actually for emacs master with version 29.0.50
-         rev = "787c4ad8b0776280305a220d6669c956d9ed8a5d";
-         sha256 = "FIefdqudf4Yp5QqchEZWDjGdjEbtSkd2Kp/O0LRFvAY=";
+         rev = "9c12c3b7c59ee102d3a022368ea050fc9e3bb186";
+         sha256 = "sha256-E7+8KyQ4K3xVylHovKqvPU8GhoNvU//tAW/WQ9a9ORY=";
        };
        configureFlags = (old.configureFlags or []) ++ [
          "--with-modules"
