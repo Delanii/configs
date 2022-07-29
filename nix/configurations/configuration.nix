@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./unstable.nix
-      <home-manager/nixos> # add the homemanager channel to the nixos configuration
+      # <home-manager/nixos> # add the home-manager channel to the nixos configuration; this cannot be used when the home-manager is set in a `flake.nix` file
       ../home-manager/home.nix
     ];
 

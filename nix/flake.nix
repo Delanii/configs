@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }:
@@ -20,6 +24,8 @@
           inherit system;
           modules = [
             ./configurations/configuration.nix
+
+            home-manager.nixosModules.
           ];
         };
       };
