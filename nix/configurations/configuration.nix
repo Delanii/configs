@@ -366,35 +366,24 @@
 
   ];
 
-  # # Home-manager settings
-  # #
-  # # I have left here these settings to have an example of the syntax construct if I would want to put the home-manager configuration back into this file.
-  # #
-  # home-manager.users.tomaskrulis = { pkgs, ... }: {
-  #   home.packages = with pkgs; [
-  #     alacritty
-  #   ];
+  home-manager.users.tomaskrulis = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      alacritty
+    ];
 
-  #   # Test of writing specific configuration files with home-manager
-  #   home.file = { # $HOME path is prepended before the file path. There is no need to write `~/`
-  #     "nix-write-file-test/test.txt".text =
-  #       ''
-  #       This is a test of { special } symbols # and this too \ ...
-  #       '';
-  #   };
+    # Test of writing specific configuration files with home-manager
+    home.file = { # $HOME path is prepended before the file path. There is no need to write `~/`
+      "nix-write-file-test/test.txt".text =
+        ''
+        This is a test of { special } symbols # and this too \ ...
+        '';
+    };
 
-  #   home.file.".doom.d" = { # this could be used for .doom.d for example
-  #     source = /home/tomaskrulis/Documents/MegaSynchonized/MegaSynchronized/configs/emacs/DoomEmacs/.doom.d;
-  #     recursive = true;
-  #     # executable = true; # useful for scripts
-  #   };
-  # };
-
-  # Enable nix flakes
-  #
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    home.file.".doom.d" = { # this could be used for .doom.d for example
+      source = /home/tomaskrulis/Documents/MegaSynchonized/MegaSynchronized/configs/emacs/DoomEmacs/.doom.d;
+      recursive = true;
+      # executable = true; # useful for scripts
+    };
   };
 
   # List services that you want to enable:
@@ -416,4 +405,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-}
+  }
