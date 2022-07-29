@@ -9,8 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./unstable.nix
-      <home-manager/nixos> # add the homemanager channel to the nixos configuration
-      ../home-manager/home.nix
+      # <home-manager/nixos> # add the home-manager channel to the nixos configuration; this cannot be used when the home-manager is set in a `flake.nix` file
+      # ../home-manager/home.nix # This is useful when home-manager configuration is stored in a different file (see home-manager configuration example close to the end of the file). But flakes require a different setup.
     ];
 
   # Bootloader.
@@ -139,7 +139,8 @@
     #
     # File managers
     #
-    (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {})
+    # (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {}) # non-flake config
+    (pkgs.callPackage ../custom-derivations/doublecmd/default.nix {})
     krusader
     vifm-full
     ranger
@@ -366,25 +367,35 @@
 
   ];
 
-  home-manager.users.tomaskrulis = { pkgs, ... }: {
-    home.packages = with pkgs; [
-      alacritty
-    ];
-
-    # Test of writing specific configuration files with home-manager
-    home.file = { # $HOME path is prepended before the file path. There is no need to write `~/`
-      "nix-write-file-test/test.txt".text =
-        ''
-        This is a test of { special } symbols # and this too \ ...
-        '';
-    };
-
-    home.file.".doom.d" = { # this could be used for .doom.d for example
-      source = /home/tomaskrulis/Documents/MegaSynchonized/MegaSynchronized/configs/emacs/DoomEmacs/.doom.d;
-      recursive = true;
-      # executable = true; # useful for scripts
-    };
-  };
+  # # Home-manager settings
+  # #
+  # # I have left here these settings to have an example of the syntax construct if I would want to put the home-manager configuration back into this file.
+  # #
+  # # These settings can be moved into a separate file (nix module) and imported in the `imports` list. If these settings are in a different file, the code
+  # #
+  # # { config, pkgs, ... }: {
+  # # #   home-manager settings here
+  # # }
+  # #
+  # # has to be added to the file.
+  # #
+  # home-manager.users.tomaskrulis = { pkgs, ... }: {
+  #   home.packages = with pkgs; [
+  #     alacritty
+  #   ];
+  #   # Test of writing specific configuration files with home-manager
+  #   home.file = { # $HOME path is prepended before the file path. There is no need to write `~/`
+  #     "nix-write-file-test/test.txt".text =
+  #       ''
+  #       This is a test of { special } symbols # and this too \ ...
+  #       '';
+  #   };
+  #   home.file.".doom.d" = { # this could be used for .doom.d for example
+  #     source = /home/tomaskrulis/Documents/MegaSynchonized/MegaSynchronized/configs/emacs/DoomEmacs/.doom.d;
+  #     recursive = true;
+  #     # executable = true; # useful for scripts
+  #   };
+  # };
 
   # List services that you want to enable:
 
@@ -405,4 +416,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  }
+}
