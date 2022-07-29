@@ -24,7 +24,29 @@
           inherit system;
           modules = [
             ./configurations/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.tomaskrulis = {
+                imports = [
+                  ./home-manager/home.nix
+                ];
+              };
+            };
           ];
+        };
+      };
+      hmConfig = {
+        tomaskrulis = home-manager.lib.homeMnagerConfiguration {
+          inherit system pkgs;
+          username = "tomaskrulis";
+          homeDirectory = "/home/tomaskrulis";
+          stateVersion = "22.05";
+          configuration = {
+            imports = [
+              ./home-manager/home.nix
+            ];
+          };
         };
       };
     };

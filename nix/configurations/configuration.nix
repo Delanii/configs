@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ./unstable.nix
       # <home-manager/nixos> # add the home-manager channel to the nixos configuration; this cannot be used when the home-manager is set in a `flake.nix` file
-      ../home-manager/home.nix
+      # ../home-manager/home.nix # This is useful when home-manager configuration is stored in a different file (see home-manager configuration example close to the end of the file). But flakes require a different setup.
     ];
 
   # Bootloader.
@@ -369,6 +369,14 @@
   # # Home-manager settings
   # #
   # # I have left here these settings to have an example of the syntax construct if I would want to put the home-manager configuration back into this file.
+  # #
+  # # These settings can be moved into a separate file (nix module) and imported in the `imports` list. If these settings are in a different file, the code
+  # #
+  # # { config, pkgs, ... }: {
+  # # #   home-manager settings here
+  # # }
+  # #
+  # # has to be added to the file.
   # #
   # home-manager.users.tomaskrulis = { pkgs, ... }: {
   #   home.packages = with pkgs; [

@@ -1,5 +1,3 @@
-{ config, pkgs, ... }: {
-
   # Home-manager settings
   #
   home-manager.users.tomaskrulis = { pkgs, ... }: {
@@ -21,5 +19,3 @@
       # executable = true; # useful for scripts
     };
   };
-
-}
