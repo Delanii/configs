@@ -157,6 +157,10 @@
 ;; Toto spustí emacs vždy ve word-wrap módu - zalamování řádků na koncích slov (v mezerách)
 (global-visual-line-mode t)
 
+;; Remove bidi features: I am not using any bidi script. This should improve emacs handling of long lines
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one

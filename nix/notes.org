@@ -2,6 +2,13 @@
 
 ** Update configuration file
 
+*** Update overlays
+
+1. Update the package revision (git commit).
+2. Remove the hash value.
+3. The next rebuild errors out and prints the expected hash value. Copy the has value into the overlay.
+4. Next build should finish OK.
+
 ** Commands to run
 
 - if you want to just update the system, run
@@ -10,7 +17,7 @@
   sudo nixos-rebuild switch --flake .#username --print-build-logs
   #+end_src
 
-  This rebuilds the system for user =username= and also prints build information in the terminal. Everythink is printed on one line if the switch =--print-build-logs= is not used.
+  This rebuilds the system for user =username= and also prints build information in the terminal. Everything is printed on one line if the switch =--print-build-logs= is not used.
 
 - if you want to also update the flake inputs, run
 
