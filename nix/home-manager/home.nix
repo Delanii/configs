@@ -3,7 +3,7 @@
   # Home-manager settings
   #
   home.packages = with pkgs; [
-    alacritty
+  #  alacritty
   ];
 
   # Test of writing specific configuration files with home-manager

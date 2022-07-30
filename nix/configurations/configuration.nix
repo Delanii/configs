@@ -131,10 +131,17 @@
     # Basic tools
     #
     coreutils-full
+    moreutils
     wget
     gawk
     git
     (ripgrep.override {withPCRE2 = true;})
+    flex
+
+    # Shells
+    starship
+    nushell
+    babashka
 
     #
     # File managers
@@ -142,6 +149,7 @@
     # (pkgs.callPackage /etc/nixos/pkgs/doublecmd/default.nix {}) # non-flake config
     (pkgs.callPackage ../custom-derivations/doublecmd/default.nix {})
     krusader
+    broot
     vifm-full
     ranger
 
@@ -201,12 +209,20 @@
     # Advanced utilities
     #
     # Terminals and terminal multiplexers
+    alacritty
     tmux
     wezterm
+    zellij
 
     # Document generation and conversion
-    pandoc
+    pandoc # worth for an overlay
     # pandoc-crossref # as of 13. 07. 2022 is not in nixpkgs stable repo
+    hugo
+    haskellPackages.hakyll
+    codebraid # worth for an overlay
+
+    # Text expanders
+    espanso # worth for an overlay
 
     # Search everywhere
     ripgrep-all
@@ -233,6 +249,10 @@
     # vale # set to retrieve from unstable -- I want v. 2.20.0 for org-mode support
     tabnine
 
+    # Containers and emulation
+    docker
+    qemu
+
     # Preprocessors
     gpp
 
@@ -240,13 +260,45 @@
     tree-sitter
     antlr
 
+    # More finders
+    fd
+    fzf
+    skim
+    navi
+
+    # Format processors
+    fq # binary processor
+    yq # yaml processor
+    jq # JSON processor
+    htmlq
+    jc # JSON-convert
+
+    # CSV and databases
+    pgcli
+    miller
+    xsv
+
     # Make HTTP requests easy
     postman
     newman
+    xh
+    httpie
 
-    # Containers and emulation
-    docker
-    qemu
+    # Keyboard programming
+    # haskellPackages.kmonad # Flagged as broken sinnce 30. 07. 2022
+
+    # Emails
+    mutt
+    neomutt
+
+    # Various
+    lsd
+    delta
+    procs
+    bat
+    zoxide
+    sd
+    exa
 
     #
     # Development tools
@@ -257,13 +309,13 @@
 
     # R
     R
-    # rstudio # 13. 07. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
+    rstudio # 13. 07. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
 
     # Julia
     julia-bin
 
     # Haskell
-    # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like none is interested to make ghcup run on nixos
+    # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like noone is interested to make ghcup run on nixos
     ghc
     cabal-install
 
