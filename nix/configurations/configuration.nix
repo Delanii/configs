@@ -216,6 +216,7 @@
 
     # Document generation and conversion
     pandoc # worth for an overlay
+    # haskellPackages.pandoc_2_18 # 31. 07. 2022: doesnt build
     # pandoc-crossref # as of 13. 07. 2022 is not in nixpkgs stable repo
     hugo
     haskellPackages.hakyll
@@ -255,6 +256,10 @@
 
     # Preprocessors
     gpp
+    dhall
+    dhall-nix
+    dhall-json
+    dhall-docs
 
     # Parser generators
     tree-sitter
@@ -397,7 +402,7 @@
        NIX_CFLAGS_COMPILE = "-O3 -mtune=native -march=native -fomit-frame-pointer";
        src = super.fetchFromSavannah {
          repo = "emacs";
-  #      version = "29.0.50"; # Not accepted in the overlay, but the revision repository commit is actually for emacs master with version 29.0.50
+  #      version = "29.1"; # Not accepted in the overlay, but the revision repository commit is actually for emacs master with version 29.1
          rev = "9c12c3b7c59ee102d3a022368ea050fc9e3bb186";
          sha256 = "sha256-E7+8KyQ4K3xVylHovKqvPU8GhoNvU//tAW/WQ9a9ORY=";
        };
