@@ -65,6 +65,7 @@
 (package! ryo-modal)
 (package! modalka)
 (package! kakoune)
+(package! meow)
 
 ;; Alternative completion framework powered by ML -- TabNine: https://www.tabnine.com/
 (package! company-tabnine)
