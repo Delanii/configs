@@ -310,11 +310,12 @@ title."
   ;; Only this approach works
   (defun my/org-add-my-extra-keywords ()
     (push '("MAKE" (0 'my/make-face t)) org-font-lock-extra-keywords)
-    (push '("FIXME" (0 'my/warning-face t)) org-font-lock-extra-keywords)
-    (push '("CANCELED" (0 'my/warning-face t)) org-font-lock-extra-keywords)
-    (push '("BOOKMARK" (0 'my/warning-face t )) org-font-lock-extra-keywords)
     (push '("DELEGATED" (0 'my/no-worries-face t)) org-font-lock-extra-keywords)
     (push '("WAIT" (0 'my/no-worries-face t)) org-font-lock-extra-keywords)
+    (push '("CANCELED" (0 'my/notice-face t)) org-font-lock-extra-keywords)
+    (push '("BOOKMARK" (0 'my/notice-face t )) org-font-lock-extra-keywords)
+    (push '("FIXME" (0 'my/warning-face t)) org-font-lock-extra-keywords)
+    (push '("BLOCKER" (0 'my/warning-face t)) org-font-lock-extra-keywords)
     (push '("IMPORTANT" (0 'my/important-face t)) org-font-lock-extra-keywords))
 
   ;; This actually adds the functions to be executed as hooks

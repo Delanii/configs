@@ -110,8 +110,13 @@
        :weight bold))
   nil)
 
-(defface my/warning-face
+(defface my/notice-face
   '((t :foreground "#E5D822"
+       :weight bold))
+  nil)
+
+(defface my/warning-face
+  '((t :foreground "#F16D06"
        :weight bold))
   nil)
 
@@ -126,11 +131,12 @@
   (setq hl-todo-keyword-faces
         `(
           ("MAKE" . my/make-face)
-          ("FIXME". my/warning-face)
-          ("CANCELED" . my/warning-face)
-          ("BOOKMARK" . my/warning-face)
           ("DELEGATED" . my/no-worries-face)
           ("WAIT" . my/no-worries-face)
+          ("CANCELED" . my/notice-face)
+          ("BOOKMARK" . my/notice-face)
+          ("FIXME". my/warning-face)
+          ("BLOCKER" . my/warning-face)
           ("IMPORTANT" . my/important-face))))
 
 ;; Line number highlighting customizaton
