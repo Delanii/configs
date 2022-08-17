@@ -29,8 +29,8 @@
                             lambda () (org-autolist-mode))
             )
 
-  ;; Have list markers change with depth automatically in sequence - -> + -> * -> -
-  (setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "*") ("*" . "-") ("1." . "a.")))
+  ;; Have list markers change with depth automatically in sequence - - -> + -> - -> + (orig. -> + -> * -> -); the reason forthat is that the "*" sometimes does work a bit funky, because it is also the mark for the headings
+  (setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "-") ("1." . "a.")))
 
   ;; Hook autoload function in `writing.el` to org-mode start
   (add-hook 'org-mode-hook #'thi/org-buffer-config-h)
@@ -205,11 +205,6 @@ title."
                                         ; plan my next day, or to indicate in a project the next
                                         ; logical step.
 
-                             "STRT(s)" ; This task is actively in progress. Ideally you only have
-                                        ; one task marked as started, but in some cases you can
-                                        ; start a task, and while you wait for something to
-                                        ; complete, you can start another task.
-
                              "WAIT(w)" ; This task is waiting some external condition to happen,
                                         ; like waiting for an authorization, waiting for account to
                                         ; be created, etc.
@@ -227,7 +222,6 @@ title."
                              ))
 
         org-todo-keyword-faces '(("IMPORTANT" . (:foreground "red" :weight bold))
-                                 ("STRT" . +org-todo-active)
                                  ("WAIT" . +org-todo-onhold)
                                  ("HOLD" . +org-todo-onhold))
         )
