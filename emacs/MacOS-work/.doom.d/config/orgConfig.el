@@ -35,8 +35,8 @@
                             lambda () (org-autolist-mode))
             )
 
-  ;; Have list markers change with depth automatically in sequence - -> + -> * -> -
-  (setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "*") ("*" . "-") ("1." . "a.")))
+  ;; Have list markers change with depth automatically in sequence - - -> + -> - -> + (orig. -> + -> * -> -); the reason forthat is that the "*" sometimes does work a bit funky, because it is also the mark for the headings
+  (setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "-") ("1." . "a.")))
 
   ;; Hook autoload function in `writing.el` to org-mode start
   (add-hook 'org-mode-hook #'thi/org-buffer-config-h)
@@ -45,7 +45,7 @@
   ;; next lines then allows to use gj, gk, gh, gl as defined in evil-org
   ;; Odkaz: https://github.com/hlissner/doom-emacs/issues/4935
   ;;
-;;; Unshadow evil-org's bindings, if we expect it to be loaded.
+  ;; Unshadow evil-org's bindings, if we expect it to be loaded.
   (when (and (featurep! :lang org) (featurep! :editor evil +everywhere))
     ;; Move visual-line-mode bindings from evil-integration.el out of the way.
     (when (and evil-want-integration evil-respect-visual-line-mode)
@@ -211,10 +211,7 @@ title."
                                         ; plan my next day, or to indicate in a project the next
                                         ; logical step.
 
-                             "STRT(s)" ; This task is actively in progress. Ideally you only have
-                                        ; one task marked as started, but in some cases you can
-                                        ; start a task, and while you wait for something to
-                                        ; complete, you can start another task.
+                             "SCHD(s)" ; This task is scheduled. It means simply that I want to work on this task on a scheduled time.
 
                              "WAIT(w)" ; This task is waiting some external condition to happen,
                                         ; like waiting for an authorization, waiting for account to
@@ -224,6 +221,7 @@ title."
                                         ; things. A task can be paused because I simply don't want
                                         ; to continue doing it, or it is paused because I want to
                                         ; make sure I understand I shouldn't be work on this task.
+
                              "DLGT(g)" ; This task is "delegated" -- handled mostly by someone else,
                                         ; I am merely a watcher, or I have a minor participation in
                                         ; the task. In most cases, my participation is in terms of
@@ -238,7 +236,7 @@ title."
                              ))
 
         org-todo-keyword-faces '(("IMPORTANT" . (:foreground "red" :weight bold))
-                                 ("STRT" . +org-todo-active)
+                                 ("SCHD" . +org-todo-onhold)
                                  ("WAIT" . +org-todo-onhold)
                                  ("HOLD" . +org-todo-onhold)
                                  ("DLGT" . +org-todo-onhold))
