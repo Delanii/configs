@@ -253,6 +253,8 @@
     # Containers and emulation
     docker
     qemu
+    genymotion # android emulation
+    virtualbox
 
     # Preprocessors
     gpp
