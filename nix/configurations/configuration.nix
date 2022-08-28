@@ -137,6 +137,7 @@
     git
     (ripgrep.override {withPCRE2 = true;})
     flex
+    rlwrap
 
     # Shells
     starship
