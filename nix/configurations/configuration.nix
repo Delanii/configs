@@ -138,6 +138,7 @@
     (ripgrep.override {withPCRE2 = true;})
     flex
     rlwrap
+    gnuplot
 
     # Shells
     starship
@@ -205,6 +206,11 @@
     obs-studio # screen-recording
     # jdownloader # not in nixpkgs repo
     qbittorrent
+
+    #
+    # Graphics
+    #
+    inkscape
 
     #
     # Advanced utilities
@@ -317,7 +323,7 @@
 
     # R
     R
-    rstudio # 13. 07. 2022 not building. Issue here: https://github.com/NixOS/nixpkgs/pull/177021
+    rstudio
 
     # Julia
     julia-bin
@@ -326,6 +332,7 @@
     # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like noone is interested to make ghcup run on nixos
     ghc
     cabal-install
+    # agda # 2022-08-31 doesn't build for some reason
 
     # Rust
     rustup
@@ -367,12 +374,27 @@
     mlton
     mlkit
 
+    # Proofs and logic
+    swiProlog
+    gprolog
+    coq
+
+    # Various programming languages for fun
+    nim
+    odin
+    # dyalog # installable probably from here: https://github.com/markus1189/dyalog-nixos
+    octaveFull
+    postgresql
+    libxslt
+    saxon
+
     # Polyglot programming
     graalvm17-ce
 
     # TeXlive
     texlive.combined.scheme-full # I couldnt make work the manual TeXlive installation
     texworks
+    ghostscript
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
