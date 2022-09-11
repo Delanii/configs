@@ -156,7 +156,7 @@
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 
 (package! org-ql
-  :recipe (:host github :repo "cfroehli/org-ql"))
+  :recipe (:host github :repo "alphapapa/org-ql"))
 ;; (package! org-plus-contrib) ;; rozbije export z org-mode do jiných formátů
 (package! org-pdftools)
 (package! navi)
@@ -238,8 +238,10 @@
 (package! dash)
 
 ;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
-
 (package! rec-mode)
+;; And general databases:
+(package! emacsql
+  :recipe (:host github :repo "skeeto/emacsql"))
 
 ;; Balček pro rich content v eshell
 (package! shx)
