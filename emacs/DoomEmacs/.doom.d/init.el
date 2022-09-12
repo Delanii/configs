@@ -236,5 +236,10 @@
          +smartparens))
 
 ;; Make evil-mode respect visual-lines instead of logical lines for =jk= movement
-
+;;
 (setq evil-respect-visual-line-mode t)
+
+;; Restore the C-u working as a universal prefix argument. Othervise, C-u is a scroll command in evil-mode. Alternative universal prefix argument is M-n (where `n' is the prefix number)
+;;
+(setq evil-want-C-u-scroll nil
+      evil-want-C-d-scroll nil)
