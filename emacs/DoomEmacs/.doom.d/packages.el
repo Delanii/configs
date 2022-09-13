@@ -239,6 +239,7 @@
 
 ;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
 (package! rec-mode)
+
 ;; And general databases:
 (package! emacsql
   :recipe (:host github :repo "skeeto/emacsql"))
