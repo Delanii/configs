@@ -124,13 +124,15 @@
        tty                              ; improve the terminal Emacs experience
 
        :lang
-       ;; agda              ; types of types of types of types...
+       (agda
+        +local
+        +tree-sitter)            ; types of types of types of types...
        (cc
         +lsp)                           ; C/C++/Obj-C madness
        (clojure
         +lsp) ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
-       ;; coq               ; proofs-as-programs
+       coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
        ;; csharp            ; unity, .NET, and mono shenanigans
        data                    ; config/data formats
@@ -169,7 +171,7 @@
         )                    ; writing papers in Emacs has never been so fun
        ;; lean
        ;; factor
-       ;; ledger            ; an accounting system in Emacs
+       ledger            ; an accounting system in Emacs
        lua                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
