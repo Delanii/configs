@@ -66,6 +66,9 @@
 (package! modalka)
 (package! kakoune)
 (package! meow)
+(package! xah-fly-keys
+  :recipe (:host github :repo xahlee/xah-fly-keys))
+(package! boon-qwertz) ;; or boon-qwerty
 
 ;; Alternative completion framework powered by ML -- TabNine: https://www.tabnine.com/
 (package! company-tabnine)
