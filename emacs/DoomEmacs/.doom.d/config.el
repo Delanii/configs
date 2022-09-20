@@ -120,8 +120,8 @@
 
 ;; Line number highlighting customizaton
 (custom-set-faces!
-  '(line-number :foreground "#BE00ED" :slant normal)
-  '(line-number-current-line :foreground "#bbc2cf" :slant normal)) ;; :slant normal removes italics from the font
+  '(line-number :foreground "#BE00ED")
+  '(line-number-current-line :foreground "#bbc2cf"))
 
 ;; Modeline changes
 ;;
