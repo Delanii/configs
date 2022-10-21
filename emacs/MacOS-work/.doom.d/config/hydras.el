@@ -14,13 +14,20 @@
   ("-" evil-numbers/dec-at-pt "Decrement" :column "Decrease")
   ("q" nil "quit" :column "Aux"))
 
+;; Hydra for shrinking and expanding org tables
+(defhydra my/hydra-org-table-shrink-expand ()
+  "Shrink or expand the org table at point. Doesn't work when the table in the table.el format."
+  ("s" org-table-shrink "Shrink table at point." :column "Default")
+  ("e" org-table-expand "Expand table at point." :column "Default")
+  ("q" nil "quit" :column "Aux"))
+
 ;; Hydra for putting and incrementing org timestamps
 (defhydra my/hydra-org-timestamp ()
   "Place a org timestamp at point. Increment or decrement the timestamp at point."
-  ("." org-time-stamp "Insert timestamp" :column "Insert")
+  ("i" org-time-stamp "Insert timestamp" :column "Insert")
   ("t" my/org-timestamp-today-date "Insert today timestamp" :column "Insert")
-  ("+" org-timestamp-up "Increase timestamp value at point" :column "Move")
-  ("-" org-timestamp-down "Decrease tiestamp value at pont" :column "Move")
+  ("u" org-timestamp-up "Increase timestamp value at point" :column "Move")
+  ("d" org-timestamp-down "Decrease tiestamp value at pont" :column "Move")
   ("q" nil "Quit" :column "Aux"))
 
 ;; Hydra for grouping and conviniently toggling modes that are sometimes nagging me
@@ -75,10 +82,11 @@
 (map! :leader ;; Have it bound globally after pressing <leader> key, which is `SPC`
       :prefix ("y" . "hydras") ;; Access hydras with <y> key after <leader>, label it in `which-key` minibuffer as `hydras`
       "n" #'my/hydra-numbers/body
+      "t" #'my/hydra-org-timestamp/body
+      "b" #'my/hydra-org-table-shrink-expand/body
       "m" #'my/hydra-toggle-modes/body
       "a" #'my/hydra-avy/body
       "c" #'my/hydra-comments/body
-      "t" #'my/hydra-org-timestamp/body
       "s" #'my/hydra-skeletons/body
       "o" #'my/hydra-tempos/body)      ;; List of hydras with theyre access keys
 
