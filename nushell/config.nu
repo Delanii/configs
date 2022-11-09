@@ -225,6 +225,7 @@ let-env config = {
   case_sensitive_completions: false # set to true to enable case-sensitive completions
   enable_external_completion: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
   max_external_completion_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
+  render_right_prompt_on_last_line : true
 
   # A strategy of managing table view in case of limited space.
   table_trim: {
