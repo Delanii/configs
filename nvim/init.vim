@@ -22,8 +22,6 @@ set smarttab                    " Uses shiftwidth and tabstap to insert blanks w
 set shiftwidth=2                " One tab == four spaces.
 set tabstop=2                   " One tab == four spaces.<Paste>
 
-source $HOME/.config/nvim/vim-plug/plugins.vim
-
 call plug#begin(stdpath('data') . '/plugged')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,7 +195,15 @@ Plug 'https://github.com/jpalardy/vim-slime'
 Plug 'metakirby5/codi.vim'
 
 " Spouštění dalších terminálů přímo v neovimu
-Plug 'kassio/neoterm' 
+Plug 'kassio/neoterm'
+
+"
+" Text linting
+"
+
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 "
 " Uncategorized plugins

@@ -173,3 +173,36 @@ require('kommentary.config').configure_language("rust", {
     single_line_comment_string = "//",
     multi_line_comment_strings = {"/*", "*/"},
 })
+
+--------------------------------------------------------
+--
+-- Text linting
+--
+-------------------------------------------------------
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.cspell,
+        null_ls.builtins.code_actions.cspell,
+        null_ls.builtins.diagnostics.alex.with({
+            filetypes = {"html", "yaml"}
+        }),
+        null_ls.builtins.diagnostics.chktex,
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.markdownlint_cli2,
+        null_ls.builtins.diagnostics.misspell,
+        null_ls.builtins.diagnostics.puglint,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.spectral,
+        null_ls.builtins.diagnostics.vale,
+        null_ls.builtins.diagnostics.write_good
+    },
+})
+
+require("trouble").setup {
+  -- your configuration comes here
+  -- or leave it empty to use the default settings
+  -- refer to the configuration section below
+}
