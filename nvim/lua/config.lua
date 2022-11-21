@@ -45,10 +45,18 @@ local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 --     },
 -- }
 
+-- 21. 11. 2022: MacOS M1 troubleshoting:
+--
+-- neovim is best installed with the x86_64 architecture, so with `brew` install with:
+--
+-- ```
+-- arch -x86_64 /usr/local/bin/brew install package
+-- ```
+
 -- install tree-sitter parsers, "maintained" + norg specifically
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "haskell", "html", "json", "julia", "latex", "lua", "nix", "python", "regex", "rust", "toml", "yaml", "markdown" },  -- one of "all", (parsers with maintainers), or a list of languages
+ ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "haskell", "html", "json", "julia", "latex", "lua", "nix", "python", "regex", "rust", "toml", "yaml", "markdown" },  -- one of "all", (parsers with maintainers), or a list of languages
   -- 21. 11. 2022: Removed: "norg", "norg_meta", "norg_table"
   -- "norg" is not among "maintained" languages, so list of languages is needed
   ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
