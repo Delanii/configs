@@ -182,7 +182,6 @@ Plug 'lewis6991/gitsigns.nvim'
 
 " Installation of lsp servers
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
 
 "
 " Startig REPLs in neovim

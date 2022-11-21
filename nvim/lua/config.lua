@@ -21,34 +21,35 @@ local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 -- Specific settings for norg parser
 
-parser_configs.norg = {
-    install_info = {
-        url = "https://github.com/nvim-neorg/tree-sitter-norg",
-        files = { "src/parser.c", "src/scanner.cc" },
-        branch = "main"
-    },
-}
+-- parser_configs.norg = {
+--     install_info = {
+--         url = "https://github.com/nvim-neorg/tree-sitter-norg",
+--         files = { "src/parser.c", "src/scanner.cc" },
+--         branch = "main"
+--     },
+-- }
 
-parser_configs.norg_meta = {
-    install_info = {
-        url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-        files = { "src/parser.c" },
-        branch = "main"
-    },
-}
+-- parser_configs.norg_meta = {
+--     install_info = {
+--         url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+--         files = { "src/parser.c" },
+--         branch = "main"
+--     },
+-- }
 
-parser_configs.norg_table = {
-    install_info = {
-        url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
-        files = { "src/parser.c" },
-        branch = "main"
-    },
-}
+-- parser_configs.norg_table = {
+--     install_info = {
+--         url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+--         files = { "src/parser.c" },
+--         branch = "main"
+--     },
+-- }
 
 -- install tree-sitter parsers, "maintained" + norg specifically
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "fish", "haskell", "html", "java", "json", "julia", "kotlin", "latex", "lua", "nix", "python", "r", "regex", "rust", "scala", "toml", "yaml", "norg", "norg_meta", "norg_table" },  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "bash", "bibtex", "c", "clojure", "cmake", "commonlisp", "cpp", "css", "haskell", "html", "json", "julia", "latex", "lua", "nix", "python", "regex", "rust", "toml", "yaml", "markdown" },  -- one of "all", (parsers with maintainers), or a list of languages
+  -- 21. 11. 2022: Removed: "norg", "norg_meta", "norg_table"
   -- "norg" is not among "maintained" languages, so list of languages is needed
   ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
   highlight = {
@@ -150,22 +151,7 @@ require'compe'.setup {
 -- LSP settings
 --
 
--- LSP Installer settings
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
-
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+-- lsp-install is no longer maintained
 
 -- configuration of comments input
 
@@ -187,15 +173,15 @@ null_ls.setup({
         null_ls.builtins.diagnostics.cspell,
         null_ls.builtins.code_actions.cspell,
         null_ls.builtins.diagnostics.alex.with({
-            filetypes = {"html", "yaml"}
-        }),
+             filetypes = {"html", "yaml"}
+         }),
         null_ls.builtins.diagnostics.chktex,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.diagnostics.markdownlint_cli2,
         null_ls.builtins.diagnostics.misspell,
         null_ls.builtins.diagnostics.puglint,
         null_ls.builtins.diagnostics.shellcheck,
-        null_ls.builtins.diagnostics.spectral,
+        -- null_ls.builtins.diagnostics.spectral, 21. 11. 2022: Seems to be bugged
         null_ls.builtins.diagnostics.vale,
         null_ls.builtins.diagnostics.write_good
     },
