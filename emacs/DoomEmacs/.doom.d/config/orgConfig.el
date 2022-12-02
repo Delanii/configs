@@ -6,7 +6,9 @@
 
   ;; Nastavení defaultního souboru pro capture
 
-  (setq org-default-notes-file (concat org-directory "/notesDefaultFile.org"))
+  (setq org-default-notes-file (concat org-directory "/notesDefaultFile.org")
+  ;;     setq org-roam-directory "~/valid/path/to/folder/where/the/org/roam/db/will/be/stored"
+        )
 
 (after! org
 
