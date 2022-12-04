@@ -34,6 +34,10 @@
 ;;
 (setq source-directory (concat (getenv "HOME") "/emacsBuild/emacs"))
 
+;; Set path to the tree-sitter grammar files compiled for emacs
+;;
+(add-to-list 'treesit-extra-load-path "~/emacsBuild/tree-sitter-module/dist/")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Allow all commands
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
