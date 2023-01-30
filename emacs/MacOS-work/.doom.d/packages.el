@@ -260,4 +260,3 @@
 
 ;; Profiling doom emacs startup
 (package! benchmark-init)
-
