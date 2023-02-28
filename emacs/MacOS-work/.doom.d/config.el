@@ -33,6 +33,11 @@
 ;; Fixes for stupid Mac
 (setenv "DICTIONARY" "en_US")
 
+;; When emacs starts in GUI on MacOS, it might not get access to the full `PATH', but only a subset of `PATH' defined in an MacOS equivalent of `.profile'.
+;; This setting should fix that. In particular, this enables emacs to fund `hunspell' on MacOS. Otherwise, it errors out.
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key mapping changes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -276,14 +281,14 @@
 ;; Spellcheck Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(ispell-change-dictionary "en_US" t)
+;; (ispell-change-dictionary "en_US" t) ;; This doesn't seem to wor anymore
 
-;; Nastavení spellchecku pro angličtinu a češtinu současně - funguje ve Spacemacs (`.spacemacs`), ale ne zde
+;; This made flycheck working again ...
 
-;; (setq ispell-program-name "hunspell")
+(setq ispell-program-name "hunspell")
 ;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
-;; (setq ispell-local-dictionary "en_US")
-;; (setq ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US,cs_CZ") nil utf-8)))
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US,cs_CZ") nil utf-8)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil - modal editor settings

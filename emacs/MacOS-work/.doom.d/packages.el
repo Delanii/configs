@@ -260,3 +260,6 @@
 
 ;; Profiling doom emacs startup
 (package! benchmark-init)
+
+;; Set PATH the same as in shell on Macs
+(package! exec-path-from-shell)
