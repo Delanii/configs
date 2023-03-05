@@ -1,4 +1,6 @@
 $include /etc/inputrc # Přenáší nastavení ze systemového `.inputrc`
+#
+# information reference: https://www.masteringemacs.org/article/keyboard-shortcuts-every-command-line-hacker-should-know-about-gnu-readline
 
 # Editing mode settings
 
@@ -18,7 +20,7 @@ set vi-cmd-mode-string "[N]"
 
 #"\C-p":history-search-backward and "\C-n":history-search-forward: These two lines set Ctrl-P/Ctrl-N to search backward/forward through the history for the string of characters between the start of the current line and the current cursor position.
 
-set colored-stats On # This line sets readline to display possible completions using different colors to indicate their file types. The colors are determined by the environmental variable LS_COLORS
-set completion-ignore-case On # This line sets auto completion to ignore cases.
-set show-all-if-ambiguous On # This line sets the completions to be listed immediately instead of ringing the bell, when the completing word has more than one possible completion.
-set show-all-if-unmodified On # This line sets the completions to be listed immediately instead of ringing the bell, when the completing word has more than one possible completion but no partial completion can be made.
+set colored-stats on # This line sets readline to display possible completions using different colors to indicate their file types. The colors are determined by the environmental variable LS_COLORS
+set completion-ignore-case on # This line sets auto completion to ignore cases.
+set show-all-if-ambiguous on # This line sets the completions to be listed immediately instead of ringing the bell, when the completing word has more than one possible completion.
+set show-all-if-unmodified on # This line sets the completions to be listed immediately instead of ringing the bell, when the completing word has more than one possible completion but no partial completion can be made.

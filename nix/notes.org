@@ -1,3 +1,10 @@
+* Information resources
+
+- https://tonyfinn.com/blog/nix-from-first-principles-flake-edition/
+- https://nixos.org/manual/nix/stable/language/derivations.html
+- https://nix.dev/
+- https://github.com/NixOS/nixpkgs
+
 * Updating system
 
 ** Update configuration file
