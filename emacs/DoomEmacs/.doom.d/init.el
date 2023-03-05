@@ -124,9 +124,9 @@
        tty                              ; improve the terminal Emacs experience
 
        :lang
-       (agda
-        +local
-        +tree-sitter)            ; types of types of types of types...
+       ;; (agda
+       ;;  +local
+       ;;  +tree-sitter)            ; types of types of types of types...
        (cc
         +lsp)                           ; C/C++/Obj-C madness
        (clojure
@@ -139,7 +139,7 @@
        ;; (dart +flutter)   ; paint ui and not much else
        ;; (elixir
        ;; + lsp)                     ; erlang done right
-       ;;elm               ; care for a cup of TEA?
+       ;; elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
        ess  ; emacs speaks statistics
@@ -153,7 +153,7 @@
         +dante
         +lsp)  ; a language that's lazier than I am
        hy      ; readability of scheme w/ speed of python
-       ;; idris             ; a language you can depend on
+       idris             ; a language you can depend on
        json    ; At least it ain't XML
        ;; (java
        ;;  +meghanada
@@ -199,7 +199,7 @@
         +cython
         +lsp)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
-       racket     ; a DSL for DSLs
+       ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
        rest                   ; Emacs as a REST client
        ;; rst                             ; ReST in peace

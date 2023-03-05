@@ -42,7 +42,7 @@
   ;; Odkaz: https://github.com/hlissner/doom-emacs/issues/4935
   ;;
 ;;; Unshadow evil-org's bindings, if we expect it to be loaded.
-  (when (and (featurep! :lang org) (featurep! :editor evil +everywhere))
+  (when (and (modulep! :lang org) (modulep! :editor evil +everywhere))
     ;; Move visual-line-mode bindings from evil-integration.el out of the way.
     (when (and evil-want-integration evil-respect-visual-line-mode)
       (general-define-key
@@ -330,38 +330,19 @@ title."
 (use-package! websocket
     :after org-roam)
 
-;; Settings for org-roam-ui package -- org-roam should not start always. If it does, this will impact start-up time significantly. So if it increases, disable this.
-;;
-(use-package! org-roam-ui
-  :after org-roam ;; or :after org
-  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-  ;;         a hookable mode anymore, you're advised to pick something yourself
-  ;;         if you don't care about startup time, use
-  ;;  :hook (after-init . org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
-
 (after! org
 
   ;;
   ;; LaTeX in org-mode appearance settings
   ;;
   (setq org-highlight-latex-and-related '(native script entities)) ;; Introduces native highlighting to LaTeX code block
-  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))) ;; remove org-block face, which is added by `native` highlighting
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t))) ;; remove org-block face, which is added by `native` highlighting
 
- ;; Make active org-special blocks
- ;;
- (use-package! org-special-block-extras
-   :after org
-   :hook (org-mode . org-special-block-extras-mode)
+    ;; Sets ob-http package to make HTTP requests from org-mode
+   (use-package! ob-http))
 
-   ;; Sets ob-http package to make HTTP requests from org-mode
-   (use-package! ob-http)
 
-   )
+
 
 (after! org
 
@@ -601,7 +582,7 @@ title."
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
   (org-support-shift-select t)
-  (when (featurep! :lang org +roam2)
+  (when (modulep! :lang org +roam2)
     ;; Include property drawer metadata for 'org-roam' v2.
     (citar-org-note-include '(org-id org-roam-ref)))
   ;; Personal extras
