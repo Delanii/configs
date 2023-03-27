@@ -291,7 +291,7 @@
 (setq spell-fu-ignore-modes (list 'dired-mode))
 (setq spell-fu-global-ignore-buffer (lambda (buf) (buffer-local-value 'buffer-read-only buf)))
 
-(global-spell-fu-mode)
+(spell-fu-global-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil - modal editor settings
