@@ -377,13 +377,10 @@
     # Proofs and logic
     swiProlog
     gprolog
-    coq
 
     # Various programming languages for fun
-    nim
-    odin
+    scala
     # dyalog # installable probably from here: https://github.com/markus1189/dyalog-nixos
-    octaveFull
     postgresql
     libxslt
     saxon
