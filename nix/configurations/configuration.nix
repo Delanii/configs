@@ -211,6 +211,7 @@
     # Graphics
     #
     inkscape
+    gimp
 
     #
     # Advanced utilities
@@ -225,6 +226,7 @@
     pandoc # worth for an overlay
     # haskellPackages.pandoc_2_18 # 31. 07. 2022: doesnt build
     # pandoc-crossref # as of 13. 07. 2022 is not in nixpkgs stable repo
+    shellcheck
     hugo
     haskellPackages.hakyll
     codebraid # worth for an overlay
@@ -286,6 +288,7 @@
     jq # JSON processor
     htmlq
     jc # JSON-convert
+    dasel
 
     # CSV and databases
     pgcli
@@ -318,7 +321,7 @@
     # Development tools
     #
     # Python
-    python310 # current version in 14. 06. 2022 is 3.10.5
+    python312 # current version in 14. 06. 2022 is 3.10.5
     conda
 
     # R
@@ -326,13 +329,13 @@
     rstudio
 
     # Julia
-    julia-bin
+    julia
 
     # Haskell
     # haskellPackages.ghcup # ghcup is marked as broken ... And it seems like noone is interested to make ghcup run on nixos
     ghc
     cabal-install
-    # agda # 2022-08-31 doesn't build for some reason
+    stack
 
     # Rust
     rustup
@@ -353,7 +356,6 @@
     luajit
 
     # Scheme
-    racket
     guile_3_0 # the current version in 14. 06. 2022
 
     # C programming and tools
@@ -362,9 +364,6 @@
     gcc
     clang
     # llvm # Reportedly, `llvm` is part of `clang` already
-
-    # Smalltalk -- Pharo
-    pharo
 
     # Forth
     gforth
@@ -380,13 +379,16 @@
 
     # Various programming languages for fun
     scala
+    erlang
+    gnuapl
     # dyalog # installable probably from here: https://github.com/markus1189/dyalog-nixos
+    ocaml
     postgresql
     libxslt
     saxon
 
     # Polyglot programming
-    graalvm17-ce
+    # graalvm17-ce
 
     # TeXlive
     texlive.combined.scheme-full # I couldnt make work the manual TeXlive installation
