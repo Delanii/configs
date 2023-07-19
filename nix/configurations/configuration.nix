@@ -264,6 +264,7 @@
     qemu
     genymotion # android emulation
     virtualbox
+    distrobox
 
     # Preprocessors
     gpp
