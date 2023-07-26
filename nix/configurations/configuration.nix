@@ -290,6 +290,9 @@
     htmlq
     jc # JSON-convert
     dasel
+    libxml2
+    xmlstarlet
+    xidel
 
     # CSV and databases
     pgcli
