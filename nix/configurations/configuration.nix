@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./unstable.nix
+      # ./unstable.nix # 2023-07-28: vale is alreadz available in the nixos-stable channel
       # <home-manager/nixos> # add the home-manager channel to the nixos configuration; this cannot be used when the home-manager is set in a `flake.nix` file
       # ../home-manager/home.nix # This is useful when home-manager configuration is stored in a different file (see home-manager configuration example close to the end of the file). But flakes require a different setup.
     ];
@@ -154,6 +154,7 @@
     broot
     vifm-full
     ranger
+    doublecmd
 
     #
     # Web browsers
@@ -223,7 +224,7 @@
     zellij
 
     # Document generation and conversion
-    pandoc # worth for an overlay
+    haskellPackages.pandoc-cli # worth for an overlay
     # haskellPackages.pandoc_2_18 # 31. 07. 2022: doesnt build
     # pandoc-crossref # as of 13. 07. 2022 is not in nixpkgs stable repo
     shellcheck
@@ -255,12 +256,12 @@
     hunspellDicts.cs_CZ
     hunspellDicts.en_US-large
     # grammarly # 13. 07. 2022 not packaged for nixos
-    proselint
-    # vale # set to retrieve from unstable -- I want v. 2.20.0 for org-mode support
+    vale # set to retrieve from unstable -- I want v. 2.20.0 for org-mode support
     tabnine
 
     # Containers and emulation
     docker
+    podman
     qemu
     genymotion # android emulation
     virtualbox
@@ -293,6 +294,8 @@
     libxml2
     xmlstarlet
     xidel
+    saxon-he
+    libxslt
 
     # CSV and databases
     pgcli
@@ -368,9 +371,11 @@
     gcc
     clang
     # llvm # Reportedly, `llvm` is part of `clang` already
+    gnu-cobol
+    gnuapl
+    gforth
 
     # Forth
-    gforth
     pforth
 
     # Standard ML
@@ -384,12 +389,10 @@
     # Various programming languages for fun
     scala
     erlang
-    gnuapl
     # dyalog # installable probably from here: https://github.com/markus1189/dyalog-nixos
     ocaml
     postgresql
-    libxslt
-    saxon
+    fpc
 
     # Polyglot programming
     # graalvm17-ce
