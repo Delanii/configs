@@ -4,46 +4,7 @@
 # Prompt definition
 ################################
 
-# Default prompt definition:
-#
-# def create_left_prompt [] {
-#     let path_segment = ($env.PWD)
-
-#     $path_segment
-# }
-
-# def create_right_prompt [] {
-#     let time_segment = ([
-#         (date now | date format '%m/%d/%Y %r')
-#     ] | str collect)
-
-#     $time_segment
-# }
-
-# # Use nushell functions to define your right and left prompt
-# let-env PROMPT_COMMAND = { create_left_prompt }
-# let-env PROMPT_COMMAND_RIGHT = { create_right_prompt }
-#
-# Set Starship prompt instead
-#
-let-env STARSHIP_SHELL = "nu"
-let-env PROMPT_INDICATOR = " "
-let-env PROMPT_COMMAND = { starship prompt --cmd-duration $env.CMD_DURATION_MS --status $env.LAST_EXIT_CODE | str trim }
-
-# The prompt indicators are environmental variables that represent
-# the state of the prompt
-#
-# let-env PROMPT_INDICATOR = "〉" # default setting, changing it above in Starship prompt setting
-let-env PROMPT_INDICATOR_VI_INSERT = " [I] " # default: ": "
-let-env PROMPT_INDICATOR_VI_NORMAL = " [N] " # default: "〉"
-let-env PROMPT_MULTILINE_INDICATOR = "::: "
-
-################################
-# Set environment variables
-################################
-
-let-env VISUAL = "vim"
-let-env EDITOR = $env.VISUAL
+# The prompt is by default defined in the `env.nu` file, with environment variables.
 
 module completions {
   # Custom completions for external commands (those outside of Nushell)
@@ -190,14 +151,14 @@ use completions *
 # Directories to search for scripts when calling source or use
 #
 # By default, <nushell-config-dir>/scripts is added
-let-env NU_LIB_DIRS = [
+$env.NU_LIB_DIRS = [
     ($nu.config-path | path dirname | path join 'scripts')
 ]
 
 # Directories to search for plugin binaries when calling register
 #
 # By default, <nushell-config-dir>/plugins is added
-let-env NU_PLUGIN_DIRS = [
+$env.NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
@@ -255,7 +216,7 @@ let default_theme = {
 }
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   show_banner: true # true or false to enable or disable the banner
   color_config: $default_theme
   use_grid_icons: true
