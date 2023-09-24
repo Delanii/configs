@@ -91,9 +91,9 @@
 (package! org-pandoc-import :recipe
   (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
 
-;; Text linting with vale -- vale has support for org-mode files since v. 2.20
-(package! flymake-vale :recipe
-  (:host github :repo "tpeacock19/flymake-vale"))
+;; Package to format buffers for various services like JIRA or Slack
+(package! copy-as-format :recipe
+  (:host github :repo "sshaw/copy-as-format" :files ("*.el")))
 
 ;; Package to remove text from buffer "Active" area to some out-of-text area
 ;; Provides:
@@ -152,10 +152,8 @@
 (package! org-glossary
   :recipe (:host github :repo "tecosaur/org-glossary"))
 
-;; Settings for org-roam-v2 per =https://github.com/org-roam/org-roam-ui/=
+;; Settings for org-roam-v2
 (unpin! org-roam)
-(package! websocket)
-(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
