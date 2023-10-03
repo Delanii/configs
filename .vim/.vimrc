@@ -126,6 +126,16 @@ Plug 'https://github.com/ap/vim-css-color'
 " Which-key for vim
 Plug 'liuchengxu/vim-which-key'
 
+
+" Remaps
+
+let mapleader = ","
+
+" Windows
+
+" Remaps C-w to create new windows and move cursor in them to the <Leader>w key sequence
+nnoremap <Leader>w <C-w>
+
 """""""""""""""""""""""""""""""""""""""""""
 "
 " Writing code
