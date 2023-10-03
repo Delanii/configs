@@ -164,6 +164,9 @@
     opera
     tor-browser-bundle-bin
     nyxt
+    lynx
+    w3m
+    elinks
 
     #
     # Media players
@@ -392,7 +395,13 @@
     # dyalog # installable probably from here: https://github.com/markus1189/dyalog-nixos
     ocaml
     postgresql
+	haskellPackages.squeal-postgresql
     fpc
+	haxe
+	vlang
+	nim
+	zig
+	j
 
     # Polyglot programming
     # graalvm17-ce
