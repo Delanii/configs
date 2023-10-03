@@ -135,6 +135,13 @@ let mapleader = ","
 
 " Remaps C-w to create new windows and move cursor in them to the <Leader>w key sequence
 nnoremap <Leader>w <C-w>
+nnoremap <C-w> <Nop>
+
+" Tags
+
+" Zellij multiplexer uses C-t to switch the multiplexer tags. Vim user C-t to navigate between tags. Lets remap that to avoid shadowing.
+nnoremap <Leader>t <C-t>
+nnoremap <C-t> <Nop>
 
 """""""""""""""""""""""""""""""""""""""""""
 "
