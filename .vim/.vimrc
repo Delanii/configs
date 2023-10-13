@@ -17,6 +17,7 @@ highlight Cursor guibg=#1ABC9C guifg=black
 
 " Zvýraznění řádku s kurzorem
 set cursorline
+set cursorlineopt=both
 highlight CursorLine guibg=#2c3e50
 
 " Zvýraznění sloupce s kurzorem
