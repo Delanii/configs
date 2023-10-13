@@ -62,13 +62,13 @@
 
 ;; Packages connected to other modal editing
 (package! god-mode) ;; Již v Doom Emacs - ale při povolení v =init.el= aktivuje god-mode všude, což mě mate ... Možná bych si na to zvykl, testovat. Prozatím zapnuto zde a vypnuto v =init.el=
+(package! devil)
 (package! ryo-modal)
 (package! modalka)
 (package! kakoune)
 (package! meow)
 (package! xah-fly-keys
   :recipe (:host github :repo "xahlee/xah-fly-keys"))
-(package! boon) ;; or boon-qwerty
 
 ;; Alternative completion framework powered by ML -- TabNine: https://www.tabnine.com/
 (package! company-tabnine)
