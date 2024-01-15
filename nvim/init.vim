@@ -62,7 +62,6 @@ Plug 'folke/which-key.nvim'
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Tree-sitter pro nvim
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Rainbow Parenthesses plugin
@@ -165,13 +164,6 @@ Plug 'https://github.com/tpope/vim-fugitive'
 " shows git changes in gutter
 Plug 'airblade/vim-gitgutter'        
 
-let g:gitgutter_async=0
-
-
-" Magit pro neovim
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'TimUntersberger/neogit' " Does work only with nvim v. 0.5
-
 " Git signs in gutter
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
@@ -207,9 +199,6 @@ Plug 'folke/trouble.nvim'
 "
 " Uncategorized plugins
 "
-
-" Writing comments
-Plug 'b3nj5m1n/kommentary'
 
 " Více kurzorů najednou, help je pomocí `:help visual-multi`
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}

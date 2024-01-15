@@ -88,37 +88,11 @@ require 'colorizer'.setup()
 
 -- which-key setup
 
-require("which-key").setup {
+-- require("which-key").setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
   -- refer to the configuration section
-}
-
----------------------------------------------------------
---
--- General Writing
---
---------------------------------------------------------
-
--- Neorg
-
--- Basic neorg settings per https://github.com/nvim-neorg/neorg
-
-require('neorg').setup {
-  -- Tell Neorg what modules to load
-  load = {
-      ["core.defaults"] = {}, -- Load all the default modules
-      ["core.norg.concealer"] = {}, -- Allows for use of icons
-      ["core.norg.dirman"] = { -- Manage your directories with Neorg
-          config = {
-              workspaces = {
-                  my_workspace = "~/neorg"
-              },
-              engine = "nvim-compe",
-          }
-      }
-  },
-}
+-- }
 
 --------------------------------------------------------
 --
@@ -155,19 +129,6 @@ require'compe'.setup {
 
 --neogit.setup {}
 
---
--- LSP settings
---
-
--- lsp-install is no longer maintained
-
--- configuration of comments input
-
-require('kommentary.config').configure_language("rust", {
-    single_line_comment_string = "//",
-    multi_line_comment_strings = {"/*", "*/"},
-})
-
 --------------------------------------------------------
 --
 -- Text linting
@@ -178,16 +139,12 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.cspell,
-        null_ls.builtins.code_actions.cspell,
         null_ls.builtins.diagnostics.alex.with({
              filetypes = {"html", "yaml"}
          }),
         null_ls.builtins.diagnostics.chktex,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.diagnostics.markdownlint_cli2,
-        null_ls.builtins.diagnostics.misspell,
-        null_ls.builtins.diagnostics.puglint,
         null_ls.builtins.diagnostics.shellcheck,
         -- null_ls.builtins.diagnostics.spectral, 21. 11. 2022: Seems to be bugged
         null_ls.builtins.diagnostics.vale,
