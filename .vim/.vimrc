@@ -55,6 +55,8 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Re
 " DiffChange - part of the line was changed (highlights the whole line)
 " DiffText - the exact part of the line that changed
 
+set conceallevel=0
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -106,11 +108,6 @@ Plug 'sheerun/vim-polyglot'
 " Rainbow Parenthesses plugin
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
-
-" Line indentation highlighting
-Plug 'https://github.com/Yggdroot/indentLine'
-
-let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each indent level has it own distinct character
 
 " vim-signature plugin : Použití vlastních záložek
 Plug 'https://github.com/kshenoy/vim-signature'
@@ -255,21 +252,7 @@ Plug 'https://github.com/vim-scripts/vis'
 " Splitjoin - splits or joins text along delimiters
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 
-" Plugin pro seřazování řádků jiným než číselným způsobem; lze také řadit
-" podle jiného než prvního řádku
-Plug 'https://github.com/vim-scripts/vis'
-
-" Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
-Plug 'vimwiki/vimwiki'
-
 "!! spellchecking -- check `:help mkspell`!!
-
-" Zvýrazňování syntaxe markdownu a textu odrážek, je nutné `: set filetype=journal:`
-" Plug 'junegunn/vim-journal'
-
-" Distraction-free writing ve vimu
-" `:Goyo` zapíná, `:Goyo!` vypíná
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "

@@ -280,24 +280,6 @@ Plug 'https://github.com/mbbill/undotree'
 " Práce s a automatické formátování textových tabulek
 Plug 'dhruvasagar/vim-table-mode'
 
-" Z prezentace Damiana Conwaye
-" Splitjoin - splits or joins text along delimiters
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'
-
-" Plugin pro seřazování řádků jiným než číselným způsobem; lze také řadit
-" podle jiného než prvního řádku
-Plug 'https://github.com/vim-scripts/vis'
-
-" Plugin pro transformaci seznamu v dlouhou větu oddělenou čárkami a obráceně
-Plug 'https://github.com/soulston/vim-listtrans'
-
-" Zajímavý plugin pro psaní, trochu podobný org-mode v Emacs
-Plug 'vimwiki/vimwiki'
-
-" Distraction-free writing ve vimu
-" `:Goyo` zapíná, `:Goyo!` vypíná
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-
 "
 " Neorg
 "

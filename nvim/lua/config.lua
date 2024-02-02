@@ -62,7 +62,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "c_sharp", "cuda" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
+    disable = { "markdown" },  -- list of language that will be disabled
   },
   incremental_selection = {
     enable = true,
