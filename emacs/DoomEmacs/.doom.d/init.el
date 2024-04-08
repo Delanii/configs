@@ -49,7 +49,7 @@
        (popup
         +all
         +defaults)                ; tame sudden yet inevitable temporary windows
-       tabs              ; a tab bar for Emacs
+       ;; tabs              ; a tab bar for Emacs
        treemacs                      ; a project drawer, like neotree but cooler
        ;; unicode           ; extended unicode support for various languages
        vc-gutter              ; vcs diff in the fringe
@@ -115,7 +115,7 @@
        rgb        ; creating color strings
        ;; taskrunner        ; taskrunner for all your projects
        ;; terraform         ; infrastructure as code
-       tmux       ; an API for interacting with tmux
+       ;; tmux       ; an API for interacting with tmux
        ;; upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -174,7 +174,7 @@
        lua                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
+       ;; nix               ; I hereby declare "nix geht mehr!"
        ;; ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
@@ -185,7 +185,6 @@
         +present                        ; Emacs for presentation
         +hugo
         +jupyter
-        +journal
         +gnuplot
         +pandoc
         +pomodoro
@@ -207,8 +206,8 @@
         +lsp)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; (scala
        ;;   +lsp)
-       (scheme
-        +guile)                        ; a fully conniving family of lisps
+       ;; (scheme
+       ;;  +guile)                        ; a fully conniving family of lisps
        (sh
         +lsp)               ; she sells {ba,z,fi}sh shells on the C xor
        ;; sml
