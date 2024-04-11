@@ -281,14 +281,17 @@
 ;; Spellcheck Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (ispell-change-dictionary "en_US" t) ;; This doesn't seem to wor anymore
-
-;; This made flycheck working again ...
-
 (setq ispell-program-name "hunspell")
 ;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
 (setq ispell-local-dictionary "en_US")
 (setq ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US,cs_CZ") nil utf-8)))
+(setq spell-fu-directory "~/dictionaries") ;; Please create this directory manually.
+(setq ispell-personal-dictionary "~/dictionaries/my-dictionary.txt")
+
+(setq spell-fu-ignore-modes (list 'dired-mode))
+(setq spell-fu-global-ignore-buffer (lambda (buf) (buffer-local-value 'buffer-read-only buf)))
+
+(spell-fu-global-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil - modal editor settings
@@ -316,14 +319,6 @@
 (use-package! palimpsest-mode
   :after org
   :hook (org-mode . palimpsest-mode))
-
-;; Set-up prose linting with vale
-(use-package! flymake-vale
-  :defer t
-  :hook ((text-mode . flymake-vale-load)
-         (latex-mode . flymake-vale-load)
-         (org-mode . flymake-vale-load)
-         (markdown-mode . flymake-vale-load)))
 
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
