@@ -396,7 +396,7 @@ Version 2016-10-24"
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 3
         company-show-quick-access t)
-  (add-to-list 'company-backends #'company-tabnine)
+  ;; (add-to-list 'company-backends #'company-tabnine)
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 
@@ -415,7 +415,7 @@ Version 2016-10-24"
     company-yasnippet))
 
 ;; company-dabbrev-mode in R-coding
-(set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
+;; (set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets

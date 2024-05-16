@@ -41,11 +41,11 @@
        hydra
        indent-guides                    ; highlighted indent columns
        ;; ligatures         ; ligatures and symbols to make your code pretty again
-       minimap         ; show a map of the code on the side
+       ;; minimap         ; show a map of the code on the side
        modeline        ; snazzy, Atom-inspired modeline, plus API
        ;; nav-flash         ; blink cursor line after big motions
        ;; neotree                    ; a project drawer, like NERDTree for vim
-       ophints                       ; highlight the region an operation acts on
+       ;; ophints                       ; highlight the region an operation acts on
        (popup
         +all
         +defaults)                ; tame sudden yet inevitable temporary windows
@@ -98,11 +98,11 @@
        :tools
        ;; ansible
        ;; debugger          ; FIXME stepping through code, to help you add bugs
-       biblio
+       ;; biblio
        ;; direnv
        docker
        ;; editorconfig                ; let someone else argue about tabs vs spaces
-       ein                         ; tame Jupyter notebooks with emacs
+       ;; ein                         ; tame Jupyter notebooks with emacs
        (eval +overlay)             ; run code, run (also, repls)
        lookup                      ; navigate your code and its documentation
        (lsp
@@ -175,7 +175,7 @@
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       ;; ocaml                            ; an objective camel
+       ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
         +attach                         ; custom attachment system
@@ -183,14 +183,12 @@
         +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
-        +hugo
-        +jupyter
         +gnuplot
         +pandoc
         +pomodoro
         +roam2
         +noter)
-       ;; php               ; perl's insecure younger brother
+       php               ; perl's insecure younger brother
        ;; plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python

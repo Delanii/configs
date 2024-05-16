@@ -41,7 +41,7 @@
        hydra
        indent-guides                    ; highlighted indent columns
        ;;ligatures         ; ligatures and symbols to make your code pretty again
-       minimap         ; show a map of the code on the side
+       ;; minimap         ; show a map of the code on the side
        modeline        ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;; neotree                    ; a project drawer, like NERDTree for vim
@@ -96,12 +96,12 @@
 
        :tools
        ;; ansible
-       biblio
+       ;; biblio
        ;; debugger          ; FIXME stepping through code, to help you add bugs
        ;; direnv
        docker
        ;; editorconfig                ; let someone else argue about tabs vs spaces
-       ein                         ; tame Jupyter notebooks with emacs
+       ;; ein                         ; tame Jupyter notebooks with emacs
        (eval +overlay)             ; run code, run (also, repls)
        lookup                      ; navigate your code and its documentation
        (lsp
@@ -143,7 +143,7 @@
         +tree-sitter)     ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
-       ess  ; emacs speaks statistics
+       ;; ess  ; emacs speaks statistics
        ;; faust             ; dsp, but you get to keep your soul
        ;; fsharp            ; ML stands for Microsoft's Language
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
@@ -160,8 +160,8 @@
        ;;  +lsp)           ; the poster child for carpal tunnel syndrome
        (javascript
         +lsp)                         ; all(hope(abandon(ye(who(enter(here))))))
-       (julia
-        +lsp)                ; a better, faster MATLAB
+       ;; (julia
+       ;;  +lsp)                ; a better, faster MATLAB
        ;; (kotlin
        ;;  + lsp)         ; a better, slicker Java(Script)
        (latex
@@ -184,15 +184,12 @@
         +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
-        +hugo
-        +jupyter
-        +journal
         +gnuplot
         +pandoc
         +pomodoro
         +roam2
         +noter)
-       ;; php               ; perl's insecure younger brother
+       php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python

@@ -402,7 +402,7 @@ Version 2016-10-24"
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 3
         company-show-quick-access t)
-  (add-to-list 'company-backends #'company-tabnine)
+  ;; (add-to-list 'company-backends #'company-tabnine)
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 ;; Increase completion history size

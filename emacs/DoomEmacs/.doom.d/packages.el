@@ -71,7 +71,7 @@
   :recipe (:host github :repo "xahlee/xah-fly-keys"))
 
 ;; Alternative completion framework powered by ML -- TabNine: https://www.tabnine.com/
-(package! company-tabnine)
+;; (package! company-tabnine)
 
 ;; Package for dealing with hydras -- hydra + which-key
 (package! hercules)
@@ -86,18 +86,18 @@
 ;;
 ;; Packages connected to writing and `pandoc`
 ;;
-(package! wc-mode)
+;; (package! wc-mode)
 (package! pandoc-mode)
 (package! expand-region)
-(package! focus)
+;; (package! focus)
 
 ;; Package for import files with pandoc
 (package! org-pandoc-import :recipe
   (:host github :repo "tecosaur/org-pandoc-import" :files ("*.el" "filters" "preprocessors")))
 
 ;; Text linting with vale -- vale has support for org-mode files since v. 2.20
-(package! flymake-vale :recipe
-  (:host github :repo "tpeacock19/flymake-vale"))
+;; (package! flymake-vale :recipe
+;;   (:host github :repo "tpeacock19/flymake-vale"))
 
 ;; Package to remove text from buffer "Active" area to some out-of-text area
 ;; Provides:
@@ -131,7 +131,7 @@
            :repo "awth13/org-appear"))
 
 ;; Make org a prettier, without losing the performance
-(package! org-modern)
+;; (package! org-modern)
 
 ;; (package! org-fragtog) ;; If I won't be using LaTeX previews, I also won't need this, I guess ...
 
@@ -147,7 +147,7 @@
 ;; Org citations
 
 (package! org-ref)
-(package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
+;; (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
 
 ;; Org glossaries
 (package! org-glossary
@@ -189,7 +189,7 @@
 
 ;; Souštění kódu v org-mode
 
-(package! ob-julia :recipe (:host github :repo "nico202/ob-julia" :files ("*.el" "julia")))
+;; (package! ob-julia :recipe (:host github :repo "nico202/ob-julia" :files ("*.el" "julia")))
 ;; (package! ob-raku) ;; Není na MELPA, ručně jej instalovat nebudu
 
 ;; Make HTTP requests from org-mode
@@ -209,7 +209,7 @@
 
 ;; Package for reading =epub= files in emacs
 ;;
-(package! nov)
+;; (package! nov)
 
 ;; Buttons everywhere
 (package! hyperbole)
@@ -250,8 +250,8 @@
 
 ;; Balíček exwm - window manager pro celé OS uvnitř Emacs - spustit při loginu do PC
 ;;
-(package! exwm)
-(package! dmenu)
+;; (package! exwm)
+;; (package! dmenu)
 
 ;; Balíčky integrace dalších programovacích jazyků do emacs
 ;;
