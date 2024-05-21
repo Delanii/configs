@@ -344,8 +344,8 @@ title."
    :actions '(insert))
   )
 
-(use-package! websocket
-    :after org-roam)
+;; (use-package! websocket
+;;     :after org-roam)
 
 (after! org
 

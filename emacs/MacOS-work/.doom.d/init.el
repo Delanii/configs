@@ -127,9 +127,11 @@
        ;;  +local
        ;;  +tree-sitter)            ; types of types of types of types...
        (cc
-        +lsp)                           ; C/C++/Obj-C madness
+        +lsp
+        +tree-sitter)                           ; C/C++/Obj-C madness
        (clojure
-        +lsp) ; java with a lisp
+        +lsp
+        +tree-sitter) ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
@@ -138,9 +140,9 @@
        ;; (dart +flutter)   ; paint ui and not much else
        ;; (elixir
        ;; + lsp)                     ; erlang done right
-       (elm
-        +lsp
-        +tree-sitter)     ; care for a cup of TEA?
+       ;; (elm
+       ;;  +lsp
+       ;;  +tree-sitter)     ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
        ;; ess  ; emacs speaks statistics
@@ -152,14 +154,16 @@
        ;;  +lsp)                       ; the hipster dialect
        (haskell
         +dante
-        +lsp)  ; a language that's lazier than I am
+        +lsp
+        +tree-sitter)  ; a language that's lazier than I am
        hy      ; readability of scheme w/ speed of python
        ;; idris             ; a language you can depend on
        json    ; At least it ain't XML
        ;; (java
        ;;  +lsp)           ; the poster child for carpal tunnel syndrome
        (javascript
-        +lsp)                         ; all(hope(abandon(ye(who(enter(here))))))
+        +lsp
+        +tree-sitter)                         ; all(hope(abandon(ye(who(enter(here))))))
        ;; (julia
        ;;  +lsp)                ; a better, faster MATLAB
        ;; (kotlin
@@ -172,11 +176,13 @@
        ;; lean
        ;; factor
        ;; ledger            ; an accounting system in Emacs
-       lua                              ; one-based indices? one-based indices
+       (lua
+        +tree-siiter)                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       ocaml                            ; an objective camel
+       (ocaml
+        +tree-sitter)                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
         +attach                         ; custom attachment system
@@ -195,7 +201,7 @@
        (python
         +cython
         +lsp
-        +pyright)     ; beautiful is better than ugly
+        +pyright+tree-sitter)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
        ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
@@ -203,14 +209,16 @@
        ;; rst                             ; ReST in peace
        ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +lsp
+        +tree-sitter)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; (scala
        ;;  +lsp)
        ;; (scheme
        ;;  +guile)        ; a fully conniving family of lisps
        (sh
         ;; +fish
-        +lsp) ; she sells {ba,z,fi}sh shells on the C xor
+        +lsp
+        +tree-sitter) ; she sells {ba,z,fi}sh shells on the C xor
        ;; sml
        ;; solidity          ; do you need a blockchain? No.
        ;; swift             ; who asked for emoji variables?

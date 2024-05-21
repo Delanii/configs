@@ -406,8 +406,8 @@ Version 2016-10-24"
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 ;; Increase completion history size
-(setq-default history-length 1000)
-(setq-default prescient-history-length 1000)
+;; (setq-default history-length 1000)
+;; (setq-default prescient-history-length 1000)
 
 ;; allow Ispell in text, markdown and gfm modes
 (set-company-backend!
@@ -420,7 +420,7 @@ Version 2016-10-24"
     company-yasnippet))
 
 ;; company-dabbrev-mode in R-coding
-(set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
+;; (set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
 
 ;;
 ;; Yasnippets settings
