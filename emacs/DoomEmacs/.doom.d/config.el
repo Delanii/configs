@@ -307,12 +307,12 @@
   :hook (org-mode . palimpsest-mode))
 
 ;; Set-up prose linting with vale
-(use-package! flymake-vale
-  :defer t
-  :hook ((text-mode . flymake-vale-load)
-         (latex-mode . flymake-vale-load)
-         (org-mode . flymake-vale-load)
-         (markdown-mode . flymake-vale-load)))
+;; (use-package! flymake-vale
+;;   :defer t
+;;   :hook ((text-mode . flymake-vale-load)
+;;          (latex-mode . flymake-vale-load)
+;;          (org-mode . flymake-vale-load)
+;;          (markdown-mode . flymake-vale-load)))
 
 ;; Text rotations definitions
 (load! "config/text-rotations.el")
@@ -401,8 +401,8 @@ Version 2016-10-24"
 
 
 ;; Increase completion history size
-(setq-default history-length 1000)
-(setq-default prescient-history-length 1000)
+;; (setq-default history-length 1000)
+;; (setq-default prescient-history-length 1000)
 
 ;; allow Ispell in text, markdown and gfm modes
 (set-company-backend!
