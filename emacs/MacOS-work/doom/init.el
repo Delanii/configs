@@ -20,9 +20,11 @@
        ;; layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company                         ; the ultimate code completion backend
-        +auto                           ; as-you-type auto code completion
-        +childframe)                    ; nicer UI
+       ;; (company                         ; the ultimate code completion backend
+       ;; +auto                           ; as-you-type auto code completion
+       ;; +childframe)                    ; nicer UI
+       (corfu
+        +orderless)
        ;; helm              ; the *other* search engine for love and life
        ;; ido               ; the other *other* search engine...
        ;; (ivy +fuzzy
@@ -111,11 +113,9 @@
        ;; pass              ; password manager for nerds
        pdf                              ; pdf enhancements
        ;; prodigy           ; FIXME managing external services & code builders
-       rgb                      ; creating color strings
-       ;; taskrunner ; taskrunner for all your projects
        ;; terraform         ; infrastructure as code
-       ;; tmux
-                                        ; an API for interacting with tmux
+       ;; tmux              ; an API for interacting with tmux
+       tree-sitter
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -138,8 +138,8 @@
        ;; csharp            ; unity, .NET, and mono shenanigans
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
-       ;; (elixir
-       ;; + lsp)                     ; erlang done right
+       (elixir
+       + lsp)                     ; erlang done right
        ;; (elm
        ;;  +lsp
        ;;  +tree-sitter)     ; care for a cup of TEA?
@@ -150,8 +150,10 @@
        ;; fsharp            ; ML stands for Microsoft's Language
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
-       ;; (go
-       ;;  +lsp)                       ; the hipster dialect
+       (go
+        +lsp)                       ; the hipster dialect
+       (graphql
+        +lsp)
        (haskell
         +dante
         +lsp
@@ -181,7 +183,7 @@
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       (ocaml
+       (ocaml
         +tree-sitter)                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
@@ -196,7 +198,7 @@
         +roam2
         +noter)
        php               ; perl's insecure younger brother
-       plantuml          ; diagrams for confusing people more
+       ;; plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python
         +cython
