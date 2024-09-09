@@ -20,9 +20,11 @@
        ;; layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company                         ; the ultimate code completion backend
-        +auto                           ; as-you-type auto code completion
-        +childframe)                    ; nicer UI
+       ;; (company                         ; the ultimate code completion backend
+       ;;  +auto                           ; as-you-type auto code completion
+       ;;  +childframe)                    ; nicer UI
+       (corfu
+        +orderless)
        ;; helm              ; the *other* search engine for love and life
        ;; ido               ; the other *other* search engine...
        ;; (ivy +fuzzy
@@ -38,7 +40,6 @@
        doom-quit              ; DOOM quit-message prompts when you quit Emacs
        ;; fill-column       ; a `fill-column' indicator
        hl-todo                ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
        indent-guides                    ; highlighted indent columns
        ;; ligatures         ; ligatures and symbols to make your code pretty again
        ;; minimap         ; show a map of the code on the side
@@ -112,7 +113,6 @@
        ;; pass              ; password manager for nerds
        pdf                              ; pdf enhancements
        ;; prodigy           ; FIXME managing external services & code builders
-       rgb        ; creating color strings
        ;; taskrunner        ; taskrunner for all your projects
        ;; terraform         ; infrastructure as code
        ;; tmux       ; an API for interacting with tmux
@@ -127,17 +127,19 @@
        ;;  +local
        ;;  +tree-sitter)            ; types of types of types of types...
        (cc
-        +lsp)                           ; C/C++/Obj-C madness
-       (clojure
-        +lsp) ; java with a lisp
+        +lsp
+        +tree-sitter)                           ; C/C++/Obj-C madness
+       ;; (clojure
+       ;;  +lsp) ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
        ;; csharp            ; unity, .NET, and mono shenanigans
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
-       ;; (elixir
-       ;; + lsp)                     ; erlang done right
+       (elixir
+        +lsp
+        +tree-sitter)                     ; erlang done right
        ;; elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
@@ -146,12 +148,14 @@
        ;; fsharp            ; ML stands for Microsoft's Language
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
-       ;; (go
-       ;;  +lsp)                       ; the hipster dialect
+       (go
+        +lsp
+        +tree-sitter)                       ; the hipster dialect
        (haskell
         +dante
-        +lsp)  ; a language that's lazier than I am
-       hy      ; readability of scheme w/ speed of python
+        +lsp
+        +tree-sitter)  ; a language that's lazier than I am
+       ;; hy      ; readability of scheme w/ speed of python
        ;; idris             ; a language you can depend on
        json    ; At least it ain't XML
        ;; (java
@@ -171,11 +175,13 @@
        ;; lean
        ;; factor
        ledger            ; an accounting system in Emacs
-       lua                              ; one-based indices? one-based indices
+       (lua
+        +tree-sitter)                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       ocaml                            ; an objective camel
+       (ocaml
+        +tree-sitter)                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +brain
         +attach                         ; custom attachment system
@@ -193,7 +199,8 @@
        ;; purescript        ; javascript, but functional
        (python
         +cython
-        +lsp)     ; beautiful is better than ugly
+        +lsp
+        +tree-sitter)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
        ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
@@ -201,7 +208,8 @@
        ;; rst                             ; ReST in peace
        ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +lsp
+        +tree-sitter)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; (scala
        ;;   +lsp)
        ;; (scheme

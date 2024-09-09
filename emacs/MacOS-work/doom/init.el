@@ -129,9 +129,9 @@
        (cc
         +lsp
         +tree-sitter)                           ; C/C++/Obj-C madness
-       (clojure
-        +lsp
-        +tree-sitter) ; java with a lisp
+       ;; (clojure
+       ;;  +lsp
+       ;;  +tree-sitter)   ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
@@ -139,7 +139,8 @@
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
        (elixir
-       + lsp)                     ; erlang done right
+        +lsp
+        +tree-sitter)                     ; erlang done right
        ;; (elm
        ;;  +lsp
        ;;  +tree-sitter)     ; care for a cup of TEA?
@@ -151,14 +152,15 @@
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
        (go
-        +lsp)                       ; the hipster dialect
+        +lsp
+        +tree-sitter)                       ; the hipster dialect
        (graphql
         +lsp)
        (haskell
         +dante
         +lsp
         +tree-sitter)  ; a language that's lazier than I am
-       hy      ; readability of scheme w/ speed of python
+       ;; hy      ; readability of scheme w/ speed of python
        ;; idris             ; a language you can depend on
        json    ; At least it ain't XML
        ;; (java
@@ -179,7 +181,7 @@
        ;; factor
        ;; ledger            ; an accounting system in Emacs
        (lua
-        +tree-siiter)                              ; one-based indices? one-based indices
+        +tree-sitter)                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
@@ -203,7 +205,8 @@
        (python
         +cython
         +lsp
-        +pyright+tree-sitter)     ; beautiful is better than ugly
+        +pyright
+        +tree-sitter)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
        ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
