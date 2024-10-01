@@ -23,6 +23,8 @@
        ;; (company                         ; the ultimate code completion backend
        ;;  +auto                           ; as-you-type auto code completion
        ;;  +childframe)                    ; nicer UI
+       ;; +auto                           ; as-you-type auto code completion
+       ;; +childframe)                    ; nicer UI
        (corfu
         +orderless)
        ;; helm              ; the *other* search engine for love and life
@@ -113,9 +115,9 @@
        ;; pass              ; password manager for nerds
        pdf                              ; pdf enhancements
        ;; prodigy           ; FIXME managing external services & code builders
-       ;; taskrunner        ; taskrunner for all your projects
        ;; terraform         ; infrastructure as code
        ;; tmux       ; an API for interacting with tmux
+       tree-sitter
        ;; upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -124,8 +126,7 @@
 
        :lang
        ;; (agda
-       ;;  +local
-       ;;  +tree-sitter)            ; types of types of types of types...
+       ;;  +local)            ; types of types of types of types...
        (cc
         +lsp
         +tree-sitter)                           ; C/C++/Obj-C madness
@@ -140,6 +141,7 @@
        (elixir
         +lsp
         +tree-sitter)                     ; erlang done right
+        + lsp)                     ; erlang done right
        ;; elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
@@ -151,6 +153,9 @@
        (go
         +lsp
         +tree-sitter)                       ; the hipster dialect
+        +lsp)                       ; the hipster dialect
+       (graphql
+        +lsp)
        (haskell
         +dante
         +lsp
@@ -183,15 +188,12 @@
        (ocaml
         +tree-sitter)                            ; an objective camel
        (org                             ; organize your plain life in plain text
-        +brain
-        +attach                         ; custom attachment system
         +babel                          ; code snippets
         +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
         +gnuplot
         +pandoc
-        +pomodoro
         +roam2
         +noter)
        php               ; perl's insecure younger brother

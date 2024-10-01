@@ -392,12 +392,12 @@ Version 2016-10-24"
 ;; Completion Settings
 ;;
 
-(after! company
-  (setq company-idle-delay 0.1
-        company-minimum-prefix-length 3
-        company-show-quick-access t)
-  ;; (add-to-list 'company-backends #'company-tabnine)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+;; (after! company
+;;   (setq company-idle-delay 0.1
+;;         company-minimum-prefix-length 3
+;;         company-show-quick-access t)
+;;   ;; (add-to-list 'company-backends #'company-tabnine)
+;;   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 
 ;; Increase completion history size
@@ -405,17 +405,14 @@ Version 2016-10-24"
 ;; (setq-default prescient-history-length 1000)
 
 ;; allow Ispell in text, markdown and gfm modes
-(set-company-backend!
-  '(text-mode
-    markdown-mode
-    gfm-mode)
-  '(:seperate
-    company-ispell
-    company-files
-    company-yasnippet))
-
-;; company-dabbrev-mode in R-coding
-;; (set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
+;; (set-company-backend!
+;;   '(text-mode
+;;     markdown-mode
+;;     gfm-mode)
+;;   '(:seperate
+;;     company-ispell
+;;     company-files
+;;     company-yasnippet))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets
