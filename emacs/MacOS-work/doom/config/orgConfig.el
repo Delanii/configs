@@ -562,50 +562,50 @@ title."
   ;; Citations in org-mode with org-cite
 ;;
 
-(use-package! citeproc
-  :defer t)
+;; (use-package! citeproc
+;;   :defer t)
 
 ;;; Org-Cite configuration
 
-(map! :after org
-      :map org-mode-map
-      :localleader
-      :desc "Insert citation" "@" #'org-cite-insert)
+;; (map! :after org
+;;       :map org-mode-map
+;;       :localleader
+;;       :desc "Insert citation" "@" #'org-cite-insert)
 
-(use-package! oc
-  :after org citar
-  :config
-  (require 'ox)
-  (setq org-cite-global-bibliography
-        (let ((paths (or citar-bibliography
-                         (bound-and-true-p bibtex-completion-bibliography))))
-          ;; Always return bibliography paths as list for org-cite.
-          (if (stringp paths) (list paths) paths)))
-  ;; setup export processor; default csl/citeproc-el, with biblatex for latex
-  (setq org-cite-export-processors
-        '((t csl))))
+;; (use-package! oc
+;;   :after org citar
+;;   :config
+;;   (require 'ox)
+;;   (setq org-cite-global-bibliography
+;;         (let ((paths (or citar-bibliography
+;;                          (bound-and-true-p bibtex-completion-bibliography))))
+;;           ;; Always return bibliography paths as list for org-cite.
+;;           (if (stringp paths) (list paths) paths)))
+;;   ;; setup export processor; default csl/citeproc-el, with biblatex for latex
+;;   (setq org-cite-export-processors
+;;         '((t csl))))
 
   ;;; Org-cite processors
-(use-package! oc-biblatex
-  :after oc)
+;; (use-package! oc-biblatex
+;;   :after oc)
 
 ;;;; Third-party
 
-(use-package! citar-org
-  :no-require
-  :custom
-  (org-cite-insert-processor 'citar)
-  (org-cite-follow-processor 'citar)
-  (org-cite-activate-processor 'citar)
-  (org-support-shift-select t)
-  (when (modulep! :lang org +roam2)
-    ;; Include property drawer metadata for 'org-roam' v2.
-    (citar-org-note-include '(org-id org-roam-ref)))
-  ;; Personal extras
-  (setq citar-symbols
-        `((file ,(all-the-icons-faicon "file-o" :v-adjust -0.1) . " ")
-          (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
-          (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
+;; (use-package! citar-org
+;;   :no-require
+;;   :custom
+;;   (org-cite-insert-processor 'citar)
+;;   (org-cite-follow-processor 'citar)
+;;   (org-cite-activate-processor 'citar)
+;;   (org-support-shift-select t)
+;;   (when (modulep! :lang org +roam2)
+;;     ;; Include property drawer metadata for 'org-roam' v2.
+;;     (citar-org-note-include '(org-id org-roam-ref)))
+;;   ;; Personal extras
+;;   (setq citar-symbols
+;;         `((file ,(all-the-icons-faicon "file-o" :v-adjust -0.1) . " ")
+;;           (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
+;;           (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
 
 ;; Glossaries in org mode
 (use-package! org-glossary :after org)
@@ -688,8 +688,8 @@ title."
 ;; Org declarative capture templates settings
 ;;
 
-(use-package! doct
- :commands doct)
+;; (use-package! doct
+;;  :commands doct)
 
 ;; Some hooks are notoriously prblematic.
 ;; Let's ignore them when they are misbehaving

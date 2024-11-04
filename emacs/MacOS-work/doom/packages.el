@@ -70,6 +70,7 @@
 ;; (package! company-tabnine)
 
 ;; Package for dealing with hydras -- hydra + which-key
+(package! hydra)
 (package! hercules)
 
 ;; Organizace bufferů
@@ -106,7 +107,7 @@
 
 ;; Documentation packages
 ;;
-(package! tldr)
+;; (package! tldr)
 
 ;;
 ;; Packages connected specifically to org-mode
@@ -116,7 +117,7 @@
 ;; (unpin! org-mode)
 
 ;; Make agenda super
-(package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
+(package! org-super-agenda)
 
 ;; Allow trigger events on TODO states
 (package! org-edna)
@@ -145,7 +146,7 @@
 
 ;; Org citations
 
-(package! org-ref)
+;; (package! org-ref)
 ;; (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
 
 ;; Org glossaries
@@ -153,7 +154,7 @@
   :recipe (:host github :repo "tecosaur/org-glossary"))
 
 ;; Settings for org-roam-v2
-(unpin! org-roam)
+;; (unpin! org-roam)
 
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
@@ -162,12 +163,12 @@
 (package! navi)
 
 ;; Package for using =defblock= function and for simultanious export to html, latex or other formats
-(package! org-special-block-extras)
+;; (package! org-special-block-extras)
 
 ;; Declarative org capture tempates
-(package! doct
-  :recipe (:host github :repo "progfolio/doct")
-  :pin "67fc46c8a68989b932bce879fbaa62c6a2456a1f")
+;; (package! doct
+;;   :recipe (:host github :repo "progfolio/doct")
+;;   :pin "67fc46c8a68989b932bce879fbaa62c6a2456a1f")
 
 ;;
 ;; Experimental packages
@@ -176,7 +177,7 @@
 (package! org-transclusion :recipe (:host github :repo "nobiot/org-transclusion"))
 
 ;; Outline packages - experimental
-(package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+;; (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 
 ;; Sidebars for org mode
 
@@ -193,7 +194,7 @@
 ;; (package! ob-raku) ;; Není na MELPA, ručně jej instalovat nebudu
 
 ;; Make HTTP requests from org-mode
-(package! ob-http :pin "b1428ea2a63bcb510e7382a1bf5fe82b19c104a7")
+(package! ob-http)
 
 ;; Spouštění kódu ve Scale
 ;; (package! ob-scala) ;; Opět není v MELPA
@@ -228,7 +229,7 @@
 
 ;; Úpravy dired
 ;;
-(package! dired-open)
+;; (package! dired-open)
 
 ;; Balíček pro vytváření dalších expanzí a regexů; myslím
 ;;

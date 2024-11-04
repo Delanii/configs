@@ -40,8 +40,7 @@
        doom-quit              ; DOOM quit-message prompts when you quit Emacs
        ;;fill-column       ; a `fill-column' indicator
        hl-todo                ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
-       indent-guides                    ; highlighted indent columns
+       ;; indent-guides                    ; highlighted indent columns
        ;;ligatures         ; ligatures and symbols to make your code pretty again
        ;; minimap         ; show a map of the code on the side
        modeline        ; snazzy, Atom-inspired modeline, plus API
@@ -54,7 +53,8 @@
        ;; tabs              ; a tab bar for Emacs
        treemacs                      ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       vc-gutter              ; vcs diff in the fringe
+       (vc-gutter 
+         +pretty)              ; vcs diff in the fringe
        vi-tilde-fringe        ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces             ; tab emulation, persistence & separate workspaces
@@ -67,7 +67,7 @@
        ;; (format +onsave)             ; automated prettiness
        ;; god                       ; run Emacs commands without modifier keys
        ;; lispy                       ; vim for lisp, for people who don't like vim
-       multiple-cursors            ; editing in many places at once
+       ;; multiple-cursors            ; editing in many places at once
        ;; objed             ; text object editing for the innocent
        ;; parinfer          ; turn lisp into python, sort of
        rotate-text               ; cycle region at point between text candidates
@@ -81,7 +81,7 @@
        (ibuffer                         ; interactive buffer management
         +icons)         
        (undo
-        + tree)          ; persistent, smarter undo for your inevitable mistakes
+        +tree)          ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -116,31 +116,29 @@
        ;; terraform         ; infrastructure as code
        ;; tmux              ; an API for interacting with tmux
        tree-sitter
-       ;;upload            ; map local to remote projects via ssh/ftp
+       ;; upload            ; map local to remote projects via ssh/ftp
 
        :os
        (:if IS-MAC macos)               ; improve compatibility with macOS
-       tty                              ; improve the terminal Emacs experience
+       ;; tty                              ; improve the terminal Emacs experience
 
        :lang
        ;; (agda
        ;;  +local
        ;;  +tree-sitter)            ; types of types of types of types...
        (cc
-        +lsp
-        +tree-sitter)                           ; C/C++/Obj-C madness
-       ;; (clojure
-       ;;  +lsp
-       ;;  +tree-sitter)   ; java with a lisp
-       common-lisp      ; if you've seen one lisp, you've seen them all
+        +lsp)                           ; C/C++/Obj-C madness
+       (clojure
+        +lsp) ; java with a lisp
+       ;; common-lisp      ; if you've seen one lisp, you've seen them all
+                            ; 2024-11-04: For some reason, this module break with `(void-variable calendar-column-width)`
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
        ;; csharp            ; unity, .NET, and mono shenanigans
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
        (elixir
-        +lsp
-        +tree-sitter)                     ; erlang done right
+       +lsp)                     ; erlang done right
        ;; (elm
        ;;  +lsp
        ;;  +tree-sitter)     ; care for a cup of TEA?
@@ -152,12 +150,10 @@
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
        (go
-        +lsp
-        +tree-sitter)                       ; the hipster dialect
+        +lsp)                       ; the hipster dialect
        (graphql
         +lsp)
        (haskell
-        +dante
         +lsp
         +tree-sitter)  ; a language that's lazier than I am
        ;; hy      ; readability of scheme w/ speed of python
@@ -166,8 +162,7 @@
        ;; (java
        ;;  +lsp)           ; the poster child for carpal tunnel syndrome
        (javascript
-        +lsp
-        +tree-sitter)                         ; all(hope(abandon(ye(who(enter(here))))))
+        +lsp)                         ; all(hope(abandon(ye(who(enter(here))))))
        ;; (julia
        ;;  +lsp)                ; a better, faster MATLAB
        ;; (kotlin
@@ -181,32 +176,31 @@
        ;; factor
        ;; ledger            ; an accounting system in Emacs
        (lua
-        +tree-sitter)                              ; one-based indices? one-based indices
+        +tree-siiter)                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       (ocaml
-        +tree-sitter)                            ; an objective camel
+       ;; ocaml             ; an objective camel
+			 										 ; ocaml module installs merlin-company package, which requires company -- 2024-11-04 I am disabling the module
        (org                             ; organize your plain life in plain text
-        +brain
+        ;; +brain
         +attach                         ; custom attachment system
         +babel                          ; code snippets
-        +capture                        ; org-capture in and outside of Emacs
+        ;; +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
         +present                        ; Emacs for presentation
         +gnuplot
         +pandoc
-        +pomodoro
-        +roam2
-        +noter)
+        ;; +pomodoro
+        ;; +roam2
+        ;; +noter
+       )
        php               ; perl's insecure younger brother
        ;; plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python
         +cython
-        +lsp
-        +pyright
-        +tree-sitter)     ; beautiful is better than ugly
+        +lsp)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
        ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
@@ -214,16 +208,14 @@
        ;; rst                             ; ReST in peace
        ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp
-        +tree-sitter)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +lsp)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; (scala
        ;;  +lsp)
        ;; (scheme
        ;;  +guile)        ; a fully conniving family of lisps
        (sh
         ;; +fish
-        +lsp
-        +tree-sitter) ; she sells {ba,z,fi}sh shells on the C xor
+        +lsp) ; she sells {ba,z,fi}sh shells on the C xor
        ;; sml
        ;; solidity          ; do you need a blockchain? No.
        ;; swift             ; who asked for emoji variables?
@@ -231,18 +223,17 @@
        ;; web                              ; the tubes
        (yaml)        ; JSON, but readable
        ;; (zig
-       ;;  +lsp
-       ;;  +tree-sitter)
+       ;;  +lsp)
 
        :email
-       (mu4e 
-        +gmail)
+       ;; (mu4e 
+       ;;  +gmail)
        ;; notmuch
        ;;(wanderlust +gmail)
 
        :app
-       calendar
-       everywhere
+       ;; calendar
+       ;; everywhere
        ;; irc               ; how neckbeards socialize
        ;; (rss +org)        ; emacs as an RSS reader
        ;; twitter           ; twitter client https://twitter.com/vnought
