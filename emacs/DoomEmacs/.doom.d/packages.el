@@ -108,11 +108,6 @@
 ;;
 (package! palimpsest-mode)
 
-;; Documentation packages
-;;
-(package! tldr)
-
-;;
 ;; Packages connected specifically to org-mode
 ;;
 
@@ -130,7 +125,7 @@
   :recipe (:host github
            :repo "awth13/org-appear"))
 
-;; Make org a prettier, without losing the performance
+;; Make org a prettier, without losing the performance
 ;; (package! org-modern)
 
 ;; (package! org-fragtog) ;; If I won't be using LaTeX previews, I also won't need this, I guess ...
@@ -146,38 +141,38 @@
 
 ;; Org citations
 
-(package! org-ref)
+;; (package! org-ref)
 ;; (package! citeproc :pin "38e70c0a94eeefe86ddefc38dfa8ab2311008774")
 
 ;; Org glossaries
-(package! org-glossary
-  :recipe (:host github :repo "tecosaur/org-glossary"))
+;; (package! org-glossary
+;;  :recipe (:host github :repo "tecosaur/org-glossary"))
 
-(unpin! org-roam)
-(package! websocket)
+;; (unpin! org-roam)
+;; (package! websocket)
 
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
 ;; (package! org-plus-contrib) ;; rozbije export z org-mode do jiných formátů
-(package! org-pdftools)
-(package! navi)
+;; (package! org-pdftools)
+;; (package! navi)
 
 ;; Package for using =defblock= function and for simultanious export to html, latex or other formats
-(package! org-special-block-extras)
+;; (package! org-special-block-extras)
 
 ;; Declarative org capture tempates
-(package! doct
-  :recipe (:host github :repo "progfolio/doct")
-  :pin "67fc46c8a68989b932bce879fbaa62c6a2456a1f")
+;; (package! doct
+;;   :recipe (:host github :repo "progfolio/doct")
+;;   :pin "67fc46c8a68989b932bce879fbaa62c6a2456a1f")
 
 ;;
 ;; Experimental packages
 ;;
 ;; Org-mode text transclusion via reference from a file
-(package! org-transclusion :recipe (:host github :repo "nobiot/org-transclusion"))
+;; (package! org-transclusion :recipe (:host github :repo "nobiot/org-transclusion"))
 
 ;; Outline packages - experimental
-(package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+;; (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 
 ;; Sidebars for org mode
 
@@ -229,17 +224,17 @@
 
 ;; Úpravy dired
 ;;
-(package! dired-open)
+;; (package! dired-open)
 
 ;; Balíček pro vytváření dalších expanzí a regexů; myslím
 ;;
-(package! ample-regexps)
+;; (package! ample-regexps)
 
 ;; a pro lepší funkcionální programování v elisp
 (package! dash)
 
 ;; Plaintext databases, based on GNU recutils: https://www.gnu.org/software/recutils/manual/ ; manual: https://www.gnu.org/software/recutils/rec-mode-manual/rec-mode.html
-(package! rec-mode)
+;; (package! rec-mode)
 
 ;; And general databases:
 (package! emacsql

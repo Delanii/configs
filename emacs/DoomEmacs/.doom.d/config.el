@@ -212,11 +212,6 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; This set of functions displays buffer preview when `evil-window-vsplit` or `evil-window-split` is used in splitted window (right or bottom).
-;; First, we’ll enter the new window
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
-
 ;; Then, we’ll pull up a buffer prompt
 (defadvice! tec/prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
@@ -377,12 +372,12 @@ Version 2016-10-24"
 (after! latex
   (add-to-list 'TeX-command-list '("LuaLaTeX" "%`lualatex%(mode)%' %t" TeX-run-TeX nil t)))
 
-(setq +latex-viewers '(pdf-tools okular evince))
+;; (setq +latex-viewers '(pdf-tools okular evince))
 
 ;; SyncTeX ? From TEC
-(after! tex
-  (add-to-list 'TeX-view-program-list '("Okular" "okular %o"))
-  (add-to-list 'TeX-view-program-selection '(output-pdf "Okular")))
+;; (after! tex
+;;   (add-to-list 'TeX-view-program-list '("Okular" "okular %o"))
+;;   (add-to-list 'TeX-view-program-selection '(output-pdf "Okular")))
 
 ;; Fix for emacs 28
 (when EMACS28+
@@ -441,12 +436,12 @@ Version 2016-10-24"
 
 ;; Helper functions used to generate some snippets
 ;;
-(defun +yas/tec/org-last-src-lang ()
-  "Return the language of the last src-block, if it exists."
-  (save-excursion
-    (beginning-of-line)
-    (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
-      (org-element-property :language (org-element-context)))))
+;; (defun +yas/tec/org-last-src-lang ()
+;;   "Return the language of the last src-block, if it exists."
+;;   (save-excursion
+;;     (beginning-of-line)
+;;     (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
+;;       (org-element-property :language (org-element-context)))))
 
 ;;
 ;; Remove tabs from my life

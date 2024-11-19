@@ -21,8 +21,6 @@
 
        :completion
        ;; (company                         ; the ultimate code completion backend
-       ;;  +auto                           ; as-you-type auto code completion
-       ;;  +childframe)                    ; nicer UI
        ;; +auto                           ; as-you-type auto code completion
        ;; +childframe)                    ; nicer UI
        (corfu
@@ -113,7 +111,7 @@
        magit                    ; a git porcelain for Emacs
        make                     ; run make tasks from Emacs
        ;; pass              ; password manager for nerds
-       pdf                              ; pdf enhancements
+       ;; pdf                              ; pdf enhancements
        ;; prodigy           ; FIXME managing external services & code builders
        ;; terraform         ; infrastructure as code
        ;; tmux       ; an API for interacting with tmux
@@ -128,10 +126,9 @@
        ;; (agda
        ;;  +local)            ; types of types of types of types...
        (cc
-        +lsp
-        +tree-sitter)                           ; C/C++/Obj-C madness
-       ;; (clojure
-       ;;  +lsp) ; java with a lisp
+        +lsp)                           ; C/C++/Obj-C madness
+       (clojure
+        +lsp) ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
@@ -139,8 +136,6 @@
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
        (elixir
-        +lsp
-        +tree-sitter)                     ; erlang done right
         + lsp)                     ; erlang done right
        ;; elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
@@ -151,15 +146,12 @@
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
        (go
-        +lsp
-        +tree-sitter)                       ; the hipster dialect
         +lsp)                       ; the hipster dialect
        (graphql
         +lsp)
        (haskell
         +dante
-        +lsp
-        +tree-sitter)  ; a language that's lazier than I am
+        +lsp)  ; a language that's lazier than I am
        ;; hy      ; readability of scheme w/ speed of python
        ;; idris             ; a language you can depend on
        json    ; At least it ain't XML
@@ -180,13 +172,11 @@
        ;; lean
        ;; factor
        ledger            ; an accounting system in Emacs
-       (lua
-        +tree-sitter)                              ; one-based indices? one-based indices
+       lua                              ; one-based indices? one-based indices
        markdown                         ; writing docs for people to ignore
        ;; nim                              ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
-       (ocaml
-        +tree-sitter)                            ; an objective camel
+       ;; ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +babel                          ; code snippets
         +capture                        ; org-capture in and outside of Emacs
@@ -194,15 +184,15 @@
         +present                        ; Emacs for presentation
         +gnuplot
         +pandoc
-        +roam2
-        +noter)
+        ;; +roam2
+        ;; +noter
+        )
        php               ; perl's insecure younger brother
        ;; plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python
         +cython
-        +lsp
-        +tree-sitter)     ; beautiful is better than ugly
+        +lsp)     ; beautiful is better than ugly
        ;; qt                ; the 'cutest' gui framework ever
        ;; racket     ; a DSL for DSLs
        ;; raku                   ; the artist formerly known as perl6
@@ -210,8 +200,7 @@
        ;; rst                             ; ReST in peace
        ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp
-        +tree-sitter)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +lsp)                        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; (scala
        ;;   +lsp)
        ;; (scheme
@@ -232,7 +221,7 @@
 
        :app
        calendar
-       everywhere
+       ;; everywhere
        ;; irc               ; how neckbeards socialize
        ;; (rss +org)        ; emacs as an RSS reader
        ;; twitter           ; twitter client https://twitter.com/vnought
