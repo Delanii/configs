@@ -140,60 +140,50 @@
     (setq counsel-outline-display-style 'title))
   ;; link diplays heading title, no full path to title
 
-  (after! org-id
-    ;; Do not create ID if a CUSTOM_ID exists
-    (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
-  ;; org-id now uses CUSTOM-ID if it is specified
+;;   (after! org-id
+;;     ;; Do not create ID if a CUSTOM_ID exists
+;;     (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+;;   ;; org-id now uses CUSTOM-ID if it is specified
 
-  ;; This bunch of code should force creating human-readablE CUSTOM_IDs
+;;   ;; This bunch of code should force creating human-readablE CUSTOM_IDs
 
-  (defun zz/make-id-for-title (title)
-    "Return an ID based on TITLE."
-    (let* ((new-id (replace-regexp-in-string "[^[:alnum:]]" "-" (downcase title))))
-      new-id))
+;;   (defun zz/make-id-for-title (title)
+;;     "Return an ID based on TITLE."
+;;     (let* ((new-id (replace-regexp-in-string "[^[:alnum:]]" "-" (downcase title))))
+;;       new-id))
 
-  (defun zz/org-custom-id-create ()
-    "Create and store CUSTOM_ID for current heading."
-    (let* ((title (or (nth 4 (org-heading-components)) ""))
-           (new-id (zz/make-id-for-title title)))
-      (org-entry-put nil "CUSTOM_ID" new-id)
-      (org-id-add-location new-id (buffer-file-name (buffer-base-buffer)))
-      new-id))
+;;   (defun zz/org-custom-id-create ()
+;;     "Create and store CUSTOM_ID for current heading."
+;;     (let* ((title (or (nth 4 (org-heading-components)) ""))
+;;            (new-id (zz/make-id-for-title title)))
+;;       (org-entry-put nil "CUSTOM_ID" new-id)
+;;       (org-id-add-location new-id (buffer-file-name (buffer-base-buffer)))
+;;       new-id))
 
-  (defun zz/org-custom-id-get-create (&optional where force)
-    "Get or create CUSTOM_ID for heading at WHERE.
+;;   (defun zz/org-custom-id-get-create (&optional where force)
+;;     "Get or create CUSTOM_ID for heading at WHERE.
 
-If FORCE is t, always recreate the property."
-    (org-with-point-at where
-      (let ((old-id (org-entry-get nil "CUSTOM_ID")))
-        ;; If CUSTOM_ID exists and FORCE is false, return it
-        (if (and (not force) old-id (stringp old-id))
-            old-id
-          ;; otherwise, create it
-          (zz/org-custom-id-create)))))
+;; If FORCE is t, always recreate the property."
+;;     (org-with-point-at where
+;;       (let ((old-id (org-entry-get nil "CUSTOM_ID")))
+;;         ;; If CUSTOM_ID exists and FORCE is false, return it
+;;         (if (and (not force) old-id (stringp old-id))
+;;             old-id
+;;           ;; otherwise, create it
+;;           (zz/org-custom-id-create)))))
 
-  ;; Now override counsel-org-link-action
-  (after! counsel
-    (defun counsel-org-link-action (x)
-      "Insert a link to X.
+;;   ;; Now override counsel-org-link-action
+;;   (after! counsel
+;;     (defun counsel-org-link-action (x)
+;;       "Insert a link to X.
 
-X is expected to be a cons of the form (title . point), as passed
-by `counsel-org-link'.
+;; X is expected to be a cons of the form (title . point), as passed
+;; by `counsel-org-link'.
 
-If X does not have a CUSTOM_ID, create it based on the headline
-title."
-      (let* ((id (zz/org-custom-id-get-create (cdr x))))
-        (org-insert-link nil (concat "#" id) (car x)))))
-
-  ;; This should "reformat" org-mode buffer. Dont know what is the difference betwenn `org-mode-restart`, but it is supposedly a "gem," so I take it and test it.
-
-  (defun zz/org-reformat-buffer ()
-    (interactive)
-    (when (y-or-n-p "Really format current buffer? ")
-      (let ((document (org-element-interpret-data (org-element-parse-buffer))))
-        (erase-buffer)
-        (insert document)
-        (goto-char (point-min)))))
+;; If X does not have a CUSTOM_ID, create it based on the headline
+;; title."
+;;       (let* ((id (zz/org-custom-id-get-create (cdr x))))
+;;         (org-insert-link nil (concat "#" id) (car x)))))
 
   ;;
   ;; Úprava vzhledu org-mode
@@ -327,8 +317,8 @@ title."
    :actions '(insert))
   )
 
-(use-package! websocket
-    :after org-roam)
+;; (use-package! websocket
+;;     :after org-roam)
 
 (after! org
 
@@ -340,9 +330,6 @@ title."
 
     ;; Sets ob-http package to make HTTP requests from org-mode
    (use-package! ob-http))
-
-
-
 
 (after! org
 
@@ -495,12 +482,12 @@ title."
   ;; Experimental packages
   ;;
   ;; Settings for org-transclusion from https://github.com/tecosaur/emacs-config/blob/master/config.org
-  (use-package! org-transclusion
-    :commands org-transclusion-mode
-    :defer t
-    :init
-    (map! :after org :map org-mode-map
-          "<f12>" #'org-transclusion-mode))
+  ;; (use-package! org-transclusion
+  ;;   :commands org-transclusion-mode
+  ;;   :defer t
+  ;;   :init
+  ;;   (map! :after org :map org-mode-map
+  ;;        "<f12>" #'org-transclusion-mode))
 
   ;; Settings for org-outline-tree ; experimental package
   (use-package! org-ol-tree
@@ -542,57 +529,6 @@ title."
                      file title)
              title)))
         headings) "\n")))
-
-;; Citations in org-mode with org-cite
-;;
-
-(use-package! citeproc
-  :defer t)
-
-;;; Org-Cite configuration
-
-(map! :after org
-      :map org-mode-map
-      :localleader
-      :desc "Insert citation" "@" #'org-cite-insert)
-
-(use-package! oc
-  :after org citar
-  :config
-  (require 'ox)
-  (setq org-cite-global-bibliography
-        (let ((paths (or citar-bibliography
-                         (bound-and-true-p bibtex-completion-bibliography))))
-          ;; Always return bibliography paths as list for org-cite.
-          (if (stringp paths) (list paths) paths)))
-  ;; setup export processor; default csl/citeproc-el, with biblatex for latex
-  (setq org-cite-export-processors
-        '((t csl))))
-
-  ;;; Org-cite processors
-(use-package! oc-biblatex
-  :after oc)
-
-;;;; Third-party
-
-(use-package! citar-org
-  :no-require
-  :custom
-  (org-cite-insert-processor 'citar)
-  (org-cite-follow-processor 'citar)
-  (org-cite-activate-processor 'citar)
-  (org-support-shift-select t)
-  (when (modulep! :lang org +roam2)
-    ;; Include property drawer metadata for 'org-roam' v2.
-    (citar-org-note-include '(org-id org-roam-ref)))
-  ;; Personal extras
-  (setq citar-symbols
-        `((file ,(all-the-icons-faicon "file-o" :v-adjust -0.1) . " ")
-          (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-silver :v-adjust -0.3) . " ")
-          (link ,(all-the-icons-octicon "link" :face 'all-the-icons-dsilver :v-adjust 0.01) . " "))))
-
-;; Glossaries in org mode
-(use-package! org-glossary :after org)
 
 ;; Settings for org super agenda -- stolen from TEC
 ;;
@@ -668,18 +604,5 @@ title."
                            :todo ("SOMEDAY" )
                            :order 90)
                           (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
-
-;; Org declarative capture templates settings
-;;
-
-(use-package! doct
-  :commands doct)
-
-;; Some hooks are notoriously prblematic.
-;; Let's ignore them when they are misbehaving
-;; (defadvice! shut-up-org-problematic-hooks (orig-fn &rest args)
-;;   :around #'org-fancy-priorities-mode
-;;   :around #'org-superstar-mode
-;;   (ignore-errors (apply orig-fn args)))
 
   ) ;; closed `after!` macro from beginning of the org-mode settings

@@ -19,8 +19,8 @@
   "Place a org timestamp at point. Increment or decrement the timestamp at point."
   ("." org-time-stamp "Insert timestamp" :column "Insert")
   ("t" my/org-timestamp-today-date "Insert today timestamp" :column "Insert")
-  ("u" org-timestamp-up "Increase timestamp value at point" :column "Move")
-  ("d" org-timestamp-down "Decrease timestamp value at pont" :column "Move")
+  ("+" org-timestamp-up "Increase timestamp value at point" :column "Move")
+  ("-" org-timestamp-down "Decrease tiestamp value at pont" :column "Move")
   ("q" nil "Quit" :column "Aux"))
 
 ;; Hydra for grouping and conviniently toggling modes that are sometimes nagging me
