@@ -119,20 +119,11 @@ Plug 'https://github.com/hrsh7th/nvim-compe'
 " Plug 'roxma/nvim-yarp'               " remote plugin framework required for ncm2
 " Plug 'ncm2/ncm2-bufword'             " complete words in buffer
 " Plug 'ncm2/ncm2-path'                " complete paths
-" Plug 'ncm2/ncm2-jedi'                " Python completion
-" Plug 'gaalcaras/ncm-R'               " R completion [dep]: ncm2, Nvim-R
-" Plug 'jalvesaq/Nvim-R'               " required for ncm-R
 " Plug 'filipekiss/ncm2-look.vim'      " ncm2 spelling
-" Plug 'JuliaEditorSupport/julia-vim'  " julia syntax highlighting
 
 " turn on spelling and make a spell file
 set spelllang=en_us
 set spellfile=~/.config/nvim/en.utf-8.add
-
-" ncm2 
-" autocmd BufEnter * call ncm2#enable_for_buffer()      " enable ncm2 for all buffers
-set completeopt=noinsert,menuone,noselect             " IMPORTANT: :help Ncm2PopupOpen for more information
-" let g:python3_host_prog='/usr/bin/python3'            " ncm2-jedi
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -151,8 +142,6 @@ Plug 'tomtom/tlib_vim'
 Plug 'https://github.com/garbas/vim-snipmate'
 
 let g:snipMate = { 'snippet_version': 1 }
-
-Plug 'SirVer/ultisnips'              " hotkeys for chunks of code
 
 "
 " Git integration

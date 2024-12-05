@@ -17,8 +17,6 @@ vim.g.tokyonight_colors = { comment = "#00af5f"}
 -- tree-sitter setup
 --
 
-local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
 -- Specific settings for norg parser
 
 -- parser_configs.norg = {
