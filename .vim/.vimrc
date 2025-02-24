@@ -1,6 +1,6 @@
 " Nastavení fontu. Nastavení témat je až na konci souboru, aby téma vim našel.
 
-set guifont=Fira\ Code\ 11
+set guifont=Fira\ Code\ 12
 set background=dark
 
 " Požadavky, aby plugin wimWiki fungoval - `nocompatible` se nastavuje vždy,
@@ -38,6 +38,7 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
 set ignorecase
+set clipboard=unnamed
 
 " Settings for `git vimdiff` highlighting
 " odkaz: https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
@@ -83,9 +84,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim one theme, seems to look better than 'desert' and 'nord' themes
 Plug 'https://github.com/joshdick/onedark.vim'
-
-" Plugin pro Nord theme
-Plug 'arcticicestudio/nord-vim'
 
 " Plugin pro fancy ikony
 Plug 'ryanoasis/vim-devicons'
@@ -149,13 +147,6 @@ nnoremap <C-t> <Nop>
 
 " Více kurzorů najednou, help je pomocí `:help visual-multi`
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
-" Vkládání code snippets, SnipMate, změnil hlavní repositář
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'https://github.com/garbas/vim-snipmate'
-
-let g:snipMate = { 'snippet_version': 1 }
 
 " Git integration
 Plug 'https://github.com/tpope/vim-fugitive'
@@ -293,10 +284,6 @@ Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " Vim windows management
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Dim inactive windows, `:DimInactiveWindowOff` vypne funkci pro dané okno, `:DimInactiveWindowOn` funkci zapne. Více příkazů je na stránce projektu
-Plug 'https://github.com/blueyed/vim-diminactive', { 'on': 'DimInactiveWindowOn' }
-" Když chci plugin používat, stačí použít jeho hlavní funkci na nějaké okno - v tu chvíli se načte
 
 call plug#end()
 
