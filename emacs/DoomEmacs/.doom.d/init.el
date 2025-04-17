@@ -127,16 +127,16 @@
        ;;  +local)            ; types of types of types of types...
        (cc
         +lsp)                           ; C/C++/Obj-C madness
-       (clojure
-        +lsp) ; java with a lisp
+       ;; (clojure
+       ;;  +lsp) ; java with a lisp
        common-lisp      ; if you've seen one lisp, you've seen them all
        ;; coq               ; proofs-as-programs
        ;; crystal           ; ruby at the speed of c
        ;; csharp            ; unity, .NET, and mono shenanigans
        data                    ; config/data formats
        ;; (dart +flutter)   ; paint ui and not much else
-       (elixir
-        + lsp)                     ; erlang done right
+       ;; (elixir
+       ;;  + lsp)                     ; erlang done right
        ;; elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
@@ -145,10 +145,10 @@
        ;; fsharp            ; ML stands for Microsoft's Language
        ;; fstar             ; (dependent) types and (monadic) effects and Z3
        ;; gdscript          ; the language you waited for
-       (go
-        +lsp)                       ; the hipster dialect
-       (graphql
-        +lsp)
+       ;; (go
+       ;;  +lsp)                       ; the hipster dialect
+       ;; (graphql
+       ;;  +lsp)
        (haskell
         +dante
         +lsp)  ; a language that's lazier than I am
@@ -179,15 +179,15 @@
        ;; ocaml                            ; an objective camel
        (org                             ; organize your plain life in plain text
         +babel                          ; code snippets
-        +capture                        ; org-capture in and outside of Emacs
+        ;; +capture                        ; org-capture in and outside of Emacs
         +export                         ; Exporting org
-        +present                        ; Emacs for presentation
+        ;; +present                        ; Emacs for presentation
         +gnuplot
         +pandoc
         ;; +roam2
         ;; +noter
         )
-       php               ; perl's insecure younger brother
+       ;; php               ; perl's insecure younger brother
        ;; plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
        (python
